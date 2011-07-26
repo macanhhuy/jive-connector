@@ -27,6 +27,7 @@ import org.mule.api.annotations.Module;
 import org.mule.api.annotations.Processor;
 
 import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
@@ -48,20 +49,40 @@ import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
 import org.apache.commons.lang.UnhandledException;
+import org.apache.commons.lang.Validate;
 
-@Module(name = "jive", namespace = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive", schemaLocation = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0-SNAPSHOT/mule-jive.xsd")
+/***/
+@Module(name = "jive",
+    namespace = "http://repository.mulesoft.org/releases/org/"
+              + "mule/modules/mule-module-jive",
+    schemaLocation = "http://repository.mulesoft.org/releases/org/"
+                   + "mule/modules/mule-module-jive/1.0-SNAPSHOT/mule-jive.xsd")
+
 public class JiveModule implements JiveFacade {
+    /**The jersey webresource to access rest resources.*/
     private WebResource gateway;
 
+    /**JiveConnector.
+     * @param gatewayUri The base uri
+     * */
+    public JiveModule(final String gatewayUri) {
+        this.createGateway(gatewayUri, createClient());
+    }
+
+    /***/
     @Configurable
     private String myProperty;
 
-    public void setMyProperty(String myProperty) {
+    /**
+     * @param myProperty myProperty
+     * */
+    public final void setMyProperty(final String myProperty) {
         this.myProperty = myProperty;
     }
-    
+
+    /***/
     @Processor
-    public String myProcessor(String content) {
+    public String myProcessor(final String content) {
         /*
          * MESSAGE PROCESSOR CODE GOES HERE
          */
@@ -69,27 +90,68 @@ public class JiveModule implements JiveFacade {
         return content;
     }
 
+    /**XML output factory to write xml.
+     * */
+    private final XMLOutputFactory xmlOutputFactory =
+        XMLOutputFactory.newInstance();
+
+    /**XML input factory to read xml.
+     * */
+    private final XMLInputFactory xmlInputFactory =
+        XMLInputFactory.newInstance();
+
+
+    /* Creates an entity.
+     * @see org.mule.modules.jive.JiveFacade#create(
+     * org.mule.modules.jive.JiveFacade.ServiceType, java.util.Map)
+     */
     @Override
-    public Map<String, Object> callService(final ServiceType type, final Map<String, Object> entity) {
+    public final Map<String, Object> create(final ServiceType type,
+                                    final Map<String, Object> entity) {
         final Writer writer = new StringWriter();
         // validacion
         // directiva de conversion?
         map2xml(type, entity, writer);
+        ClientResponse response = this.gateway.path(type.getCreateServiceName())
+            .post(ClientResponse.class);
         // vamos a hacer el request
         // validar error
         return xml2map(new StringReader(writer.toString()));
     }
 
-    enum ACTION {
-        CREATE,
+    /* Deletes an entity
+     * @param type The service type, in this case indicating what entity to
+     * delete
+     * @param id The id of the entity to be deleted
+     * @see org.mule.modules.jive.JiveFacade#delete(
+     * org.mule.modules.jive.JiveFacade.ServiceType)
+     */
+    @Override
+    public final Map<String, Object> delete(final ServiceType type,
+        final String id) {
+        final Writer writer = new StringWriter();
+        // validacion
+        // directiva de conversion?
+        ClientResponse response = this.gateway.path(type.getDeleteServiceName()
+            + "/" + id).delete(ClientResponse.class);
+        // vamos a hacer el request
+        // validar error
+        return xml2map(new StringReader(writer.toString()));
     }
 
-    private final XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newInstance();
-    private final XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
 
-    private void map2xml(ServiceType type, final Map<String, Object> entity, Writer writer) {
+
+    ///////////////////////////Private methods//////////////////////////////////
+
+    /**Maps a {@link Map} to an XML and writes it to the writer given.
+     * @param type The service type
+     * @param entity The map containing the entity data
+     * @param writer The writer in which we'll write the xml
+     * */
+    private void map2xml(final ServiceType type,
+                       final Map<String, Object> entity, final Writer writer) {
         try {
-            final XMLStreamWriter w = 
+            final XMLStreamWriter w =
                     xmlOutputFactory.createXMLStreamWriter(writer);
 
             w.writeStartDocument();
@@ -104,7 +166,13 @@ public class JiveModule implements JiveFacade {
         }
     }
 
-    private void writeXML(XMLStreamWriter w, Map<String, Object> model) throws XMLStreamException {
+    /**Writes the xml of the internal data.
+     * @param w The writer in which it'll write the xml
+     * @param model The entity
+     * @throws XMLStreamException When fails
+     * */
+    private void writeXML(final XMLStreamWriter w,
+                   final Map<String, Object> model) throws XMLStreamException {
         final Set<Entry<String, Object>> entries = model.entrySet();
         for (final Entry<String, Object> entry : entries) {
                 w.writeStartElement(entry.getKey());
@@ -117,13 +185,19 @@ public class JiveModule implements JiveFacade {
         }
     }
 
-    private Map<String, Object> xml2map(Reader reader) {
+    /**Maps an xml from a {@link Reader} to a {@link Map}.
+     * @param reader The {@link Reader} with the xml data
+     * @return The map with the entity
+     * */
+    private Map<String, Object> xml2map(final Reader reader) {
         final Map<String, Object> ret = new HashMap<String, Object>();
-        final Stack<Map<String, Object>> maps = new Stack<Map<String,Object>>();
+        final Stack<Map<String, Object>> maps =
+            new Stack<Map<String, Object>>();
         Map<String, Object> current = ret;
-        
+
         try {
-            final XMLStreamReader r = xmlInputFactory.createXMLStreamReader(reader);
+            final XMLStreamReader r =
+                xmlInputFactory.createXMLStreamReader(reader);
             StringBuilder lastText = new StringBuilder();
             String currentElement = null;
             while (r.hasNext()) {
@@ -132,31 +206,31 @@ public class JiveModule implements JiveFacade {
                         || eventType == SPACE
                         || eventType == ENTITY_REFERENCE) {
                     lastText.append(r.getText());
-                    
                 } else if (eventType == PROCESSING_INSTRUCTION
                         || eventType == COMMENT) {
                     // skip
                 } else if (eventType == END_DOCUMENT) {
                     break;
                 } else if (eventType == START_ELEMENT) {
-                    if(currentElement != null) {
+                    if (currentElement != null) {
                         maps.push(current);
-                        final Map<String, Object> map = new HashMap<String, Object>();
+                        final Map<String, Object> map =
+                            new HashMap<String, Object>();
                         current.put(currentElement, map);
                         current = map;
                     }
                     currentElement = r.getLocalName();
                 } else if (eventType == END_ELEMENT) {
-                    if(currentElement == null) {
+                    if (currentElement == null) {
                         current = maps.pop();
                     } else {
                         current.put(currentElement, lastText.toString().trim());
                         currentElement = null;
                         lastText = new StringBuilder();
                     }
-//                  throw new XMLStreamException("element text content may not contain START_ELEMENT");
                 } else {
-                    throw new XMLStreamException("Unexpected event type " + eventType);
+                    throw new XMLStreamException("Unexpected event type "
+                        + eventType);
                 }
             }
             return ret;
@@ -173,13 +247,14 @@ public class JiveModule implements JiveFacade {
         return Client.create(config);
     }
 
-    /* Call service when no map is required.
-     * @see org.mule.modules.jive.JiveFacade#callService(
-     * org.mule.modules.jive.JiveFacade.ServiceType)
-     */
-    @Override
-    public final Map<String, Object> callService(final ServiceType type) {
-        return null;
+    /**Creates the webresource.
+     * @param gatewayUri The resource uri
+     * @param client The jersey client
+     * */
+    private void createGateway(final String gatewayUri, final Client client) {
+        Validate.notNull(client, "Client cannot be empty");
+        Validate.notEmpty(gatewayUri, "Gateway cannot be empty");
+        this.gateway = client.resource(gatewayUri);
     }
 
 }

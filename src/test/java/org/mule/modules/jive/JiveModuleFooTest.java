@@ -17,8 +17,11 @@ import org.mule.modules.jive.JiveFacade.ServiceType;
  * @since Jul 20, 2011
  */
 public class JiveModuleFooTest extends TestCase {
+    /**The gateway uri.*/
+    private static String gatewayUri =
+        "http://localhost:8080/application_context/rpc/rest";
     /**Facade instance.*/
-    private static final JiveFacade FACADE = new JiveModule();
+    private static final JiveFacade FACADE = new JiveModule(gatewayUri);
 
     /**Test the creation of an entity with entities within.
      * Using the {@link JiveFacade#callService(ServiceType, Map)}
@@ -46,7 +49,7 @@ public class JiveModuleFooTest extends TestCase {
      * */
     public final void testDelete() {
 
-        //throw new NotImplementedException();
+        FACADE.delete(ServiceType.AVATAR_DELETE, "123");
 
     }
 
@@ -54,7 +57,7 @@ public class JiveModuleFooTest extends TestCase {
      * @param map The mapping of the Avatar entity
      * */
     private void testCreate(final Map<String, Object> map) {
-        FACADE.callService(ServiceType.AVATAR_CREATE, map);
+        FACADE.create(ServiceType.AVATAR_CREATE, map);
     }
 
     /**Creates a simple entity for testing purposes.
