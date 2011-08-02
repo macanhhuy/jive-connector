@@ -20,6 +20,9 @@
  */
 package org.mule.modules.jive;
 
+import java.io.Reader;
+import java.io.Writer;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -36,8 +39,18 @@ import org.apache.commons.lang.StringUtils;
 public interface JiveFacade
 {
 
-    Map<String, Object> create(ServiceType type, Map<String, Object> entity);
-    Map<String, Object> delete(ServiceType type, String id);
+    Map<String, Object> create(
+        final ServiceType type, Map<String, Object> entity);
+    Map<String, Object> delete(final ServiceType type, String id);
+    Map<String, Object> xml2map(final Reader reader);
+    void map2xml(final ServiceType type,
+        final Map<String, Object> entity, final Writer writer);
+    Long count(final ServiceType type);
+    public void setUser(String user);
+    public void setPass(String pass);
+    public String getUser();
+    public String getPass();
+    public Long getUserID();
 
     /**Services enum.
      * */
@@ -45,53 +58,121 @@ public interface JiveFacade
         /**Avatar create reference.*/
         AVATAR_CREATE,
         /**Avatar delete reference.*/
-        AVATAR_DELETE;
+        AVATAR_DELETE,
+        /**Adress Book create user reference.*/
+        ADDRESSBOOK_CREATE_USER("addUser"),
+        /**Community delete reference.*/
+        COMMUNITY_DELETE,
+        /**Get blog count reference.*/
+        BLOG_COUNT,
+        /**Blog create reference.*/
+        BLOG_CREATE,
+        /**User create with the minimal data.*/
+        USER_CREATE,
+        /**User create sending the entire user data.*/
+        USER_CREATE_WITH_USER(true);
+
+        /**In almost all cases the uri of a delete request has the
+         * entity name in plural, this are the exceptions.*/
+        private static Set<String> deleteSingularExceptions =
+            new HashSet<String>();
+        static {
+            deleteSingularExceptions.add("AVATAR");
+        }
+
+        /**This are the cases in which the service name in the uri is different
+         * than the entitity name in lower case + Service.*/
+        private static Map<String, String> serviceNameExceptions =
+            new HashMap<String, String>();
+        static {
+            serviceNameExceptions.put("ADDRESSBOOK_CREATE_USER",
+                "addressBookService");
+        }
+
+        /**Constructor.*/
+        private ServiceType() {
+            this.setRootTagName(getXmlRootElementName());
+        }
+
+        /**Constructor for special start tags.
+         * @param rootTag The root tag name*/
+        private ServiceType(final String rootTag) {
+            this.setRootTagName(rootTag);
+        }
+
+        /**Constructor.
+         * @param usesExtraTag If true uses an extra tag with the entity name*/
+        private ServiceType(final boolean usesExtraTag) {
+            this();
+            this.setExtraTag(usesExtraTag);
+        }
+
+        /**@return The entity name in lowercase.*/
+        public final String getEntityName() {
+            return splitName[0].toLowerCase();
+        }
+
+        /**This variable holds the initial tag name of the request.*/
+        private String rootTagName;
 
         /**Split of the service name.*/
         private final String[] splitName =
             StringUtils.split(this.toString(), '_');
 
-        /**In almost all cases the uri of a delete request has the
-         * entity name in plural, this are the exceptions.*/
-        private static Set<String> deleteSingularExceptions = new HashSet<String>(10);
-        static {
-            deleteSingularExceptions.add("avatar");
-        }
+        /**If true, the request of this service has an extra tag with the entity
+         * name.*/
+        private boolean extraTag = false;
 
         /**@return the rootElement of the xml request
          * */
-        public final String getXmlRootElementName() {
+        private String getXmlRootElementName() {
             final StringBuffer rootElementName = new StringBuffer();
             rootElementName.append(StringUtils.lowerCase(splitName[1]));
             rootElementName.append(StringUtils.capitalize(
                 StringUtils.lowerCase(splitName[0])));
+            if (splitName.length > 2) {
+                for (int i = 2; i < splitName.length; i++) {
+                    rootElementName.append(
+                        StringUtils.capitalize(splitName[i].toLowerCase()));
+                }
+            }
             return rootElementName.toString();
         }
 
         /**@return The path of the specified service
          * */
         private String getServiceName() {
+            if (serviceNameExceptions.containsKey(this.toString())) {
+                return serviceNameExceptions.get(this.toString());
+            }
             return splitName[0].toLowerCase() + "Service";
         }
 
         /**@return The path of the specified create service
-         * The services listed in the api reference as 'Create' end with 's'
+         * The services listed in the api referenced as 'Create' are in plural
          * */
         public final String getCreateServiceName() {
-            return this.getServiceName() + "/" + pluralizeService();
+            return getServiceName() + "/" + pluralizeService();
         }
 
         /**@return The path of the specified delete service
-         * The services listed in the api reference as 'Create' end with 's'
+         * The services listed in the api reference as 'Create' are in plural
          * */
         public final String getDeleteServiceName() {
             final StringBuffer res = new StringBuffer(getServiceName() + "/");
             if (deleteSingularExceptions.contains(splitName[0])) {
-                res.append(splitName[0]);
+                res.append(splitName[0].toLowerCase());
             } else {
                 res.append(pluralizeService());
             }
             return res.toString();
+        }
+
+        /**@return Uri for the count service.*/
+        public final String getCountServiceName() {
+            final String[] split = StringUtils.split(this.toString(), '_');
+            return getServiceName() + "/" + split[0].toLowerCase()
+                    + StringUtils.capitalize(split[1].toLowerCase());
         }
 
         /**Pluralize the service name.
@@ -103,6 +184,35 @@ public interface JiveFacade
                 + "ies").toLowerCase();
             }
             return (splitName[0] + "s").toLowerCase();
+        }
+
+        /**
+         * @param usesExtraTag the extraTag to set
+         */
+        public final void setExtraTag(final boolean usesExtraTag) {
+            this.extraTag = usesExtraTag;
+        }
+
+        /**
+         * @return the extraTag
+         */
+        public final boolean hasExtraTag() {
+            return extraTag;
+        }
+
+        /**
+         * @param rootTag the rootTagName to set
+         */
+        public void setRootTagName(final String rootTag) {
+            this.rootTagName = rootTag;
+        }
+
+        /**
+         * @return the rootTagName
+         */
+        public String getRootTagName()
+        {
+            return rootTagName;
         }
 
     }

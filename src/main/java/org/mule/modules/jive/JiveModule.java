@@ -31,6 +31,7 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
+import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 import java.io.Reader;
 import java.io.StringReader;
@@ -42,12 +43,14 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Stack;
 
+import javax.ws.rs.core.MediaType;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.UnhandledException;
 import org.apache.commons.lang.Validate;
 
@@ -61,12 +64,29 @@ import org.apache.commons.lang.Validate;
 public class JiveModule implements JiveFacade {
     /**The jersey webresource to access rest resources.*/
     private WebResource gateway;
+    /**The username to access the jive instance.*/
+    private String user;
+    /**The password.*/
+    private String pass;
+    /**The userID.*/
+    private Long userID;
 
     /**JiveConnector.
      * @param gatewayUri The base uri
+     * @param username Username
+     * @param password Password
      * */
-    public JiveModule(final String gatewayUri) {
+    public JiveModule(final String gatewayUri,
+                      final String username, final String password) {
+        this.setUser(username);
+        this.setPass(password);
         this.createGateway(gatewayUri, createClient());
+        getUserIdByUsername();
+    }
+
+    /***/
+    public JiveModule() {
+
     }
 
     /***/
@@ -100,6 +120,14 @@ public class JiveModule implements JiveFacade {
     private final XMLInputFactory xmlInputFactory =
         XMLInputFactory.newInstance();
 
+    /**Sets the userID requesting it by username.*/
+    private void getUserIdByUsername() {
+        final String response = this.gateway.path("/userService/users/"
+            + this.getUser()).type(MediaType.APPLICATION_FORM_URLENCODED)
+            .get(String.class);
+        this.setUserID(Long.parseLong(
+            StringUtils.substringBetween(response, "<ID>", "</ID>")));
+    }
 
     /* Creates an entity.
      * @see org.mule.modules.jive.JiveFacade#create(
@@ -112,8 +140,11 @@ public class JiveModule implements JiveFacade {
         // validacion
         // directiva de conversion?
         map2xml(type, entity, writer);
-        ClientResponse response = this.gateway.path(type.getCreateServiceName())
-            .post(ClientResponse.class);
+
+
+        String response = this.gateway.path(type.getCreateServiceName())
+            .type(MediaType.APPLICATION_FORM_URLENCODED)
+            .post(String.class, writer.toString());
         // vamos a hacer el request
         // validar error
         return xml2map(new StringReader(writer.toString()));
@@ -132,23 +163,34 @@ public class JiveModule implements JiveFacade {
         final Writer writer = new StringWriter();
         // validacion
         // directiva de conversion?
+        // vamos a hacer el request
         ClientResponse response = this.gateway.path(type.getDeleteServiceName()
             + "/" + id).delete(ClientResponse.class);
-        // vamos a hacer el request
         // validar error
         return xml2map(new StringReader(writer.toString()));
     }
-
-
-
-    ///////////////////////////Private methods//////////////////////////////////
+    
+    /**Call the get count service.
+     * @return The count as a {@link Long}
+     * @param type The service type
+     * */
+    public final Long count(final ServiceType type) {
+        // validacion
+        // directiva de conversion?
+        // vamos a hacer el request
+        String response = this.gateway.path(type.getCountServiceName())
+            .get(String.class);
+        // validar error
+        return Long.parseLong(StringUtils.substringBetween(
+            response, "<return>", "</return>"));
+    }
 
     /**Maps a {@link Map} to an XML and writes it to the writer given.
      * @param type The service type
      * @param entity The map containing the entity data
      * @param writer The writer in which we'll write the xml
      * */
-    private void map2xml(final ServiceType type,
+    public final void map2xml(final ServiceType type,
                        final Map<String, Object> entity, final Writer writer) {
         try {
             final XMLStreamWriter w =
@@ -156,8 +198,17 @@ public class JiveModule implements JiveFacade {
 
             w.writeStartDocument();
 
-            w.writeStartElement(type.getXmlRootElementName());
+            w.writeStartElement(type.getRootTagName());
+            if (type.hasExtraTag()) {
+                w.writeStartElement(type.getEntityName());
+            }
+
             writeXML(w, entity);
+
+            if (type.hasExtraTag()) {
+                w.writeEndElement();
+            }
+
             w.writeEndElement();
 
             w.writeEndDocument();
@@ -165,31 +216,13 @@ public class JiveModule implements JiveFacade {
             throw new UnhandledException(e);
         }
     }
-
-    /**Writes the xml of the internal data.
-     * @param w The writer in which it'll write the xml
-     * @param model The entity
-     * @throws XMLStreamException When fails
-     * */
-    private void writeXML(final XMLStreamWriter w,
-                   final Map<String, Object> model) throws XMLStreamException {
-        final Set<Entry<String, Object>> entries = model.entrySet();
-        for (final Entry<String, Object> entry : entries) {
-                w.writeStartElement(entry.getKey());
-                if (!HashMap.class.isInstance(entry.getValue())) {
-                    w.writeCharacters(entry.getValue().toString());
-                } else {
-                    writeXML(w, (HashMap<String, Object>)entry.getValue());
-                }
-                w.writeEndElement();
-        }
-    }
-
+    
     /**Maps an xml from a {@link Reader} to a {@link Map}.
      * @param reader The {@link Reader} with the xml data
      * @return The map with the entity
      * */
-    private Map<String, Object> xml2map(final Reader reader) {
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> xml2map(final Reader reader) {
         final Map<String, Object> ret = new HashMap<String, Object>();
         final Stack<Map<String, Object>> maps =
             new Stack<Map<String, Object>>();
@@ -233,9 +266,39 @@ public class JiveModule implements JiveFacade {
                         + eventType);
                 }
             }
-            return ret;
+
+            final Map<String, Object> returnXMLElement = (Map<String, Object>)
+            ret.get(ret.keySet().iterator().next());
+
+            return (Map<String, Object>) returnXMLElement.get("return");
+            
         } catch (XMLStreamException e) {
             throw new UnhandledException(e);
+        }
+    }
+
+
+    ///////////////////////////Private methods//////////////////////////////////
+
+    
+
+    /**Writes the xml of the internal data.
+     * @param w The writer in which it'll write the xml
+     * @param model The entity
+     * @throws XMLStreamException When fails
+     * */
+    @SuppressWarnings("unchecked")
+    private void writeXML(final XMLStreamWriter w,
+                   final Map<String, Object> model) throws XMLStreamException {
+        final Set<Entry<String, Object>> entries = model.entrySet();
+        for (final Entry<String, Object> entry : entries) {
+                w.writeStartElement(entry.getKey());
+                if (!HashMap.class.isInstance(entry.getValue())) {
+                    w.writeCharacters(entry.getValue().toString());
+                } else {
+                    writeXML(w, (HashMap<String, Object>) entry.getValue());
+                }
+                w.writeEndElement();
         }
     }
 
@@ -254,7 +317,56 @@ public class JiveModule implements JiveFacade {
     private void createGateway(final String gatewayUri, final Client client) {
         Validate.notNull(client, "Client cannot be empty");
         Validate.notEmpty(gatewayUri, "Gateway cannot be empty");
+        client.addFilter(new HTTPBasicAuthFilter(this.getUser(), this.getPass()));
         this.gateway = client.resource(gatewayUri);
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(String user)
+    {
+        this.user = user;
+    }
+
+    /**
+     * @return the user
+     */
+    public String getUser()
+    {
+        return user;
+    }
+
+    /**
+     * @param pass the pass to set
+     */
+    public void setPass(String pass)
+    {
+        this.pass = pass;
+    }
+
+    /**
+     * @return the pass
+     */
+    public String getPass()
+    {
+        return pass;
+    }
+
+    /**
+     * @param userID the userID to set
+     */
+    public void setUserID(Long userID)
+    {
+        this.userID = userID;
+    }
+
+    /**
+     * @return the userID
+     */
+    public Long getUserID()
+    {
+        return userID;
     }
 
 }
