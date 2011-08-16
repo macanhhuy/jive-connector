@@ -22,22 +22,15 @@ package org.mule.modules.jive;
 
 import java.io.Reader;
 import java.io.Writer;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 
-/**
- * Facade for the Jive connector
- * 
- * 
+/**Facade for the Jive connector.
  * @author Pablo Diez
  * @since Jul 20, 2011
  */
-public interface JiveFacade
-{
+public interface JiveFacade {
 
     Map<String, Object> create(
         final ServiceType type, Map<String, Object> entity);
@@ -55,12 +48,173 @@ public interface JiveFacade
     /**Services enum.
      * */
     enum ServiceType {
-        /**Avatar create reference.*/
-        AVATAR_CREATE,
-        /**Avatar delete reference.*/
-        AVATAR_DELETE,
-        /**Adress Book create user reference.*/
-        ADDRESSBOOK_CREATE_USER("addUser"),
+        /**Adds the specified username to the user's address book.*/
+        ADDRESSBOOK_ADD_USER("addressbooks"),
+        /**Adds a list of users to the specified user's private message address
+         * book.*/
+        ADDRESSBOOK_ADD_USERS("bulk"),
+        /**Retrieves a list of users contained in the specified user's address
+         * book.*/
+        ADDRESSBOOK_GET_ROSTER("addressbooks"),
+        /**Removes the specified username from the user's private message
+         * address book.*/
+        ADDRESSBOOK_REMOVE_USER("addressbooks"),
+        /**Removes the specified list of users from a user's private message
+         * address book.*/
+        ADDRESSBOOK_REMOVE_USERS("bulk"),
+        /**Adds a content type to the list of explicitly allowed types.*/
+        ATTACHMENT_ADD_ALLOWED_TYPE("allowedTypes"),
+        /**Adds a content type to the list of explicitly disallowed types.*/
+        ATTACHMENT_ADD_DISALLOWED_TYPE("disallowedTypes"),
+        ATTACHMENT_GET_ALLOWED_TYPES,
+        /**Returns a list of explicitly disallowed types.*/
+        ATTACHMENT_GET_DISALLOWED_TYPES,
+        /**Returns the maximum dimension of generated thumbnails
+         * (the maximum value for the width or height).
+         * The default value is 25.*/
+        ATTACHMENT_GET_IMAGE_PREVIEW_MAX_SIZE,
+        /**Returns the maximum size of an individual attachment in kilobytes.
+         * Trying to create an attachment larger than the maximum size will fail
+         * with an exception. The default maximum attachment size is 1 MB,
+         * or 1,024 KB.*/
+        ATTACHMENT_GET_MAX_ATTACHMENT_SIZE,
+        /**Returns the maximum number of attachments a blog post can have.
+         * The default is 5 attachments.*/
+        ATTACHMENT_GET_MAX_ATTACHMENTS_PER_BLOG_POST,
+        /**Returns the maximum number of attachments that a document can have.
+         * The default is 5.*/
+        ATTACHMENT_GET_MAX_ATTACHMENTS_PER_DOC,
+        /**Returns the maximum number of attachments per discussion message.
+         * The default is 5 attachments.*/
+        ATTACHMENT_GET_MAX_ATTACHMENTS_PER_MESSAGE,
+        /**Returns true if the application is configured to "allow all content
+         * types by default." The alternative is that all content types are
+         * disallowed unless they're on the "allowed" list.*/
+        ATTACHMENT_IS_ALLOW_ALL_BY_DEFAULT,
+        /**Returns true if attachments are enabled; false otherwise.*/
+        ATTACHMENT_IS_ATTACHMENTS_ENABLED,
+        /**Returns true if image preview support is enabled. When enabled,
+         * the application will generate thumbnails for image attachments.
+         * False by default.*/
+        ATTACHMENT_IS_IMAGE_PREVIEW_ENABLED,
+        /**Returns true if the aspect ratio of thumbnails should be preserved.
+         * When enabled, the aspect ratio of the original image will be
+         * preserved when generating the thumbnail. When false, the thumbnail
+         * will always be a square (which may distort the image).
+         * The default is true.*/
+        ATTACHMENT_IS_IMAGE_PREVIEW_RATIO_ENABLED,
+        /**Returns true if the specified content type is valid. This is based
+         * on the current settings of the allowAllByDefault flag and the allowed
+         * and disallowed types list.*/
+        ATTACHMENT_IS_VALID_TYPE("allowedTypes"),
+        /**Removes a content type from the list of explicitly allowed types.
+         * If the specified content type does not exist in the list,
+         * this method does nothing.*/
+        ATTACHMENT_REMOVE_ALLOWED_TYPE("allowedTypes"),
+        /**Removes a content type from the list of explicitly disallowed types.
+         * */
+        ATTACHMENT_REMOVE_DISALLOWED_TYPE("disallowedTypes"),
+        /**Sets the default allowed content types mode. The value true means
+         * that all content types will be allowed unless they're on the
+         * "disallowed list". If false, no content types will be allowed unless
+         * on the "allowed list".*/
+        ATTACHMENT_SET_ALLOW_ALL_BY_DEFAULT,
+        /**Enables or disables attachments.*/
+        ATTACHMENT_SET_ATTACHMENTS_ENABLED,
+        /**Sets whether image preview support is enabled. When enabled, the
+         * application will generate thumbnails for image attachments.
+         * False by default.*/
+        ATTACHMENT_SET_IMAGE_PREVIEW_ENABLED,
+        /**Sets the maximum dimension of generated thumbnails (the maximum
+         * value for the width or height). The default value is 25.*/
+        ATTACHMENT_SET_IMAGE_PREVIEW_MAX_SIZE,
+        /**Sets whether the aspect ratio of thumbnails should be preserved. When
+         * enabled, the aspect ratio of the original image will be preserved
+         * when generating the thumbnail. When false, the thumbnail will always
+         * be a square (which may distort the image). The default is true.*/
+        ATTACHMENT_SET_IMAGE_PREVIEW_RATIO_ENABLED,
+        /**Sets the maximum size of an individual attachment in kilobytes.
+         * Trying to create an attachment larger than the max size will fail
+         * with an exception. The default maximum attachment size is 1 MB,
+         * or 1024 KB.*/
+        ATTACHMENT_SET_MAX_ATTACHMENT_SIZE,
+        /**Sets the maximum number of attachments blog post can have.
+         * The default is 5 attachments.*/
+        ATTACHMENT_SET_MAX_ATTACHMENTS_PER_BLOG_POST,
+        /**Sets the maximum number of attachments that a document can have.
+         * The default is 5 attachments.*/
+        ATTACHMENT_SET_MAX_ATTACHMENTS_PER_DOCUMENT,
+        /**Sets the maximum number of attachments per discussion message.
+         * The default is 5 attachments.*/
+        ATTACHMENT_SET_MAX_ATTACHMENTS_PER_MESSAGE,
+        /**Logs an event with formatted data passed.*/
+        AUDIT_AUDIT_EVENT("audit"),
+        /**Returns a list of audit logs entries.*/
+        AUDIT_GET_AUDIT_MESSAGES("audit"),
+        /**Creates a new avatar for a user using the specified byte array as the
+         * contents of the avatar image.*/
+        AVATAR_CREATE_AVATAR("avatars"),
+        /**Deletes an avatar from the system.*/
+        AVATAR_DELETE("avatar"),
+        /**Returns the active avatar for the specified user, or the
+         * SystemDefaultAvatar if the user does not have an active avatar
+         * specified. The active avatar is the one set for the user.*/
+        AVATAR_GET_ACTIVE_AVATAR,
+        /**Returns an avatar by its ID.*/
+        AVATAR_GET_AVATAR("avatarByID"),
+        /**Used to acquire a count of all the avatars for a specific user.*/
+        AVATAR_GET_AVATAR_COUNT,
+        /**Returns a list of avatars for the specified user.*/
+        AVATAR_GET_AVATARS_BY_USER,
+        /**Returns a list of all of the global avatars. Global avatars are those
+         * configured for use across the application. Users can choose from
+         * among these avatars when choosing their own.*/
+        AVATAR_GET_GLOBAL_AVATARS,
+        /**Returns the maximum allowable height for an avatar image.*/
+        AVATAR_GET_AVATAR_MAX_ALLOWABLE_HEIGHT,
+        /**Returns the maximum allowable width for an avatar image.*/
+        AVATAR_GET_AVATAR_MAX_ALLOWABLE_WIDTH,
+        /**Returns the maximum number of avatars a user is allowed to have;
+         * returns -1 when there is no limit.*/
+        AVATAR_GET_MAX_USER_AVATARS,
+        /**Returns a count of all the avatars that require moderation.*/
+        AVATAR_GET_MODERATION_AVATAR_COUNT,
+        /**Returns a collection of all of the avatars that require moderation.*/
+        AVATAR_GET_MODERATION_AVATARS,
+        /**Returns true if the system should attempt to resize avatar images.*/
+        AVATAR_IS_AVATAR_ALLOW_IMAGE_RESIZE,
+        /**Returns true if the avatars feature is enabled; false otherwise.*/
+        AVATAR_IS_AVATARS_ENABLED,
+        /**Returns whether or not user avatars will be moderated.
+         * The default value is true.*/
+        AVATAR_IS_MODERATE_USER_AVATARS,
+        /**Returns true if users can create their own avatars; false otherwise.
+         * If custom user avatars are enabled, the number of custom avatars
+         * allowed per user and whether or not custom avatars should be
+         * moderated can be set using setMaxUserAvatars(int max) and
+         * setModerateUserAvatars(boolean moderateUserAvatars), respectively.*/
+        AVATAR_IS_USER_AVATARS_ENABLED,
+        /**Sets the specified avatar as the user's avatar. The avatar can be
+         * either a global avatar or one that belongs to the user. To set no
+         * active avatar for the user, pass -1 for the avatar value.*/
+        AVATAR_SET_ACTIVE_AVATAR,
+        /**Set whether the system should attempt to resize avatar images.*/
+        AVATAR_SET_AVATAR_ALLOW_IMAGE_RESIZE,
+        /**Sets the maximum allowable height for an avatar image.*/
+        AVATAR_SET_AVATAR_MAX_ALLOWABLE_HEIGHT,
+        /**Sets the maximum allowable width for an avatar image.*/
+        AVATAR_SET_AVATAR_MAX_ALLOWABLE_WIDTH,
+        /**Sets the maximum number of avatars a user can have.*/
+        AVATAR_SET_MAX_USER_AVATARS,
+        /**Sets whether or not user-create avatars will be moderated.
+         * The default value is true.*/
+        AVATAR_SET_MODERATE_USER_AVATARS,
+        /**Sets whether or not users can create their own custom avatars.
+         * If custom user avatars are enabled, the number of custom avatars
+         * allowed per user and whether or not custom avatars should be
+         * moderated can be set using setMaxUserAvatars(int max) and
+         * setModerateUserAvatars(boolean moderateUserAvatars), respecitvely.*/
+        AVATAR_SET_USER_AVATARS_ENABLED,
         /**Community delete reference.*/
         COMMUNITY_DELETE,
         /**Get blog count reference.*/
@@ -70,24 +224,7 @@ public interface JiveFacade
         /**User create with the minimal data.*/
         USER_CREATE,
         /**User create sending the entire user data.*/
-        USER_CREATE_WITH_USER(true);
-
-        /**In almost all cases the uri of a delete request has the
-         * entity name in plural, this are the exceptions.*/
-        private static Set<String> deleteSingularExceptions =
-            new HashSet<String>();
-        static {
-            deleteSingularExceptions.add("AVATAR");
-        }
-
-        /**This are the cases in which the service name in the uri is different
-         * than the entitity name in lower case + Service.*/
-        private static Map<String, String> serviceNameExceptions =
-            new HashMap<String, String>();
-        static {
-            serviceNameExceptions.put("ADDRESSBOOK_CREATE_USER",
-                "addressBookService");
-        }
+        USER_CREATE_USER_WITH_USER(true);
 
         /**Constructor.*/
         private ServiceType() {
@@ -95,9 +232,11 @@ public interface JiveFacade
         }
 
         /**Constructor for special start tags.
-         * @param rootTag The root tag name*/
-        private ServiceType(final String rootTag) {
-            this.setRootTagName(rootTag);
+         * @param serviceUri The rest resource uri after the service name.
+         * E.g. http://domain:port/app-context/service/serviceUri*/
+        private ServiceType(final String serviceUri) {
+            this();
+            this.setResourceUri(serviceUri);
         }
 
         /**Constructor.
@@ -115,9 +254,13 @@ public interface JiveFacade
         /**This variable holds the initial tag name of the request.*/
         private String rootTagName;
 
+        /**This variable holds the rest resource uri for this specific service.
+         * */
+        private String resourceUri = null;
+
         /**Split of the service name.*/
         private final String[] splitName =
-            StringUtils.split(this.toString(), '_');
+            StringUtils.split(this.toString().toLowerCase(), '_');
 
         /**If true, the request of this service has an extra tag with the entity
          * name.*/
@@ -126,64 +269,14 @@ public interface JiveFacade
         /**@return the rootElement of the xml request
          * */
         private String getXmlRootElementName() {
-            final StringBuffer rootElementName = new StringBuffer();
-            rootElementName.append(StringUtils.lowerCase(splitName[1]));
-            rootElementName.append(StringUtils.capitalize(
-                StringUtils.lowerCase(splitName[0])));
+            final StringBuffer res = new StringBuffer();
+            res.append(splitName[1]);
             if (splitName.length > 2) {
                 for (int i = 2; i < splitName.length; i++) {
-                    rootElementName.append(
-                        StringUtils.capitalize(splitName[i].toLowerCase()));
+                    res.append(StringUtils.capitalize(splitName[i]));
                 }
             }
-            return rootElementName.toString();
-        }
-
-        /**@return The path of the specified service
-         * */
-        private String getServiceName() {
-            if (serviceNameExceptions.containsKey(this.toString())) {
-                return serviceNameExceptions.get(this.toString());
-            }
-            return splitName[0].toLowerCase() + "Service";
-        }
-
-        /**@return The path of the specified create service
-         * The services listed in the api referenced as 'Create' are in plural
-         * */
-        public final String getCreateServiceName() {
-            return getServiceName() + "/" + pluralizeService();
-        }
-
-        /**@return The path of the specified delete service
-         * The services listed in the api reference as 'Create' are in plural
-         * */
-        public final String getDeleteServiceName() {
-            final StringBuffer res = new StringBuffer(getServiceName() + "/");
-            if (deleteSingularExceptions.contains(splitName[0])) {
-                res.append(splitName[0].toLowerCase());
-            } else {
-                res.append(pluralizeService());
-            }
             return res.toString();
-        }
-
-        /**@return Uri for the count service.*/
-        public final String getCountServiceName() {
-            final String[] split = StringUtils.split(this.toString(), '_');
-            return getServiceName() + "/" + split[0].toLowerCase()
-                    + StringUtils.capitalize(split[1].toLowerCase());
-        }
-
-        /**Pluralize the service name.
-         * @return {@link String} with the name of the service in plural
-         */
-        private String pluralizeService() {
-            if (StringUtils.endsWith(splitName[0], "Y")) {
-                return (splitName[0].substring(0, splitName[0].length() - 1)
-                + "ies").toLowerCase();
-            }
-            return (splitName[0] + "s").toLowerCase();
         }
 
         /**
@@ -213,6 +306,22 @@ public interface JiveFacade
         public String getRootTagName()
         {
             return rootTagName;
+        }
+
+        /**
+         * @param resourceUri the resourceUri to set
+         */
+        public void setResourceUri(String resourceUri)
+        {
+            this.resourceUri = resourceUri;
+        }
+
+        /**
+         * @return the resourceUri
+         */
+        public String getResourceUri()
+        {
+            return resourceUri;
         }
 
     }

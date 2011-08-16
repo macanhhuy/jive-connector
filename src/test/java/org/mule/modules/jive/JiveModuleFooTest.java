@@ -20,13 +20,8 @@
  */
 package org.mule.modules.jive;
 
-import static org.junit.Assert.assertEquals;
-
 import org.mule.modules.jive.JiveFacade.ServiceType;
 
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -84,7 +79,7 @@ public class JiveModuleFooTest {
         user.put("nameVisible", true);
         user.put("password", System.getenv("SandboxPass"));
         user.put("username", System.getenv("SandboxUser"));
-        facade.create(ServiceType.USER_CREATE_WITH_USER, user);
+        facade.create(ServiceType.USER_CREATE_USER_WITH_USER, user);
     }
 
     /**Test the creation of entities.
@@ -96,7 +91,7 @@ public class JiveModuleFooTest {
             new HashMap<String, Object>();
         addressBookUser.put("userID", facade.getUserID());
         addressBookUser.put("usernameToAdd", "someUsername");
-        testCreate(ServiceType.ADDRESSBOOK_CREATE_USER, addressBookUser);
+        testCreate(ServiceType.ADDRESSBOOK_ADD_USER, addressBookUser);
     }
 
     /**Test the get count.*/
@@ -107,7 +102,6 @@ public class JiveModuleFooTest {
 
     /**Test the delete service.
      * */
-    @Ignore
     @Test
     public final void testDeleteSingular() {
         facade.delete(ServiceType.AVATAR_DELETE, "123");
@@ -115,7 +109,6 @@ public class JiveModuleFooTest {
 
     /**Test the delete service.
      * */
-    @Ignore
     @Test
     public final void testDeletePlural() {
         facade.delete(ServiceType.COMMUNITY_DELETE, "123");

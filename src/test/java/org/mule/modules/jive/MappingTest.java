@@ -57,7 +57,8 @@ public class MappingTest {
 
         final Writer writer = new StringWriter();
 
-        FACADE.map2xml(ServiceType.AVATAR_CREATE, newTestMapSimple(), writer);
+        FACADE.map2xml(ServiceType.AVATAR_CREATE_AVATAR,
+            newTestMapSimple(), writer);
         assertEquals("The entity xml returned wasn't the one expected",
             simpleEntityExpectedXMLFromMap, writer.toString());
 
@@ -119,7 +120,7 @@ public class MappingTest {
 
         final Writer writer = new StringWriter();
 
-        FACADE.map2xml(ServiceType.USER_CREATE_WITH_USER,
+        FACADE.map2xml(ServiceType.USER_CREATE_USER_WITH_USER,
             newTestMapWithAdditionalTag(), writer);
         assertEquals("The entity xml returned wasn't the one expected",
             additionalTagEntityExpectedXMLFromMap, writer.toString());
@@ -143,42 +144,6 @@ public class MappingTest {
         assertEquals(msg, res.get("nameVisible").toString(), "true");
         assertEquals(msg, res.get("password").toString(), "pass4e511Mule");
         assertEquals(msg, res.get("username").toString(), "userTestZauberMule");
-    }
-
-    /**Test the xml to and from mapping.
-     * In the entites that have a different root xml element than the usual.
-     * The addressBook create instead of <addressBook> is <addUser>*/
-    @Test
-    public final void testMappingWithUniqueRootElement() {
-        final String uniqueRootElementEntityExpectedXMLFromMap =
-            "<?xml version=\"1.0\" ?>"
-            + "<addUser>"
-                + "<userID>123</userID>"
-                + "<usernameToAdd>paul</usernameToAdd>"
-            + "</addUser>";
-
-        final String uniqueRootElementEntityXMLResponseExample =
-            "<createAvatarResponse>"
-                + "<return>"
-                    + "<userID>123</userID>"
-                    + "<usernameToAdd>paul</usernameToAdd>"
-                + "</return>"
-            + "</createAvatarResponse>";
-
-        final Writer writer = new StringWriter();
-
-        FACADE.map2xml(ServiceType.ADDRESSBOOK_CREATE_USER,
-            newTestMapWithUniqueRootElement(), writer);
-        assertEquals("The entity xml returned wasn't the one expected",
-            uniqueRootElementEntityExpectedXMLFromMap, writer.toString());
-
-        Map<String, Object> res =
-            FACADE.xml2map(new StringReader(
-                uniqueRootElementEntityXMLResponseExample));
-        final String msg = "The map generated from the xml does not match"
-            + "the original";
-        assertEquals(msg, res.get("userID").toString(), "123");
-        assertEquals(msg, res.get("usernameToAdd").toString(), "paul");
     }
 
     /**Creates a simple test entity.
@@ -213,20 +178,6 @@ public class MappingTest {
         user.put("password", "pass4e511Mule");
         user.put("username", "userTestZauberMule");
         return user;
-    }
-
-    /**Creates a new user in the adressbook.
-     * To test the entities that don't use their name on their root xml element.
-     * ADRESSBOOK_CREATE instead of having <createAdressbook> as it's root
-     * element, it has <addUser>.
-     * @return {@link Map} representing a User entity
-     * */
-    private Map<String, Object> newTestMapWithUniqueRootElement() {
-        final Map<String, Object> entity = new HashMap<String, Object>();
-
-        entity.put("userID", "123");
-        entity.put("usernameToAdd", "paul");
-        return entity;
     }
 
 }

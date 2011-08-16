@@ -25,6 +25,7 @@ import static javax.xml.stream.XMLStreamConstants.*;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Module;
 import org.mule.api.annotations.Processor;
+import org.mule.modules.jive.utils.ServiceUriFactory;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -142,7 +143,7 @@ public class JiveModule implements JiveFacade {
         map2xml(type, entity, writer);
 
 
-        String response = this.gateway.path(type.getCreateServiceName())
+        String response = this.gateway.path(ServiceUriFactory.generateUri(type))
             .type(MediaType.APPLICATION_FORM_URLENCODED)
             .post(String.class, writer.toString());
         // vamos a hacer el request
@@ -164,12 +165,13 @@ public class JiveModule implements JiveFacade {
         // validacion
         // directiva de conversion?
         // vamos a hacer el request
-        ClientResponse response = this.gateway.path(type.getDeleteServiceName()
+        ClientResponse response = this.gateway.path(
+            ServiceUriFactory.generateUri(type)
             + "/" + id).delete(ClientResponse.class);
         // validar error
         return xml2map(new StringReader(writer.toString()));
     }
-    
+
     /**Call the get count service.
      * @return The count as a {@link Long}
      * @param type The service type
@@ -178,7 +180,7 @@ public class JiveModule implements JiveFacade {
         // validacion
         // directiva de conversion?
         // vamos a hacer el request
-        String response = this.gateway.path(type.getCountServiceName())
+        String response = this.gateway.path(ServiceUriFactory.generateUri(type))
             .get(String.class);
         // validar error
         return Long.parseLong(StringUtils.substringBetween(
@@ -216,13 +218,13 @@ public class JiveModule implements JiveFacade {
             throw new UnhandledException(e);
         }
     }
-    
+
     /**Maps an xml from a {@link Reader} to a {@link Map}.
      * @param reader The {@link Reader} with the xml data
      * @return The map with the entity
      * */
     @SuppressWarnings("unchecked")
-    public Map<String, Object> xml2map(final Reader reader) {
+    public final Map<String, Object> xml2map(final Reader reader) {
         final Map<String, Object> ret = new HashMap<String, Object>();
         final Stack<Map<String, Object>> maps =
             new Stack<Map<String, Object>>();
