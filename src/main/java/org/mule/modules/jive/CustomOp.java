@@ -47,7 +47,25 @@ public enum CustomOp {
     /**Deletes an avatar from the system.*/
     AVATAR_DELETE(Service.AVATAR, "avatar"),
     /**Deletes an avatar from the system.*/
-    AVATAR_GET_AVATAR_BY_ID(Service.AVATAR, "avatarByID");
+    AVATAR_GET_AVATAR_BY_ID(Service.AVATAR, "avatarByID"),
+    /**Deletes an avatar from the system.*/
+    AVATAR_GET_AVATARS(Service.AVATAR, "avatarsByUser"),
+    /**Returns the maximum allowable height for an avatar image.*/
+    AVATAR_GET_MAX_ALLOWABLE_HEIGHT(Service.AVATAR, "avatarMaxAllowableHeight"),
+    /**Returns the maximum allowable width for an avatar image.*/
+    AVATAR_GET_MAX_ALLOWABLE_WIDTH(Service.AVATAR, "avatarMaxAllowableWidth"),
+    /**Returns true if the system should attempt to resize avatar images.*/
+    AVATAR_IS_ALLOW_IMAGE_RESIZE(Service.AVATAR, "avatarAllowImageResize"),
+    /**Set whether the system should attempt to resize avatar images.*/
+    AVATAR_SET_ALLOW_IMAGE_RESIZE(Service.AVATAR, "avatarAllowImageResize"),
+    /**Sets the maximum allowable height for an avatar image.*/
+    AVATAR_SET_MAX_ALLOWABLE_HEIGHT(Service.AVATAR, "avatarMaxAllowableHeight"),
+    /**Sets the maximum allowable width for an avatar image.*/
+    AVATAR_SET_MAX_ALLOWABLE_WIDTH(Service.AVATAR, "avatarMaxAllowableWidth"),
+    /**TODO*/
+    BLOG_GET_BLOG_BY_ID(Service.BLOG, "blogsByID"),
+    /**TODO*/
+    TASK_CREATE(Service.TASK, "tasks");
 
     /**The service of this operation.*/
     private final Service serviceType;
@@ -83,6 +101,21 @@ public enum CustomOp {
      */
     public Service getServiceType() {
         return serviceType;
+    }
+    
+    /**
+     * @return The root tag xml element name for this custom operation.
+     */
+    public final String getRootTagElementName() {
+        final String[] split = StringUtils.split(this.toString(), '_');
+        final StringBuffer res = new StringBuffer();
+        res.append(split[1].toLowerCase());
+        if(split.length > 2) {
+            for(int i = 2; i < split.length; i++) {
+                res.append(StringUtils.capitalize(split[i].toLowerCase()));
+            }
+        }
+        return res.toString();
     }
 
     /**

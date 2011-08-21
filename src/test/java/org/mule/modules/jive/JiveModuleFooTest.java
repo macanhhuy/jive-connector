@@ -20,9 +20,8 @@
  */
 package org.mule.modules.jive;
 
-import org.mule.modules.jive.JiveFacade.ServiceType;
+import static org.junit.Assert.*;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,82 +47,106 @@ public class JiveModuleFooTest {
             System.getenv("SandboxPass"));
     }
 
-    /**Register a new user sending only the username, password and email.
-     * */
-    @Ignore
-    @Test
-    public final void newUserWithMinimalData() {
-        Map<String, Object> user = new HashMap<String, Object>();
-        user.put("username", "userTestZauberMule");
-        user.put("password", "pass4e511Mule");
-        user.put("email", "pablomatiasdiez@gmail.com");
-        facade.create(ServiceType.USER_CREATE, user);
-    }
+//    /**Register a new user sending only the username, password and email.
+//     * */
+//    @Ignore
+//    @Test
+//    public final void newUserWithMinimalData() {
+//        Map<String, Object> user = new HashMap<String, Object>();
+//        user.put("username", "userTestZauberMule");
+//        user.put("password", "pass4e511Mule");
+//        user.put("email", "pablomatiasdiez@gmail.com");
+//        facade.create(ServiceType.USER_CREATE, user);
+//    }
 
-    /**Register a new user with all the user data.
-     * */
-    @Ignore
-    @Test
-    public final void newUserWithUserData() {
-        final Long magicNumber = 23L;
-        Map<String, Object> user = new HashMap<String, Object>();
-        user.put("creationDate", Calendar.getInstance());
-        user.put("email", System.getenv("SandboxEmail"));
-        user.put("emailVisible", true);
-        user.put("enabled", true);
-        user.put("firstName", "Paul");
-        user.put("ID", magicNumber);
-        user.put("lastName", "Federer");
-        user.put("modificationDate", Calendar.getInstance());
-        user.put("name", "name");
-        user.put("nameVisible", true);
-        user.put("password", System.getenv("SandboxPass"));
-        user.put("username", System.getenv("SandboxUser"));
-        facade.create(ServiceType.USER_CREATE_USER_WITH_USER, user);
-    }
+//    /**Register a new user with all the user data.
+//     * */
+//    @Ignore
+//    @Test
+//    public final void newUserWithUserData() {
+//        final Long magicNumber = 23L;
+//        Map<String, Object> user = new HashMap<String, Object>();
+//        user.put("creationDate", Calendar.getInstance());
+//        user.put("email", System.getenv("SandboxEmail"));
+//        user.put("emailVisible", true);
+//        user.put("enabled", true);
+//        user.put("firstName", "Paul");
+//        user.put("ID", magicNumber);
+//        user.put("lastName", "Federer");
+//        user.put("modificationDate", Calendar.getInstance());
+//        user.put("name", "name");
+//        user.put("nameVisible", true);
+//        user.put("password", System.getenv("SandboxPass"));
+//        user.put("username", System.getenv("SandboxUser"));
+//        facade.create(ServiceType.USER_CREATE_USER_WITH_USER, user);
+//    }
 
     /**Test the creation of entities.
-     * Creates an user in the address book
+     * Creates a new blog, make a get request to the new blog to verify the creation.
+     * Deletes the blog and verifies the deletion.
      * */
     @Test
-    public final void createEntities() {
-        final Map<String, Object> addressBookUser =
-            new HashMap<String, Object>();
-        addressBookUser.put("userID", facade.getUserID());
-        addressBookUser.put("usernameToAdd", "someUsername");
-        testCreate(ServiceType.ADDRESSBOOK_ADD_USER, addressBookUser);
+    public final void operationFlowTest() {
+        final Map<String, Object> blog = new HashMap<String, Object>();
+        final Map<String, Object> createResponse;
+        final Map<String, Object> getResponse;
+        final Map<String, Object> deleteResponse;
+        blog.put("userID", facade.getUserID());
+        blog.put("blogName", "fooBlog");
+        blog.put("displayName", "fooDisplayBlogName");
+        
+        //Creates the blog
+        createResponse = facade.create(Service.BLOG, blog);
+        assertEquals("fooDisplayBlogName", createResponse.get("displayName"));
+        
+        //Get the blog just created
+        getResponse = facade.execute(CustomOp.BLOG_GET_BLOG_BY_ID,
+            createResponse.get("ID").toString());
+        assertEquals(createResponse, getResponse);
+        
+        //Deletes the blog just created and verifies
+        //that the server doesn't return an error
+        deleteResponse = facade.delete(Service.BLOG,
+            createResponse.get("ID").toString());
+        assertEquals("deleteBlogResponse", deleteResponse.get("response"));
+    }
+    
+    /**Attemps to create a blog already created and handles the error.*/
+    @Test
+    public final void errorHandlingTest() {
+        final Map<String, Object> blog = new HashMap<String, Object>();
+        blog.put("userID", facade.getUserID());
+        blog.put("blogName", "fooBlog");
+        blog.put("displayName", "fooDisplayBlogName");
+        
+        //Creates the blog
+        facade.create(Service.BLOG, blog);
+        
+        //Attemps to create the same blog should throw an error
+        facade.create(Service.BLOG, blog);
     }
 
     /**Test the get count.*/
+    @Ignore
     @Test
     public final void getCount() {
-        facade.count(ServiceType.BLOG_COUNT);
+        facade.count(Service.BLOG);
     }
 
     /**Test the delete service.
      * */
+    @Ignore
     @Test
     public final void testDeleteSingular() {
-        facade.delete(ServiceType.AVATAR_DELETE, "123");
+        facade.delete(Service.ADDRESSBOOK, "123");
     }
 
     /**Test the delete service.
      * */
+    @Ignore
     @Test
     public final void testDeletePlural() {
-        facade.delete(ServiceType.COMMUNITY_DELETE, "123");
-    }
-
-    /**Test the Avatar create service.
-     * @param map The mapping of the Avatar entity
-     * @param type The service to call
-     * */
-    private void testCreate(final ServiceType type,
-                            final Map<String, Object> map) {
-        facade.create(type, map);
-        //get
-        //verificar que la entidad obtenida en el get es igual a la creada
-        //delete
+        facade.delete(Service.ATTACHMENT, "123");
     }
 
 }

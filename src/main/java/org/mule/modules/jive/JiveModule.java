@@ -28,8 +28,8 @@ import org.mule.api.annotations.Processor;
 import org.mule.modules.jive.utils.ServiceUriFactory;
 
 import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.WebResource.Builder;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
@@ -129,70 +129,128 @@ public class JiveModule implements JiveFacade {
         this.setUserID(Long.parseLong(
             StringUtils.substringBetween(response, "<ID>", "</ID>")));
     }
-
-    /* Creates an entity.
-     * @see org.mule.modules.jive.JiveFacade#create(
-     * org.mule.modules.jive.JiveFacade.ServiceType, java.util.Map)
-     */
+    
     @Override
-    public final Map<String, Object> create(final ServiceType type,
-                                    final Map<String, Object> entity) {
+    /**{@inheritDoc}*/
+    public final Map<String, Object> execute(final CustomOp customType,
+        final Map<String, Object> entity) {
         final Writer writer = new StringWriter();
-        // validacion
-        // directiva de conversion?
-        map2xml(type, entity, writer);
+        final String response;
 
-
-        String response = this.gateway.path(ServiceUriFactory.generateUri(type))
+        final Builder partialRequest = this.gateway.path(ServiceUriFactory.
+                generateCustomUri(customType))
             .type(MediaType.APPLICATION_FORM_URLENCODED)
-            .post(String.class, writer.toString());
-        // vamos a hacer el request
-        // validar error
-        return xml2map(new StringReader(writer.toString()));
+            .header("content-type", "text/xml");
+
+        if (customType.getProtocol().equals("POST")) {
+            map2xml(customType.getRootTagElementName(), entity, writer);
+            response = partialRequest.post(String.class, writer.toString());
+        } else if(customType.getProtocol().equals("GET")) {
+            response = partialRequest.get(String.class);
+        } else { //It's a DELETE request
+            response = partialRequest.delete(String.class);
+        }
+        return xml2map(new StringReader(response));
     }
 
-    /* Deletes an entity
-     * @param type The service type, in this case indicating what entity to
-     * delete
-     * @param id The id of the entity to be deleted
-     * @see org.mule.modules.jive.JiveFacade#delete(
-     * org.mule.modules.jive.JiveFacade.ServiceType)
-     */
     @Override
-    public final Map<String, Object> delete(final ServiceType type,
+    /**{@inheritDoc}*/
+    public final Map<String, Object> execute(final CustomOp customType,
         final String id) {
+
+        final String response;
+        final Builder partialRequest = this.gateway.path(
+            getCompleteUriForCustomOp(customType, id))
+            .type(MediaType.APPLICATION_FORM_URLENCODED)
+            .header("content-type", "text/xml");
+
+        if(customType.getProtocol().equals("GET")) {
+            response = partialRequest.get(String.class);
+        } else { //It's a DELETE request
+            response = partialRequest.delete(String.class);
+        }
+        return xml2map(new StringReader(response));
+    }
+
+    /**Generates the complete uri for the get or delete {@link CustomOp}.
+     * @param customType The {@link CustomOp} that is being executed
+     * @param id A {@link String} containing the path parameters to add
+     * @return The resouce uri with the path parameters added
+     */
+    private String getCompleteUriForCustomOp(final CustomOp customType,
+                                             final String id) {
+        final StringBuffer completeUri = new StringBuffer();
+        final String[] pathParams = StringUtils.split(id, ':');
+        
+        completeUri.append(ServiceUriFactory
+            .generateCustomUri(customType));
+        for(int i = 0; i < pathParams.length; i++) {
+            completeUri.append("/" + pathParams[i]);
+        }
+        return completeUri.toString();
+    }
+    
+    /**Generates the complete uri for the get or delete service.
+     * @param type The {@link Service} that is being executed
+     * @param id A {@link String} containing the path parameters to add
+     * @return The resouce uri with the path parameters added
+     */
+    private String getCompleteUri(final Service type, final String id) {
+        final StringBuffer completeUri = new StringBuffer();
+        final String[] pathParams = StringUtils.split(id, ':');
+        
+        completeUri.append(ServiceUriFactory.generateBaseUri(type));
+        for(int i = 0; i < pathParams.length; i++) {
+            completeUri.append("/" + pathParams[i]);
+        }
+        return completeUri.toString();
+    }
+
+    @Override
+    /**{@inheritDoc}*/
+    public final Map<String, Object> create(final Service type,
+                                    final Map<String, Object> entity) {
         final Writer writer = new StringWriter();
-        // validacion
-        // directiva de conversion?
-        // vamos a hacer el request
-        ClientResponse response = this.gateway.path(
-            ServiceUriFactory.generateUri(type)
-            + "/" + id).delete(ClientResponse.class);
+        map2xml("create" + type.getXmlRootElementName(), entity, writer);
+
+        String response = this.gateway.path(ServiceUriFactory.generateBaseUri(type))
+            .type(MediaType.APPLICATION_FORM_URLENCODED)
+            .header("content-type", "text/xml")
+            .post(String.class, writer.toString());
         // validar error
-        return xml2map(new StringReader(writer.toString()));
+        return xml2map(new StringReader(response));
+    }
+
+    @Override
+    /**{@inheritDoc}*/
+    public final Map<String, Object> delete(final Service type,
+        final String id) {
+        final String response = this.gateway.path(
+            getCompleteUri(type, id))
+            .delete(String.class);
+        // validar error
+        // is the response of a successful delete req always ""?
+        return xml2map(new StringReader(response));
     }
 
     /**Call the get count service.
      * @return The count as a {@link Long}
      * @param type The service type
      * */
-    public final Long count(final ServiceType type) {
+    public final Long count(final Service type) {
         // validacion
         // directiva de conversion?
         // vamos a hacer el request
-        String response = this.gateway.path(ServiceUriFactory.generateUri(type))
+        String response = this.gateway.path(ServiceUriFactory.generateBaseUri(type))
             .get(String.class);
         // validar error
         return Long.parseLong(StringUtils.substringBetween(
             response, "<return>", "</return>"));
     }
 
-    /**Maps a {@link Map} to an XML and writes it to the writer given.
-     * @param type The service type
-     * @param entity The map containing the entity data
-     * @param writer The writer in which we'll write the xml
-     * */
-    public final void map2xml(final ServiceType type,
+    @Override
+    /**{@inheritDoc}*/
+    public final void map2xml(final String xmlRootTag,
                        final Map<String, Object> entity, final Writer writer) {
         try {
             final XMLStreamWriter w =
@@ -200,16 +258,9 @@ public class JiveModule implements JiveFacade {
 
             w.writeStartDocument();
 
-            w.writeStartElement(type.getRootTagName());
-            if (type.hasExtraTag()) {
-                w.writeStartElement(type.getEntityName());
-            }
+            w.writeStartElement(xmlRootTag);
 
             writeXML(w, entity);
-
-            if (type.hasExtraTag()) {
-                w.writeEndElement();
-            }
 
             w.writeEndElement();
 
@@ -221,7 +272,7 @@ public class JiveModule implements JiveFacade {
 
     /**Maps an xml from a {@link Reader} to a {@link Map}.
      * @param reader The {@link Reader} with the xml data
-     * @return The map with the entity
+     * @return The map with the entity data
      * */
     @SuppressWarnings("unchecked")
     public final Map<String, Object> xml2map(final Reader reader) {
@@ -269,10 +320,18 @@ public class JiveModule implements JiveFacade {
                 }
             }
 
-            final Map<String, Object> returnXMLElement = (Map<String, Object>)
-            ret.get(ret.keySet().iterator().next());
+            final Object obj = ret.get(ret.keySet().iterator().next());
+            if(obj instanceof String) {
+                Map<String, Object> responseTag = new HashMap<String, Object>();
+                responseTag.put("response",
+                    ret.keySet().iterator().next().toString());
+                return responseTag;
+            } else {
+                final Map<String, Object> returnXMLElement = (Map<String, Object>)
+                ret.get(ret.keySet().iterator().next());
 
-            return (Map<String, Object>) returnXMLElement.get("return");
+                return (Map<String, Object>) returnXMLElement.get("return");
+            }
             
         } catch (XMLStreamException e) {
             throw new UnhandledException(e);

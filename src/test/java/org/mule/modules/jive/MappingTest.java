@@ -10,9 +10,9 @@
 
 package org.mule.modules.jive;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-import org.mule.modules.jive.JiveFacade.ServiceType;
+import org.mule.api.registry.ServiceType;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -20,6 +20,7 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**Test for the mappings of the {@link Map} entities to and from XML.*/
@@ -57,7 +58,8 @@ public class MappingTest {
 
         final Writer writer = new StringWriter();
 
-        FACADE.map2xml(ServiceType.AVATAR_CREATE_AVATAR,
+        //The root tag sent to the map2xml method is generated from the service enum.
+        FACADE.map2xml("createAvatar",
             newTestMapSimple(), writer);
         assertEquals("The entity xml returned wasn't the one expected",
             simpleEntityExpectedXMLFromMap, writer.toString());
@@ -71,9 +73,28 @@ public class MappingTest {
         assertEquals(msg, res.get("data").toString(), "f123f123");
         assertEquals(msg, res.get("contentType").toString(), "image/jpeg");
     }
+    
+    /**Test the mapping for the {@link CustomOp}s*/
+    @Test
+    public final void mapCustomOp() {
+        final String customOpExpectedXMLFromMap =
+            "<?xml version=\"1.0\" ?>"
+            + "<addUser>"
+                + "<userID>123</userID>"
+                + "<usernameToAdd>fooNewUser</usernameToAdd>"
+            + "</addUser>";
+        final Map<String, Object> addressbookUser = new HashMap<String, Object>();
+        final Writer writer = new StringWriter();
+        addressbookUser.put("userID", 123L);
+        addressbookUser.put("usernameToAdd", "fooNewUser");
+        FACADE.map2xml(CustomOp.ADDRESSBOOK_ADD_USER.getRootTagElementName(),
+            addressbookUser, writer);
+        assertEquals(customOpExpectedXMLFromMap, writer.toString());
+    }
 
     /**Test the xml to and from mapping.
      * For the {@link ServiceType}'s with the extraTag attribute in true.*/
+    @Ignore
     @Test
     public final void testMappingWithAdditionalTag() {
 
@@ -120,7 +141,7 @@ public class MappingTest {
 
         final Writer writer = new StringWriter();
 
-        FACADE.map2xml(ServiceType.USER_CREATE_USER_WITH_USER,
+        FACADE.map2xml("mmmmm",
             newTestMapWithAdditionalTag(), writer);
         assertEquals("The entity xml returned wasn't the one expected",
             additionalTagEntityExpectedXMLFromMap, writer.toString());

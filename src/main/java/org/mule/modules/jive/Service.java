@@ -10,6 +10,8 @@
 
 package org.mule.modules.jive;
 
+import org.apache.commons.lang.StringUtils;
+
 
 /**Services enum.*/
 public enum Service {
@@ -23,7 +25,8 @@ public enum Service {
     /**Avatar service.*/
     AVATAR(),
     /**Blog service.*/
-    BLOG();
+    BLOG(),
+    TASK;
 
     /**Const for the services that uses their name in plural.*/
     public static final int PLURAL = 0;
@@ -39,6 +42,10 @@ public enum Service {
     
     /**Strategy.*/
     private final int strategy;
+
+    /**If true, the request of this service has an extra tag with the entity
+     * name.*/
+    private boolean extraTag = false;
 
     /**Base Constructor.*/
     private Service() {
@@ -65,6 +72,12 @@ public enum Service {
     private String getServiceName() {
         return this.toString().toLowerCase() + "Service";
     }
+    
+    /**@return the rootElement of the xml request
+     * */
+    public final String getXmlRootElementName() {
+        return StringUtils.capitalize(this.toString().toLowerCase());
+    }
 
     /**
      * @return the serviceUri
@@ -76,9 +89,22 @@ public enum Service {
     /**
      * @return the strategy
      */
-    public int getStrategy()
-    {
+    public int getStrategy() {
         return strategy;
+    }
+
+    /**
+     * @param extraTag the extraTag to set
+     */
+    public void setExtraTag(final boolean extraTag) {
+        this.extraTag = extraTag;
+    }
+
+    /**
+     * @return the extraTag
+     */
+    public boolean hasExtraTag() {
+        return extraTag;
     }
 }
 

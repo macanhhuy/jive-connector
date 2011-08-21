@@ -24,305 +24,76 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
-
 /**Facade for the Jive connector.
  * @author Pablo Diez
  * @since Jul 20, 2011
  */
 public interface JiveFacade {
 
-    Map<String, Object> create(
-        final ServiceType type, Map<String, Object> entity);
-    Map<String, Object> delete(final ServiceType type, String id);
-    Map<String, Object> xml2map(final Reader reader);
-    void map2xml(final ServiceType type,
-        final Map<String, Object> entity, final Writer writer);
-    Long count(final ServiceType type);
-    public void setUser(String user);
-    public void setPass(String pass);
-    public String getUser();
-    public String getPass();
-    public Long getUserID();
-
-    /**Services enum.
+    /**Creates an entity.
+     * Sends a POST request for the given {@link Service} generating the xml
+     * payload corresponding with the <code>entity</code> map.
+     * @return The xml response parse in a {@link Map}.
+     * @param type The service type used to determine the url for this resource.
+     * @param entity The {@link Map} with the entity data to parse to an xml and send
+     * in the request.
      * */
-    enum ServiceType {
-        /**Adds the specified username to the user's address book.*/
-        ADDRESSBOOK_ADD_USER("addressbooks"),
-        /**Adds a list of users to the specified user's private message address
-         * book.*/
-        ADDRESSBOOK_ADD_USERS("bulk"),
-        /**Retrieves a list of users contained in the specified user's address
-         * book.*/
-        ADDRESSBOOK_GET_ROSTER("addressbooks"),
-        /**Removes the specified username from the user's private message
-         * address book.*/
-        ADDRESSBOOK_REMOVE_USER("addressbooks"),
-        /**Removes the specified list of users from a user's private message
-         * address book.*/
-        ADDRESSBOOK_REMOVE_USERS("bulk"),
-        /**Adds a content type to the list of explicitly allowed types.*/
-        ATTACHMENT_ADD_ALLOWED_TYPE("allowedTypes"),
-        /**Adds a content type to the list of explicitly disallowed types.*/
-        ATTACHMENT_ADD_DISALLOWED_TYPE("disallowedTypes"),
-        ATTACHMENT_GET_ALLOWED_TYPES,
-        /**Returns a list of explicitly disallowed types.*/
-        ATTACHMENT_GET_DISALLOWED_TYPES,
-        /**Returns the maximum dimension of generated thumbnails
-         * (the maximum value for the width or height).
-         * The default value is 25.*/
-        ATTACHMENT_GET_IMAGE_PREVIEW_MAX_SIZE,
-        /**Returns the maximum size of an individual attachment in kilobytes.
-         * Trying to create an attachment larger than the maximum size will fail
-         * with an exception. The default maximum attachment size is 1 MB,
-         * or 1,024 KB.*/
-        ATTACHMENT_GET_MAX_ATTACHMENT_SIZE,
-        /**Returns the maximum number of attachments a blog post can have.
-         * The default is 5 attachments.*/
-        ATTACHMENT_GET_MAX_ATTACHMENTS_PER_BLOG_POST,
-        /**Returns the maximum number of attachments that a document can have.
-         * The default is 5.*/
-        ATTACHMENT_GET_MAX_ATTACHMENTS_PER_DOC,
-        /**Returns the maximum number of attachments per discussion message.
-         * The default is 5 attachments.*/
-        ATTACHMENT_GET_MAX_ATTACHMENTS_PER_MESSAGE,
-        /**Returns true if the application is configured to "allow all content
-         * types by default." The alternative is that all content types are
-         * disallowed unless they're on the "allowed" list.*/
-        ATTACHMENT_IS_ALLOW_ALL_BY_DEFAULT,
-        /**Returns true if attachments are enabled; false otherwise.*/
-        ATTACHMENT_IS_ATTACHMENTS_ENABLED,
-        /**Returns true if image preview support is enabled. When enabled,
-         * the application will generate thumbnails for image attachments.
-         * False by default.*/
-        ATTACHMENT_IS_IMAGE_PREVIEW_ENABLED,
-        /**Returns true if the aspect ratio of thumbnails should be preserved.
-         * When enabled, the aspect ratio of the original image will be
-         * preserved when generating the thumbnail. When false, the thumbnail
-         * will always be a square (which may distort the image).
-         * The default is true.*/
-        ATTACHMENT_IS_IMAGE_PREVIEW_RATIO_ENABLED,
-        /**Returns true if the specified content type is valid. This is based
-         * on the current settings of the allowAllByDefault flag and the allowed
-         * and disallowed types list.*/
-        ATTACHMENT_IS_VALID_TYPE("allowedTypes"),
-        /**Removes a content type from the list of explicitly allowed types.
-         * If the specified content type does not exist in the list,
-         * this method does nothing.*/
-        ATTACHMENT_REMOVE_ALLOWED_TYPE("allowedTypes"),
-        /**Removes a content type from the list of explicitly disallowed types.
-         * */
-        ATTACHMENT_REMOVE_DISALLOWED_TYPE("disallowedTypes"),
-        /**Sets the default allowed content types mode. The value true means
-         * that all content types will be allowed unless they're on the
-         * "disallowed list". If false, no content types will be allowed unless
-         * on the "allowed list".*/
-        ATTACHMENT_SET_ALLOW_ALL_BY_DEFAULT,
-        /**Enables or disables attachments.*/
-        ATTACHMENT_SET_ATTACHMENTS_ENABLED,
-        /**Sets whether image preview support is enabled. When enabled, the
-         * application will generate thumbnails for image attachments.
-         * False by default.*/
-        ATTACHMENT_SET_IMAGE_PREVIEW_ENABLED,
-        /**Sets the maximum dimension of generated thumbnails (the maximum
-         * value for the width or height). The default value is 25.*/
-        ATTACHMENT_SET_IMAGE_PREVIEW_MAX_SIZE,
-        /**Sets whether the aspect ratio of thumbnails should be preserved. When
-         * enabled, the aspect ratio of the original image will be preserved
-         * when generating the thumbnail. When false, the thumbnail will always
-         * be a square (which may distort the image). The default is true.*/
-        ATTACHMENT_SET_IMAGE_PREVIEW_RATIO_ENABLED,
-        /**Sets the maximum size of an individual attachment in kilobytes.
-         * Trying to create an attachment larger than the max size will fail
-         * with an exception. The default maximum attachment size is 1 MB,
-         * or 1024 KB.*/
-        ATTACHMENT_SET_MAX_ATTACHMENT_SIZE,
-        /**Sets the maximum number of attachments blog post can have.
-         * The default is 5 attachments.*/
-        ATTACHMENT_SET_MAX_ATTACHMENTS_PER_BLOG_POST,
-        /**Sets the maximum number of attachments that a document can have.
-         * The default is 5 attachments.*/
-        ATTACHMENT_SET_MAX_ATTACHMENTS_PER_DOCUMENT,
-        /**Sets the maximum number of attachments per discussion message.
-         * The default is 5 attachments.*/
-        ATTACHMENT_SET_MAX_ATTACHMENTS_PER_MESSAGE,
-        /**Logs an event with formatted data passed.*/
-        AUDIT_AUDIT_EVENT("audit"),
-        /**Returns a list of audit logs entries.*/
-        AUDIT_GET_AUDIT_MESSAGES("audit"),
-        /**Creates a new avatar for a user using the specified byte array as the
-         * contents of the avatar image.*/
-        AVATAR_CREATE_AVATAR("avatars"),
-        /**Deletes an avatar from the system.*/
-        AVATAR_DELETE("avatar"),
-        /**Returns the active avatar for the specified user, or the
-         * SystemDefaultAvatar if the user does not have an active avatar
-         * specified. The active avatar is the one set for the user.*/
-        AVATAR_GET_ACTIVE_AVATAR,
-        /**Returns an avatar by its ID.*/
-        AVATAR_GET_AVATAR("avatarByID"),
-        /**Used to acquire a count of all the avatars for a specific user.*/
-        AVATAR_GET_AVATAR_COUNT,
-        /**Returns a list of avatars for the specified user.*/
-        AVATAR_GET_AVATARS_BY_USER,
-        /**Returns a list of all of the global avatars. Global avatars are those
-         * configured for use across the application. Users can choose from
-         * among these avatars when choosing their own.*/
-        AVATAR_GET_GLOBAL_AVATARS,
-        /**Returns the maximum allowable height for an avatar image.*/
-        AVATAR_GET_AVATAR_MAX_ALLOWABLE_HEIGHT,
-        /**Returns the maximum allowable width for an avatar image.*/
-        AVATAR_GET_AVATAR_MAX_ALLOWABLE_WIDTH,
-        /**Returns the maximum number of avatars a user is allowed to have;
-         * returns -1 when there is no limit.*/
-        AVATAR_GET_MAX_USER_AVATARS,
-        /**Returns a count of all the avatars that require moderation.*/
-        AVATAR_GET_MODERATION_AVATAR_COUNT,
-        /**Returns a collection of all of the avatars that require moderation.*/
-        AVATAR_GET_MODERATION_AVATARS,
-        /**Returns true if the system should attempt to resize avatar images.*/
-        AVATAR_IS_AVATAR_ALLOW_IMAGE_RESIZE,
-        /**Returns true if the avatars feature is enabled; false otherwise.*/
-        AVATAR_IS_AVATARS_ENABLED,
-        /**Returns whether or not user avatars will be moderated.
-         * The default value is true.*/
-        AVATAR_IS_MODERATE_USER_AVATARS,
-        /**Returns true if users can create their own avatars; false otherwise.
-         * If custom user avatars are enabled, the number of custom avatars
-         * allowed per user and whether or not custom avatars should be
-         * moderated can be set using setMaxUserAvatars(int max) and
-         * setModerateUserAvatars(boolean moderateUserAvatars), respectively.*/
-        AVATAR_IS_USER_AVATARS_ENABLED,
-        /**Sets the specified avatar as the user's avatar. The avatar can be
-         * either a global avatar or one that belongs to the user. To set no
-         * active avatar for the user, pass -1 for the avatar value.*/
-        AVATAR_SET_ACTIVE_AVATAR,
-        /**Set whether the system should attempt to resize avatar images.*/
-        AVATAR_SET_AVATAR_ALLOW_IMAGE_RESIZE,
-        /**Sets the maximum allowable height for an avatar image.*/
-        AVATAR_SET_AVATAR_MAX_ALLOWABLE_HEIGHT,
-        /**Sets the maximum allowable width for an avatar image.*/
-        AVATAR_SET_AVATAR_MAX_ALLOWABLE_WIDTH,
-        /**Sets the maximum number of avatars a user can have.*/
-        AVATAR_SET_MAX_USER_AVATARS,
-        /**Sets whether or not user-create avatars will be moderated.
-         * The default value is true.*/
-        AVATAR_SET_MODERATE_USER_AVATARS,
-        /**Sets whether or not users can create their own custom avatars.
-         * If custom user avatars are enabled, the number of custom avatars
-         * allowed per user and whether or not custom avatars should be
-         * moderated can be set using setMaxUserAvatars(int max) and
-         * setModerateUserAvatars(boolean moderateUserAvatars), respecitvely.*/
-        AVATAR_SET_USER_AVATARS_ENABLED,
-        /**Community delete reference.*/
-        COMMUNITY_DELETE,
-        /**Get blog count reference.*/
-        BLOG_COUNT,
-        /**Blog create reference.*/
-        BLOG_CREATE,
-        /**User create with the minimal data.*/
-        USER_CREATE,
-        /**User create sending the entire user data.*/
-        USER_CREATE_USER_WITH_USER(true);
+    Map<String, Object> create(
+        final Service type, Map<String, Object> entity);
 
-        /**Constructor.*/
-        private ServiceType() {
-            this.setRootTagName(getXmlRootElementName());
-        }
+    /**Executes a POST {@link CustomOp}.
+     * @return The xml response parse in a {@link Map}.
+     * @param customType The service to execute, used to determine the resource url, 
+     * the http protocol to use and, if needed, the root tag for the xml to be
+     * send in the request.
+     * @param entity The {@link Map} with the entity data to parse to an xml and send
+     * in the request.
+     * */
+    Map<String, Object> execute(final CustomOp customType,
+        Map<String, Object> entity);
 
-        /**Constructor for special start tags.
-         * @param serviceUri The rest resource uri after the service name.
-         * E.g. http://domain:port/app-context/service/serviceUri*/
-        private ServiceType(final String serviceUri) {
-            this();
-            this.setResourceUri(serviceUri);
-        }
+    /**Executes GET or DELETE {@link CustomOp}.
+     * @return The xml response parse in a {@link Map}.
+     * @param customType The service to execute, used to determine the resource url, 
+     * the http protocol to use and, if needed, the root tag for the xml to be
+     * send in the request.
+     * @param id {@link String} containing the path parameters separated with ':'. 
+     * */
+    Map<String, Object> execute(final CustomOp customType,
+        final String id);
 
-        /**Constructor.
-         * @param usesExtraTag If true uses an extra tag with the entity name*/
-        private ServiceType(final boolean usesExtraTag) {
-            this();
-            this.setExtraTag(usesExtraTag);
-        }
+    /**Deletes an entity.
+     * @return The xml response parse in a {@link Map}.
+     * @param type The service type used to determine the url for this resource.
+     * @param id The id to be added in the url as path parameter.
+     * */
+    Map<String, Object> delete(final Service type, String id);
 
-        /**@return The entity name in lowercase.*/
-        public final String getEntityName() {
-            return splitName[0].toLowerCase();
-        }
+    /**Parse an xml into a {@link Map}.
+     * @return The map corresponding to the given xml.
+     * @param reader {@link Reader} with the xml.
+     * */
+    Map<String, Object> xml2map(final Reader reader);
 
-        /**This variable holds the initial tag name of the request.*/
-        private String rootTagName;
+    /**Parse an entity into an xml and writes it in the given {@link Writer}.
+     * @param xmlRootTag The xml root element to use in the xml formation.
+     * @param entity The {@link Map} with the entity data to be parsed.
+     * @param writer The {@link Writer} in witch the xml will be written.
+     * */
+    void map2xml(final String xmlRootTag,
+                 final Map<String, Object> entity, final Writer writer);
 
-        /**This variable holds the rest resource uri for this specific service.
-         * */
-        private String resourceUri = null;
-
-        /**Split of the service name.*/
-        private final String[] splitName =
-            StringUtils.split(this.toString().toLowerCase(), '_');
-
-        /**If true, the request of this service has an extra tag with the entity
-         * name.*/
-        private boolean extraTag = false;
-
-        /**@return the rootElement of the xml request
-         * */
-        private String getXmlRootElementName() {
-            final StringBuffer res = new StringBuffer();
-            res.append(splitName[1]);
-            if (splitName.length > 2) {
-                for (int i = 2; i < splitName.length; i++) {
-                    res.append(StringUtils.capitalize(splitName[i]));
-                }
-            }
-            return res.toString();
-        }
-
-        /**
-         * @param usesExtraTag the extraTag to set
-         */
-        public final void setExtraTag(final boolean usesExtraTag) {
-            this.extraTag = usesExtraTag;
-        }
-
-        /**
-         * @return the extraTag
-         */
-        public final boolean hasExtraTag() {
-            return extraTag;
-        }
-
-        /**
-         * @param rootTag the rootTagName to set
-         */
-        public void setRootTagName(final String rootTag) {
-            this.rootTagName = rootTag;
-        }
-
-        /**
-         * @return the rootTagName
-         */
-        public String getRootTagName()
-        {
-            return rootTagName;
-        }
-
-        /**
-         * @param resourceUri the resourceUri to set
-         */
-        public void setResourceUri(String resourceUri)
-        {
-            this.resourceUri = resourceUri;
-        }
-
-        /**
-         * @return the resourceUri
-         */
-        public String getResourceUri()
-        {
-            return resourceUri;
-        }
-
-    }
+    /***/
+    Long count(final Service type);
+    /***/
+    void setUser(String user);
+    /***/
+    void setPass(String pass);
+    /***/
+    String getUser();
+    /***/
+    String getPass();
+    /***/
+    Long getUserID();
+    
 }
