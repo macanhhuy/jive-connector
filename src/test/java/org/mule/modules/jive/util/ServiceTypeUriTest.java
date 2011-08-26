@@ -31,6 +31,8 @@ public class ServiceTypeUriTest {
             generateBaseUri(Service.AUDIT));
         assertEquals("/avatarService/avatars", ServiceUriFactory.
             generateBaseUri(Service.AVATAR));
+        assertEquals("/blogService/blogs", ServiceUriFactory.
+                generateBaseUri(Service.BLOG));
     }
 
     /**Test the {@link ServiceUriFactory} custom operation uri formation.*/
@@ -121,8 +123,7 @@ public class ServiceTypeUriTest {
         assertEquals("/attachmentService/disallowedTypes",
             ServiceUriFactory.generateCustomUri(
                 CustomOp.ATTACHMENT_REMOVE_DISALLOWED_TYPE));
-        //...
-        
+
         assertEquals("/auditService/audit",
             ServiceUriFactory.generateCustomUri(
                 CustomOp.AUDIT_GET_AUDIT_MESSAGES));

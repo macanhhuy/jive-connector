@@ -24,6 +24,8 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.Map;
 
+import org.mule.modules.jive.utils.ServiceUriFactory;
+
 /**Facade for the Jive connector.
  * @author Pablo Diez
  * @since Jul 20, 2011
@@ -61,6 +63,15 @@ public interface JiveFacade {
      * */
     Map<String, Object> execute(final CustomOp customType,
         final String id);
+
+    /**TODO - Should create a new enum with the protocol to use
+     * and the name of the operation, the uri will be determined
+     * by the name of the operation using
+     * {@link ServiceUriFactory#generateCustomUri(Service, String)}.
+     * This new enum will exist mainly to give the user a proper
+     * operations list.*/
+    Map<String, Object> execute(final String uri,
+            final String id);
 
     /**Deletes an entity.
      * @return The xml response parse in a {@link Map}.

@@ -51,6 +51,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.UnhandledException;
 import org.apache.commons.lang.Validate;
@@ -62,33 +63,25 @@ import org.apache.commons.lang.Validate;
     schemaLocation = "http://repository.mulesoft.org/releases/org/"
                    + "mule/modules/mule-module-jive/1.0-SNAPSHOT/mule-jive.xsd")
 
-public class JiveModule implements JiveFacade {
+public class JiveModule {
     /**The jersey webresource to access rest resources.*/
     private WebResource gateway;
     /**The username to access the jive instance.*/
-    private String user;
+    @Configurable
+    private String username;
     /**The password.*/
-    private String pass;
+    @Configurable
+    private String password;
     /**The userID.*/
     private Long userID;
+    @Configurable
+    private String gatewayUri;
 
-    /**JiveConnector.
-     * @param gatewayUri The base uri
-     * @param username Username
-     * @param password Password
-     * */
-    public JiveModule(final String gatewayUri,
-                      final String username, final String password) {
-        this.setUser(username);
-        this.setPass(password);
+    public void init() {
         this.createGateway(gatewayUri, createClient());
-        getUserIdByUsername();
-    }
-
-    /***/
-    public JiveModule() {
-
-    }
+        setUserIdByUsername();
+	}
+    
 
     /***/
     @Configurable
@@ -122,7 +115,7 @@ public class JiveModule implements JiveFacade {
         XMLInputFactory.newInstance();
 
     /**Sets the userID requesting it by username.*/
-    private void getUserIdByUsername() {
+    private void setUserIdByUsername() {
         final String response = this.gateway.path("/userService/users/"
             + this.getUser()).type(MediaType.APPLICATION_FORM_URLENCODED)
             .get(String.class);
@@ -147,6 +140,8 @@ public class JiveModule implements JiveFacade {
             response = partialRequest.post(String.class, writer.toString());
         } else if(customType.getProtocol().equals("GET")) {
             response = partialRequest.get(String.class);
+        } else if (customType.getProtocol().equals("PUT")) {
+        	response = partialRequest.put(String.class);
         } else { //It's a DELETE request
             response = partialRequest.delete(String.class);
         }
@@ -168,6 +163,30 @@ public class JiveModule implements JiveFacade {
             response = partialRequest.get(String.class);
         } else { //It's a DELETE request
             response = partialRequest.delete(String.class);
+        }
+        return xml2map(new StringReader(response));
+    }
+
+    @Override
+    /**{@inheritDoc}*/
+    public final Map<String, Object> execute(final String uri,
+        final String id) {
+
+        throw new NotImplementedException();
+    }
+    
+    public final Map<String, Object> execute(final Operation op,
+    		final Map<String, Object> entity) {
+    	final String response;
+        final Builder partialRequest = this.gateway.path(op.getResourceUri())
+            .type(MediaType.APPLICATION_FORM_URLENCODED)
+            .header("content-type", "text/xml");
+        final Writer writer = new StringWriter();
+        map2xml(op.getRootTagElementName(), entity, writer);
+        if (op.getProtocol().equals("POST")) {
+        	response = partialRequest.post(String.class, writer.toString());
+        } else {
+        	response = "";
         }
         return xml2map(new StringReader(response));
     }
@@ -387,7 +406,7 @@ public class JiveModule implements JiveFacade {
      */
     public void setUser(String user)
     {
-        this.user = user;
+        this.username = user;
     }
 
     /**
@@ -395,7 +414,7 @@ public class JiveModule implements JiveFacade {
      */
     public String getUser()
     {
-        return user;
+        return username;
     }
 
     /**
@@ -403,7 +422,7 @@ public class JiveModule implements JiveFacade {
      */
     public void setPass(String pass)
     {
-        this.pass = pass;
+        this.password = pass;
     }
 
     /**
@@ -411,7 +430,7 @@ public class JiveModule implements JiveFacade {
      */
     public String getPass()
     {
-        return pass;
+        return password;
     }
 
     /**
