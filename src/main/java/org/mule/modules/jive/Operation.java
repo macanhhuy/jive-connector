@@ -1,4 +1,3 @@
-
 package org.mule.modules.jive;
 
 import org.apache.commons.lang.StringUtils;
@@ -1356,4 +1355,5 @@ public enum Operation {
             this.protocol = "";
         }
     }
+
 }
