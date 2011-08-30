@@ -1,3 +1,5 @@
+package org.mule.modules.jive.api;
+
 /**
  * Mule NetSuite Cloud Connector
  *
@@ -8,21 +10,18 @@
  * LICENSE.txt file.
  */
 
-import org.mule.modules.jive.JiveModule;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.List;
 
+import org.mule.modules.jive.JiveFacade;
+import org.mule.modules.jive.JiveModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.annotation.AnnotationUtils;
 
 public final class JiveModuleAdaptor
 {
-    private static final Object LOCK = new Object();
     private static final Logger log = LoggerFactory.getLogger(JiveModule.class);
 
     private JiveModuleAdaptor()
@@ -30,10 +29,10 @@ public final class JiveModuleAdaptor
     }
 
     @SuppressWarnings("unchecked")
-    public static NetSuiteClient<List<Object>, RuntimeException, Void> getProxyBuilder(final NetSuiteClient<?, ?, ?> client)
+    public static JiveFacade getFacadeProxy(final JiveFacade client)
     {
-        return (NetSuiteClient<List<Object>, RuntimeException, Void>) Proxy.newProxyInstance(
-            NetSuiteClientAdaptor.class.getClassLoader(), new Class[]{SoapNetSuiteClient.class},
+        return (JiveFacade) Proxy.newProxyInstance(
+            client.getClass().getClassLoader(), new Class[]{JiveFacade.class},
             new InvocationHandler()
             {
                 public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
@@ -44,7 +43,7 @@ public final class JiveModuleAdaptor
                     }
                     try
                     {
-                        Object ret = handle(method, args);
+                        Object ret = invoke(method, client, args);
                         if (log.isDebugEnabled())
                         {
                             log.debug("Returning from {} with value {}", method.getName(), ret);
@@ -58,76 +57,17 @@ public final class JiveModuleAdaptor
                     }
                 }
 
-                private Object handle(Method method, Object[] args) throws Throwable
+                private Object invoke(Method method, JiveFacade client, Object[] args) throws Throwable
                 {
-                    NetSuiteOperation operationMetadata = AnnotationUtils.findAnnotation(method,
-                        NetSuiteOperation.class);
-                    if (operationMetadata == null)
-                    {
-                        return invokeMethod(method, client, args);
-                    }
-                    try
-                    {
-                        synchronized (LOCK)
-                        {
-                            return adaptReturnType(invokeMethod(method, client, args), operationMetadata);
-                        }
-                    }
-                    catch (Throwable e)
-                    {
-                        throw NetSuiteGenericException.soften(e);
-                    }
+                	try
+					{
+					    return method.invoke(client, args);
+					}
+					catch (InvocationTargetException e)
+					{
+					    throw e.getCause();
+					}
                 }
             });
     }
-
-    private static Object invokeMethod(Method m, Object obj, Object... args) throws Throwable
-    {
-        try
-        {
-            return m.invoke(obj, args);
-        }
-        catch (InvocationTargetException e)
-        {
-            throw e.getCause();
-        }
-    }
-
-    private static Object adaptReturnType(Object returnValue, NetSuiteOperation operationMetadata)
-        throws Throwable
-    {
-        if (!operationMetadata.adapt())
-        {
-            return returnValue;
-        }
-        return operationMetadata.resultType().adapt(returnValue, operationMetadata.responseName(),
-            operationMetadata.resultName());
-    }
-
-    // TODO retry
-    // private static abstract class RetryingInterceptor implements Interceptor
-    // {
-    // public Object intercept(Object target, Block block, Object[] args) throws
-    // Throwable
-    // {
-    // do
-    // {
-    // try
-    // {
-    // return block.proceed(target, args);
-    // }
-    // catch (Throwable ex)
-    // {
-    // if (!isRetryError(ex))
-    // {
-    // throw ex;
-    // }
-    // }
-    // }
-    // while (true);
-    // }
-    //
-    // protected abstract boolean isRetryError(Throwable ex);
-    // }
-
 }

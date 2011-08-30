@@ -11,7 +11,7 @@
 package org.mule.modules.jive.utils;
 
 import org.mule.modules.jive.CustomOp;
-import org.mule.modules.jive.Service;
+import org.mule.modules.jive.EntityType;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -29,7 +29,7 @@ public final class ServiceUriFactory {
      * @param type The service
      * @param opName The name of the operation to be called
      * */
-    public static String generateCustomUri(final Service type,
+    public static String generateCustomUri(final EntityType type,
                                                  final String opName) {
         return type.getServiceUri() + "/" + getOpUri(opName);
     }
@@ -49,11 +49,11 @@ public final class ServiceUriFactory {
      * uri would be /avatarService/avatars
      * @param type The service
      * */
-    public static String generateBaseUri(final Service type) {
+    public static String generateBaseUri(final EntityType type) {
         final StringBuffer uri = new StringBuffer(type.getServiceUri() + "/");
-        if (type.getStrategy() == Service.PLURAL) {
+        if (type.getStrategy() == EntityType.PLURAL) {
             uri.append(pluralize(type.toString().toLowerCase()));
-        } else if (type.getStrategy() == Service.SINGULAR) {
+        } else if (type.getStrategy() == EntityType.SINGULAR) {
             uri.append(type.toString().toLowerCase());
         }
         return uri.toString();
