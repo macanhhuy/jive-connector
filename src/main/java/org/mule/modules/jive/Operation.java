@@ -71,54 +71,54 @@ public enum Operation {
     /** Sets whether or not users can create their own custom avatars. */
     AVATAR_SET_USER_AVATARS_ENABLED(EntityType.AVATAR),
     /** Adds a new comment to the specified content object. */
-    COMMENT_SERVICE_ADD_COMMENT(EntityType.COMMENT),
+    COMMENTSERVICE_ADD_COMMENT(EntityType.COMMENT),
     /** Adds a new comment to the specified parent comment. */
-    COMMENT_SERVICE_ADD_COMMENT_TO_COMMENT(EntityType.COMMENT),
+    COMMENTSERVICE_ADD_COMMENT_TO_COMMENT(EntityType.COMMENT),
     /** Deletes all comments on the object. */
-    COMMENT_SERVICE_DELETE_ALL_COMMENTS(EntityType.COMMENT),
+    COMMENTSERVICE_DELETE_ALL_COMMENTS(EntityType.COMMENT),
     /** Deletes a comment in the object. */
-    COMMENT_SERVICE_DELETE_COMMENT(EntityType.COMMENT),
+    COMMENTSERVICE_DELETE_COMMENT(EntityType.COMMENT),
     /** Deletes a comment in the object. */
-    COMMENT_SERVICE_DELETE_COMMENT_RECURSIVE(EntityType.COMMENT),
+    COMMENTSERVICE_DELETE_COMMENT_RECURSIVE(EntityType.COMMENT),
     /** Returns the specified comment. */
-    COMMENT_SERVICE_GET_COMMENT(EntityType.COMMENT),
+    COMMENTSERVICE_GET_COMMENT(EntityType.COMMENT),
     /**
      * Returns the number of comments on the content specified by objectType and
      * objectID.
      */
-    COMMENT_SERVICE_GET_COMMENT_COUNT(EntityType.COMMENT),
+    COMMENTSERVICE_GET_COMMENT_COUNT(EntityType.COMMENT),
     /**
      * Returns the number of comments on the content specified by objectType and
      * objectID, where the number is constrained by the filter.
      */
-    COMMENT_SERVICE_GET_COMMENT_COUNT_WITH_FILTER(EntityType.COMMENT),
+    COMMENTSERVICE_GET_COMMENT_COUNT_WITH_FILTER(EntityType.COMMENT),
     /**
      * Returns a list of the comments on the content specified by objectType and
      * objectID.
      */
-    COMMENT_SERVICE_GET_COMMENTS(EntityType.COMMENT),
+    COMMENTSERVICE_GET_COMMENTS(EntityType.COMMENT),
     /**
      * Returns a count of all the comments in all content that has been authored by
      * the specified user.
      */
-    COMMENT_SERVICE_GET_USER_CONTENT_COMMENT_COUNT(EntityType.COMMENT),
+    COMMENTSERVICE_GET_USER_CONTENT_COMMENT_COUNT(EntityType.COMMENT),
     /**
      * Returns a count of all the comments in all content which has been authored by
      * the supplied user, with the count constrained by the specified filter.
      */
-    COMMENT_SERVICE_GET_USER_CONTENT_COMMENT_COUNT_WITH_FILTER(EntityType.COMMENT),
+    COMMENTSERVICE_GET_USER_CONTENT_COMMENT_COUNT_WITH_FILTER(EntityType.COMMENT),
     /**
      * Returns a list of all the comments in all content which has been authored by
      * the supplied user.
      */
-    COMMENT_SERVICE_GET_USER_CONTENT_COMMENTS(EntityType.COMMENT),
+    COMMENTSERVICE_GET_USER_CONTENT_COMMENTS(EntityType.COMMENT),
     /**
      * Returns a list of all the comments in all content which has been authored by
      * the supplied user.
      */
-    COMMENT_SERVICE_GET_USER_CONTENT_COMMENTS_WITH_FILTER(EntityType.COMMENT),
+    COMMENTSERVICE_GET_USER_CONTENT_COMMENTS_WITH_FILTER(EntityType.COMMENT),
     /** Updates an existing comment. */
-    COMMENT_SERVICE_UPDATE_COMMENT(EntityType.COMMENT),
+    COMMENTSERVICE_UPDATE_COMMENT(EntityType.COMMENT),
     /** Adds an attachment to the specified blog post. */
     BLOG_ADD_ATTACHMENT_TO_BLOG_POST(EntityType.BLOG),
     /** Adds an image to the specified blog post. */
@@ -234,417 +234,417 @@ public enum Operation {
      */
     BLOG_USER_HAS_BLOGS(EntityType.BLOG),
     /** Creates a new community as a sub-community of the specified community. */
-    COMUNITY_SERVICE_CREATE_COMMUNITY(EntityType.COMMUNITY),
+    COMUNITYSERVICE_CREATE_COMMUNITY(EntityType.COMMUNITY),
     /** Deletes the specified community. */
-    COMUNITY_SERVICE_DELETE_COMMUNITY(EntityType.COMMUNITY),
+    COMUNITYSERVICE_DELETE_COMMUNITY(EntityType.COMMUNITY),
     /** Delete the specified property from the specified community. */
-    COMUNITY_SERVICE_DELETE_PROPERTY(EntityType.COMMUNITY),
+    COMUNITYSERVICE_DELETE_PROPERTY(EntityType.COMMUNITY),
     /** Returns a WSCommunity by its ID. */
-    COMUNITY_SERVICE_GET_COMMUNITY(EntityType.COMMUNITY),
+    COMUNITYSERVICE_GET_COMMUNITY(EntityType.COMMUNITY),
     /**
      * Returns document IDs for all published documents in the specified community,
      * excluding its sub-communities.
      */
-    COMUNITY_SERVICE_GET_DOCUMENT_IDS(EntityType.COMMUNITY),
+    COMUNITYSERVICE_GET_DOCUMENT_IDS(EntityType.COMMUNITY),
     /** Returns the extended properties for the specified community. */
-    COMUNITY_SERVICE_GET_PROPERTIES(EntityType.COMMUNITY),
+    COMUNITYSERVICE_GET_PROPERTIES(EntityType.COMMUNITY),
     /** Returns the specified extended property for a community. */
-    COMUNITY_SERVICE_GET_PROPERTY(EntityType.COMMUNITY),
+    COMUNITYSERVICE_GET_PROPERTY(EntityType.COMMUNITY),
     /***/
-    COMUNITY_SERVICE_GET_RECURSIVE_COMMUNITIES(EntityType.COMMUNITY),
+    COMUNITYSERVICE_GET_RECURSIVE_COMMUNITIES(EntityType.COMMUNITY),
     /**
      * Returns all sub-communities that are descendants of the specified parent
      * community.
      */
-    COMUNITY_SERVICE_GET_RECURSIVE_COMMUNITIES_BY_PARENT(EntityType.COMMUNITY),
+    COMUNITYSERVICE_GET_RECURSIVE_COMMUNITIES_BY_PARENT(EntityType.COMMUNITY),
     /** Returns a count of sub-communities of the specified community. */
-    COMUNITY_SERVICE_GET_RECURSIVE_COMMUNITY_COUNT(EntityType.COMMUNITY),
+    COMUNITYSERVICE_GET_RECURSIVE_COMMUNITY_COUNT(EntityType.COMMUNITY),
     /** Returns the immediate sub-communities of the specified parent community. */
-    COMUNITY_SERVICE_GET_SUB_COMMUNITIES(EntityType.COMMUNITY),
+    COMUNITYSERVICE_GET_SUB_COMMUNITIES(EntityType.COMMUNITY),
     /** Sets an extended propery for the specified community. */
-    COMUNITY_SERVICE_SET_PROPERTY(EntityType.COMMUNITY),
+    COMUNITYSERVICE_SET_PROPERTY(EntityType.COMMUNITY),
     /** Updates the specified community with <em>community</em>. */
-    COMUNITY_SERVICE_UPDATE_COMMUNITY(EntityType.COMMUNITY),
+    COMUNITYSERVICE_UPDATE_COMMUNITY(EntityType.COMMUNITY),
     /** Adds a new attachment to the specified document. */
-    DOCUMENT_SERVICE_ADD_ATTACHMENT_TO_DOCUMENT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_ADD_ATTACHMENT_TO_DOCUMENT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
     /** Adds a new attachment to the specified document. */
-    DOCUMENT_SERVICE_ADD_ATTACHMENT_TO_DOCUMENT_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_ADD_ATTACHMENT_TO_DOCUMENT_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
     /** Adds the specified user as an author of a document. */
-    DOCUMENT_SERVICE_ADD_AUTHOR(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_ADD_AUTHOR(EntityType.DOCUMENT),
     /** Adds the specified user as a document approver for an entire community. */
-    DOCUMENT_SERVICE_ADD_DOCUMENT_APPROVER_ON_COMMUNITY(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_ADD_DOCUMENT_APPROVER_ON_COMMUNITY(EntityType.DOCUMENT),
     /** Adds a user as an approver for the specified document. */
-    DOCUMENT_SERVICE_ADD_DOCUMENT_APPROVER_ON_DOCUMENT(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_ADD_DOCUMENT_APPROVER_ON_DOCUMENT(EntityType.DOCUMENT),
     /** Adds a new image to the specified document. */
-    DOCUMENT_SERVICE_ADD_IMAGE_TO_DOCUMENT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_ADD_IMAGE_TO_DOCUMENT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
     /** Adds a new image to the document with the specified internal ID. */
-    DOCUMENT_SERVICE_ADD_IMAGE_TO_DOCUMENT_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_ADD_IMAGE_TO_DOCUMENT_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
     /** Creates a new binary document in the specified community. */
-    DOCUMENT_SERVICE_CREATE_BINARY_DOCUMENT(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_CREATE_BINARY_DOCUMENT(EntityType.DOCUMENT),
     /** Creates a new binary document in the specified container. */
-    DOCUMENT_SERVICE_CREATE_BINARY_DOCUMENT_IN_CONTAINER(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_CREATE_BINARY_DOCUMENT_IN_CONTAINER(EntityType.DOCUMENT),
     /** Creates a new document in the specified community. */
-    DOCUMENT_SERVICE_CREATE_DOCUMENT(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_CREATE_DOCUMENT(EntityType.DOCUMENT),
     /** Create a new document in the specified container. */
-    DOCUMENT_SERVICE_CREATE_DOCUMENT_IN_CONTAINER(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_CREATE_DOCUMENT_IN_CONTAINER(EntityType.DOCUMENT),
     /** Deletes a document. */
-    DOCUMENT_SERVICE_DELETE_DOCUMENT(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_DELETE_DOCUMENT(EntityType.DOCUMENT),
     /** Deletes the specified property from the specified document. */
-    DOCUMENT_SERVICE_DELETE_DOCUMENT_PROPERTY(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_DELETE_DOCUMENT_PROPERTY(EntityType.DOCUMENT),
     /**
      * Returns a list of WSApprovalStatus that show which users have approved the
      * specified document and which haven't.
      */
-    DOCUMENT_SERVICE_GET_APPROVAL_STATUS_FOR_DOCUMENT(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_APPROVAL_STATUS_FOR_DOCUMENT(EntityType.DOCUMENT),
     /** Returns the number of attachments on the specified document. */
-    DOCUMENT_SERVICE_GET_ATTACHMENT_COUNT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_ATTACHMENT_COUNT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
     /**
      * Returns the number of attachments on the document with the specified internal
      * ID.
      */
-    DOCUMENT_SERVICE_GET_ATTACHMENT_COUNT_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_ATTACHMENT_COUNT_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
     /** Returns the attachments for the specified document. */
-    DOCUMENT_SERVICE_GET_ATTACHMENTS_BY_DOCUMENT_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_ATTACHMENTS_BY_DOCUMENT_ID(EntityType.DOCUMENT),
     /**
      * Returns the attachments for the document with the specified internal document
      * ID.
      */
-    DOCUMENT_SERVICE_GET_ATTACHMENTS_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_ATTACHMENTS_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
     /** Returns the users who are allowed to edit the document. */
-    DOCUMENT_SERVICE_GET_AUTHORS(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_AUTHORS(EntityType.DOCUMENT),
     /** Returns the content of the specified binary document. */
-    DOCUMENT_SERVICE_GET_BINARY_DOCUMENT_CONTENT(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_BINARY_DOCUMENT_CONTENT(EntityType.DOCUMENT),
     /**
      * Returns all of the users who must approve new documents before they can be
      * published.
      */
-    DOCUMENT_SERVICE_GET_DOCUMENT_APPROVERS_ON_COMMUNITY(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_DOCUMENT_APPROVERS_ON_COMMUNITY(EntityType.DOCUMENT),
     /**
      * Returns all of the users who must approve the specified document before it can
      * be published.
      */
-    DOCUMENT_SERVICE_GET_DOCUMENT_APPROVERS_ON_DOCUMENT(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_DOCUMENT_APPROVERS_ON_DOCUMENT(EntityType.DOCUMENT),
     /** Returns the specified document from a community. */
-    DOCUMENT_SERVICE_GET_DOCUMENT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_DOCUMENT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
     /** Returns the specified version of a document. */
-    DOCUMENT_SERVICE_GET_DOCUMENT_BY_DOCUMENT_IDAND_VERSION(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_DOCUMENT_BY_DOCUMENT_IDAND_VERSION(EntityType.DOCUMENT),
     /** Returns the specified document. */
-    DOCUMENT_SERVICE_GET_DOCUMENT_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_DOCUMENT_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
     /** Returns the specified version of a document. */
-    DOCUMENT_SERVICE_GET_DOCUMENT_BY_INTERNAL_DOC_IDAND_VERSION(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_DOCUMENT_BY_INTERNAL_DOC_IDAND_VERSION(EntityType.DOCUMENT),
     /** Returns the extended properties for the specified document. */
-    DOCUMENT_SERVICE_GET_DOCUMENT_PROPERTIES(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_DOCUMENT_PROPERTIES(EntityType.DOCUMENT),
     /** Returns the value of the specified extended property for a document. */
-    DOCUMENT_SERVICE_GET_DOCUMENT_PROPERTY(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_DOCUMENT_PROPERTY(EntityType.DOCUMENT),
     /** Returns all of the documents for the specified community. */
-    DOCUMENT_SERVICE_GET_DOCUMENTS_BY_COMMUNITY(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_DOCUMENTS_BY_COMMUNITY(EntityType.DOCUMENT),
     /**
      * Returns all of the documents in the specified community and constrained by the
      * specified filter.
      */
-    DOCUMENT_SERVICE_GET_DOCUMENTS_BY_COMMUNITY_AND_FILTER(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_DOCUMENTS_BY_COMMUNITY_AND_FILTER(EntityType.DOCUMENT),
     /** Returns the number of images on the specified document. */
-    DOCUMENT_SERVICE_GET_IMAGE_COUNT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_IMAGE_COUNT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
     /** Returns the number of images on the document with the specified internal ID. */
-    DOCUMENT_SERVICE_GET_IMAGE_COUNT_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_IMAGE_COUNT_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
     /** Acquire the images for a document by the document id. */
-    DOCUMENT_SERVICE_GET_IMAGES_BY_DOCUMENT_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_IMAGES_BY_DOCUMENT_ID(EntityType.DOCUMENT),
     /** Returns the images for the document specified by its internal ID. */
-    DOCUMENT_SERVICE_GET_IMAGES_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_IMAGES_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
     /**
      * Returns the most popular documents from across all communities according to
      * ratings, document views and time passed since the document was created.
      */
-    DOCUMENT_SERVICE_GET_POPULAR_DOCUMENTS(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_POPULAR_DOCUMENTS(EntityType.DOCUMENT),
     /**
      * Returns the most popular documents in the given community according to
      * ratings, document views and time passed since the document was created.
      */
-    DOCUMENT_SERVICE_GET_POPULAR_DOCUMENTS_BY_COMMUNITY(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_POPULAR_DOCUMENTS_BY_COMMUNITY(EntityType.DOCUMENT),
     /**
      * Returns the most popular documents in the given community according to
      * ratings, document views and time passed since the document was created in the
      * specified languages.
      */
-    DOCUMENT_SERVICE_GET_POPULAR_DOCUMENTS_BY_LANGUAGE(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_POPULAR_DOCUMENTS_BY_LANGUAGE(EntityType.DOCUMENT),
     /** Returns the user who authored the document. */
-    DOCUMENT_SERVICE_GET_USER(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_USER(EntityType.DOCUMENT),
     /**
      * Returns a list of the documents that the specified user must approve before
      * they can be published.
      */
-    DOCUMENT_SERVICE_GET_USER_APPROVAL_DOCUMENTS(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_GET_USER_APPROVAL_DOCUMENTS(EntityType.DOCUMENT),
     /** Returns true if the comments feature is turned on. */
-    DOCUMENT_SERVICE_IS_COMMENTS_ENABLED(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_IS_COMMENTS_ENABLED(EntityType.DOCUMENT),
     /** Returns true if the trackbacks feature is turned on. */
-    DOCUMENT_SERVICE_IS_TRACKBACKS_ENABLED(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_IS_TRACKBACKS_ENABLED(EntityType.DOCUMENT),
     /** Moves a document from its current community to another one. */
-    DOCUMENT_SERVICE_MOVE_DOCUMENT(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_MOVE_DOCUMENT(EntityType.DOCUMENT),
     /** Moves a document from its current container to another. */
-    DOCUMENT_SERVICE_MOVE_DOCUMENT_TO_CONTAINER(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_MOVE_DOCUMENT_TO_CONTAINER(EntityType.DOCUMENT),
     /** Publishes the specified binary document in the specified community. */
-    DOCUMENT_SERVICE_PUBLISH_BINARY_DOCUMENT(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_PUBLISH_BINARY_DOCUMENT(EntityType.DOCUMENT),
     /** Publishes the specified binary document in the specified container. */
-    DOCUMENT_SERVICE_PUBLISH_BINARY_DOCUMENT_IN_CONTAINER(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_PUBLISH_BINARY_DOCUMENT_IN_CONTAINER(EntityType.DOCUMENT),
     /** Publishes the specified document in the specified community. */
-    DOCUMENT_SERVICE_PUBLISH_DOCUMENT(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_PUBLISH_DOCUMENT(EntityType.DOCUMENT),
     /** Publishes the specified document in the specified container. */
-    DOCUMENT_SERVICE_PUBLISH_DOCUMENT_IN_CONTAINER(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_PUBLISH_DOCUMENT_IN_CONTAINER(EntityType.DOCUMENT),
     /** Removes the specified attachment. */
-    DOCUMENT_SERVICE_REMOVE_ATTACHMENT(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_REMOVE_ATTACHMENT(EntityType.DOCUMENT),
     /** Removes the specified user as an author of the specified document. */
-    DOCUMENT_SERVICE_REMOVE_AUTHOR(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_REMOVE_AUTHOR(EntityType.DOCUMENT),
     /** Enables or disables the comments feature system wide. */
-    DOCUMENT_SERVICE_SET_COMMENTS_ENABLED(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_SET_COMMENTS_ENABLED(EntityType.DOCUMENT),
     /** Sets the specified extended property for a document. */
-    DOCUMENT_SERVICE_SET_DOCUMENT_PROPERTY(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_SET_DOCUMENT_PROPERTY(EntityType.DOCUMENT),
     /** Enables or disables the trackbacks feature system wide. */
-    DOCUMENT_SERVICE_SET_TRACKBACKS_ENABLED(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_SET_TRACKBACKS_ENABLED(EntityType.DOCUMENT),
     /** Updates the specified document with the <em>document</em> parameter value. */
-    DOCUMENT_SERVICE_UPDATE_DOCUMENT(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_UPDATE_DOCUMENT(EntityType.DOCUMENT),
     /** Uploads a file as an attachment to the specified document. */
-    DOCUMENT_SERVICE_UPLOAD_ATTACHMENT_TO_DOCUMENT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_UPLOAD_ATTACHMENT_TO_DOCUMENT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
     /** Uploads a file as an attachment to the document specified internal ID. */
-    DOCUMENT_SERVICE_UPLOAD_ATTACHMENT_TO_DOCUMENT_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
+    DOCUMENTSERVICE_UPLOAD_ATTACHMENT_TO_DOCUMENT_BY_INTERNAL_DOC_ID(EntityType.DOCUMENT),
     /**
      * Adds the entitlements specified by the supplied mask to the user for the given
      * container and content type.
      */
-    ENTITLEMENT_SERVICE_ADD_GROUP_ENTITLEMENT(EntityType.ENTITLEMENT),
+    ENTITLEMENTSERVICE_ADD_GROUP_ENTITLEMENT(EntityType.ENTITLEMENT),
     /**
      * Adds the entitlements specified by the supplied mask to the user for the given
      * container and content type.
      */
-    ENTITLEMENT_SERVICE_ADD_USER_ENTITLEMENT(EntityType.ENTITLEMENT),
+    ENTITLEMENTSERVICE_ADD_USER_ENTITLEMENT(EntityType.ENTITLEMENT),
     /** Returns all the entitlement masks available in the system. */
-    ENTITLEMENT_SERVICE_GET_ENTITLEMENT_MASKS(EntityType.ENTITLEMENT),
+    ENTITLEMENTSERVICE_GET_ENTITLEMENT_MASKS(EntityType.ENTITLEMENT),
     /**
      * Returns true if the supplied user has any of the entitlements specified by the
      * given mask for the supplied container and content type
      */
-    ENTITLEMENT_SERVICE_IS_USER_ENTITLED(EntityType.ENTITLEMENT),
+    ENTITLEMENTSERVICE_IS_USER_ENTITLED(EntityType.ENTITLEMENT),
     /**
      * Removes the entitlements specified by the supplied mask from the user for the
      * given container and content type.
      */
-    ENTITLEMENT_SERVICE_REMOVE_GROUP_ENTITLEMENT(EntityType.ENTITLEMENT),
+    ENTITLEMENTSERVICE_REMOVE_GROUP_ENTITLEMENT(EntityType.ENTITLEMENT),
     /**
      * Removes the entitlements specified by the supplied mask from the user for the
      * given container and content type.
      */
-    ENTITLEMENT_SERVICE_REMOVE_USER_ENTITLEMENT(EntityType.ENTITLEMENT),
+    ENTITLEMENTSERVICE_REMOVE_USER_ENTITLEMENT(EntityType.ENTITLEMENT),
     /** Adds an attachment to the specified message. */
-    FORUM_SERVICE_ADD_ATTACHMENT_TO_MESSAGE(EntityType.FORUM),
+    FORUMSERVICE_ADD_ATTACHMENT_TO_MESSAGE(EntityType.FORUM),
     /** Adds an image to the specified. */
-    FORUM_SERVICE_ADD_IMAGE_TO_MESSAGE(EntityType.FORUM),
+    FORUMSERVICE_ADD_IMAGE_TO_MESSAGE(EntityType.FORUM),
     /** Creates a new message on the specified thread. */
-    FORUM_SERVICE_CREATE_MESSAGE(EntityType.FORUM),
+    FORUMSERVICE_CREATE_MESSAGE(EntityType.FORUM),
     /** Creates a new message that is a direct response to the specified message. */
-    FORUM_SERVICE_CREATE_REPLY_MESSAGE(EntityType.FORUM),
+    FORUMSERVICE_CREATE_REPLY_MESSAGE(EntityType.FORUM),
     /** Creates a new thread in the specified community. */
-    FORUM_SERVICE_CREATE_THREAD(EntityType.FORUM),
+    FORUMSERVICE_CREATE_THREAD(EntityType.FORUM),
     /** Creates a new thread in the specified container. */
-    FORUM_SERVICE_CREATE_THREAD_IN_CONTAINER(EntityType.FORUM),
+    FORUMSERVICE_CREATE_THREAD_IN_CONTAINER(EntityType.FORUM),
     /** Deletes the specified message. */
-    FORUM_SERVICE_DELETE_MESSAGE(EntityType.FORUM),
+    FORUMSERVICE_DELETE_MESSAGE(EntityType.FORUM),
     /** Deletes the specified message, optionally also deleting its child messages. */
-    FORUM_SERVICE_DELETE_MESSAGE_AND_CHILDREN(EntityType.FORUM),
+    FORUMSERVICE_DELETE_MESSAGE_AND_CHILDREN(EntityType.FORUM),
     /** Deletes the specified property from a message. */
-    FORUM_SERVICE_DELETE_MESSAGE_PROPERTY(EntityType.FORUM),
+    FORUMSERVICE_DELETE_MESSAGE_PROPERTY(EntityType.FORUM),
     /** Deletes the specified thread. */
-    FORUM_SERVICE_DELETE_THREAD(EntityType.FORUM),
+    FORUMSERVICE_DELETE_THREAD(EntityType.FORUM),
     /** Deletes the specified property from the specified thread. */
-    FORUM_SERVICE_DELETE_THREAD_PROPERTY(EntityType.FORUM),
+    FORUMSERVICE_DELETE_THREAD_PROPERTY(EntityType.FORUM),
     /** Returns attachments for the specified message. */
-    FORUM_SERVICE_GET_ATTACHMENTS_BY_MESSAGE_ID(EntityType.FORUM),
+    FORUMSERVICE_GET_ATTACHMENTS_BY_MESSAGE_ID(EntityType.FORUM),
     /**
      * Returns the specified child message of the specified parent, given the child
      * message's index in the array of children.
      */
-    FORUM_SERVICE_GET_CHILD(EntityType.FORUM),
+    FORUMSERVICE_GET_CHILD(EntityType.FORUM),
     /**
      * Returns the number of the specified parent's child messages; 0 if the node has
      * no children.
      */
-    FORUM_SERVICE_GET_CHILD_COUNT(EntityType.FORUM),
+    FORUMSERVICE_GET_CHILD_COUNT(EntityType.FORUM),
     /** Returns all the messages that are children of the specified parent. */
-    FORUM_SERVICE_GET_CHILDREN(EntityType.FORUM),
+    FORUMSERVICE_GET_CHILDREN(EntityType.FORUM),
     /** Returns the specified message. */
-    FORUM_SERVICE_GET_FORUM_MESSAGE(EntityType.FORUM),
+    FORUMSERVICE_GET_FORUM_MESSAGE(EntityType.FORUM),
     /** Returns the specified thread.. */
-    FORUM_SERVICE_GET_FORUM_THREAD(EntityType.FORUM),
+    FORUMSERVICE_GET_FORUM_THREAD(EntityType.FORUM),
     /** Returns the images that are attached to the specified message. */
-    FORUM_SERVICE_GET_IMAGES_BY_MESSAGE_ID(EntityType.FORUM),
+    FORUMSERVICE_GET_IMAGES_BY_MESSAGE_ID(EntityType.FORUM),
     /**
      * Returns the index of the specified message one of the specified parent's
      * children.
      */
-    FORUM_SERVICE_GET_INDEX_OF_CHILD(EntityType.FORUM),
+    FORUMSERVICE_GET_INDEX_OF_CHILD(EntityType.FORUM),
     /** Returns the number of messages in the specified community. */
-    FORUM_SERVICE_GET_MESSAGE_COUNT_BY_COMMUNITY_ID(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGE_COUNT_BY_COMMUNITY_ID(EntityType.FORUM),
     /**
      * Returns the number of messages in the specified community, as constrained by
      * the specified filter.
      */
-    FORUM_SERVICE_GET_MESSAGE_COUNT_BY_COMMUNITY_IDAND_FILTER(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGE_COUNT_BY_COMMUNITY_IDAND_FILTER(EntityType.FORUM),
     /** Returns the number of messages in the specified thread. */
-    FORUM_SERVICE_GET_MESSAGE_COUNT_BY_THREAD_ID(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGE_COUNT_BY_THREAD_ID(EntityType.FORUM),
     /**
      * Returns the number of messages in the specified thread, as constrained by the
      * specified filter.
      */
-    FORUM_SERVICE_GET_MESSAGE_COUNT_BY_THREAD_IDAND_FILTER(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGE_COUNT_BY_THREAD_IDAND_FILTER(EntityType.FORUM),
     /**
      * Returns the number of messages that are in the specified community, as
      * constrained by the specified filter.
      */
-    FORUM_SERVICE_GET_MESSAGE_COUNTS_BY_COMMUNITY_IDAND_FILTER(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGE_COUNTS_BY_COMMUNITY_IDAND_FILTER(EntityType.FORUM),
     /**
      * Returns the depth-level of the specified message in the message tree
      * hierarchy.
      */
-    FORUM_SERVICE_GET_MESSAGE_DEPTH(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGE_DEPTH(EntityType.FORUM),
     /** Returns IDs for all messages in the specified community. */
-    FORUM_SERVICE_GET_MESSAGE_IDS_BY_COMMUNITY_ID(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGE_IDS_BY_COMMUNITY_ID(EntityType.FORUM),
     /**
      * Returns IDs for all messages in the specified community, constrained by the
      * specified filter.
      */
-    FORUM_SERVICE_GET_MESSAGE_IDS_BY_COMMUNITY_IDAND_FILTER(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGE_IDS_BY_COMMUNITY_IDAND_FILTER(EntityType.FORUM),
     /** Returns IDs of all messages in the specified thread. */
-    FORUM_SERVICE_GET_MESSAGE_IDS_BY_THREAD_ID(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGE_IDS_BY_THREAD_ID(EntityType.FORUM),
     /**
      * Returns IDs for all of the messages in the thread, as constrained by the
      * specified filter.
      */
-    FORUM_SERVICE_GET_MESSAGE_IDS_BY_THREAD_IDAND_FILTER(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGE_IDS_BY_THREAD_IDAND_FILTER(EntityType.FORUM),
     /** Returns the extended properties for the specified message. */
-    FORUM_SERVICE_GET_MESSAGE_PROPERTIES(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGE_PROPERTIES(EntityType.FORUM),
     /** Returns the value of the specified extended property for a message. */
-    FORUM_SERVICE_GET_MESSAGE_PROPERTY(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGE_PROPERTY(EntityType.FORUM),
     /** Returns all of the messages in the specified community. */
-    FORUM_SERVICE_GET_MESSAGES_BY_COMMUNITY_ID(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGES_BY_COMMUNITY_ID(EntityType.FORUM),
     /**
      * Returns all of the messages in the specified community, as constrained by the
      * specified filter.
      */
-    FORUM_SERVICE_GET_MESSAGES_BY_COMMUNITY_IDAND_FILTER(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGES_BY_COMMUNITY_IDAND_FILTER(EntityType.FORUM),
     /** Returns the messages in the specified thread. */
-    FORUM_SERVICE_GET_MESSAGES_BY_THREAD_ID(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGES_BY_THREAD_ID(EntityType.FORUM),
     /**
      * Returns all of the messages in the specified, constrained by the the specified
      * filter.
      */
-    FORUM_SERVICE_GET_MESSAGES_BY_THREAD_IDAND_FILTER(EntityType.FORUM),
+    FORUMSERVICE_GET_MESSAGES_BY_THREAD_IDAND_FILTER(EntityType.FORUM),
     /** Returns the parent of the specified message. */
-    FORUM_SERVICE_GET_PARENT(EntityType.FORUM),
+    FORUMSERVICE_GET_PARENT(EntityType.FORUM),
     /** Returns the IDs for all the popular threads in the system. */
-    FORUM_SERVICE_GET_POPULAR_THREADS(EntityType.FORUM),
+    FORUMSERVICE_GET_POPULAR_THREADS(EntityType.FORUM),
     /** Returns the popular threads in the specified community. */
-    FORUM_SERVICE_GET_POPULAR_THREADS_BY_COMMUNITY_ID(EntityType.FORUM),
+    FORUMSERVICE_GET_POPULAR_THREADS_BY_COMMUNITY_ID(EntityType.FORUM),
     /**
      * Returns the total number of the specified paren'ts children, recursively; 0 if
      * there are no children.
      */
-    FORUM_SERVICE_GET_RECURSIVE_CHILD_COUNT(EntityType.FORUM),
+    FORUMSERVICE_GET_RECURSIVE_CHILD_COUNT(EntityType.FORUM),
     /**
      * Returns all descendants (child messages and all of their sub-children) of the
      * specified parent.
      */
-    FORUM_SERVICE_GET_RECURSIVE_CHILDREN(EntityType.FORUM),
+    FORUMSERVICE_GET_RECURSIVE_CHILDREN(EntityType.FORUM),
     /** Returns all messages in the specified thread in depth-first order. */
-    FORUM_SERVICE_GET_RECURSIVE_MESSAGES(EntityType.FORUM),
+    FORUMSERVICE_GET_RECURSIVE_MESSAGES(EntityType.FORUM),
     /**
      * Returns the root message of the specified thread; null if thread has no nodes.
      */
-    FORUM_SERVICE_GET_ROOT_MESSAGE(EntityType.FORUM),
+    FORUMSERVICE_GET_ROOT_MESSAGE(EntityType.FORUM),
     /** Returns the number of threads in the specified community. */
-    FORUM_SERVICE_GET_THREAD_COUNT_BY_COMMUNITY_ID(EntityType.FORUM),
+    FORUMSERVICE_GET_THREAD_COUNT_BY_COMMUNITY_ID(EntityType.FORUM),
     /**
      * Returns the number of threads in the specified community, as constrained by
      * the specified filter.
      */
-    FORUM_SERVICE_GET_THREAD_COUNT_BY_COMMUNITY_IDAND_FILTER(EntityType.FORUM),
+    FORUMSERVICE_GET_THREAD_COUNT_BY_COMMUNITY_IDAND_FILTER(EntityType.FORUM),
     /** Returns all the extended properties for the specified thread. */
-    FORUM_SERVICE_GET_THREAD_PROPERTIES(EntityType.FORUM),
+    FORUMSERVICE_GET_THREAD_PROPERTIES(EntityType.FORUM),
     /**
      * Returns the value of the specified extended property for the specified thread.
      */
-    FORUM_SERVICE_GET_THREAD_PROPERTY(EntityType.FORUM),
+    FORUMSERVICE_GET_THREAD_PROPERTY(EntityType.FORUM),
     /** Returns all of the IDs for threads the specified community. */
-    FORUM_SERVICE_GET_THREADS_BY_COMMUNITY_ID(EntityType.FORUM),
+    FORUMSERVICE_GET_THREADS_BY_COMMUNITY_ID(EntityType.FORUM),
     /**
      * Returns all of the IDs for threads the specified community, as constrained by
      * the specified result filter.
      */
-    FORUM_SERVICE_GET_THREADS_BY_COMMUNITY_IDAND_FILTER(EntityType.FORUM),
+    FORUMSERVICE_GET_THREADS_BY_COMMUNITY_IDAND_FILTER(EntityType.FORUM),
     /** Returns message properties without applying filters to them first. */
-    FORUM_SERVICE_GET_UNFILTERED_MESSAGE_PROPERTIES(EntityType.FORUM),
+    FORUMSERVICE_GET_UNFILTERED_MESSAGE_PROPERTIES(EntityType.FORUM),
     /** Returns true if the specified message has a parent message. */
-    FORUM_SERVICE_HAS_PARENT(EntityType.FORUM),
+    FORUMSERVICE_HAS_PARENT(EntityType.FORUM),
     /** Returns true if the specified message has no child messages. */
-    FORUM_SERVICE_IS_LEAF(EntityType.FORUM),
+    FORUMSERVICE_IS_LEAF(EntityType.FORUM),
     /** Moves the specified thread to the specified community. */
-    FORUM_SERVICE_MOVE_THREAD(EntityType.FORUM),
+    FORUMSERVICE_MOVE_THREAD(EntityType.FORUM),
     /** Moves the specified thread to the specified container. */
-    FORUM_SERVICE_MOVE_THREAD_TO_CONTAINER(EntityType.FORUM),
+    FORUMSERVICE_MOVE_THREAD_TO_CONTAINER(EntityType.FORUM),
     /** Removes the specified attachment. */
-    FORUM_SERVICE_REMOVE_ATTACHMENT(EntityType.FORUM),
+    FORUMSERVICE_REMOVE_ATTACHMENT(EntityType.FORUM),
     /** Sets an extended property for the specified message. */
-    FORUM_SERVICE_SET_MESSAGE_PROPERTY(EntityType.FORUM),
+    FORUMSERVICE_SET_MESSAGE_PROPERTY(EntityType.FORUM),
     /** Sets an extended property for the specified thread. */
-    FORUM_SERVICE_SET_THREAD_PROPERTY(EntityType.FORUM),
+    FORUMSERVICE_SET_THREAD_PROPERTY(EntityType.FORUM),
     /** Updates the subject and body of the specified message. */
-    FORUM_SERVICE_UPDATE_FORUM_MESSAGE(EntityType.FORUM),
+    FORUMSERVICE_UPDATE_FORUM_MESSAGE(EntityType.FORUM),
     /** Uploads a new attachment to the specified message. */
-    FORUM_SERVICE_UPLOAD_ATTACHMENT_TO_MESSAGE(EntityType.FORUM),
+    FORUMSERVICE_UPLOAD_ATTACHMENT_TO_MESSAGE(EntityType.FORUM),
     /** Makes the specified user an administrator of the specified group. */
-    GROUP_SERVICE_ADD_ADMINISTRATOR_TO_GROUP(EntityType.GROUP),
+    GROUPSERVICE_ADD_ADMINISTRATOR_TO_GROUP(EntityType.GROUP),
     /** Adds the specified user to the specified group. */
-    GROUP_SERVICE_ADD_MEMBER_TO_GROUP(EntityType.GROUP),
+    GROUPSERVICE_ADD_MEMBER_TO_GROUP(EntityType.GROUP),
     /** Creates a new user group. */
-    GROUP_SERVICE_CREATE_GROUP(EntityType.GROUP),
+    GROUPSERVICE_CREATE_GROUP(EntityType.GROUP),
     /** Deletes the group with the specified ID. */
-    GROUP_SERVICE_DELETE_GROUP(EntityType.GROUP),
+    GROUPSERVICE_DELETE_GROUP(EntityType.GROUP),
     /** Deletes an extended property from the specified group. */
-    GROUP_SERVICE_DELETE_PROPERTY(EntityType.GROUP),
+    GROUPSERVICE_DELETE_PROPERTY(EntityType.GROUP),
     /** Returns the count of administrators for the specified group. */
-    GROUP_SERVICE_GET_ADMINISTRATOR_COUNT(EntityType.GROUP),
+    GROUPSERVICE_GET_ADMINISTRATOR_COUNT(EntityType.GROUP),
     /** Returns a user group by its ID. */
-    GROUP_SERVICE_GET_GROUP(EntityType.GROUP),
+    GROUPSERVICE_GET_GROUP(EntityType.GROUP),
     /** Returns an array of IDs for all users that administer the specified group. */
-    GROUP_SERVICE_GET_GROUP_ADMINS(EntityType.GROUP),
+    GROUPSERVICE_GET_GROUP_ADMINS(EntityType.GROUP),
     /** Returns a user group by its name. */
-    GROUP_SERVICE_GET_GROUP_BY_NAME(EntityType.GROUP),
+    GROUPSERVICE_GET_GROUP_BY_NAME(EntityType.GROUP),
     /** Returns a count of all groups in the system. */
-    GROUP_SERVICE_GET_GROUP_COUNT(EntityType.GROUP),
+    GROUPSERVICE_GET_GROUP_COUNT(EntityType.GROUP),
     /** Returns the user information for members of the specified group. */
-    GROUP_SERVICE_GET_GROUP_MEMBERS(EntityType.GROUP),
+    GROUPSERVICE_GET_GROUP_MEMBERS(EntityType.GROUP),
     /** Returns the names for all the groups in the system. */
-    GROUP_SERVICE_GET_GROUP_NAMES(EntityType.GROUP),
+    GROUPSERVICE_GET_GROUP_NAMES(EntityType.GROUP),
     /**
      * Returns names for groups beginning at startIndex and until the number results
      * equals numResults.
      */
-    GROUP_SERVICE_GET_GROUP_NAMES_BOUNDED(EntityType.GROUP),
+    GROUPSERVICE_GET_GROUP_NAMES_BOUNDED(EntityType.GROUP),
     /** Returns the group IDs for all groups in the system. */
-    GROUP_SERVICE_GET_GROUPS(EntityType.GROUP),
+    GROUPSERVICE_GET_GROUPS(EntityType.GROUP),
     /** Returns the specified group's extended properties. */
-    GROUP_SERVICE_GET_PROPERTIES(EntityType.GROUP),
+    GROUPSERVICE_GET_PROPERTIES(EntityType.GROUP),
     /** Returns the names of groups that the specified user belongs to. */
-    GROUP_SERVICE_GET_USER_GROUP_NAMES(EntityType.GROUP),
+    GROUPSERVICE_GET_USER_GROUP_NAMES(EntityType.GROUP),
     /** Returns the IDs of groups that a user belongs to. */
-    GROUP_SERVICE_GET_USER_GROUPS(EntityType.GROUP),
+    GROUPSERVICE_GET_USER_GROUPS(EntityType.GROUP),
     /** Returns true if this GroupService is read-only. */
-    GROUP_SERVICE_IS_READ_ONLY(EntityType.GROUP),
+    GROUPSERVICE_IS_READ_ONLY(EntityType.GROUP),
     /** Removes the specified user as an administrator from the specified group. */
-    GROUP_SERVICE_REMOVE_ADMINISTRATOR_FROM_GROUP(EntityType.GROUP),
+    GROUPSERVICE_REMOVE_ADMINISTRATOR_FROM_GROUP(EntityType.GROUP),
     /** Removes the specified user from the specified group. */
-    GROUP_SERVICE_REMOVE_MEMBER_FROM_GROUP(EntityType.GROUP),
+    GROUPSERVICE_REMOVE_MEMBER_FROM_GROUP(EntityType.GROUP),
     /** Sets a new extended property on the specified group. */
-    GROUP_SERVICE_SET_PROPERTY(EntityType.GROUP),
+    GROUPSERVICE_SET_PROPERTY(EntityType.GROUP),
     /** Updates the specified group. */
-    GROUP_SERVICE_UPDATE_GROUP(EntityType.GROUP),
+    GROUPSERVICE_UPDATE_GROUP(EntityType.GROUP),
     /** Configures the connection between SBS and the XMPP server. */
     IMSERVICE_CONFIGURE_COMPONENT(EntityType.IMSERVICE),
     /** Generates a new nonce that can be used to SSO from Openfire. */
@@ -655,137 +655,137 @@ public enum Operation {
      */
     IMSERVICE_TEST_CREDENTIALS(EntityType.IMSERVICE),
     /** Returns a list of installed plugins. */
-    PLUGIN_SERVICE_GET_PLUGIN_INFO(EntityType.PLUGIN),
+    PLUGINSERVICE_GET_PLUGIN_INFO(EntityType.PLUGIN),
     /** Installs the specified plugin. */
-    PLUGIN_SERVICE_INSTALL_PLUGIN(EntityType.PLUGIN),
+    PLUGINSERVICE_INSTALL_PLUGIN(EntityType.PLUGIN),
     /** Unistalls the specified plugin. */
-    PLUGIN_SERVICE_UNINSTALL_PLUGIN(EntityType.PLUGIN),
+    PLUGINSERVICE_UNINSTALL_PLUGIN(EntityType.PLUGIN),
     /** Add a guest vote for an option in the poll. */
-    POLL_SERVICE_ADD_ANONYMOUS_VOTE(EntityType.POLL),
+    POLLSERVICE_ADD_ANONYMOUS_VOTE(EntityType.POLL),
     /** Add a new option to the poll. */
-    POLL_SERVICE_ADD_OPTION(EntityType.POLL),
+    POLLSERVICE_ADD_OPTION(EntityType.POLL),
     /** Add a user vote for an option in the poll. */
-    POLL_SERVICE_ADD_USER_VOTE(EntityType.POLL),
+    POLLSERVICE_ADD_USER_VOTE(EntityType.POLL),
     /** Change a guest vote. */
-    POLL_SERVICE_CHANGE_ANONYMOUS_VOTE(EntityType.POLL),
+    POLLSERVICE_CHANGE_ANONYMOUS_VOTE(EntityType.POLL),
     /** Change a user vote. */
-    POLL_SERVICE_CHANGE_USER_VOTE(EntityType.POLL),
+    POLLSERVICE_CHANGE_USER_VOTE(EntityType.POLL),
     /** Creates a new poll. */
-    POLL_SERVICE_CREATE_POLL(EntityType.POLL),
+    POLLSERVICE_CREATE_POLL(EntityType.POLL),
     /** Remove an option from the poll. */
-    POLL_SERVICE_DELETE_OPTION(EntityType.POLL),
+    POLLSERVICE_DELETE_OPTION(EntityType.POLL),
     /** Deletes the specified poll. */
-    POLL_SERVICE_DELETE_POLL(EntityType.POLL),
+    POLLSERVICE_DELETE_POLL(EntityType.POLL),
     /** Returns a count of all active polls in the system. */
-    POLL_SERVICE_GET_ACTIVE_POLL_COUNT(EntityType.POLL),
+    POLLSERVICE_GET_ACTIVE_POLL_COUNT(EntityType.POLL),
     /** Returns a count of all active polls of a given type and object ID. */
-    POLL_SERVICE_GET_ACTIVE_POLL_COUNT_BY_OBJECT_TYPE_AND_OBJECT_ID(EntityType.POLL),
+    POLLSERVICE_GET_ACTIVE_POLL_COUNT_BY_OBJECT_TYPE_AND_OBJECT_ID(EntityType.POLL),
     /** Returns an iterable of active polls in the system. */
-    POLL_SERVICE_GET_ACTIVE_POLLS(EntityType.POLL),
+    POLLSERVICE_GET_ACTIVE_POLLS(EntityType.POLL),
     /**
      * Returns a list of active polls associated with the object specified by the
      * objectType and objectID.
      */
-    POLL_SERVICE_GET_ACTIVE_POLLS_BY_OBJECT_TYPE_AND_OBJECT_ID(EntityType.POLL),
+    POLLSERVICE_GET_ACTIVE_POLLS_BY_OBJECT_TYPE_AND_OBJECT_ID(EntityType.POLL),
     /** Returns a count of all guests user votes for all options in the poll. */
-    POLL_SERVICE_GET_ANONYMOUS_VOTE_COUNT(EntityType.POLL),
+    POLLSERVICE_GET_ANONYMOUS_VOTE_COUNT(EntityType.POLL),
     /** Returns a count of all user votes for the specified option in the poll. */
-    POLL_SERVICE_GET_ANONYMOUS_VOTE_COUNT_BY_INDEX(EntityType.POLL),
+    POLLSERVICE_GET_ANONYMOUS_VOTE_COUNT_BY_INDEX(EntityType.POLL),
     /**
      * Returns a list of option indexes corresponding to the anonymous votes, or an
      * empty array if the user has not voted.
      */
-    POLL_SERVICE_GET_ANONYMOUS_VOTE_INDICES(EntityType.POLL),
+    POLLSERVICE_GET_ANONYMOUS_VOTE_INDICES(EntityType.POLL),
     /**
      * Returns a list of uniqueID's for guests who have voted for the option at the
      * given index.
      */
-    POLL_SERVICE_GET_ANONYMOUS_VOTES(EntityType.POLL),
+    POLLSERVICE_GET_ANONYMOUS_VOTES(EntityType.POLL),
     /**
      * Returns an Iterator of uniqueID's for guests who have voted for the option at
      * the given index.
      */
-    POLL_SERVICE_GET_ANONYMOUS_VOTES_BY_INDEX(EntityType.POLL),
+    POLLSERVICE_GET_ANONYMOUS_VOTES_BY_INDEX(EntityType.POLL),
     /** Returns a count of all live polls in the system. */
-    POLL_SERVICE_GET_LIVE_POLL_COUNT(EntityType.POLL),
+    POLLSERVICE_GET_LIVE_POLL_COUNT(EntityType.POLL),
     /** Returns a count of all live polls of a given type and object ID. */
-    POLL_SERVICE_GET_LIVE_POLL_COUNT_BY_OBJECT_TYPE_AND_OBJECT_ID(EntityType.POLL),
+    POLLSERVICE_GET_LIVE_POLL_COUNT_BY_OBJECT_TYPE_AND_OBJECT_ID(EntityType.POLL),
     /** Returns a List of live polls in the system. */
-    POLL_SERVICE_GET_LIVE_POLLS(EntityType.POLL),
+    POLLSERVICE_GET_LIVE_POLLS(EntityType.POLL),
     /**
      * Returns an iterable of live polls associated with the object specified by the
      * objectType and objectID.
      */
-    POLL_SERVICE_GET_LIVE_POLLS_BY_OBJECT_TYPE_AND_OBJECT_ID(EntityType.POLL),
+    POLLSERVICE_GET_LIVE_POLLS_BY_OBJECT_TYPE_AND_OBJECT_ID(EntityType.POLL),
     /** Returns the specified poll. */
-    POLL_SERVICE_GET_POLL(EntityType.POLL),
+    POLLSERVICE_GET_POLL(EntityType.POLL),
     /** Returns a count of all polls, both active and inactive. */
-    POLL_SERVICE_GET_POLL_COUNT(EntityType.POLL),
+    POLLSERVICE_GET_POLL_COUNT(EntityType.POLL),
     /**
      * Returns a count of polls, both active and inactive, associated with the object
      * specified by the objectType and objectID.
      */
-    POLL_SERVICE_GET_POLL_COUNT_BY_OBJECT_TYPE_AND_OBJECT_ID(EntityType.POLL),
+    POLLSERVICE_GET_POLL_COUNT_BY_OBJECT_TYPE_AND_OBJECT_ID(EntityType.POLL),
     /** Returns a list of all polls, both active and inactive. */
-    POLL_SERVICE_GET_POLLS(EntityType.POLL),
+    POLLSERVICE_GET_POLLS(EntityType.POLL),
     /**
      * Returns a list of polls, both active and inactive, associated with the object
      * specified by the objectType and objectID.
      */
-    POLL_SERVICE_GET_POLLS_BY_OBJECT_TYPE_AND_OBJECT_ID(EntityType.POLL),
+    POLLSERVICE_GET_POLLS_BY_OBJECT_TYPE_AND_OBJECT_ID(EntityType.POLL),
     /** Returns a count of all user votes for all options in the poll. */
-    POLL_SERVICE_GET_USER_VOTE_COUNT(EntityType.POLL),
+    POLLSERVICE_GET_USER_VOTE_COUNT(EntityType.POLL),
     /** Returns a count of all user votes for the specified option in the poll. */
-    POLL_SERVICE_GET_USER_VOTE_COUNT_BY_INDEX(EntityType.POLL),
+    POLLSERVICE_GET_USER_VOTE_COUNT_BY_INDEX(EntityType.POLL),
     /**
      * Returns a list of option indexes corresponding to the user votes, or an empty
      * array if the user has not voted.
      */
-    POLL_SERVICE_GET_USER_VOTE_INDICES(EntityType.POLL),
+    POLLSERVICE_GET_USER_VOTE_INDICES(EntityType.POLL),
     /**
      * Returns a List of User objects for users who have voted for any options in the
      * poll.
      */
-    POLL_SERVICE_GET_USER_VOTES(EntityType.POLL),
+    POLLSERVICE_GET_USER_VOTES(EntityType.POLL),
     /**
      * Returns a list of User objects for users who have voted for the option at the
      * given index.
      */
-    POLL_SERVICE_GET_USER_VOTES_BY_INDEX(EntityType.POLL),
+    POLLSERVICE_GET_USER_VOTES_BY_INDEX(EntityType.POLL),
     /**
      * Returns a count of all votes (both guest and user votes) for all options in
      * the poll.
      */
-    POLL_SERVICE_GET_VOTE_COUNT(EntityType.POLL),
+    POLLSERVICE_GET_VOTE_COUNT(EntityType.POLL),
     /**
      * Returns a count of all votes (both guest and user votes) for the specified
      * option in the poll.
      */
-    POLL_SERVICE_GET_VOTE_COUNT_BY_INDEX(EntityType.POLL),
+    POLLSERVICE_GET_VOTE_COUNT_BY_INDEX(EntityType.POLL),
     /**
      * Returns true if the guest associated with the uniqueID has previously voted in
      * the poll, false otherwise.
      */
-    POLL_SERVICE_HAS_ANONYMOUS_VOTED(EntityType.POLL),
+    POLLSERVICE_HAS_ANONYMOUS_VOTED(EntityType.POLL),
     /**
      * Returns true if the user specified has previously voted in the poll, false
      * otherwise.
      */
-    POLL_SERVICE_HAS_USER_VOTED(EntityType.POLL),
+    POLLSERVICE_HAS_USER_VOTED(EntityType.POLL),
     /** Returns true if the mode specified is enabled for the poll, false otherwise. */
-    POLL_SERVICE_IS_MODE_ENABLED(EntityType.POLL),
+    POLLSERVICE_IS_MODE_ENABLED(EntityType.POLL),
     /** Remove a guest vote. */
-    POLL_SERVICE_REMOVE_ANONYMOUS_VOTE(EntityType.POLL),
+    POLLSERVICE_REMOVE_ANONYMOUS_VOTE(EntityType.POLL),
     /** Remove a user vote. */
-    POLL_SERVICE_REMOVE_USER_VOTE(EntityType.POLL),
+    POLLSERVICE_REMOVE_USER_VOTE(EntityType.POLL),
     /** Sets a mode to be enabled or disabled for the poll. */
-    POLL_SERVICE_SET_MODE(EntityType.POLL),
+    POLLSERVICE_SET_MODE(EntityType.POLL),
     /** Sets the text of the option at the specified index. */
-    POLL_SERVICE_SET_OPTION(EntityType.POLL),
+    POLLSERVICE_SET_OPTION(EntityType.POLL),
     /** Moves the option's index. */
-    POLL_SERVICE_SET_OPTION_INDEX(EntityType.POLL),
+    POLLSERVICE_SET_OPTION_INDEX(EntityType.POLL),
     /** Update the poll. */
-    POLL_SERVICE_UPDATE(EntityType.POLL),
+    POLLSERVICE_UPDATE(EntityType.POLL),
     /** Creates a new private message folder for the specified user. */
     PRIVATE_MESSAGE_SERVICE_CREATE_FOLDER(EntityType.PRIVATE_MESSAGE),
     /** Creates a new private message from the specified user. */
@@ -866,142 +866,142 @@ public enum Operation {
      */
     PROFILE_SEARCH_SERVICE_SEARCH_BOUNDED(EntityType.PROFILE_SEARCH),
     /** access, update, and remove user profile data. */
-    PROFILE_SERVICE_MANAGES_USER_PROFILE_DATA_DEFINES_METHODS_USED_TO_CREATE(EntityType.PROFILE),
+    PROFILESERVICE_MANAGES_USER_PROFILE_DATA_DEFINES_METHODS_USED_TO_CREATE(EntityType.PROFILE),
     /** Adds a new profile entry to a user. */
-    PROFILE_SERVICE_ADD_PROFILE(EntityType.PROFILE),
+    PROFILESERVICE_ADD_PROFILE(EntityType.PROFILE),
     /** Removes all user profile data associated with a particular profile field. */
-    PROFILE_SERVICE_DELETE_PROFILE_BY_ID(EntityType.PROFILE),
+    PROFILESERVICE_DELETE_PROFILE_BY_ID(EntityType.PROFILE),
     /** Removes all user profile data associated with a particular user. */
-    PROFILE_SERVICE_DELETE_PROFILE_BY_USER_ID(EntityType.PROFILE),
+    PROFILESERVICE_DELETE_PROFILE_BY_USER_ID(EntityType.PROFILE),
     /** Deletes all status information for the specified user. */
-    PROFILE_SERVICE_DELETE_USER_STATUS(EntityType.PROFILE),
+    PROFILESERVICE_DELETE_USER_STATUS(EntityType.PROFILE),
     /** Retrieves the current status for the specified user. */
-    PROFILE_SERVICE_GET_CURRENT_STATUS(EntityType.PROFILE),
+    PROFILESERVICE_GET_CURRENT_STATUS(EntityType.PROFILE),
     /**
      * Gets a map of user profile values for a particular user mapped to their
      * corresponding <tt>ProfileField</tt> id.
      */
-    PROFILE_SERVICE_GET_PROFILE(EntityType.PROFILE),
+    PROFILESERVICE_GET_PROFILE(EntityType.PROFILE),
     /** Returns the profile image for a user. */
-    PROFILE_SERVICE_GET_PROFILE_IMAGE(EntityType.PROFILE),
+    PROFILESERVICE_GET_PROFILE_IMAGE(EntityType.PROFILE),
     /** Returns a list of recent user status updates sorted newest first. */
-    PROFILE_SERVICE_GET_RECENT_STATUS_UPDATES(EntityType.PROFILE),
+    PROFILESERVICE_GET_RECENT_STATUS_UPDATES(EntityType.PROFILE),
     /**
      * Returns a list of recent status updates for the specified user sorted newest
      * first.
      */
-    PROFILE_SERVICE_GET_RECENT_STATUS_UPDATES_FOR_USER(EntityType.PROFILE),
+    PROFILESERVICE_GET_RECENT_STATUS_UPDATES_FOR_USER(EntityType.PROFILE),
     /** Returns the max length permitted for a status message. */
-    PROFILE_SERVICE_GET_STATUS_MESSAGE_MAX_LENGTH(EntityType.PROFILE),
+    PROFILESERVICE_GET_STATUS_MESSAGE_MAX_LENGTH(EntityType.PROFILE),
     /**
      * Returns a list of today's recent status updates for the specified user sorted
      * newest first.
      */
-    PROFILE_SERVICE_GET_TODAYS_STATUS_UPDATES(EntityType.PROFILE),
+    PROFILESERVICE_GET_TODAYS_STATUS_UPDATES(EntityType.PROFILE),
     /** Retrieves the user status corresponding to the given status ID */
-    PROFILE_SERVICE_GET_USER_STATUS(EntityType.PROFILE),
+    PROFILESERVICE_GET_USER_STATUS(EntityType.PROFILE),
     /**
      * Returns a list of yesterday's recent status updates for the specified user
      * sorted newest first.
      */
-    PROFILE_SERVICE_GET_YESTERDAYS_STATUS_UPDATES(EntityType.PROFILE),
+    PROFILESERVICE_GET_YESTERDAYS_STATUS_UPDATES(EntityType.PROFILE),
     /** Returns true if the user status manager is enabled, false otherwise. */
-    PROFILE_SERVICE_IS_STATUS_UPDATES_ENABLED(EntityType.PROFILE),
+    PROFILESERVICE_IS_STATUS_UPDATES_ENABLED(EntityType.PROFILE),
     /** Set the current status for a user */
-    PROFILE_SERVICE_SET_CURRENT_STATUS(EntityType.PROFILE),
+    PROFILESERVICE_SET_CURRENT_STATUS(EntityType.PROFILE),
     /** Sets a array of profile values for a particular user. */
-    PROFILE_SERVICE_SET_PROFILE(EntityType.PROFILE),
+    PROFILESERVICE_SET_PROFILE(EntityType.PROFILE),
     /** Set a new profile page image for the specified user. */
-    PROFILE_SERVICE_SET_PROFILE_IMAGE(EntityType.PROFILE),
+    PROFILESERVICE_SET_PROFILE_IMAGE(EntityType.PROFILE),
     /** Creates a new project as a child of the parent container. */
-    PROJECT_SERVICE_CREATE(EntityType.PROJECT),
+    PROJECTSERVICE_CREATE(EntityType.PROJECT),
     /** Deletes a project and all of its content. */
-    PROJECT_SERVICE_DELETE(EntityType.PROJECT),
+    PROJECTSERVICE_DELETE(EntityType.PROJECT),
     /** Returns a list of checkpoints for the specified project. */
-    PROJECT_SERVICE_GET_CHECK_POINTS(EntityType.PROJECT),
+    PROJECTSERVICE_GET_CHECK_POINTS(EntityType.PROJECT),
     /** Returns the specified project. */
-    PROJECT_SERVICE_GET_PROJECT_BY_ID(EntityType.PROJECT),
+    PROJECTSERVICE_GET_PROJECT_BY_ID(EntityType.PROJECT),
     /***/
-    PROJECT_SERVICE_GET_PROJECT_COUNT(EntityType.PROJECT),
+    PROJECTSERVICE_GET_PROJECT_COUNT(EntityType.PROJECT),
     /** Returns a list of the projects. */
-    PROJECT_SERVICE_GET_PROJECTS(EntityType.PROJECT),
+    PROJECTSERVICE_GET_PROJECTS(EntityType.PROJECT),
     /** Returns the count of unique users that own tasks in the specified project. */
-    PROJECT_SERVICE_GET_USER_COUNT(EntityType.PROJECT),
+    PROJECTSERVICE_GET_USER_COUNT(EntityType.PROJECT),
     /** Sets the lists of checkpoints for the project. */
-    PROJECT_SERVICE_SET_CHECK_POINTS(EntityType.PROJECT),
+    PROJECTSERVICE_SET_CHECK_POINTS(EntityType.PROJECT),
     /** Saves project changes and broadcasts changes across the cluster. */
-    PROJECT_SERVICE_UPDATE(EntityType.PROJECT),
+    PROJECTSERVICE_UPDATE(EntityType.PROJECT),
     /** Add a rating to the JiveContentObject. */
-    RATINGS_SERVICE_ADD_RATING(EntityType.RATINGS),
+    RATINGSSERVICE_ADD_RATING(EntityType.RATINGS),
     /** Create a new rating with the specified attributes. */
-    RATINGS_SERVICE_CREATE_RATING(EntityType.RATINGS),
+    RATINGSSERVICE_CREATE_RATING(EntityType.RATINGS),
     /** Returns the count of currently available ratings. */
-    RATINGS_SERVICE_GET_AVAILABLE_RATING_COUNT(EntityType.RATINGS),
+    RATINGSSERVICE_GET_AVAILABLE_RATING_COUNT(EntityType.RATINGS),
     /** Returns an iterable of Rating objects that list all the available ratings. */
-    RATINGS_SERVICE_GET_AVAILABLE_RATINGS(EntityType.RATINGS),
+    RATINGSSERVICE_GET_AVAILABLE_RATINGS(EntityType.RATINGS),
     /**
      * A convenience method which returns a geometric mean average of all the ratings
      * given to the JiveContentObject.
      */
-    RATINGS_SERVICE_GET_MEAN_RATING(EntityType.RATINGS),
+    RATINGSSERVICE_GET_MEAN_RATING(EntityType.RATINGS),
     /**
      * Returns the rating associated with the user, or null if this user hasn't rated
      * the JiveContentObject.
      */
-    RATINGS_SERVICE_GET_RATING(EntityType.RATINGS),
+    RATINGSSERVICE_GET_RATING(EntityType.RATINGS),
     /** Returns the total number of ratings given to the JiveContentObject. */
-    RATINGS_SERVICE_GET_RATING_COUNT(EntityType.RATINGS),
+    RATINGSSERVICE_GET_RATING_COUNT(EntityType.RATINGS),
     /** Retrieve the rating with the specified score. */
-    RATINGS_SERVICE_GET_RATING_FROM_SCORE(EntityType.RATINGS),
+    RATINGSSERVICE_GET_RATING_FROM_SCORE(EntityType.RATINGS),
     /** Returns an Iterable of all the ratings given to the JiveContentObject. */
-    RATINGS_SERVICE_GET_RATINGS(EntityType.RATINGS),
+    RATINGSSERVICE_GET_RATINGS(EntityType.RATINGS),
     /** Returns whether the user has rated the JiveContentObject or not. */
-    RATINGS_SERVICE_HAS_RATED(EntityType.RATINGS),
+    RATINGSSERVICE_HAS_RATED(EntityType.RATINGS),
     /** Returns true if the rating feature is turned on. */
-    RATINGS_SERVICE_IS_RATINGS_ENABLED(EntityType.RATINGS),
+    RATINGSSERVICE_IS_RATINGS_ENABLED(EntityType.RATINGS),
     /** Remove the specified rating from the list of currently available ratings. */
-    RATINGS_SERVICE_REMOVE_RATING(EntityType.RATINGS),
+    RATINGSSERVICE_REMOVE_RATING(EntityType.RATINGS),
     /** Enables or disables the ratings feature. */
-    RATINGS_SERVICE_SET_RATINGS_ENABLED(EntityType.RATINGS),
+    RATINGSSERVICE_SET_RATINGS_ENABLED(EntityType.RATINGS),
     /**
      * REFERENCES_ARE_USE_TO_CREATE_A_RELATIONSHIP between one kind of jive object to
      * another. For instance a blog may reference a specific thread.
      */
-    REFERENCE_SERVICE(EntityType.REFERENCE),
+    REFERENCESERVICE(EntityType.REFERENCE),
     /** Creates a reference between the refering object and the references. */
-    REFERENCE_SERVICE_ADD_REFERENCE(EntityType.REFERENCE),
+    REFERENCESERVICE_ADD_REFERENCE(EntityType.REFERENCE),
     /** Removes all references from the specified referer. */
-    REFERENCE_SERVICE_DELETE_ALL_REFERENCES(EntityType.REFERENCE),
+    REFERENCESERVICE_DELETE_ALL_REFERENCES(EntityType.REFERENCE),
     /** Causes this object to not be referred by any other objects. */
-    REFERENCE_SERVICE_DELETE_ALL_REFERERS(EntityType.REFERENCE),
+    REFERENCESERVICE_DELETE_ALL_REFERERS(EntityType.REFERENCE),
     /** Delete the reference between a referer and the refered content. */
-    REFERENCE_SERVICE_DELETE_REFERENCE(EntityType.REFERENCE),
+    REFERENCESERVICE_DELETE_REFERENCE(EntityType.REFERENCE),
     /** Get all objects that the specfied jiveObject referers too. */
-    REFERENCE_SERVICE_GET_REFERENCES(EntityType.REFERENCE),
+    REFERENCESERVICE_GET_REFERENCES(EntityType.REFERENCE),
     /** Get a list of all the objects that refer to this specified object. */
-    REFERENCE_SERVICE_GET_REFERERS(EntityType.REFERENCE),
+    REFERENCESERVICE_GET_REFERERS(EntityType.REFERENCE),
     /** Returns the number of possible results for the specified query. */
-    SEARCH_SERVICE_COUNT_QUICK_MESSAGE_SEARCH_RESULTS_BY_COMMUNITY_ID(EntityType.SEARCH),
+    SEARCHSERVICE_COUNT_QUICK_MESSAGE_SEARCH_RESULTS_BY_COMMUNITY_ID(EntityType.SEARCH),
     /** Returns the number of possible results for the specified query. */
-    SEARCH_SERVICE_COUNT_QUICK_SEARCH_RESULTS(EntityType.SEARCH),
+    SEARCHSERVICE_COUNT_QUICK_SEARCH_RESULTS(EntityType.SEARCH),
     /** Returns the number of possible results for the specified query. */
-    SEARCH_SERVICE_COUNT_SEARCH_RESULTS(EntityType.SEARCH),
+    SEARCHSERVICE_COUNT_SEARCH_RESULTS(EntityType.SEARCH),
     /** Returns the number of possible results for the specified query by category. */
-    SEARCH_SERVICE_COUNT_SEARCH_RESULTS_BY_COMMUNITY_ID(EntityType.SEARCH),
+    SEARCHSERVICE_COUNT_SEARCH_RESULTS_BY_COMMUNITY_ID(EntityType.SEARCH),
     /** Provides the ability to do quick search queries based on the provided string. */
-    SEARCH_SERVICE_QUICK_MESSAGE_SEARCH_BY_COMMUNITY_ID(EntityType.SEARCH),
+    SEARCHSERVICE_QUICK_MESSAGE_SEARCH_BY_COMMUNITY_ID(EntityType.SEARCH),
     /** Provides the ability to do quick search queries based on the provided string. */
-    SEARCH_SERVICE_QUICK_SEARCH(EntityType.SEARCH),
+    SEARCHSERVICE_QUICK_SEARCH(EntityType.SEARCH),
     /**
      * Provides the ability to create complex search queries with the ability to
      * change sorting, filtering, etc.
      */
-    SEARCH_SERVICE_SEARCH(EntityType.SEARCH),
+    SEARCHSERVICE_SEARCH(EntityType.SEARCH),
     /**
      * Provides the ability to create complex search queries with the ability to
      * change sorting, filtering, etc. all by category.
      */
-    SEARCH_SERVICE_SEARCH_BY_COMMUNITIES(EntityType.SEARCH),
+    SEARCHSERVICE_SEARCH_BY_COMMUNITIES(EntityType.SEARCH),
     /**
      * Add the user with the specified userID to the social group with the specified
      * socialGroupID.
@@ -1120,145 +1120,145 @@ public enum Operation {
     /** Saves a name/value pair as a Jive System Property. */
     SYSTEM_PROPERTIES_SERVICE_SAVE_PROPERTY(EntityType.SYSTEM_PROPERTIES),
     /** Associates a tag with this object */
-    TAG_SERVICE_ADD_TAG(EntityType.TAG),
+    TAGSERVICE_ADD_TAG(EntityType.TAG),
     /** Creates a tag in the database. */
-    TAG_SERVICE_CREATE_TAG(EntityType.TAG),
+    TAGSERVICE_CREATE_TAG(EntityType.TAG),
     /** Returns a tag given a tag ID. */
-    TAG_SERVICE_GET_TAG_BY_ID(EntityType.TAG),
+    TAGSERVICE_GET_TAG_BY_ID(EntityType.TAG),
     /** Returns a tag by tag name. */
-    TAG_SERVICE_GET_TAG_BY_NAME(EntityType.TAG),
+    TAGSERVICE_GET_TAG_BY_NAME(EntityType.TAG),
     /** Return an Iterable for all the tags associated with this manager. */
-    TAG_SERVICE_GET_TAGS(EntityType.TAG),
+    TAGSERVICE_GET_TAGS(EntityType.TAG),
     /** Disassociates this object with all tags. */
-    TAG_SERVICE_REMOVE_ALL_TAGS(EntityType.TAG),
+    TAGSERVICE_REMOVE_ALL_TAGS(EntityType.TAG),
     /** Disassociates this object with the given tag. */
-    TAG_SERVICE_REMOVE_TAG(EntityType.TAG),
+    TAGSERVICE_REMOVE_TAG(EntityType.TAG),
     /** Creates a new task within the provided project. */
-    TASK_SERVICE_CREATE(EntityType.TASK),
+    TASKSERVICE_CREATE(EntityType.TASK),
     /** Creates a new personal task. */
-    TASK_SERVICE_CREATE_PERSONAL_TASK(EntityType.TASK),
+    TASKSERVICE_CREATE_PERSONAL_TASK(EntityType.TASK),
     /** Delete a task. */
-    TASK_SERVICE_DELETE(EntityType.TASK),
+    TASKSERVICE_DELETE(EntityType.TASK),
     /** Returns a count of all the incomplete tasks in the system. */
-    TASK_SERVICE_GET_TASK_COUNT(EntityType.TASK),
+    TASKSERVICE_GET_TASK_COUNT(EntityType.TASK),
     /**
      * Returns a count of all the incomplete tasks in the system that match the
      * provided result filter.
      */
-    TASK_SERVICE_GET_TASK_COUNT_WITH_FILTER(EntityType.TASK),
+    TASKSERVICE_GET_TASK_COUNT_WITH_FILTER(EntityType.TASK),
     /** Retrieves the task with the given ID. */
-    TASK_SERVICE_GET_TASKBY_ID(EntityType.TASK),
+    TASKSERVICE_GET_TASKBY_ID(EntityType.TASK),
     /** Returns a system wide iterator of incomplete tasks. */
-    TASK_SERVICE_GET_TASKS(EntityType.TASK),
+    TASKSERVICE_GET_TASKS(EntityType.TASK),
     /** Returns all the tasks of a project. */
-    TASK_SERVICE_GET_TASKS_BY_PROJECT(EntityType.TASK),
+    TASKSERVICE_GET_TASKS_BY_PROJECT(EntityType.TASK),
     /** Returns an iterator of tasks that match the provided result filter. */
-    TASK_SERVICE_GET_TASKS_WITH_FILTER(EntityType.TASK),
+    TASKSERVICE_GET_TASKS_WITH_FILTER(EntityType.TASK),
     /** Returns all the incomplete tasks of a user. */
-    TASK_SERVICE_GET_UNCOMPLETE_TASKS_BY_USER_ID(EntityType.TASK),
+    TASKSERVICE_GET_UNCOMPLETE_TASKS_BY_USER_ID(EntityType.TASK),
     /** Persist updates to a task to storage. */
-    TASK_SERVICE_UPDATE(EntityType.TASK),
+    TASKSERVICE_UPDATE(EntityType.TASK),
     /**
      * Creates a new user account from a minimum of information: username, password,
      * and email address.
      */
-    USER_SERVICE_CREATE_USER(EntityType.USER),
+    USERSERVICE_CREATE_USER(EntityType.USER),
     /** Creates a new user account from user data. */
-    USER_SERVICE_CREATE_USER_WITH_USER(EntityType.USER),
+    USERSERVICE_CREATE_USER_WITH_USER(EntityType.USER),
     /** Deletes an extended property from the specified user account. */
-    USER_SERVICE_DELETE_USER_PROPERTY(EntityType.USER),
+    USERSERVICE_DELETE_USER_PROPERTY(EntityType.USER),
     /** Disables a user account. */
-    USER_SERVICE_DISABLE_USER(EntityType.USER),
+    USERSERVICE_DISABLE_USER(EntityType.USER),
     /** Enables a user account. */
-    USER_SERVICE_ENABLE_USER(EntityType.USER),
+    USERSERVICE_ENABLE_USER(EntityType.USER),
     /** Returns the user specified by ID. */
-    USER_SERVICE_GET_USER(EntityType.USER),
+    USERSERVICE_GET_USER(EntityType.USER),
     /** Returns the user account corresponding to the specified email address. */
-    USER_SERVICE_GET_USER_BY_EMAIL_ADDRESS(EntityType.USER),
+    USERSERVICE_GET_USER_BY_EMAIL_ADDRESS(EntityType.USER),
     /** Returns the user specified by username (case-insensitive). */
-    USER_SERVICE_GET_USER_BY_USERNAME(EntityType.USER),
+    USERSERVICE_GET_USER_BY_USERNAME(EntityType.USER),
     /** Returns the number of users in the system. */
-    USER_SERVICE_GET_USER_COUNT(EntityType.USER),
+    USERSERVICE_GET_USER_COUNT(EntityType.USER),
     /** Returns all of the userNames in the system. */
-    USER_SERVICE_GET_USER_NAMES(EntityType.USER),
+    USERSERVICE_GET_USER_NAMES(EntityType.USER),
     /** Returns the extended properties for the specified user account. */
-    USER_SERVICE_GET_USER_PROPERTIES(EntityType.USER),
+    USERSERVICE_GET_USER_PROPERTIES(EntityType.USER),
     /** Returns the IDs of the first 1000 users. */
-    USER_SERVICE_GET_USERS(EntityType.USER),
+    USERSERVICE_GET_USERS(EntityType.USER),
     /**
      * Returns the IDs of users begining at startIndex and until the number results
      * equals numResults.
      */
-    USER_SERVICE_GET_USERS_BOUNDED(EntityType.USER),
+    USERSERVICE_GET_USERS_BOUNDED(EntityType.USER),
     /** Returns true if this UserService is read-only. */
-    USER_SERVICE_IS_READ_ONLY(EntityType.USER),
+    USERSERVICE_IS_READ_ONLY(EntityType.USER),
     /** Changes the specified user's password. */
-    USER_SERVICE_SET_PASSWORD(EntityType.USER),
+    USERSERVICE_SET_PASSWORD(EntityType.USER),
     /** Sets an extended property for the specified user. */
-    USER_SERVICE_SET_USER_PROPERTY(EntityType.USER),
+    USERSERVICE_SET_USER_PROPERTY(EntityType.USER),
     /** Updates information for the specified user. */
-    USER_SERVICE_UPDATE_USER(EntityType.USER),
+    USERSERVICE_UPDATE_USER(EntityType.USER),
     /** Creates a new video in the specified container. */
-    VIDEO_SERVICE_CREATE_VIDEO(EntityType.VIDEO),
+    VIDEOSERVICE_CREATE_VIDEO(EntityType.VIDEO),
     /** Deletes the specified video. */
-    VIDEO_SERVICE_DELETE_VIDEO(EntityType.VIDEO),
+    VIDEOSERVICE_DELETE_VIDEO(EntityType.VIDEO),
     /** Returns the specified video. */
-    VIDEO_SERVICE_GET_VIDEO(EntityType.VIDEO),
+    VIDEOSERVICE_GET_VIDEO(EntityType.VIDEO),
     /** Returns a list of videos in the specified container. */
-    VIDEO_SERVICE_GET_VIDEOS_FOR_CONTAINER(EntityType.VIDEO),
+    VIDEOSERVICE_GET_VIDEOS_FOR_CONTAINER(EntityType.VIDEO),
     /** Updates the specified video. */
-    VIDEO_SERVICE_UPDATE_VIDEO(EntityType.VIDEO),
+    VIDEOSERVICE_UPDATE_VIDEO(EntityType.VIDEO),
     /** Create a watch on a community for the specified user. */
-    WATCH_SERVICE_CREATE_COMMUNITY_WATCH(EntityType.WATCH),
+    WATCHSERVICE_CREATE_COMMUNITY_WATCH(EntityType.WATCH),
     /** Create a watch on a thread for the specified user. */
-    WATCH_SERVICE_CREATE_THREAD_WATCH(EntityType.WATCH),
+    WATCHSERVICE_CREATE_THREAD_WATCH(EntityType.WATCH),
     /** Create a watch on a user for the specified user. */
-    WATCH_SERVICE_CREATE_USER_WATCH(EntityType.WATCH),
+    WATCHSERVICE_CREATE_USER_WATCH(EntityType.WATCH),
     /** Delete the specified watch. */
-    WATCH_SERVICE_DELETE_WATCH(EntityType.WATCH),
+    WATCHSERVICE_DELETE_WATCH(EntityType.WATCH),
     /** Deletes all watches that a user has. */
-    WATCH_SERVICE_DELETE_WATCHES(EntityType.WATCH),
+    WATCHSERVICE_DELETE_WATCHES(EntityType.WATCH),
     /** Returns a watch on a particular community, or null if there isn't a watch. */
-    WATCH_SERVICE_GET_COMMUNITY_WATCH(EntityType.WATCH),
+    WATCHSERVICE_GET_COMMUNITY_WATCH(EntityType.WATCH),
     /**
      * Return the count of all community watches in a particular communityID for the
      * given userID.
      */
-    WATCH_SERVICE_GET_COMMUNITY_WATCH_COUNT(EntityType.WATCH),
+    WATCHSERVICE_GET_COMMUNITY_WATCH_COUNT(EntityType.WATCH),
     /**
      * Returns an array of IDs for all the community objects a user is watching in a
      * community.
      */
-    WATCH_SERVICE_GET_COMMUNITY_WATCHES(EntityType.WATCH),
+    WATCHSERVICE_GET_COMMUNITY_WATCHES(EntityType.WATCH),
     /**
      * Returns the number of days that a watched object can remain inactive before
      * watches on that object are deleted.
      */
-    WATCH_SERVICE_GET_DELETE_DAYS(EntityType.WATCH),
+    WATCHSERVICE_GET_DELETE_DAYS(EntityType.WATCH),
     /** Returns a watch on a particular thread, or null if there isn't a watch. */
-    WATCH_SERVICE_GET_THREAD_WATCH(EntityType.WATCH),
+    WATCHSERVICE_GET_THREAD_WATCH(EntityType.WATCH),
     /** Returns a count of all watches that a userID has of a particular type. */
-    WATCH_SERVICE_GET_TOTAL_WATCH_COUNT(EntityType.WATCH),
+    WATCHSERVICE_GET_TOTAL_WATCH_COUNT(EntityType.WATCH),
     /** Returns a watch on a particular user, or null if there isn't a watch. */
-    WATCH_SERVICE_GET_USER_WATCH(EntityType.WATCH),
+    WATCHSERVICE_GET_USER_WATCH(EntityType.WATCH),
     /**
      * Returns an array of Watch objects for a particular object type that the given
      * user is watching.
      */
-    WATCH_SERVICE_GET_WATCH_LIST(EntityType.WATCH),
+    WATCHSERVICE_GET_WATCH_LIST(EntityType.WATCH),
     /** Returns all the users who are watching this objectType and objectID. */
-    WATCH_SERVICE_GET_WATCH_USERS(EntityType.WATCH),
+    WATCHSERVICE_GET_WATCH_USERS(EntityType.WATCH),
     /** Returns true if the user is watching the specified community. */
-    WATCH_SERVICE_IS_COMMUNITY_WATCHED(EntityType.WATCH),
+    WATCHSERVICE_IS_COMMUNITY_WATCHED(EntityType.WATCH),
     /** Returns true if the user is watching the specified thread. */
-    WATCH_SERVICE_IS_THREAD_WATCHED(EntityType.WATCH),
+    WATCHSERVICE_IS_THREAD_WATCHED(EntityType.WATCH),
     /** Returns true if the user is watching the specified user. */
-    WATCH_SERVICE_IS_USER_WATCHED(EntityType.WATCH),
+    WATCHSERVICE_IS_USER_WATCHED(EntityType.WATCH),
     /**
      * Sets the number of days that a watched object can remain inactive before
      * watches on that object are deleted.
      */
-    WATCH_SERVICE_SET_DELETE_DAYS(EntityType.WATCH);
+    WATCHSERVICE_SET_DELETE_DAYS(EntityType.WATCH);
 
     private static final int BASE_URI = 1;
 
@@ -1286,7 +1286,7 @@ public enum Operation {
     {
         // this.resourceUri =UriFactory.generateCustomUri(customType);
         this.resourceUri = null;
-        this.protocol = customType.getProtocol();
+        this.protocol = customType.getMethod();
     }
 
     private Operation(final EntityType type, final int strategy)
