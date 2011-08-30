@@ -24,6 +24,8 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.Map;
 
+import org.mule.modules.jive.utils.ServiceUriFactory;
+
 /**Facade for the Jive connector.
  * @author Pablo Diez
  * @since Jul 20, 2011
@@ -31,7 +33,7 @@ import java.util.Map;
 public interface JiveFacade {
 
     /**Creates an entity.
-     * Sends a POST request for the given {@link Service} generating the xml
+     * Sends a POST request for the given {@link EntityType} generating the xml
      * payload corresponding with the <code>entity</code> map.
      * @return The xml response parse in a {@link Map}.
      * @param type The service type used to determine the url for this resource.
@@ -39,7 +41,7 @@ public interface JiveFacade {
      * in the request.
      * */
     Map<String, Object> create(
-        final Service type, Map<String, Object> entity);
+        final EntityType type, Map<String, Object> entity);
 
     /**Executes a POST {@link CustomOp}.
      * @return The xml response parse in a {@link Map}.
@@ -62,12 +64,27 @@ public interface JiveFacade {
     Map<String, Object> execute(final CustomOp customType,
         final String id);
 
+    /**TODO - Should create a new enum with the protocol to use
+     * and the name of the operation, the uri will be determined
+     * by the name of the operation using
+     * {@link ServiceUriFactory#generateCustomUri(EntityType, String)}.
+     * This new enum will exist mainly to give the user a proper
+     * operations list.*/
+    Map<String, Object> execute(final String uri,
+            final String id);
+    
+    Map<String, Object> execute(final Operation op,
+            final String id);
+    
+    Map<String, Object> execute(final Operation op,
+            final Map<String, Object> entity);
+
     /**Deletes an entity.
      * @return The xml response parse in a {@link Map}.
      * @param type The service type used to determine the url for this resource.
      * @param id The id to be added in the url as path parameter.
      * */
-    Map<String, Object> delete(final Service type, String id);
+    Map<String, Object> delete(final EntityType type, String id);
 
     /**Parse an xml into a {@link Map}.
      * @return The map corresponding to the given xml.
@@ -84,16 +101,17 @@ public interface JiveFacade {
                  final Map<String, Object> entity, final Writer writer);
 
     /***/
-    Long count(final Service type);
+    Long count(final EntityType type);
     /***/
-    void setUser(String user);
+    void setUsername(String user);
     /***/
-    void setPass(String pass);
-    /***/
-    String getUser();
-    /***/
-    String getPass();
+    void setPassword(String pass);
     /***/
     Long getUserID();
+    
+    void setGatewayUri(String gatewayUri);
+    
+    void init();
+
     
 }
