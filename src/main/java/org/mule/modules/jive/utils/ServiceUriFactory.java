@@ -50,7 +50,7 @@ public final class ServiceUriFactory {
      * @param type The service
      * */
     public static String generateBaseUri(final EntityType type) {
-        final StringBuffer uri = new StringBuffer(type.getServiceUri() + "/");
+        final StringBuilder uri = new StringBuilder(type.getServiceUri() + "/");
         if (type.getStrategy() == EntityType.PLURAL) {
             uri.append(pluralize(type.toString().toLowerCase()));
         } else if (type.getStrategy() == EntityType.SINGULAR) {
@@ -65,7 +65,7 @@ public final class ServiceUriFactory {
      * */
     private static String getOpUri(final String opName) {
         final String[] opSplit = StringUtils.split(opName, "_");
-        final StringBuffer res = new StringBuffer();
+        final StringBuilder res = new StringBuilder();
         for (int i = 1; i < opSplit.length; i++) {
             res.append(opSplit[i]);
         }
