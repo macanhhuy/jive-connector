@@ -20,10 +20,9 @@
  */
 package org.mule.modules.jive;
 
-import org.mule.api.MuleEvent;
 import org.mule.construct.SimpleFlowConstruct;
-import org.mule.tck.FunctionalTestCase;
 import org.mule.tck.AbstractMuleTestCase;
+import org.mule.tck.FunctionalTestCase;
 
 import org.junit.Test;
 
@@ -41,39 +40,6 @@ public class JiveModuleTest extends FunctionalTestCase {
     @Test
     public final void testFlow() throws Exception
     {
-        runFlowAndExpect("testFlow", "Another string");
-    }
-
-  /**Run the flow specified by name and assert equality on the expected output.
-    *
-    * @param flowName The name of the flow to run
-    * @param expect The expected output
-    * @throws Exception When flow fails
-    */
-    protected final <T> void runFlowAndExpect(final String flowName, final T expect) throws Exception
-    {
-        SimpleFlowConstruct flow = lookupFlowConstruct(flowName);
-        MuleEvent event = AbstractMuleTestCase.getTestEvent(null);
-        MuleEvent responseEvent = flow.process(event);
-
-        assertEquals(expect, responseEvent.getMessage().getPayload());
-    }
-
-    /**
-    * Run the flow specified by name using the specified payload and assert
-    * equality on the expected output
-    *
-    * @param flowName The name of the flow to run
-    * @param expect The expected output
-    * @param payload The payload of the input event
-    */
-    protected <T, U> void runFlowWithPayloadAndExpect(String flowName, T expect, U payload) throws Exception
-    {
-        SimpleFlowConstruct flow = lookupFlowConstruct(flowName);
-        MuleEvent event = AbstractMuleTestCase.getTestEvent(payload);
-        MuleEvent responseEvent = flow.process(event);
-
-        assertEquals(expect, responseEvent.getMessage().getPayload());
     }
 
     /**

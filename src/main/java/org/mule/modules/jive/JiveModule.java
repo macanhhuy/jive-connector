@@ -21,15 +21,19 @@
 
 package org.mule.modules.jive;
 
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Module;
 import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.param.Optional;
+import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.JiveModuleAdaptor;
+import org.mule.modules.jive.api.Operation;
+
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+
+import org.apache.commons.lang.NotImplementedException;
 
 /***/
 @Module(name = "jive", namespace = "http://repository.mulesoft.org/releases/org/"
@@ -63,25 +67,42 @@ public class JiveModule
         }
         facade.init();
     }
-
+    
     @Processor
-    public Map<String, Object> execute(final Operation op, 
-        @Optional final Map<String, Object> entity, @Optional final String id) {
-        if (entity != null) {
-            return facade.execute(op, entity);
-        }
-        return facade.execute(op, id);
+    public Map<String, Object> create(EntityType type, Map<String, Object> entity) 
+    {
+        return facade.create(type, entity);
     }
-
+    
+    @Processor
+    public void update()
+    {
+        throw new NotImplementedException();
+    }
+    
     @Processor
     public Map<String, Object> delete(final EntityType type, final String id) {
         return facade.delete(type, id);
     }
-
+    
     @Processor
     public Long count(final EntityType type) {
         return facade.count(type);
     }
+
+    @Processor
+    public Map<String, Object> execute(final Operation op, 
+        final Map<String, Object> entity) {
+        return facade.execute(op, entity);
+    }
+    
+    @Processor
+    public Map<String, Object> get(EntityType entityType, 
+        final String id) {
+        return facade.get(entityType, id);
+    }
+
+
 
     public void setUsername(String username)
     {

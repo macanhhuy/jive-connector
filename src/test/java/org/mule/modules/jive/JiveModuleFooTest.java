@@ -22,6 +22,9 @@ package org.mule.modules.jive;
 
 import static org.junit.Assert.*;
 
+import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.Operation;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +56,7 @@ public class JiveModuleFooTest {
     }
     
     @Test
+    @Ignore
     /**Test the execution of an {@link Operation} with a {@link CustomOp}.*/
     public void executeOperationWithCustomOp() {
     	final Map<String, Object> entity = new HashMap<String, Object>();
@@ -68,6 +72,7 @@ public class JiveModuleFooTest {
     }
     
     @Test
+    @Ignore
     public void executeOperationWithBaseUri() {
     	final Map<String, Object> entity = new HashMap<String, Object>();
     	entity.put("userID", facade.getUserID());
@@ -77,6 +82,7 @@ public class JiveModuleFooTest {
     }
     
     @Test
+    @Ignore
     public void executeRegularOperation() {
     	final Map<String, Object> entity = new HashMap<String, Object>();
     	entity.put("userID", facade.getUserID());
@@ -125,6 +131,7 @@ public class JiveModuleFooTest {
      * Deletes the blog and verifies the deletion.
      * */
     @Test
+    @Ignore
     public final void operationFlowTest() {
         final Map<String, Object> blog = new HashMap<String, Object>();
         final Map<String, Object> createResponse;
@@ -139,7 +146,7 @@ public class JiveModuleFooTest {
         assertEquals("fooDisplayBlogName", createResponse.get("displayName"));
         
         //Get the blog just created
-        getResponse = facade.execute(CustomOp.BLOG_GET_BLOG_BY_ID,
+        getResponse = facade.get(EntityType.BLOG, 
             createResponse.get("ID").toString());
         assertEquals(createResponse, getResponse);
         
@@ -152,6 +159,7 @@ public class JiveModuleFooTest {
     
     /**Attemps to create a blog already created and handles the error.*/
     @Test
+    @Ignore
     public final void errorHandlingTest() {
         final Map<String, Object> blog = new HashMap<String, Object>();
         blog.put("userID", facade.getUserID());

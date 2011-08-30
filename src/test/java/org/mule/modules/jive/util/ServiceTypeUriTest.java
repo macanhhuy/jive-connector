@@ -13,7 +13,7 @@ package org.mule.modules.jive.util;
 import static org.junit.Assert.*;
 
 import org.mule.modules.jive.CustomOp;
-import org.mule.modules.jive.EntityType;
+import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.utils.ServiceUriFactory;
 
 import org.junit.Test;

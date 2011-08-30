@@ -11,7 +11,7 @@
 package org.mule.modules.jive.utils;
 
 import org.mule.modules.jive.CustomOp;
-import org.mule.modules.jive.EntityType;
+import org.mule.modules.jive.api.EntityType;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -40,8 +40,7 @@ public final class ServiceUriFactory {
      * @return The uri for this operation
      * @param customType The operation*/
     public static String generateCustomUri(final CustomOp customType) {
-        return customType.getServiceType().getServiceUri() + "/"
-                                        + customType.getOpUri();
+        return customType.getGenerateCustomUri();
     }
 
     /**Generates the base uri for the service type given.

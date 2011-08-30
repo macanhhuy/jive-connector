@@ -10,6 +10,13 @@
 
 package org.mule.modules.jive;
 
+
+
+import org.mule.modules.jive.api.EntityType;
+
+
+
+
 import org.apache.commons.lang.StringUtils;
 
 /**Enum for the custom operations.*/
@@ -122,7 +129,7 @@ public enum CustomOp {
     private final String opUri;
 
     /**The http protocol for this operation.*/
-    private final String protocol;
+    private final String method;
 
     /**Contructor for the {@link CustomOp}.
      * @param type This op service
@@ -134,15 +141,15 @@ public enum CustomOp {
 
         final String[] split = StringUtils.split(this.toString(), "_");
         if (split[1].equals("ADD") || split[1].equals("CREATE")) {
-            this.protocol = "POST";
+            this.method = "POST";
         } else if (split[1].equals("REMOVE")) {
-            this.protocol = "DELETE";
+            this.method = "DELETE";
         } else if (split[1].equals("GET") || split[1].equals("IS")) {
-            this.protocol = "GET";
+            this.method = "GET";
         } else if (split[1].equals("PUT")) {
-        	this.protocol = "PUT";
+        	this.method = "PUT";
         } else {
-            this.protocol = "";
+            this.method = "";
         }
     }
 
@@ -155,7 +162,7 @@ public enum CustomOp {
     		final String protocol) {
         this.opUri = op;
         this.serviceType = type;
-        this.protocol = protocol;
+        this.method = protocol;
     }
 
     /**
@@ -190,10 +197,17 @@ public enum CustomOp {
     /**
      * @return the http protocol for this operation
      */
-    public String getProtocol() {
-        return protocol;
+    public String getMethod() {
+        return method;
     }
 
+    /**
+     * @return
+     */
+    public String getGenerateCustomUri()
+    {
+        return getServiceType().getServiceUri() + "/" + getOpUri();
+    }
 }
 
 

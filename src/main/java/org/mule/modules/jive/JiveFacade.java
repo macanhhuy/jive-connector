@@ -24,6 +24,8 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.Map;
 
+import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.Operation;
 import org.mule.modules.jive.utils.ServiceUriFactory;
 
 /**Facade for the Jive connector.
@@ -54,16 +56,6 @@ public interface JiveFacade {
     Map<String, Object> execute(final CustomOp customType,
         Map<String, Object> entity);
 
-    /**Executes GET or DELETE {@link CustomOp}.
-     * @return The xml response parse in a {@link Map}.
-     * @param customType The service to execute, used to determine the resource url, 
-     * the http protocol to use and, if needed, the root tag for the xml to be
-     * send in the request.
-     * @param id {@link String} containing the path parameters separated with ':'. 
-     * */
-    Map<String, Object> execute(final CustomOp customType,
-        final String id);
-
     /**TODO - Should create a new enum with the protocol to use
      * and the name of the operation, the uri will be determined
      * by the name of the operation using
@@ -71,9 +63,6 @@ public interface JiveFacade {
      * This new enum will exist mainly to give the user a proper
      * operations list.*/
     Map<String, Object> execute(final String uri,
-            final String id);
-    
-    Map<String, Object> execute(final Operation op,
             final String id);
     
     Map<String, Object> execute(final Operation op,
@@ -85,20 +74,6 @@ public interface JiveFacade {
      * @param id The id to be added in the url as path parameter.
      * */
     Map<String, Object> delete(final EntityType type, String id);
-
-    /**Parse an xml into a {@link Map}.
-     * @return The map corresponding to the given xml.
-     * @param reader {@link Reader} with the xml.
-     * */
-    Map<String, Object> xml2map(final Reader reader);
-
-    /**Parse an entity into an xml and writes it in the given {@link Writer}.
-     * @param xmlRootTag The xml root element to use in the xml formation.
-     * @param entity The {@link Map} with the entity data to be parsed.
-     * @param writer The {@link Writer} in witch the xml will be written.
-     * */
-    void map2xml(final String xmlRootTag,
-                 final Map<String, Object> entity, final Writer writer);
 
     /***/
     Long count(final EntityType type);
@@ -112,6 +87,13 @@ public interface JiveFacade {
     void setGatewayUri(String gatewayUri);
     
     void init();
+
+    /**
+     * @param entityType
+     * @param id
+     * @return
+     */
+    Map<String, Object> get(EntityType entityType, String id);
 
     
 }

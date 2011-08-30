@@ -1,39 +1,8 @@
 package org.mule.modules.jive;
 
-import static javax.xml.stream.XMLStreamConstants.CDATA;
-import static javax.xml.stream.XMLStreamConstants.CHARACTERS;
-import static javax.xml.stream.XMLStreamConstants.COMMENT;
-import static javax.xml.stream.XMLStreamConstants.END_DOCUMENT;
-import static javax.xml.stream.XMLStreamConstants.END_ELEMENT;
-import static javax.xml.stream.XMLStreamConstants.ENTITY_REFERENCE;
-import static javax.xml.stream.XMLStreamConstants.PROCESSING_INSTRUCTION;
-import static javax.xml.stream.XMLStreamConstants.SPACE;
-import static javax.xml.stream.XMLStreamConstants.START_ELEMENT;
-
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Stack;
-import java.util.Map.Entry;
-
-import javax.ws.rs.core.MediaType;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.stream.XMLStreamWriter;
-
-import org.apache.commons.lang.NotImplementedException;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.UnhandledException;
-import org.apache.commons.lang.Validate;
-import org.mule.api.annotations.Configurable;
+import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.Operation;
+import org.mule.modules.jive.api.xml.XmlMapper;
 import org.mule.modules.jive.utils.ServiceUriFactory;
 
 import com.sun.jersey.api.client.Client;
@@ -42,6 +11,18 @@ import com.sun.jersey.api.client.WebResource.Builder;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
+
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.Map;
+
+import javax.ws.rs.core.MediaType;
+
+import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
 
 public class JerseyJiveFacade implements JiveFacade {
 	
@@ -52,17 +33,8 @@ public class JerseyJiveFacade implements JiveFacade {
     private String username;
     /**The password.*/
     private String password;
-
-	/**XML output factory to write xml.
-     * */
-    private final XMLOutputFactory xmlOutputFactory =
-        XMLOutputFactory.newInstance();
-
-    /**XML input factory to read xml.
-     * */
-    private final XMLInputFactory xmlInputFactory =
-        XMLInputFactory.newInstance();
 	private String gatewayUri;
+	private final XmlMapper mapper = new XmlMapper();
 
     /**Sets the userID requesting it by username.*/
     private void setUserIdByUsername() {
@@ -71,6 +43,13 @@ public class JerseyJiveFacade implements JiveFacade {
             .get(String.class);
         this.setUserID(Long.parseLong(
             StringUtils.substringBetween(response, "<ID>", "</ID>")));
+    }
+    
+    @Override
+    public final Map<String, Object> get(final EntityType entityType, final String id)
+    {
+        //return entityType.get(id, gateway, mapper);
+        throw new NotImplementedException();
     }
     
     @Override
@@ -85,12 +64,12 @@ public class JerseyJiveFacade implements JiveFacade {
             .type(MediaType.APPLICATION_FORM_URLENCODED)
             .header("content-type", "text/xml");
 
-        if (customType.getProtocol().equals("POST")) {
+        if (customType.getMethod().equals("POST")) {
             map2xml(customType.getRootTagElementName(), entity, writer);
             response = partialRequest.post(String.class, writer.toString());
-        } else if(customType.getProtocol().equals("GET")) {
+        } else if(customType.getMethod().equals("GET")) {
             response = partialRequest.get(String.class);
-        } else if (customType.getProtocol().equals("PUT")) {
+        } else if (customType.getMethod().equals("PUT")) {
         	response = partialRequest.put(String.class);
         } else { //It's a DELETE request
             response = partialRequest.delete(String.class);
@@ -98,24 +77,6 @@ public class JerseyJiveFacade implements JiveFacade {
         return xml2map(new StringReader(response));
     }
 
-    @Override
-    /**{@inheritDoc}*/
-    public final Map<String, Object> execute(final CustomOp customType,
-        final String id) {
-
-        final String response;
-        final Builder partialRequest = this.gateway.path(
-            getCompleteUriForCustomOp(customType, id))
-            .type(MediaType.APPLICATION_FORM_URLENCODED)
-            .header("content-type", "text/xml");
-
-        if(customType.getProtocol().equals("GET")) {
-            response = partialRequest.get(String.class);
-        } else { //It's a DELETE request
-            response = partialRequest.delete(String.class);
-        }
-        return xml2map(new StringReader(response));
-    }
 
     @Override
     /**{@inheritDoc}*/
@@ -147,7 +108,7 @@ public class JerseyJiveFacade implements JiveFacade {
     		final String id) {
     	final String response;
     	
-    	final StringBuffer opUri = new StringBuffer(op.getResourceUri());
+    	final StringBuilder opUri = new StringBuilder(op.getResourceUri());
     	for(final String part : StringUtils.split(id, ':')) {
     		opUri.append("/" + part);
     	}
@@ -164,40 +125,6 @@ public class JerseyJiveFacade implements JiveFacade {
         return xml2map(new StringReader(response));
     }
 
-    /**Generates the complete uri for the get or delete {@link CustomOp}.
-     * @param customType The {@link CustomOp} that is being executed
-     * @param id A {@link String} containing the path parameters to add
-     * @return The resouce uri with the path parameters added
-     */
-    private String getCompleteUriForCustomOp(final CustomOp customType,
-                                             final String id) {
-        final StringBuffer completeUri = new StringBuffer();
-        final String[] pathParams = StringUtils.split(id, ':');
-
-        completeUri.append(ServiceUriFactory
-            .generateCustomUri(customType));
-        for(int i = 0; i < pathParams.length; i++) {
-            completeUri.append("/" + pathParams[i]);
-        }
-        return completeUri.toString();
-    }
-
-    /**Generates the complete uri for the get or delete service.
-     * @param type The {@link EntityType} that is being executed
-     * @param id A {@link String} containing the path parameters to add
-     * @return The resouce uri with the path parameters added
-     */
-    private String getCompleteUri(final EntityType type, final String id) {
-        final StringBuffer completeUri = new StringBuffer();
-        final String[] pathParams = StringUtils.split(id, ':');
-
-        completeUri.append(ServiceUriFactory.generateBaseUri(type));
-        for(int i = 0; i < pathParams.length; i++) {
-            completeUri.append("/" + pathParams[i]);
-        }
-        return completeUri.toString();
-    }
-
     @Override
     /**{@inheritDoc}*/
     public final Map<String, Object> create(final EntityType type,
@@ -212,18 +139,37 @@ public class JerseyJiveFacade implements JiveFacade {
         // validar error
         return xml2map(new StringReader(response));
     }
+    
+    
+
+    /**
+     * @param xmlRootTag
+     * @param entity
+     * @param writer
+     * @see org.mule.modules.jive.api.xml.XmlMapper#map2xml(java.lang.String, java.util.Map, java.io.Writer)
+     */
+    public final void map2xml(final String xmlRootTag, final Map<String, Object> entity, final Writer writer)
+    {
+        mapper.map2xml(xmlRootTag, entity, writer);
+    }
+
+    /**
+     * @param reader
+     * @return
+     * @see org.mule.modules.jive.api.xml.XmlMapper#xml2map(java.io.Reader)
+     */
+    public final Map<String, Object> xml2map(final Reader reader)
+    {
+        return mapper.xml2map(reader);
+    }
 
     @Override
     /**{@inheritDoc}*/
     public final Map<String, Object> delete(final EntityType type,
         final String id) {
-        final String response = this.gateway.path(
-            getCompleteUri(type, id))
-            .delete(String.class);
-        // validar error
-        // is the response of a successful delete req always ""?
-        return xml2map(new StringReader(response));
+        return type.delete(id, gateway, mapper);
     }
+    
 
     /**Call the get count service.
      * @return The count as a {@link Long}
@@ -240,128 +186,7 @@ public class JerseyJiveFacade implements JiveFacade {
             response, "<return>", "</return>"));
     }
 
-    @Override
-    /**{@inheritDoc}*/
-    public final void map2xml(final String xmlRootTag,
-                       final Map<String, Object> entity, final Writer writer) {
-        try {
-            final XMLStreamWriter w =
-                    xmlOutputFactory.createXMLStreamWriter(writer);
-
-            w.writeStartDocument();
-
-            w.writeStartElement(xmlRootTag);
-
-            writeXML(w, entity);
-
-            w.writeEndElement();
-
-            w.writeEndDocument();
-        } catch (XMLStreamException e) {
-            throw new UnhandledException(e);
-        }
-    }
-
-    /**Maps an xml from a {@link Reader} to a {@link Map}.
-     * @param reader The {@link Reader} with the xml data
-     * @return The map with the entity data
-     * */
-    @SuppressWarnings("unchecked")
-    public final Map<String, Object> xml2map(final Reader reader) {
-        final Map<String, Object> ret = new HashMap<String, Object>();
-        final Stack<Map<String, Object>> maps =
-            new Stack<Map<String, Object>>();
-        Map<String, Object> current = ret;
-
-        try {
-            final XMLStreamReader r =
-                xmlInputFactory.createXMLStreamReader(reader);
-            StringBuilder lastText = new StringBuilder();
-            String currentElement = null;
-            while (r.hasNext()) {
-                final int eventType = r.next();
-                if (eventType == CHARACTERS || eventType == CDATA
-                        || eventType == SPACE
-                        || eventType == ENTITY_REFERENCE) {
-                    lastText.append(r.getText());
-                } else if (eventType == PROCESSING_INSTRUCTION
-                        || eventType == COMMENT) {
-                    // skip
-                } else if (eventType == END_DOCUMENT) {
-                    break;
-                } else if (eventType == START_ELEMENT) {
-                    if (currentElement != null) {
-                        maps.push(current);
-                        final Map<String, Object> map =
-                            new HashMap<String, Object>();
-                        current.put(currentElement, map);
-                        current = map;
-                    }
-                    currentElement = r.getLocalName();
-                } else if (eventType == END_ELEMENT) {
-                    if (currentElement == null) {
-                        current = maps.pop();
-                    } else {
-                        current.put(currentElement, lastText.toString().trim());
-                        currentElement = null;
-                        lastText = new StringBuilder();
-                    }
-                } else {
-                    throw new XMLStreamException("Unexpected event type "
-                        + eventType);
-                }
-            }
-
-            final Object obj = ret.get(ret.keySet().iterator().next());
-            if(obj instanceof String) {
-                Map<String, Object> responseTag = new HashMap<String, Object>();
-                responseTag.put("response",
-                    ret.keySet().iterator().next().toString());
-                return responseTag;
-            } else {
-                final Map<String, Object> returnXMLElement = (Map<String, Object>)
-                ret.get(ret.keySet().iterator().next());
-
-                return (Map<String, Object>) returnXMLElement.get("return");
-            }
-            
-        } catch (XMLStreamException e) {
-            throw new UnhandledException(e);
-        }
-    }
-
-
-    ///////////////////////////Private methods//////////////////////////////////
-
-    
-
-    /**Writes the xml of the internal data.
-     * @param w The writer in which it'll write the xml
-     * @param model The entity
-     * @throws XMLStreamException When fails
-     * */
-    @SuppressWarnings("unchecked")
-    private void writeXML(final XMLStreamWriter w,
-                   final Map<String, Object> model) throws XMLStreamException {
-        final Set<Entry<String, Object>> entries = model.entrySet();
-        for (final Entry<String, Object> entry : entries) {
-        	if (List.class.isInstance(entry.getValue())) {
-        		for(final String elem : (List<String>)entry.getValue()) {
-        			w.writeStartElement(entry.getKey());
-        			w.writeCharacters(elem);
-        			w.writeEndElement();
-        		}
-        	} else {
-        		w.writeStartElement(entry.getKey());
-        		if (!HashMap.class.isInstance(entry.getValue())) {
-        			w.writeCharacters(entry.getValue().toString());
-        		} else {
-        			writeXML(w, (HashMap<String, Object>) entry.getValue());
-        		}
-        		w.writeEndElement();
-        	}
-        }
-    }
+  
 
     /**Creates the client.
      * @return The jersey client
@@ -385,7 +210,7 @@ public class JerseyJiveFacade implements JiveFacade {
     /**
      * @param userID the userID to set
      */
-    public void setUserID(Long userID)
+    public final void setUserID(final Long userID)
     {
         this.userID = userID;
     }
@@ -393,7 +218,7 @@ public class JerseyJiveFacade implements JiveFacade {
     /**
      * @return the userID
      */
-    public Long getUserID()
+    public final Long getUserID()
     {
         return userID;
     }
@@ -401,7 +226,7 @@ public class JerseyJiveFacade implements JiveFacade {
     /**
      * @param user the user to set
      */
-    public void setUser(String user)
+    public final void setUser(final String user)
     {
         this.username = user;
     }
@@ -409,7 +234,7 @@ public class JerseyJiveFacade implements JiveFacade {
     /**
      * @return the user
      */
-    public String getUser()
+    public final String getUser()
     {
         return username;
     }
@@ -417,7 +242,7 @@ public class JerseyJiveFacade implements JiveFacade {
     /**
      * @param pass the pass to set
      */
-    public void setPass(String pass)
+    public final void setPass(final String pass)
     {
         this.password = pass;
     }
@@ -425,29 +250,30 @@ public class JerseyJiveFacade implements JiveFacade {
     /**
      * @return the pass
      */
-    public String getPassword()
+    public final String getPassword()
     {
         return password;
     }
     
     @Override
-    public void setGatewayUri(String gatewayUri) {
+    public final void setGatewayUri(final String gatewayUri) {
     	this.gatewayUri  = gatewayUri;
     }
 
 	@Override
-	public void init() {
+    public final void init() {
 		this.createGateway(gatewayUri, createClient());
         setUserIdByUsername();		
 	}
 
 	@Override
-	public void setUsername(String user) {
+    public final void setUsername(final String user) {
 		this.username = user;
 	}
 
 	@Override
-	public void setPassword(String pass) {
+    public final void setPassword(final String pass) {
 		this.password = pass;
 	}
+
 }

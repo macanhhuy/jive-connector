@@ -27,7 +27,7 @@
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
         http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0-SNAPSHOT/mule-jive.xsd">
 
-    <jive:config username="myUsername" password="password" gatewayUri="lalalalla"/>
+<!--     <jive:config username="myUsername" password="password" gatewayUri="lalalalla"/> -->
 
 <!--     <flow name="createBlog"> -->
 <!-- 	<jive:create service="BLOG"> -->
@@ -38,14 +38,14 @@
 <!-- 	</jive:create> -->
 <!-- </flow> -->
     
-	<flow name="createBlog">
-        <jive:execute operation="IS_USER_ACTIVE">
-        	<jive:entity>
-        		<creationDate>sajdahdk</creationDate>
-        		<author>#[header:author]</author>
-        	</jive:entity>
-        </jive:create>
-    </flow>
+<!-- 	<flow name="createBlog"> -->
+<!--         <jive:execute operation="IS_USER_ACTIVE"> -->
+<!--         	<jive:entity> -->
+<!--         		<creationDate>sajdahdk</creationDate> -->
+<!--         		<author>#[header:author]</author> -->
+<!--         	</jive:entity> -->
+<!--         </jive:create> -->
+<!--     </flow> -->
  
     <!-- 
     get
@@ -58,18 +58,18 @@
     
      -->
     
-    <flow name="addAttachment">
-        <jive:execute type="ADD_ATTACHMENT_TO_BLOG">
-        	<jive:entity>
-        	    <blogPostID>fdsfsdfsd</blogPostID>
-			    <name>fdsfsdf</name>
-			    <source>#[groovy: [ 'sssddasd', 'sadas' ].collect( { x -> x.getBytes() }  )  ]</source>
-        	</jive:entity>
-        </jive:create>
-    </flow>
+<!--     <flow name="addAttachment"> -->
+<!--         <jive:execute type="ADD_ATTACHMENT_TO_BLOG"> -->
+<!--         	<jive:entity> -->
+<!--         	    <blogPostID>fdsfsdfsd</blogPostID> -->
+<!-- 			    <name>fdsfsdf</name> -->
+<!-- 			    <source>#[groovy: [ 'sssddasd', 'sadas' ].collect( { x -> x.getBytes() }  )  ]</source> -->
+<!--         	</jive:entity> -->
+<!--         </jive:create> -->
+<!--     </flow> -->
     
-    <flow name="createBlog">
-        <jive:execute operation="IS_USER_ACTIVE" id="dsad"/>
-    </flow>
+<!--     <flow name="createBlog"> -->
+<!--         <jive:execute operation="IS_USER_ACTIVE" id="dsad"/> -->
+<!--     </flow> -->
 
 </mule>
