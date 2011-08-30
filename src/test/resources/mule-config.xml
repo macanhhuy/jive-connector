@@ -27,10 +27,49 @@
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
         http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0-SNAPSHOT/mule-jive.xsd">
 
-    <jive:config myProperty="Some string"/>
+    <jive:config username="myUsername" password="password" gatewayUri="lalalalla"/>
 
-    <flow name="testFlow">
-        <jive:my-processor content="Another string"/>
+<!--     <flow name="createBlog"> -->
+<!-- 	<jive:create service="BLOG"> -->
+<!-- 		<jive:entity> -->
+<!-- 			<creationDate>sajdahdk</creationDate> -->
+<!-- 			<author>#[variable:author]</author> -->
+<!-- 		</jive:entity> -->
+<!-- 	</jive:create> -->
+<!-- </flow> -->
+    
+	<flow name="createBlog">
+        <jive:execute operation="IS_USER_ACTIVE">
+        	<jive:entity>
+        		<creationDate>sajdahdk</creationDate>
+        		<author>#[header:author]</author>
+        	</jive:entity>
+        </jive:create>
+    </flow>
+ 
+    <!-- 
+    get
+    getAll
+    delete
+    count
+    update
+    CRUD
+    
+    
+     -->
+    
+    <flow name="addAttachment">
+        <jive:execute type="ADD_ATTACHMENT_TO_BLOG">
+        	<jive:entity>
+        	    <blogPostID>fdsfsdfsd</blogPostID>
+			    <name>fdsfsdf</name>
+			    <source>#[groovy: [ 'sssddasd', 'sadas' ].collect( { x -> x.getBytes() }  )  ]</source>
+        	</jive:entity>
+        </jive:create>
+    </flow>
+    
+    <flow name="createBlog">
+        <jive:execute operation="IS_USER_ACTIVE" id="dsad"/>
     </flow>
 
 </mule>

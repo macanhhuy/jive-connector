@@ -26,7 +26,7 @@ import org.junit.Test;
 /**Test for the mappings of the {@link Map} entities to and from XML.*/
 public class MappingTest {
     /**The module instance we'll use to map.*/
-    private static final JiveFacade FACADE = new JiveModule();
+    private static final JiveFacade FACADE = new JerseyJiveFacade();
 
     /**Test the xml to and from mapping.
      * In a classic entity, with no exceptions in the rest uri or the xml

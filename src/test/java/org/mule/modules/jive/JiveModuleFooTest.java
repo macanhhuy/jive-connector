@@ -22,7 +22,9 @@ package org.mule.modules.jive;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
@@ -43,8 +45,45 @@ public class JiveModuleFooTest {
     /**Instantiates the JiveModule with the test properties.*/
     @Before
     public final void init() {
-        facade = new JiveModule(gatewayUri, System.getenv("SandboxUser"),
-            System.getenv("SandboxPass"));
+		facade = new JerseyJiveFacade();
+		facade.setGatewayUri(gatewayUri);
+		facade.setUsername(System.getenv("SandboxUser"));
+		facade.setPassword(System.getenv("SandboxPass"));
+		facade.init();
+    }
+    
+    @Test
+    /**Test the execution of an {@link Operation} with a {@link CustomOp}.*/
+    public void executeOperationWithCustomOp() {
+    	final Map<String, Object> entity = new HashMap<String, Object>();
+    	entity.put("blogPost", 123);
+    	entity.put("name", "Great Blog");
+    	entity.put("contentTypes", "Great Blog Display Name!");
+    	List<String> sources = new ArrayList<String>();
+    	sources.add("base64aa");
+    	sources.add("base64ab");
+    	sources.add("base64ac");
+    	entity.put("source", sources);
+    	facade.execute(Operation.BLOG_ADD_ATTACHMENT_TO_BLOG_POST, entity);
+    }
+    
+    @Test
+    public void executeOperationWithBaseUri() {
+    	final Map<String, Object> entity = new HashMap<String, Object>();
+    	entity.put("userID", facade.getUserID());
+    	entity.put("blogName", "Great Blog");
+    	entity.put("displayName", "Great Blog Display Name!");
+    	facade.execute(Operation.BLOG_CREATE_BLOG, entity);
+    }
+    
+    @Test
+    public void executeRegularOperation() {
+    	final Map<String, Object> entity = new HashMap<String, Object>();
+    	entity.put("userID", facade.getUserID());
+    	entity.put("blogID", "Great Blog");
+    	entity.put("subject", "Great Blog Display Name!");
+    	entity.put("body", "The blog post for testing purpuses...");
+    	facade.execute(Operation.BLOG_CREATE_BLOG_POST, entity);
     }
 
 //    /**Register a new user sending only the username, password and email.
@@ -96,7 +135,7 @@ public class JiveModuleFooTest {
         blog.put("displayName", "fooDisplayBlogName");
         
         //Creates the blog
-        createResponse = facade.create(Service.BLOG, blog);
+        createResponse = facade.create(EntityType.BLOG, blog);
         assertEquals("fooDisplayBlogName", createResponse.get("displayName"));
         
         //Get the blog just created
@@ -106,7 +145,7 @@ public class JiveModuleFooTest {
         
         //Deletes the blog just created and verifies
         //that the server doesn't return an error
-        deleteResponse = facade.delete(Service.BLOG,
+        deleteResponse = facade.delete(EntityType.BLOG,
             createResponse.get("ID").toString());
         assertEquals("deleteBlogResponse", deleteResponse.get("response"));
     }
@@ -120,17 +159,17 @@ public class JiveModuleFooTest {
         blog.put("displayName", "fooDisplayBlogName");
         
         //Creates the blog
-        facade.create(Service.BLOG, blog);
+        facade.create(EntityType.BLOG, blog);
         
         //Attemps to create the same blog should throw an error
-        facade.create(Service.BLOG, blog);
+        facade.create(EntityType.BLOG, blog);
     }
 
     /**Test the get count.*/
     @Ignore
     @Test
     public final void getCount() {
-        facade.count(Service.BLOG);
+        facade.count(EntityType.BLOG);
     }
 
     /**Test the delete service.
@@ -138,7 +177,7 @@ public class JiveModuleFooTest {
     @Ignore
     @Test
     public final void testDeleteSingular() {
-        facade.delete(Service.ADDRESSBOOK, "123");
+        facade.delete(EntityType.ADDRESSBOOK, "123");
     }
 
     /**Test the delete service.
@@ -146,7 +185,7 @@ public class JiveModuleFooTest {
     @Ignore
     @Test
     public final void testDeletePlural() {
-        facade.delete(Service.ATTACHMENT, "123");
+        facade.delete(EntityType.ATTACHMENT, "123");
     }
 
 }

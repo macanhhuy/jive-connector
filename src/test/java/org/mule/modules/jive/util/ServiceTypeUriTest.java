@@ -13,7 +13,7 @@ package org.mule.modules.jive.util;
 import static org.junit.Assert.*;
 
 import org.mule.modules.jive.CustomOp;
-import org.mule.modules.jive.Service;
+import org.mule.modules.jive.EntityType;
 import org.mule.modules.jive.utils.ServiceUriFactory;
 
 import org.junit.Test;
@@ -26,11 +26,13 @@ public class ServiceTypeUriTest {
     @Test
     public final void testBaseUri() {
         assertEquals("/addressBookService/addressbooks", ServiceUriFactory.
-            generateBaseUri(Service.ADDRESSBOOK));
+            generateBaseUri(EntityType.ADDRESSBOOK));
         assertEquals("/auditService/audit", ServiceUriFactory.
-            generateBaseUri(Service.AUDIT));
+            generateBaseUri(EntityType.AUDIT));
         assertEquals("/avatarService/avatars", ServiceUriFactory.
-            generateBaseUri(Service.AVATAR));
+            generateBaseUri(EntityType.AVATAR));
+        assertEquals("/blogService/blogs", ServiceUriFactory.
+                generateBaseUri(EntityType.BLOG));
     }
 
     /**Test the {@link ServiceUriFactory} custom operation uri formation.*/
@@ -67,47 +69,47 @@ public class ServiceTypeUriTest {
                 CustomOp.ATTACHMENT_ADD_DISALLOWED_TYPE));
 
         assertEquals("/attachmentService/allowedTypes",
-            ServiceUriFactory.generateCustomUri(Service.ATTACHMENT,
+            ServiceUriFactory.generateCustomUri(EntityType.ATTACHMENT,
                 "get_allowed_Types"));
 
         assertEquals("/attachmentService/disallowedTypes",
-            ServiceUriFactory.generateCustomUri(Service.ATTACHMENT,
+            ServiceUriFactory.generateCustomUri(EntityType.ATTACHMENT,
                 "get_disallowed_Types"));
 
         assertEquals("/attachmentService/imagePreviewMaxSize",
-            ServiceUriFactory.generateCustomUri(Service.ATTACHMENT,
+            ServiceUriFactory.generateCustomUri(EntityType.ATTACHMENT,
                 "get_image_Preview_Max_Size"));
 
         assertEquals("/attachmentService/maxAttachmentSize",
-            ServiceUriFactory.generateCustomUri(Service.ATTACHMENT,
+            ServiceUriFactory.generateCustomUri(EntityType.ATTACHMENT,
                 "get_max_Attachment_Size"));
 
         assertEquals("/attachmentService/maxAttachmentsPerBlogPost",
-            ServiceUriFactory.generateCustomUri(Service.ATTACHMENT,
+            ServiceUriFactory.generateCustomUri(EntityType.ATTACHMENT,
                 "get_max_Attachments_Per_Blog_Post"));
 
         assertEquals("/attachmentService/maxAttachmentsPerBlogPost",
-            ServiceUriFactory.generateCustomUri(Service.ATTACHMENT,
+            ServiceUriFactory.generateCustomUri(EntityType.ATTACHMENT,
                 "get_max_Attachments_Per_Blog_Post"));
 
         assertEquals("/attachmentService/maxAttachmentsPerMessage",
-            ServiceUriFactory.generateCustomUri(Service.ATTACHMENT,
+            ServiceUriFactory.generateCustomUri(EntityType.ATTACHMENT,
                 "get_max_Attachments_Per_Message"));
 
         assertEquals("/attachmentService/allowAllByDefault",
-            ServiceUriFactory.generateCustomUri(Service.ATTACHMENT,
+            ServiceUriFactory.generateCustomUri(EntityType.ATTACHMENT,
                 "is_allow_All_By_Default"));
 
         assertEquals("/attachmentService/attachmentsEnabled",
-            ServiceUriFactory.generateCustomUri(Service.ATTACHMENT,
+            ServiceUriFactory.generateCustomUri(EntityType.ATTACHMENT,
                 "is_attachments_Enabled"));
 
         assertEquals("/attachmentService/imagePreviewEnabled",
-            ServiceUriFactory.generateCustomUri(Service.ATTACHMENT,
+            ServiceUriFactory.generateCustomUri(EntityType.ATTACHMENT,
                 "is_image_Preview_Enabled"));
 
         assertEquals("/attachmentService/imagePreviewRatioEnabled",
-            ServiceUriFactory.generateCustomUri(Service.ATTACHMENT,
+            ServiceUriFactory.generateCustomUri(EntityType.ATTACHMENT,
                 "is_image_Preview_Ratio_Enabled"));
 
         assertEquals("/attachmentService/allowedTypes",
@@ -121,8 +123,7 @@ public class ServiceTypeUriTest {
         assertEquals("/attachmentService/disallowedTypes",
             ServiceUriFactory.generateCustomUri(
                 CustomOp.ATTACHMENT_REMOVE_DISALLOWED_TYPE));
-        //...
-        
+
         assertEquals("/auditService/audit",
             ServiceUriFactory.generateCustomUri(
                 CustomOp.AUDIT_GET_AUDIT_MESSAGES));
