@@ -1,7 +1,8 @@
 package org.mule.modules.jive;
 
+import org.mule.modules.jive.api.EntityType;
+
 import org.apache.commons.lang.StringUtils;
-import org.mule.modules.jive.utils.ServiceUriFactory;
 
 /**The complete list of operations the user can execute.*/
 public enum Operation {
@@ -1355,5 +1356,4 @@ public enum Operation {
             this.protocol = "";
         }
     }
-
 }
