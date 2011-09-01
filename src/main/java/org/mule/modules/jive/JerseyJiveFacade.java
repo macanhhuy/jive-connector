@@ -33,11 +33,12 @@ public class JerseyJiveFacade implements JiveFacade
     private String username;
     /**The password.*/
     private String password;
-	private String gatewayUri;
-	private final XmlMapper mapper = new XmlMapper();
+    private String gatewayUri;
+    private final XmlMapper mapper = new XmlMapper();
 
     /**Sets the userID requesting it by username.*/
-    private void setUserIdByUsername() {
+    private void setUserIdByUsername() 
+    {
         final String response = this.gateway.path("/userService/users/"
             + this.getUser()).type(MediaType.APPLICATION_FORM_URLENCODED)
             .get(String.class);
@@ -55,7 +56,8 @@ public class JerseyJiveFacade implements JiveFacade
     @Override
     /**{@inheritDoc}*/
     public final Map<String, Object> execute(final CustomOp customType,
-        final Map<String, Object> entity) {
+        final Map<String, Object> entity) 
+        {
         final Writer writer = new StringWriter();
         final String response;
 
@@ -64,14 +66,21 @@ public class JerseyJiveFacade implements JiveFacade
             .type(MediaType.APPLICATION_FORM_URLENCODED)
             .header("content-type", "text/xml");
 
-        if (customType.getMethod().equals("POST")) {
+        if (customType.getMethod().equals("POST")) 
+        {
             map2xml(customType.getRootTagElementName(), entity, writer);
             response = partialRequest.post(String.class, writer.toString());
-        } else if(customType.getMethod().equals("GET")) {
+        } 
+        else if (customType.getMethod().equals("GET")) 
+        {
             response = partialRequest.get(String.class);
-        } else if (customType.getMethod().equals("PUT")) {
-        	response = partialRequest.put(String.class);
-        } else { //It's a DELETE request
+        } 
+        else if (customType.getMethod().equals("PUT")) 
+        {
+            response = partialRequest.put(String.class);
+        } 
+        else 
+        { //It's a DELETE request
             response = partialRequest.delete(String.class);
         }
         return xml2map(new StringReader(response));
@@ -81,48 +90,58 @@ public class JerseyJiveFacade implements JiveFacade
     @Override
     /**{@inheritDoc}*/
     public final Map<String, Object> execute(final String uri,
-        final String id) {
+        final String id) 
+    {
 
         throw new NotImplementedException();
     }
     
     public final Map<String, Object> execute(final Operation op,
-    		final Map<String, Object> entity) {
-    	final String response;
+                                             final Map<String, Object> entity) 
+    {
+        final String response;
         final Builder partialRequest = this.gateway.path(op.getResourceUri())
             .type(MediaType.APPLICATION_FORM_URLENCODED)
             .header("content-type", "text/xml");
         final Writer writer = new StringWriter();
         map2xml(op.getRootTagElementName(), entity, writer);
-        if (op.getProtocol().equals("POST")) {
-        	response = partialRequest.post(String.class, writer.toString());
-        } else if (op.getProtocol().equals("PUT")) {
-        	response = partialRequest.put(String.class);
-        } else {
-        	response = "";
+        if (op.getProtocol().equals("POST")) 
+        {
+            response = partialRequest.post(String.class, writer.toString());
+        } 
+        else if (op.getProtocol().equals("PUT")) 
+        {
+            response = partialRequest.put(String.class);
+        } 
+        else 
+        {
+            response = "";
         }
         return xml2map(new StringReader(response));
     }
     
     public final Map<String, Object> execute(final Operation op,
-    		final String id) {
-    	final String response;
-    	
-    	final StringBuilder opUri = new StringBuilder(op.getResourceUri());
-    	for(final String part : StringUtils.split(id, ':')) {
-    		opUri.append("/" + part);
-    	}
+                                             final String id) 
+    {
+        final String response;
+        
+        final StringBuilder opUri = new StringBuilder(op.getResourceUri());
+        for (final String part : StringUtils.split(id, ':')) 
+        {
+            opUri.append("/" + part);
+        }
 
         final Builder partialRequest = this.gateway.path(opUri.toString())
             .type(MediaType.APPLICATION_FORM_URLENCODED)
             .header("content-type", "text/xml");
 
-        if (op.getProtocol().equals("GET")) {
-        	response = partialRequest.get(String.class);
+        if (op.getProtocol().equals("GET")) 
+        {
+            response = partialRequest.get(String.class);
         }
         else 
         {
-        	response = "";
+            response = "";
         }
         return xml2map(new StringReader(response));
     }
@@ -133,15 +152,6 @@ public class JerseyJiveFacade implements JiveFacade
                                     final Map<String, Object> entity) 
     {
         return type.create(type, entity, mapper, gateway);
-//        final Writer writer = new StringWriter();
-//        map2xml("create" + type.getXmlRootElementName(), entity, writer);
-//
-//        String response = this.gateway.path(ServiceUriFactory.generateBaseUri(type))
-//            .type(MediaType.APPLICATION_FORM_URLENCODED)
-//            .header("content-type", "text/xml")
-//            .post(String.class, writer.toString());
-//        // validar error
-//        return xml2map(new StringReader(response));
     }
     
     
@@ -175,20 +185,35 @@ public class JerseyJiveFacade implements JiveFacade
         return type.delete(type, id, mapper, gateway);
     }
     
+    /* (non-Javadoc)
+     * @see org.mule.modules.jive.JiveFacade#getAll(org.mule.modules.jive.api.EntityType, java.lang.String)
+     */
+    @Override
+    public Map<String, Object> getAll(EntityType entityType, String id)
+    {
+        return entityType.getAll(entityType, id, mapper, gateway);
+    }
+    
+    /* (non-Javadoc)
+     * @see org.mule.modules.jive.JiveFacade#update(org.mule.modules.jive.api.EntityType, java.util.Map)
+     */
+    @Override
+    public Map<String, Object> update(EntityType entityType, Map<String, Object> entity)
+    {
+        return entityType.put(entityType, entity, mapper, gateway);
+    }
 
     /**Call the get count service.
      * @return The count as a {@link Long}
      * @param type The service type
      * */
-    public final Long count(final EntityType type) {
-        // validacion
-        // directiva de conversion?
-        // vamos a hacer el request
-        String response = this.gateway.path(ServiceUriFactory.generateBaseUri(type))
-            .get(String.class);
-        // validar error
-        return Long.parseLong(StringUtils.substringBetween(
-            response, "<return>", "</return>"));
+    public final Map<String, Object> count(final EntityType type, final String id) 
+    {
+        return type.count(type, id, mapper, gateway);
+//        String response = this.gateway.path(ServiceUriFactory.generateBaseUri(type))
+//            .get(String.class);
+//        return Long.parseLong(StringUtils.substringBetween(
+//            response, "<return>", "</return>"));
     }
 
   
@@ -196,7 +221,8 @@ public class JerseyJiveFacade implements JiveFacade
     /**Creates the client.
      * @return The jersey client
      * */
-    private Client createClient() {
+    private Client createClient() 
+    {
         final ClientConfig config = new DefaultClientConfig();
         return Client.create(config);
     }
@@ -205,7 +231,8 @@ public class JerseyJiveFacade implements JiveFacade
      * @param gatewayUri The resource uri
      * @param client The jersey client
      * */
-    private void createGateway(final String gatewayUri, final Client client) {
+    private void createGateway(final String gatewayUri, final Client client) 
+    {
         Validate.notNull(client, "Client cannot be empty");
         Validate.notEmpty(gatewayUri, "Gateway cannot be empty");
         client.addFilter(new HTTPBasicAuthFilter(this.getUser(), this.getPassword()));
@@ -261,24 +288,29 @@ public class JerseyJiveFacade implements JiveFacade
     }
     
     @Override
-    public final void setGatewayUri(final String gatewayUri) {
-    	this.gatewayUri  = gatewayUri;
+    public final void setGatewayUri(final String gatewayUri) 
+    {
+        this.gatewayUri  = gatewayUri;
     }
 
-	@Override
-    public final void init() {
-		this.createGateway(gatewayUri, createClient());
-        setUserIdByUsername();		
-	}
+    @Override
+    public final void init() 
+    {
+        this.createGateway(gatewayUri, createClient());
+        setUserIdByUsername();
+    }
 
-	@Override
-    public final void setUsername(final String user) {
-		this.username = user;
-	}
+    @Override
+    public final void setUsername(final String user) 
+    {
+        this.username = user;
+    }
 
-	@Override
-    public final void setPassword(final String pass) {
-		this.password = pass;
-	}
+    @Override
+    public final void setPassword(final String pass) 
+    {
+        this.password = pass;
+    }
+
 
 }

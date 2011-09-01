@@ -33,8 +33,6 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.commons.lang.NotImplementedException;
-
 /***/
 @Module(name = "jive", namespace = "http://repository.mulesoft.org/releases/org/"
                                    + "mule/modules/mule-module-jive", schemaLocation = "http://repository.mulesoft.org/releases/org/"
@@ -56,8 +54,10 @@ public class JiveModule
     private JiveFacade facade;
 
     @PostConstruct
-    public void init() {
-        if (facade == null) {
+    public void init() 
+    {
+        if (facade == null) 
+        {
             JiveFacade newFacade = new JerseyJiveFacade();
             facade.setPassword(password);
             facade.setUsername(username);
@@ -75,31 +75,35 @@ public class JiveModule
     }
     
     @Processor
-    public void update()
+    public void update(EntityType type, Map<String, Object> entity)
     {
-        throw new NotImplementedException();
+        facade.update(type, entity);
     }
     
     @Processor
-    public Map<String, Object> delete(final EntityType type, final String id) {
+    public Map<String, Object> delete(final EntityType type, final String id) 
+    {
         return facade.delete(type, id);
     }
     
     @Processor
-    public Long count(final EntityType type) {
-        return facade.count(type);
+    public Map<String, Object> count(final EntityType type, final String id) 
+    {
+        return facade.count(type, id);
     }
 
     @Processor
     public Map<String, Object> execute(final Operation op, 
-        final Map<String, Object> entity) {
+        final Map<String, Object> entity) 
+    {
         return facade.execute(op, entity);
     }
     
     @Processor
-    public Map<String, Object> get(EntityType entityType, 
-        final String id) {
-        return facade.get(entityType, id);
+    public Map<String, Object> get(EntityType type, 
+        final String id) 
+    {
+        return facade.get(type, id);
     }
 
 

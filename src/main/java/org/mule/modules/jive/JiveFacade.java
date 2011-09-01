@@ -20,19 +20,17 @@
  */
 package org.mule.modules.jive;
 
-import java.io.Reader;
-import java.io.Writer;
-import java.util.Map;
-
 import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.Operation;
-import org.mule.modules.jive.utils.ServiceUriFactory;
+
+import java.util.Map;
 
 /**Facade for the Jive connector.
  * @author Pablo Diez
  * @since Jul 20, 2011
  */
-public interface JiveFacade {
+public interface JiveFacade 
+{
 
     /**Creates an entity.
      * Sends a POST request for the given {@link EntityType} generating the xml
@@ -45,6 +43,37 @@ public interface JiveFacade {
     Map<String, Object> create(
         final EntityType type, Map<String, Object> entity);
 
+    /**Deletes an entity.
+     * @return The xml response parse in a {@link Map}.
+     * @param type The service type used to determine the url for this resource.
+     * @param id The id to be added in the url as path parameter.
+     * */
+    Map<String, Object> delete(final EntityType type, String id);
+    
+    /***/
+    Map<String, Object> count(final EntityType type, final String id);
+    
+    /**
+     * @param entityType
+     * @param id
+     * @return
+     */
+    Map<String, Object> get(EntityType entityType, String id);
+    
+    /**
+     * @param entityType
+     * @param id
+     * @return
+     */
+    Map<String, Object> getAll(EntityType entityType, String id);
+    
+    /**
+     * @param entityType
+     * @param id
+     * @return
+     */
+    Map<String, Object> update(EntityType entityType, Map<String, Object> entity);
+    
     /**Executes a POST {@link CustomOp}.
      * @return The xml response parse in a {@link Map}.
      * @param customType The service to execute, used to determine the resource url, 
@@ -68,15 +97,7 @@ public interface JiveFacade {
     Map<String, Object> execute(final Operation op,
             final Map<String, Object> entity);
 
-    /**Deletes an entity.
-     * @return The xml response parse in a {@link Map}.
-     * @param type The service type used to determine the url for this resource.
-     * @param id The id to be added in the url as path parameter.
-     * */
-    Map<String, Object> delete(final EntityType type, String id);
 
-    /***/
-    Long count(final EntityType type);
     /***/
     void setUsername(String user);
     /***/
@@ -88,12 +109,6 @@ public interface JiveFacade {
     
     void init();
 
-    /**
-     * @param entityType
-     * @param id
-     * @return
-     */
-    Map<String, Object> get(EntityType entityType, String id);
 
     
 }
