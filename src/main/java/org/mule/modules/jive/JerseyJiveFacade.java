@@ -170,8 +170,9 @@ public class JerseyJiveFacade implements JiveFacade
     @Override
     /**{@inheritDoc}*/
     public final Map<String, Object> delete(final EntityType type,
-        final String id) {
-        return type.delete(id, gateway, mapper);
+        final String id) 
+    {
+        return type.delete(type, id, mapper, gateway);
     }
     
 

@@ -94,7 +94,7 @@ public final class CustomReferenceOperationImpl implements CustomReferenceOperat
     @Override
     public Map<String, Object> execute(WebResource resource,
                                        XmlMapper mapper,
-                                       EntityTypeBuilder type,
+                                       EntityType type,
                                        Map<String, Object> entityData)
     {
         final Writer writer = new StringWriter();
