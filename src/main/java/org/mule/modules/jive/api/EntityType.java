@@ -10,8 +10,8 @@
 
 package org.mule.modules.jive.api;
 
-import org.mule.modules.jive.api.impl.StandardDeleteOperation;
-import org.mule.modules.jive.api.impl.StandardPayloadOperation;
+import static org.mule.modules.jive.api.EntityTypeBuilder.*;
+
 import org.mule.modules.jive.api.xml.XmlMapper;
 import org.mule.modules.jive.utils.ServiceUriFactory;
 
@@ -20,108 +20,105 @@ import com.sun.jersey.api.client.WebResource;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
-
 /** Services enum. */
-public enum EntityType
+public final class EntityType
 {
 
     /** Addressbook service. */
-    ADDRESSBOOK("addressBookService"),
+    public static final EntityType ADDRESSBOOK = from("ADDRESSBOOK").withServiceUri("addressBookService").build();
     /** Audit service. */
-    AUDIT(),
+    public static final EntityType AUDIT = from("AUDIT").build();
     /** Avatar service. */
-    AVATAR(),
+    public static final EntityType AVATAR = from("AVATAR").build();
     /** Blog service. */
-    BLOG(),
+    public static final EntityType BLOG = from("BLOG").build();
     /** Task service. */
-    TASK,
+    public static final EntityType TASK = from("TASK").build();
     /** Comment service. */
-    COMMENT(),
+    public static final EntityType COMMENT = from("COMMENT").build();
     /** Community service. */
-    COMMUNITY(),
+    public static final EntityType COMMUNITY = from("COMMUNITY").build();
     /** Document service. */
-    DOCUMENT(),
+    public static final EntityType DOCUMENT = from("DOCUMENT").build();
     /** Entitlement service. */
-    ENTITLEMENT(),
+    public static final EntityType ENTITLEMENT = from("ENTITLEMENT").build();
     /** Forum service. */
-    FORUM(),
+    public static final EntityType FORUM = from("FORUM").build();
     /** Group service. */
-    GROUP(),
+    public static final EntityType GROUP = from("GROUP").build();
     /** Intant Messages service. */
-    IMSERVICE(),
+    public static final EntityType IMSERVICE = from("IMSERVICE").build();
     /** Plugin service. */
-    PLUGIN,
+    public static final EntityType PLUGIN = from("PLUGIN").build();
     /** Poll service. */
-    POLL,
+    public static final EntityType POLL = from("POLL").build();
     /** Private message service. */
-    PRIVATE_MESSAGE,
+    public static final EntityType PRIVATE_MESSAGE = from("PRIVATE_MESSAGE").build();
     /** Profile field service. */
-    PROFILE_FIELD,
+    public static final EntityType PROFILE_FIELD = from("PROFILE_FIELD").build();
     /** Profile search service. */
-    PROFILE_SEARCH,
+    public static final EntityType PROFILE_SEARCH = from("PROFILE_SEARCH").build();
     /** Profile service. */
-    PROFILE,
+    public static final EntityType PROFILE = from("PROFILE").build();
     /** Project service. */
-    PROJECT,
+    public static final EntityType PROJECT = from("PROJECT").build();
     /** Ratings service. */
-    RATINGS,
+    public static final EntityType RATINGS = from("RATINGS").build();
     /** Reference service. */
-    REFERENCE,
+    public static final EntityType REFERENCE = from("REFERENCE").build();
     /** Search service. */
-    SEARCH,
+    public static final EntityType SEARCH = from("SEARCH").build();
     /** Social group service. */
-    SOCIAL_GROUP,
+    public static final EntityType SOCIAL_GROUP = from("SOCIAL_GROUP").build();
     /** Status level service. */
-    STATUS_LEVEL,
+    public static final EntityType STATUS_LEVEL = from("STATUS_LEVEL").build();
     /** System properties service. */
-    SYSTEM_PROPERTIES,
+    public static final EntityType SYSTEM_PROPERTIES = from("SYSTEM_PROPERTIES").build();
     /** Tags service. */
-    TAG,
+    public static final EntityType TAG = from("TAG").build();
     /** User service. */
-    USER,
+    public static final EntityType USER = from("USER").build();
     /** Video service. */
-    VIDEO,
+    public static final EntityType VIDEO = from("VIDEO").build();
     /** Watch service. */
-    WATCH;
-
-    /** Holds the service name. */
-    private final String serviceUri;
-
-    private final ReferenceOperation deleteOperation;
-    private final PayloadOperation createOperation;
-
-    /**
-     * Constructor base
-     */
-    private EntityType()
-    {
-        this(EntityTypes.DEFAULT_SERVICE_URI);
-    }
+    public static final EntityType WATCH = from("WATCH").build();
+    
+    private String serviceUri;
+    private ReferenceOperation deleteOperation;
+    private PayloadOperation createOperation;
+    private PayloadOperation putOperation;
+    private String entityTypeName;
+    private ReferenceOperation getAllOperation;
+    private ReferenceOperation getOperation;
+    private ReferenceOperation countOperation;
 
     /**
-     * Constructor for the services with name exceptions.
-     * 
-     * @param serviceNameException The service name for this entity
+     * @param entityType
+     * @param serviceNameException
+     * @param createOp
+     * @param deleteOp
+     * @param getOp
+     * @param getAllOp
+     * @param putOp
+     * @param countOp
      */
-    private EntityType(final String serviceNameException)
+    public EntityType(String entityType,
+                      String serviceNameException,
+                      PayloadOperation createOp,
+                      ReferenceOperation deleteOp,
+                      ReferenceOperation getOp,
+                      ReferenceOperation getAllOp,
+                      PayloadOperation putOp,
+                      ReferenceOperation countOp)
     {
-        this(serviceNameException, StandardDeleteOperation.STANDARD,
-            StandardPayloadOperation.STANDARD);
-    }
-
-    /**
-     * @param serviceUri
-     * @param strategy
-     * @param deleteOperation
-     * @param extraTag
-     */
-    private EntityType(String serviceUri,
-                       ReferenceOperation deleteOperation,
-                       PayloadOperation createOperation)
-    {
-        this.serviceUri = serviceUri;
-        this.deleteOperation = deleteOperation;
-        this.createOperation = createOperation;
+        this.entityTypeName = entityType;
+        this.serviceUri = serviceNameException;
+        this.createOperation = createOp;
+        this.deleteOperation = deleteOp;
+        this.getOperation = getOp;
+        this.getAllOperation = getAllOp;
+        this.putOperation = putOp;
+        this.countOperation = countOp;
     }
 
     /**
@@ -130,7 +127,7 @@ public enum EntityType
     private String getServiceName()
     {
 
-        return this.toString().toLowerCase() + "Service";
+        return this.entityTypeName.toLowerCase() + "Service";
     }
 
     /**
@@ -151,17 +148,6 @@ public enum EntityType
             return "/" + getServiceName();
         }
         return "/" + serviceUri;
-    }
-
-    /**
-     * @param id
-     * @param resource
-     * @param mapper
-     * @return
-     */
-    public Map<String, Object> delete(final String id, WebResource resource, XmlMapper mapper)
-    {
-        return deleteOperation.execute(resource, mapper, this, id);
     }
 
     /**
@@ -195,6 +181,71 @@ public enum EntityType
         final XmlMapper mapper, final WebResource resource)
     {
         return createOperation.execute(resource, mapper, type, entity);
+    }
+    
+    /**
+     * @param type
+     * @param id
+     * @param mapper
+     * @param resource
+     * @return
+     */
+    public Map<String, Object> delete(final EntityType type, final String id,
+        final XmlMapper mapper, final WebResource resource) 
+    {
+        return deleteOperation.execute(resource, mapper, type, id);
+    }
+    
+    /**
+     * @param type
+     * @param id
+     * @param mapper
+     * @param resource
+     * @return
+     */
+    public Map<String, Object> count(final EntityType type, final String id,
+        final XmlMapper mapper, final WebResource resource)
+    {
+        return countOperation.execute(resource, mapper, type, id);
+    }
+    
+    /**
+     * @param type
+     * @param id
+     * @param mapper
+     * @param resource
+     * @return
+     */
+    public Map<String, Object> get(final EntityType type, final String id,
+        final XmlMapper mapper, final WebResource resource)
+    {
+        return getOperation.execute(resource, mapper, type, id);
+    }
+    
+    /**
+     * @param type
+     * @param id
+     * @param mapper
+     * @param resource
+     * @return
+     */
+    public Map<String, Object> getAll(final EntityType type, final String id,
+        final XmlMapper mapper, final WebResource resource)
+    {
+        return getAllOperation.execute(resource, mapper, type, id);
+    }
+    
+    /**
+     * @param type
+     * @param entityData
+     * @param mapper
+     * @param resource
+     * @return
+     */
+    public Map<String, Object> put(final EntityType type, final Map<String, Object> entityData,
+        final XmlMapper mapper, final WebResource resource)
+    {
+        return putOperation.execute(resource, mapper, type, entityData);
     }
     
     /**

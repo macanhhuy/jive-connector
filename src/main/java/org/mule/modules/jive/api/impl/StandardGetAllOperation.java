@@ -8,7 +8,7 @@
  * LICENSE.txt file.
  */
 
-package org.mule.modules.jive.api;
+package org.mule.modules.jive.api.impl;
 
 import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.ReferenceOperation;
@@ -19,10 +19,9 @@ import com.sun.jersey.api.client.WebResource;
 import java.io.StringReader;
 import java.util.Map;
 
-public class StandardGetOperation implements ReferenceOperation
+public class StandardGetAllOperation implements ReferenceOperation
 {
-
-    public static final ReferenceOperation STANDARD = new StandardGetOperation();
+    public static final ReferenceOperation STANDARD = new StandardGetAllOperation();
 
     /* (non-Javadoc)
      * @see org.mule.modules.jive.api.ReferenceOperation#execute(com.sun.jersey.api.client.WebResource, org.mule.modules.jive.api.xml.XmlMapper, org.mule.modules.jive.api.EntityType, java.lang.String)
@@ -30,6 +29,7 @@ public class StandardGetOperation implements ReferenceOperation
     @Override
     public Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, String id)
     {
+        //TODO what is the base uri for the getAll? all customOps?
         final String response = resource.path(type.generateBaseUri()).get(String.class);
         return mapper.xml2map(new StringReader(response));
     }

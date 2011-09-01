@@ -36,9 +36,8 @@ public class StandardPayloadOperation implements PayloadOperation
                                        Map<String, Object> entityData)
     {
         final Writer writer = new StringWriter();
-        mapper.map2xml("create" + type.getXmlRootElementName(), entityData, writer);
+        mapper.map2xml(type.getXmlRootElementName(), entityData, writer);
         final String response = resource.path(type.generateBaseUri()).post(String.class, writer.toString());
-        // validar error
         return mapper.xml2map(new StringReader(response));
     }
 

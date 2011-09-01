@@ -12,6 +12,7 @@ package org.mule.modules.jive;
 
 import org.mule.modules.jive.api.CustomReferenceOperation;
 import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.EntityTypeBuilder;
 import org.mule.modules.jive.api.PayloadOperation;
 import org.mule.modules.jive.api.impl.StandardPayloadOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
@@ -93,7 +94,7 @@ public final class CustomReferenceOperationImpl implements CustomReferenceOperat
     @Override
     public Map<String, Object> execute(WebResource resource,
                                        XmlMapper mapper,
-                                       EntityType type,
+                                       EntityTypeBuilder type,
                                        Map<String, Object> entityData)
     {
         final Writer writer = new StringWriter();

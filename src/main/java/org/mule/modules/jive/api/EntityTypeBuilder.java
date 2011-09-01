@@ -10,136 +10,116 @@
 
 package org.mule.modules.jive.api;
 
+import org.mule.modules.jive.api.impl.StandardCountOperation;
 import org.mule.modules.jive.api.impl.StandardDeleteOperation;
+import org.mule.modules.jive.api.impl.StandardGetAllOperation;
+import org.mule.modules.jive.api.impl.StandardGetOperation;
 import org.mule.modules.jive.api.impl.StandardPayloadOperation;
-
+import org.mule.modules.jive.api.impl.StandardCreateOperation;
 
 /**
  * Builder to hold all the crud operations.
  */
 public class EntityTypeBuilder 
 {
-    private PayloadOperation payloadOp;
-    private ReferenceOperation deleteOp;
-    private ReferenceOperation getOp;
-    private ReferenceOperation getAllOp;
-    private PayloadOperation updateOp;
+    private String serviceNameException = EntityTypes.DEFAULT_SERVICE_URI;
+    private final String entityType;
+    
+    private PayloadOperation createOp = StandardCreateOperation.STANDARD;
+    private PayloadOperation putOp = StandardPayloadOperation.STANDARD;
+    private ReferenceOperation deleteOp = StandardDeleteOperation.STANDARD;
+    private ReferenceOperation getOp = StandardGetOperation.STANDARD;
+    private ReferenceOperation getAllOp = StandardGetAllOperation.STANDARD;
+    private ReferenceOperation countOp = StandardCountOperation.STANDARD;
 
     
     /**
      * Base constructor.
      */
-    public EntityTypeBuilder()
+    public EntityTypeBuilder(String entityType)
     {
+        this.entityType = entityType;
+    }
+    
+    /**
+     * @param string
+     */
+    public EntityTypeBuilder(String entityType, String serviceNameException)
+    {
+        this(entityType);
+        this.serviceNameException = serviceNameException;
     }
     
     /**
      * Sets all the remaining operations.
      */
-    public void build()
+    public EntityType build()
     {
-        if (this.payloadOp == null) 
-        {
-            this.payloadOp = new StandardPayloadOperation();
-        }
-        else if (this.deleteOp == null) 
-        {
-            this.deleteOp = new StandardDeleteOperation();
-        }
-        else if (this.updateOp == null) 
-        {
-            this.updateOp = new StandardPutOperation();
-        }
-        else if (this.getOp == null) 
-        {
-            this.getOp = new StandardGetOperation();
-        }
-        else if (this.getAllOp == null) 
-        {
-            this.getAllOp = new StandardGetAllOperation();
-        }
-    }
-
-    /**
-     * @return the payloadOp
-     */
-    public PayloadOperation getPayloadOp()
-    {
-        return payloadOp;
-    }
-
-    /**
-     * @param payloadOp the payloadOp to set
-     */
-    public void setPayloadOp(PayloadOperation payloadOp)
-    {
-        this.payloadOp = payloadOp;
-    }
-
-    /**
-     * @return the deleteOp
-     */
-    public ReferenceOperation getDeleteOp()
-    {
-        return deleteOp;
+        return new EntityType(entityType, serviceNameException, createOp,
+                              deleteOp, getOp, getAllOp, putOp, countOp);
     }
 
     /**
      * @param deleteOp the deleteOp to set
+     * @return 
      */
-    public void setDeleteOp(ReferenceOperation deleteOp)
+    public EntityTypeBuilder addCustomDeleteOp(ReferenceOperation deleteOp)
     {
         this.deleteOp = deleteOp;
-    }
-
-    /**
-     * @return the getOp
-     */
-    public ReferenceOperation getGetOp()
-    {
-        return getOp;
+        return this;
     }
 
     /**
      * @param getOp the getOp to set
+     * @return 
      */
-    public void setGetOp(ReferenceOperation getOp)
+    public EntityTypeBuilder addCustomGetOp(ReferenceOperation getOp)
     {
         this.getOp = getOp;
-    }
-
-    /**
-     * @return the getAllOp
-     */
-    public ReferenceOperation getGetAllOp()
-    {
-        return getAllOp;
+        return this;
     }
 
     /**
      * @param getAllOp the getAllOp to set
+     * @return 
      */
-    public void setGetAllOp(ReferenceOperation getAllOp)
+    public EntityTypeBuilder addCustomGetAllOp(ReferenceOperation getAllOp)
     {
         this.getAllOp = getAllOp;
-    }
-
-    /**
-     * @return the updateOp
-     */
-    public PayloadOperation getUpdateOp()
-    {
-        return updateOp;
+        return this;
     }
 
     /**
      * @param updateOp the updateOp to set
+     * @return 
      */
-    public void setUpdateOp(PayloadOperation updateOp)
+    public EntityTypeBuilder addCustomPutOp(PayloadOperation updateOp)
     {
-        this.updateOp = updateOp;
+        this.putOp = updateOp;
+        return this;
     }
 
+    public static EntityTypeBuilder from(final String entityTypeName) 
+    {
+        return new EntityTypeBuilder(entityTypeName);
+    }
+
+    /**
+     * @param serviceUri
+     * @return
+     */
+    public EntityTypeBuilder withServiceUri(final String serviceUri)
+    {
+        this.serviceNameException = serviceUri;
+        return this;
+    }
+
+    /**
+     * @param countOperation the countOperation to set
+     */
+    public void addCustomCountOperation(ReferenceOperation countOperation)
+    {
+        this.countOp = countOperation;
+    }
+    
 }
-
-
