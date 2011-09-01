@@ -10,132 +10,93 @@
 
 package org.mule.modules.jive.api;
 
-import org.mule.modules.jive.CustomOp;
-import org.mule.modules.jive.CustomReferenceOperation;
 import org.mule.modules.jive.api.impl.StandardDeleteOperation;
+import org.mule.modules.jive.api.impl.StandardPayloadOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 import org.mule.modules.jive.utils.ServiceUriFactory;
 
 import com.sun.jersey.api.client.WebResource;
 
-import java.io.StringReader;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
 /** Services enum. */
-public enum EntityType {
+public enum EntityType
+{
 
     /** Addressbook service. */
     ADDRESSBOOK("addressBookService"),
-    /** Attachment service. */
-    ATTACHMENT(),
     /** Audit service. */
-    AUDIT(EntityType.SINGULAR),
+    AUDIT(),
     /** Avatar service. */
-    AVATAR(EntityTypes.DEFAULT_SERVICE_URI, 
-            EntityTypes.DEFAULT_STRATEGY, 
-            CustomReferenceOperation.from(CustomOp.AVATAR_DELETE)),
+    AVATAR(),
     /** Blog service. */
     BLOG(),
     /** Task service. */
     TASK,
     /** Comment service. */
-    COMMENT(), 
+    COMMENT(),
     /** Community service. */
-    COMMUNITY(), 
+    COMMUNITY(),
     /** Document service. */
-    DOCUMENT(), 
+    DOCUMENT(),
     /** Entitlement service. */
-    ENTITLEMENT(), 
+    ENTITLEMENT(),
     /** Forum service. */
-    FORUM(), 
+    FORUM(),
     /** Group service. */
-    GROUP(), 
+    GROUP(),
     /** Intant Messages service. */
-    IMSERVICE(), 
+    IMSERVICE(),
     /** Plugin service. */
-    PLUGIN, 
+    PLUGIN,
     /** Poll service. */
-    POLL, 
+    POLL,
     /** Private message service. */
-    PRIVATE_MESSAGE, 
+    PRIVATE_MESSAGE,
     /** Profile field service. */
     PROFILE_FIELD,
     /** Profile search service. */
-    PROFILE_SEARCH, 
+    PROFILE_SEARCH,
     /** Profile service. */
-    PROFILE, 
+    PROFILE,
     /** Project service. */
-    PROJECT, 
+    PROJECT,
     /** Ratings service. */
-    RATINGS, 
+    RATINGS,
     /** Reference service. */
-    REFERENCE, 
+    REFERENCE,
     /** Search service. */
-    SEARCH, 
+    SEARCH,
     /** Social group service. */
-    SOCIAL_GROUP, 
+    SOCIAL_GROUP,
     /** Status level service. */
-    STATUS_LEVEL, 
+    STATUS_LEVEL,
     /** System properties service. */
-    SYSTEM_PROPERTIES, 
+    SYSTEM_PROPERTIES,
     /** Tags service. */
-    TAG, 
+    TAG,
     /** User service. */
-    USER, 
+    USER,
     /** Video service. */
-    VIDEO, 
+    VIDEO,
     /** Watch service. */
     WATCH;
 
-    /** Const for the services that uses their name in plural. */
-    public static final int PLURAL = 0;
-
-    /** Const for the services that uses their name in singular. */
-    public static final int SINGULAR = 1;
-
-    
     /** Holds the service name. */
     private final String serviceUri;
 
-    /** Strategy. */
-    private final int strategy;
+    private final ReferenceOperation deleteOperation;
+    private final PayloadOperation createOperation;
 
     /**
-     * If true, the request of this service has an extra tag with the entity name.
+     * Constructor base
      */
-    private boolean extraTag = false;
-    
-    private final ReferenceOperation deleteOperation;
-
-    /** Base Constructor. */
     private EntityType()
     {
-        this(EntityTypes.DEFAULT_STRATEGY);
+        this(EntityTypes.DEFAULT_SERVICE_URI);
     }
-
-    /**
-     * Constructor for the services with a specified strategy.
-     * 
-     * @param strategy The strategy for the uri formation of this service
-     */
-    private EntityType(final int strategy)
-    {
-        this(EntityTypes.DEFAULT_SERVICE_URI, strategy);
-    }
-
-    /**
-     * @param serviceUri
-     * @param strategy
-     * @param extraTag
-     * @param deleteOperation
-     */
-    private EntityType(String serviceUri, int strategy)
-    {
-        this(serviceUri, strategy, StandardDeleteOperation.STANDARD);
-    }
-
 
     /**
      * Constructor for the services with name exceptions.
@@ -144,18 +105,8 @@ public enum EntityType {
      */
     private EntityType(final String serviceNameException)
     {
-        this("/" + serviceNameException, EntityTypes.DEFAULT_STRATEGY, StandardDeleteOperation.STANDARD);
-    }
-    
-    /**
-     * @param serviceUri
-     * @param strategy
-     * @param extraTag
-     * @param deleteOperation
-     */
-    private EntityType(String serviceUri, int strategy, ReferenceOperation deleteOperation)
-    {
-        this(serviceUri, strategy, deleteOperation, false);
+        this(serviceNameException, StandardDeleteOperation.STANDARD,
+            StandardPayloadOperation.STANDARD);
     }
 
     /**
@@ -164,12 +115,13 @@ public enum EntityType {
      * @param deleteOperation
      * @param extraTag
      */
-    private EntityType(String serviceUri, int strategy, ReferenceOperation deleteOperation, boolean extraTag)
+    private EntityType(String serviceUri,
+                       ReferenceOperation deleteOperation,
+                       PayloadOperation createOperation)
     {
         this.serviceUri = serviceUri;
-        this.strategy = strategy;
-        this.extraTag = extraTag;
         this.deleteOperation = deleteOperation;
+        this.createOperation = createOperation;
     }
 
     /**
@@ -177,8 +129,7 @@ public enum EntityType {
      */
     private String getServiceName()
     {
-        
-        
+
         return this.toString().toLowerCase() + "Service";
     }
 
@@ -199,37 +150,13 @@ public enum EntityType {
         {
             return "/" + getServiceName();
         }
-        return serviceUri;
-    }
-
-    /**
-     * @return the strategy
-     */
-    public int getStrategy()
-    {
-        return strategy;
-    }
-
-    /**
-     * @param extraTag the extraTag to set
-     */
-    public void setExtraTag(final boolean extraTag)
-    {
-        this.extraTag = extraTag;
-    }
-
-    /**
-     * @return the extraTag
-     */
-    public boolean hasExtraTag()
-    {
-        return extraTag;
+        return "/" + serviceUri;
     }
 
     /**
      * @param id
-     * @param resource 
-     * @param mapper 
+     * @param resource
+     * @param mapper
      * @return
      */
     public Map<String, Object> delete(final String id, WebResource resource, XmlMapper mapper)
@@ -237,20 +164,57 @@ public enum EntityType {
         return deleteOperation.execute(resource, mapper, this, id);
     }
 
-    /**Generates the complete uri for the get or delete service.
+    /**
+     * Generates the complete uri for the get or delete service.
+     * 
      * @param this The {@link EntityType} that is being executed
      * @param id A {@link String} containing the path parameters to add
      * @return The resouce uri with the path parameters added
      */
-    public String getCompleteUri(final String id) {
+    public String getCompleteUri(final String id)
+    {
         final StringBuffer completeUri = new StringBuffer();
         final String[] pathParams = StringUtils.split(id, ':');
 
         completeUri.append(ServiceUriFactory.generateBaseUri(this));
-        for(int i = 0; i < pathParams.length; i++) {
+        for (int i = 0; i < pathParams.length; i++)
+        {
             completeUri.append("/" + pathParams[i]);
         }
         return completeUri.toString();
+    }
+
+    /**
+     * @param type
+     * @param entity
+     * @param mapper 
+     * @param resource 
+     * @return
+     */
+    public Map<String, Object> create(final EntityType type, final Map<String, Object> entity,
+        final XmlMapper mapper, final WebResource resource)
+    {
+        return createOperation.execute(resource, mapper, type, entity);
+    }
+    
+    /**
+     * 
+     */
+    public final String generateBaseUri()
+    {
+        final StringBuilder uri = new StringBuilder(getServiceUri() + "/");
+        uri.append(pluralize(toString().toLowerCase()));
+        return uri.toString();
+    }
+    
+    /**Pluralizes the service name.
+     * @param str The {@link String} to pluralize
+     * @return str in plural*/
+    private static String pluralize(final String str) {
+        if (str.endsWith("y")) {
+            return StringUtils.substringBeforeLast(str, "y") + "ies";
+        }
+        return str + "s";
     }
 
 }

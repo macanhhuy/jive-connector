@@ -59,7 +59,7 @@ public interface JiveFacade {
     /**TODO - Should create a new enum with the protocol to use
      * and the name of the operation, the uri will be determined
      * by the name of the operation using
-     * {@link ServiceUriFactory#generateCustomUri(EntityType, String)}.
+     * {@link ServiceUriFactory#generateCustomUri(String, EntityType)}.
      * This new enum will exist mainly to give the user a proper
      * operations list.*/
     Map<String, Object> execute(final String uri,

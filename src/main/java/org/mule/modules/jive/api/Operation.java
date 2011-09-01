@@ -7,16 +7,9 @@ import org.mule.modules.jive.CustomOp;
 import org.mule.modules.jive.utils.ServiceUriFactory;
 
 /**The complete list of operations the user can execute.*/
-public enum Operation {
+public enum Operation 
+{
 
-    // /** Adds an attachment to the specified blog post. */
-    // BLOG_ADD_ATTACHMENT_TO_BLOG_POST(CustomOp.BLOG_ADD_ATTACHMENT_TO_BLOG_POST),
-    // /** Adds an image to the specified blog post. */
-    // BLOG_ADD_IMAGE_TO_BLOG_POST(CustomOp.BLOG_ADD_IMAGE_TO_BLOG_POST),
-    // /** Creates a new blog. */
-    // BLOG_CREATE_BLOG(EntityType.BLOG, 1),
-    // /** Creates a new blog post.*/
-    // BLOG_CREATE_BLOG_POST(EntityType.BLOG),
     /**
      * Creates a new avatar for a user using the specified byte array as the contents
      * of the avatar image.

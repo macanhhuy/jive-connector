@@ -38,7 +38,8 @@ import org.junit.Test;
  * @author Pablo Diez
  * @since Jul 20, 2011
  */
-public class JiveModuleFooTest {
+public class JiveModuleFooTest 
+{
     /**The gateway uri.*/
     private final String gatewayUri =
         "https://app-sandbox.jivesoftware.com/rpc/rest";
@@ -47,49 +48,119 @@ public class JiveModuleFooTest {
 
     /**Instantiates the JiveModule with the test properties.*/
     @Before
-    public final void init() {
-		facade = new JerseyJiveFacade();
-		facade.setGatewayUri(gatewayUri);
-		facade.setUsername(System.getenv("SandboxUser"));
-		facade.setPassword(System.getenv("SandboxPass"));
-		facade.init();
+    public final void init() 
+    {
+        facade = new JerseyJiveFacade();
+        facade.setGatewayUri(gatewayUri);
+        facade.setUsername(System.getenv("SandboxUser"));
+        facade.setPassword(System.getenv("SandboxPass"));
+        facade.init();
+    }
+    
+    @Test
+    @Ignore
+    /**Testing create method.
+     * Creates an Avatar*/
+    public void create()
+    {
+        Map<String, Object> avatar = new HashMap<String, Object>();
+        avatar.put("ownerID", facade.getUserID());
+        avatar.put("name", "avatarTest");
+        avatar.put("contentType", "image/jpg");
+        List<String> data = new ArrayList<String>();
+        data.add("qwertyui");
+        data.add("12345678");
+        avatar.put("data", data);
+        facade.create(EntityType.AVATAR, avatar);
+    }
+    
+    @Test
+    @Ignore
+    /**Test the delete method.
+     * Deletes an Avatar*/
+    public void delete() 
+    {
+        final String avatarID = String.valueOf(123);
+        facade.delete(EntityType.AVATAR, avatarID);
+    }
+    
+    @Test
+    @Ignore
+    /**Test the create method.
+     * Creates an addressbook*/
+    public void createAddressbook() 
+    {
+        final Map<String, Object> fooData = new HashMap<String, Object>();
+        facade.create(EntityType.ADDRESSBOOK, fooData);
+    }
+    
+    @Test
+    @Ignore
+    /**Test the create method.
+     * Creates an addressbook*/
+    public void deleteAddressbook() 
+    {
+        final String id = "bla/foo";
+        facade.delete(EntityType.ADDRESSBOOK, id);
+    }
+    
+    @Test
+    @Ignore
+    /**Test the create method.
+     * Creates an addressbook*/
+    public void createBlog() 
+    {
+        final Map<String, Object> fooData = new HashMap<String, Object>();
+        facade.create(EntityType.BLOG, fooData);
+    }
+    
+    @Test
+    /**Test the create method.
+     * Creates an addressbook*/
+    public void deleteBlog() 
+    {
+        final String id = "bla/foo";
+        facade.delete(EntityType.BLOG, id);
     }
     
     @Test
     @Ignore
     /**Test the execution of an {@link Operation} with a {@link CustomOp}.*/
-    public void executeOperationWithCustomOp() {
-    	final Map<String, Object> entity = new HashMap<String, Object>();
-    	entity.put("blogPost", 123);
-    	entity.put("name", "Great Blog");
-    	entity.put("contentTypes", "Great Blog Display Name!");
-    	List<String> sources = new ArrayList<String>();
-    	sources.add("base64aa");
-    	sources.add("base64ab");
-    	sources.add("base64ac");
-    	entity.put("source", sources);
-    	facade.execute(Operation.BLOG_ADD_ATTACHMENT_TO_BLOG_POST, entity);
+    public void executeOperationWithCustomOp() 
+    {
+        final Map<String, Object> entity = new HashMap<String, Object>();
+        entity.put("blogPost", 123);
+        entity.put("name", "Great Blog");
+        entity.put("contentTypes", "Great Blog Display Name!");
+        List<String> sources = new ArrayList<String>();
+        sources.add("base64aa");
+        sources.add("base64ab");
+        sources.add("base64ac");
+        entity.put("source", sources);
+        facade.execute(Operation.BLOG_ADD_ATTACHMENT_TO_BLOG_POST, entity);
     }
     
     @Test
     @Ignore
-    public void executeOperationWithBaseUri() {
-    	final Map<String, Object> entity = new HashMap<String, Object>();
-    	entity.put("userID", facade.getUserID());
-    	entity.put("blogName", "Great Blog");
-    	entity.put("displayName", "Great Blog Display Name!");
-    	facade.execute(Operation.BLOG_CREATE_BLOG, entity);
+    public void executeOperationWithBaseUri() 
+    {
+        final Map<String, Object> entity = new HashMap<String, Object>();
+        entity.put("userID", facade.getUserID());
+        entity.put("blogName", "Great Blog");
+        entity.put("displayName", "Great Blog Display Name!");
+        facade.execute(Operation.BLOG_CREATE_BLOG, entity);
     }
     
     @Test
     @Ignore
-    public void executeRegularOperation() {
-    	final Map<String, Object> entity = new HashMap<String, Object>();
-    	entity.put("userID", facade.getUserID());
-    	entity.put("blogID", "Great Blog");
-    	entity.put("subject", "Great Blog Display Name!");
-    	entity.put("body", "The blog post for testing purpuses...");
-    	facade.execute(Operation.BLOG_CREATE_BLOG_POST, entity);
+    public void executeRegularOperation() 
+    {
+        final Map<String, Object> entity = new HashMap<String, Object>();
+        entity.put("userID", facade.getUserID());
+        entity.put("blogID", "Great Blog");
+        entity.put("subject", "Great Blog Display Name!");
+        entity.put("body", "The blog post for testing purpuses...");
+        facade.execute(Operation.BLOG_CREATE_BLOG_POST, entity);
     }
 
 //    /**Register a new user sending only the username, password and email.
@@ -132,7 +203,8 @@ public class JiveModuleFooTest {
      * */
     @Test
     @Ignore
-    public final void operationFlowTest() {
+    public final void operationFlowTest() 
+    {
         final Map<String, Object> blog = new HashMap<String, Object>();
         final Map<String, Object> createResponse;
         final Map<String, Object> getResponse;
@@ -186,14 +258,6 @@ public class JiveModuleFooTest {
     @Test
     public final void testDeleteSingular() {
         facade.delete(EntityType.ADDRESSBOOK, "123");
-    }
-
-    /**Test the delete service.
-     * */
-    @Ignore
-    @Test
-    public final void testDeletePlural() {
-        facade.delete(EntityType.ATTACHMENT, "123");
     }
 
 }

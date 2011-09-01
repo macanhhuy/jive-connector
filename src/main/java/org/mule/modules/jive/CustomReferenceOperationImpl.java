@@ -10,8 +10,10 @@
 
 package org.mule.modules.jive;
 
+import org.mule.modules.jive.api.CustomReferenceOperation;
 import org.mule.modules.jive.api.EntityType;
-import org.mule.modules.jive.api.ReferenceOperation;
+import org.mule.modules.jive.api.PayloadOperation;
+import org.mule.modules.jive.api.impl.StandardPayloadOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 import org.mule.modules.jive.utils.ServiceUriFactory;
 
@@ -19,20 +21,22 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.WebResource.Builder;
 
 import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.lang.StringUtils;
 
-public final class CustomReferenceOperation implements ReferenceOperation
+public final class CustomReferenceOperationImpl implements CustomReferenceOperation
 {
     private CustomOp customOp;
     
     /**
      * @param customOp
      */
-    private CustomReferenceOperation(CustomOp customOp)
+    private CustomReferenceOperationImpl(CustomOp customOp)
     {
         super();
         this.customOp = customOp;
@@ -64,21 +68,39 @@ public final class CustomReferenceOperation implements ReferenceOperation
      * @return The resouce uri with the path parameters added
      */
     private String getCompleteUriForCustomOp(final CustomOp customType,
-                                             final String id) {
+                                             final String id) 
+    {
         final StringBuilder completeUri = new StringBuilder();
         final String[] pathParams = StringUtils.split(id, ':');
 
         completeUri.append(ServiceUriFactory
             .generateCustomUri(customType));
-        for(int i = 0; i < pathParams.length; i++) {
+        for (int i = 0; i < pathParams.length; i++) 
+        {
             completeUri.append("/" + pathParams[i]);
         }
         return completeUri.toString();
     }
     
-    public static ReferenceOperation from(CustomOp customOp)
+    public static CustomReferenceOperation from(CustomOp customOp)
     { 
-        return new CustomReferenceOperation(customOp);
+        return new CustomReferenceOperationImpl(customOp);
+    }
+    
+    /* (non-Javadoc)
+     * @see org.mule.modules.jive.api.ReferenceOperation#execute(com.sun.jersey.api.client.WebResource, org.mule.modules.jive.api.xml.XmlMapper, org.mule.modules.jive.api.EntityType, java.util.Map)
+     */
+    @Override
+    public Map<String, Object> execute(WebResource resource,
+                                       XmlMapper mapper,
+                                       EntityType type,
+                                       Map<String, Object> entityData)
+    {
+        final Writer writer = new StringWriter();
+        mapper.map2xml(type.getXmlRootElementName(), entityData, writer);
+        final String response = resource.path(type.getServiceUri()).post(String.class, writer.toString());
+        // validar error
+        return mapper.xml2map(new StringReader(response));
     }
 
 }

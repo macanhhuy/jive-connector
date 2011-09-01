@@ -48,13 +48,10 @@ public final class ServiceUriFactory {
      * uri would be /avatarService/avatars
      * @param type The service
      * */
-    public static String generateBaseUri(final EntityType type) {
+    public static String generateBaseUri(final EntityType type) 
+    {
         final StringBuilder uri = new StringBuilder(type.getServiceUri() + "/");
-        if (type.getStrategy() == EntityType.PLURAL) {
-            uri.append(pluralize(type.toString().toLowerCase()));
-        } else if (type.getStrategy() == EntityType.SINGULAR) {
-            uri.append(type.toString().toLowerCase());
-        }
+        uri.append(pluralize(type.toString().toLowerCase()));
         return uri.toString();
     }
 

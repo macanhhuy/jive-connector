@@ -24,9 +24,9 @@ import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
-public class JerseyJiveFacade implements JiveFacade {
-	
-	   /**The jersey webresource to access rest resources.*/
+public class JerseyJiveFacade implements JiveFacade
+{
+    /**The jersey webresource to access rest resources.*/
     private WebResource gateway;
     /**The userID.*/
     private Long userID;
@@ -119,7 +119,9 @@ public class JerseyJiveFacade implements JiveFacade {
 
         if (op.getProtocol().equals("GET")) {
         	response = partialRequest.get(String.class);
-        } else {
+        }
+        else 
+        {
         	response = "";
         }
         return xml2map(new StringReader(response));
@@ -128,16 +130,18 @@ public class JerseyJiveFacade implements JiveFacade {
     @Override
     /**{@inheritDoc}*/
     public final Map<String, Object> create(final EntityType type,
-                                    final Map<String, Object> entity) {
-        final Writer writer = new StringWriter();
-        map2xml("create" + type.getXmlRootElementName(), entity, writer);
-
-        String response = this.gateway.path(ServiceUriFactory.generateBaseUri(type))
-            .type(MediaType.APPLICATION_FORM_URLENCODED)
-            .header("content-type", "text/xml")
-            .post(String.class, writer.toString());
-        // validar error
-        return xml2map(new StringReader(response));
+                                    final Map<String, Object> entity) 
+    {
+        return type.create(type, entity, mapper, gateway);
+//        final Writer writer = new StringWriter();
+//        map2xml("create" + type.getXmlRootElementName(), entity, writer);
+//
+//        String response = this.gateway.path(ServiceUriFactory.generateBaseUri(type))
+//            .type(MediaType.APPLICATION_FORM_URLENCODED)
+//            .header("content-type", "text/xml")
+//            .post(String.class, writer.toString());
+//        // validar error
+//        return xml2map(new StringReader(response));
     }
     
     

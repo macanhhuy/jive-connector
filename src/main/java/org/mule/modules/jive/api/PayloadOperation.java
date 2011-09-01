@@ -10,9 +10,15 @@
 
 package org.mule.modules.jive.api;
 
-public class EntityTypes
-{
-    /** Default strategy. */
-    public static final String DEFAULT_SERVICE_URI = null;
+import org.mule.modules.jive.api.xml.XmlMapper;
 
+import com.sun.jersey.api.client.WebResource;
+
+import java.util.Map;
+
+public interface PayloadOperation
+{
+    Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, Map<String, Object> entityData);
 }
+
+

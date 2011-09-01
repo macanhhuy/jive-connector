@@ -47,8 +47,10 @@ public class XmlMapper
      * @param type The service type used to determine the url for this resource.
      * @param id The id to be added in the url as path parameter.
      * */
-    public final void map2xml(final String xmlRootTag, final Map<String, Object> entity, final Writer writer) {
-        try {
+    public final void map2xml(final String xmlRootTag, final Map<String, Object> entity, final Writer writer) 
+    {
+        try 
+        {
             final XMLStreamWriter w =
                     xmlOutputFactory.createXMLStreamWriter(writer);
 
@@ -61,7 +63,9 @@ public class XmlMapper
             w.writeEndElement();
 
             w.writeEndDocument();
-        } catch (XMLStreamException e) {
+        } 
+        catch (XMLStreamException e) 
+        {
             throw new UnhandledException(e);
         }
     }
@@ -79,20 +83,29 @@ public class XmlMapper
      * */
     @SuppressWarnings("unchecked")
     private void writeXML(final XMLStreamWriter w,
-                   final Map<String, Object> model) throws XMLStreamException {
+                   final Map<String, Object> model) throws XMLStreamException 
+                   {
         final Set<Entry<String, Object>> entries = model.entrySet();
-        for (final Entry<String, Object> entry : entries) {
-            if (List.class.isInstance(entry.getValue())) {
-                for(final String elem : (List<String>)entry.getValue()) {
+        for (final Entry<String, Object> entry : entries) 
+        {
+            if (List.class.isInstance(entry.getValue())) 
+            {
+                for (final String elem : (List<String>) entry.getValue()) 
+                {
                     w.writeStartElement(entry.getKey());
                     w.writeCharacters(elem);
                     w.writeEndElement();
                 }
-            } else {
+            }
+            else 
+            {
                 w.writeStartElement(entry.getKey());
-                if (!HashMap.class.isInstance(entry.getValue())) {
+                if (!HashMap.class.isInstance(entry.getValue())) 
+                {
                     w.writeCharacters(entry.getValue().toString());
-                } else {
+                } 
+                else 
+                {
                     writeXML(w, (HashMap<String, Object>) entry.getValue());
                 }
                 w.writeEndElement();
@@ -105,30 +118,36 @@ public class XmlMapper
      * @return The map with the entity data
      * */
     @SuppressWarnings("unchecked")
-    public final Map<String, Object> xml2map(final Reader reader) {
+    public final Map<String, Object> xml2map(final Reader reader) 
+    {
         final Map<String, Object> ret = new HashMap<String, Object>();
         final Stack<Map<String, Object>> maps =
             new Stack<Map<String, Object>>();
         Map<String, Object> current = ret;
 
-        try {
+        try 
+        {
             final XMLStreamReader r =
                 xmlInputFactory.createXMLStreamReader(reader);
             StringBuilder lastText = new StringBuilder();
             String currentElement = null;
-            while (r.hasNext()) {
+            while (r.hasNext()) 
+            {
                 final int eventType = r.next();
                 if (eventType == CHARACTERS || eventType == CDATA
                         || eventType == SPACE
-                        || eventType == ENTITY_REFERENCE) {
+                        || eventType == ENTITY_REFERENCE) 
+                {
                     lastText.append(r.getText());
-                } else if (eventType == PROCESSING_INSTRUCTION
-                        || eventType == COMMENT) {
-                    // skip
-                } else if (eventType == END_DOCUMENT) {
+                } 
+                else if (eventType == END_DOCUMENT) 
+                {
                     break;
-                } else if (eventType == START_ELEMENT) {
-                    if (currentElement != null) {
+                }
+                else if (eventType == START_ELEMENT) 
+                {
+                    if (currentElement != null) 
+                    {
                         maps.push(current);
                         final Map<String, Object> map =
                             new HashMap<String, Object>();
@@ -136,34 +155,46 @@ public class XmlMapper
                         current = map;
                     }
                     currentElement = r.getLocalName();
-                } else if (eventType == END_ELEMENT) {
-                    if (currentElement == null) {
+                } 
+                else if (eventType == END_ELEMENT) 
+                {
+                    if (currentElement == null) 
+                    {
                         current = maps.pop();
-                    } else {
+                    } 
+                    else 
+                    {
                         current.put(currentElement, lastText.toString().trim());
                         currentElement = null;
                         lastText = new StringBuilder();
                     }
-                } else {
+                }
+                else 
+                {
                     throw new XMLStreamException("Unexpected event type "
                         + eventType);
                 }
             }
 
             final Object obj = ret.get(ret.keySet().iterator().next());
-            if(obj instanceof String) {
+            if (obj instanceof String) 
+            {
                 Map<String, Object> responseTag = new HashMap<String, Object>();
                 responseTag.put("response",
                     ret.keySet().iterator().next().toString());
                 return responseTag;
-            } else {
+            } 
+            else 
+            {
                 final Map<String, Object> returnXMLElement = (Map<String, Object>)
                 ret.get(ret.keySet().iterator().next());
 
                 return (Map<String, Object>) returnXMLElement.get("return");
             }
             
-        } catch (XMLStreamException e) {
+        } 
+        catch (XMLStreamException e) 
+        {
             throw new UnhandledException(e);
         }
     }
