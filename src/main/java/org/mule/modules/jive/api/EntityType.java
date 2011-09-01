@@ -10,7 +10,7 @@
 
 package org.mule.modules.jive.api;
 
-import static org.mule.modules.jive.api.EntityTypeBuilder.*;
+import static org.mule.modules.jive.api.EntityTypeBuilder.from;
 
 import org.mule.modules.jive.api.xml.XmlMapper;
 import org.mule.modules.jive.utils.ServiceUriFactory;
@@ -133,9 +133,9 @@ public final class EntityType
     /**
      * @return the rootElement of the xml request
      */
-    public final String getXmlRootElementName()
+    public String getXmlRootElementName()
     {
-        return StringUtils.capitalize(this.toString().toLowerCase());
+        return StringUtils.capitalize(this.entityTypeName.toLowerCase());
     }
 
     /**
@@ -251,18 +251,20 @@ public final class EntityType
     /**
      * 
      */
-    public final String generateBaseUri()
+    public String generateBaseUri()
     {
         final StringBuilder uri = new StringBuilder(getServiceUri() + "/");
-        uri.append(pluralize(toString().toLowerCase()));
+        uri.append(pluralize(this.entityTypeName.toLowerCase()));
         return uri.toString();
     }
     
     /**Pluralizes the service name.
      * @param str The {@link String} to pluralize
      * @return str in plural*/
-    private static String pluralize(final String str) {
-        if (str.endsWith("y")) {
+    private static String pluralize(final String str) 
+    {
+        if (str.endsWith("y")) 
+        {
             return StringUtils.substringBeforeLast(str, "y") + "ies";
         }
         return str + "s";

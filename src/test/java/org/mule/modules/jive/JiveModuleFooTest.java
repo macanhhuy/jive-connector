@@ -59,7 +59,6 @@ public class JiveModuleFooTest
     }
     
     @Test
-    @Ignore
     /**Testing create method.
      * Creates an Avatar*/
     public void create()
