@@ -205,7 +205,7 @@ public class XmlMapper
                 {
                     return returnXMLElement;
                 }
-                return (Map<String, Object>) returnXMLElement.get("return");
+                return (Map<String, Object>) returnXMLElement.get("return--0");
             }
             
         } 
