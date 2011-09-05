@@ -216,10 +216,10 @@ public final class EntityType
      * @param resource
      * @return
      */
-    public Map<String, Object> get(final EntityType type, final String id,
+    public Map<String, Object> get(final String id,
         final XmlMapper mapper, final WebResource resource)
     {
-        return getOperation.execute(resource, mapper, type, id);
+        return getOperation.execute(resource, mapper, this, id);
     }
     
     /**

@@ -15,6 +15,7 @@ import org.mule.modules.jive.api.PayloadOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
 import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.core.util.Base64;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -36,8 +37,7 @@ public class StandardCreateOperation implements PayloadOperation
     {
         final Writer writer = new StringWriter();
         mapper.map2xml("create" + type.getXmlRootElementName(), entityData, writer);
-        final String response = resource.path(type.generateBaseUri()).put(String.class, writer.toString());
-        return mapper.xml2map(new StringReader(response));
+        return mapper.xml2map(new StringReader(resource.path(type.generateBaseUri()).post(String.class, writer.toString())));
     }
 
 }

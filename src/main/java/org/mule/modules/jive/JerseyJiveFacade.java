@@ -49,8 +49,7 @@ public class JerseyJiveFacade implements JiveFacade
     @Override
     public final Map<String, Object> get(final EntityType entityType, final String id)
     {
-        //return entityType.get(id, gateway, mapper);
-        throw new NotImplementedException();
+        return entityType.get(id, mapper, gateway);
     }
     
     @Override
