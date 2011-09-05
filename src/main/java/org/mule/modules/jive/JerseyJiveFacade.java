@@ -147,10 +147,11 @@ public class JerseyJiveFacade implements JiveFacade
     }
 
     @Override
-    /**{@inheritDoc}*/
     public final Map<String, Object> create(final EntityType type,
                                     final Map<String, Object> entity) 
     {
+        Validate.notNull(type);
+        Validate.notNull(entity);
         return type.create(type, entity, mapper, gateway);
     }
     
@@ -182,6 +183,8 @@ public class JerseyJiveFacade implements JiveFacade
     public final Map<String, Object> delete(final EntityType type,
         final String id) 
     {
+        Validate.notNull(type);
+        Validate.notEmpty(id);
         return type.delete(type, id, mapper, gateway);
     }
     
@@ -191,15 +194,15 @@ public class JerseyJiveFacade implements JiveFacade
     @Override
     public Map<String, Object> getAll(EntityType entityType, String id)
     {
+        //TODO add validations
         return entityType.getAll(entityType, id, mapper, gateway);
     }
     
-    /* (non-Javadoc)
-     * @see org.mule.modules.jive.JiveFacade#update(org.mule.modules.jive.api.EntityType, java.util.Map)
-     */
     @Override
     public Map<String, Object> update(EntityType entityType, Map<String, Object> entity)
     {
+        Validate.notNull(entity);
+        Validate.notNull(entity);
         return entityType.put(entityType, entity, mapper, gateway);
     }
 
@@ -209,6 +212,7 @@ public class JerseyJiveFacade implements JiveFacade
      * */
     public final Map<String, Object> count(final EntityType type, final String id) 
     {
+        Validate.notNull(type);
         return type.count(type, id, mapper, gateway);
 //        String response = this.gateway.path(ServiceUriFactory.generateBaseUri(type))
 //            .get(String.class);

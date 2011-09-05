@@ -58,34 +58,95 @@ public class JiveModule
     {
         if (facade == null) 
         {
-            JiveFacade newFacade = new JerseyJiveFacade();
-            facade.setPassword(password);
-            facade.setUsername(username);
-            facade.setGatewayUri(gatewayUri);
-            facade.init();
-            this.facade = JiveModuleAdaptor.getFacadeProxy(newFacade);
+            this.facade = JiveModuleAdaptor.getFacadeProxy(newFacade());
         }
         facade.init();
     }
+
+    protected JiveFacade newFacade()
+    {
+        JiveFacade facade = new JerseyJiveFacade();
+        facade.setPassword(password);
+        facade.setUsername(username);
+        facade.setGatewayUri(gatewayUri);
+        facade.init();
+        return facade;
+    }
     
+    /**
+     * Creates an entity of the given type. 
+     * 
+     * Example: 
+     * {@code 
+     *    <jive:create service="BLOG">
+     *       <jive:entity>
+     *         <creationDate>#[variable:creationDate]</creationDate>
+     *         <author>#[variable:author]</author>
+     *       </jive:entity>
+     *     </jive:create>}
+     * TODO what if already exists?
+     * TODO what if bad data passed?
+     * 
+     * @param type the type of entity to create
+     * @param entity the entity attributes
+     * @return TODO what?
+     */
     @Processor
     public Map<String, Object> create(EntityType type, Map<String, Object> entity) 
     {
         return facade.create(type, entity);
     }
     
+    /**
+     * Updates an existent entity
+     * 
+     * TODO overrides all the original value with the given one or merges both?
+     * TODO if not exists?
+     * 
+     * {@code     
+     *      <jive:update type="BLOG">
+     *        <jive:entity>
+     *            <author>#[variable:author]</author>
+     *        </jive:entity>
+     *      </jive:update>}
+     * 
+     * @param type the type of entity to update
+     * @param entity the attributes of the entity 
+     */
     @Processor
     public void update(EntityType type, Map<String, Object> entity)
     {
         facade.update(type, entity);
     }
     
+    /**
+     * Deletes an existent entity 
+     * 
+     * TODO if no exists?
+     * Example:
+     * {@code <jive:delete type="BLOG" id="#[map-payload:blogId]" />}
+     * 
+     * @param type the entity type
+     * @param id the id of the entity to delete
+     * @return TODO WHAT? 
+     */
     @Processor
     public Map<String, Object> delete(final EntityType type, final String id) 
     {
         return facade.delete(type, id);
     }
     
+    /**
+     * Counts all the instances of the given entity type
+     * 
+     * TODO why id?
+     * Example:
+     * {@code <jive:count type="AVATAR" />}
+     * 
+     * @param type
+     * @param id
+     * @return TODO WHAT?
+     */
     @Processor
     public Map<String, Object> count(final EntityType type, final String id) 
     {
@@ -98,7 +159,17 @@ public class JiveModule
     {
         return facade.execute(op, entity);
     }
-    
+
+    /**
+     * Retrieves the attributes for the entity of the given type and id.
+     * 
+     * TODO if not exists?
+     * {@code <jive:get type="AVATAR" id="#[map-payload:avatarId]"/>}
+     * 
+     * @param type the entity type
+     * @param id the entity id
+     * @return the entity attributes, as a String-Object Map
+     */
     @Processor
     public Map<String, Object> get(EntityType type, 
         final String id) 
@@ -106,7 +177,22 @@ public class JiveModule
         return facade.get(type, id);
     }
 
-
+    /**
+     * Answers the id of the logged user
+     * 
+     * @return the user id
+     */
+    @Processor
+    public Long getUserID()
+    {
+        return facade.getUserID();
+    }
+    
+    @Processor
+    public Map<String, Object> getAll(EntityType entityType, String id)
+    {
+        return facade.getAll(entityType, id);
+    }
 
     public void setUsername(String username)
     {
@@ -127,5 +213,7 @@ public class JiveModule
     {
         this.facade = facade;
     }
+
+    
 
 }

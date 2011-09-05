@@ -20,16 +20,18 @@
  */
 
 package org.mule.modules.jive;
-
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.Operation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -39,19 +41,19 @@ import org.junit.Test;
  * @author Pablo Diez
  * @since Jul 20, 2011
  */
-public class JiveModuleOperationsTest 
+public class JiveModuleTestDriver 
 {
     /**The gateway uri.*/
     private final String gatewayUri =
         "https://app-sandbox.jivesoftware.com/rpc/rest";
     /**Facade instance.*/
-    private static JiveFacade facade;
+    private JiveModule facade;
 
     /**Instantiates the JiveModule with the test properties.*/
     @Before
     public final void init() 
     {
-        facade = new JerseyJiveFacade();
+        facade = new JiveModule();
         facade.setGatewayUri(gatewayUri);
         facade.setUsername(System.getenv("SandboxUser"));
         facade.setPassword(System.getenv("SandboxPass"));
@@ -59,44 +61,78 @@ public class JiveModuleOperationsTest
     }
     
     @Test
-    @Ignore
     /**Testing create method.
      * Creates an Avatar*/
-    public void create()
+    public void getExistingIsNotNull()
     {
-        Map<String, Object> avatar = new HashMap<String, Object>();
-        avatar.put("ownerID", facade.getUserID());
-        avatar.put("name", "avatarTest");
-        avatar.put("contentType", "image/jpg");
-        List<String> data = new ArrayList<String>();
-        data.add("qwertyui");
-        data.add("12345678");
-        avatar.put("data", data);
-        facade.create(EntityType.AVATAR, avatar);
+        String id = (String) facade.create(EntityType.AVATAR, newAvatar()).get("id");
+
+        try
+        {
+            Map<String, Object> avatar = facade.get(EntityType.AVATAR, id);
+            assertNotNull(avatar);
+        }
+        finally
+        {
+            facade.delete(EntityType.AVATAR, id);
+        }        
+    }
+
+    @SuppressWarnings({"unchecked", "serial"})
+    private HashMap<String, Object> newAvatar()
+    {
+        return new HashMap<String, Object>() {{
+            put("ownerID", facade.getUserID());
+            put("name", "avatarTest");
+            put("contentType", "image/jpg");
+            put("data", Arrays.asList("qwertyui", 12345678));
+        }};
+    }
+    
+    @Test(expected = NoSuchElementException.class)
+    // TODO check
+    public void getInexistentFails() throws Exception
+    {
+        facade.get(EntityType.AVATAR, "foobar1234");
+    }
+    
+    /**Test the delete method.
+     * Deletes an Avatar*/
+    @Test(expected=NoSuchElementException.class)
+    public void deleteInexistentFails() 
+    {
+        facade.delete(EntityType.AVATAR, "foobar1234");
+    }
+    
+    /**Test the delete method.
+     * Deletes an Avatar*/
+    @Test
+    public void deleteExistentSucceeds() 
+    {
+        String id = (String) facade.create(EntityType.AVATAR, newAvatar()).get("id");
+        facade.delete(EntityType.AVATAR, id);
     }
     
     @Test
-    @Ignore
-    /**Test the delete method.
-     * Deletes an Avatar*/
-    public void delete() 
+    public void createReturnsNonNullObjectWithNonNullId() throws Exception
     {
-        final String avatarID = String.valueOf(123);
-        facade.delete(EntityType.AVATAR, avatarID);
+        Map<String, Object> avatar = facade.create(EntityType.AVATAR, newAvatar());
+        assertNotNull(avatar);
+        assertNotNull(avatar.get("id"));
     }
     
     /**
      * Test the get-all call.
      */
     @Test
-    @Ignore
-    public void getAll() 
+    public void getAllReturnsNonNullResult() 
     {
-        facade.getAll(EntityType.USER, "");
+        Map<String, Object> result = facade.getAll(EntityType.USER, "");
+        assertNotNull(result);
     }
     
     @Test
-    @Ignore
+    
     /**Test the create method.
      * Creates an addressbook*/
     public void createAddressbook() 
@@ -106,7 +142,7 @@ public class JiveModuleOperationsTest
     }
     
     @Test
-    @Ignore
+    
     /**Test the create method.
      * Creates an addressbook*/
     public void deleteAddressbook() 
@@ -116,7 +152,7 @@ public class JiveModuleOperationsTest
     }
     
     @Test
-    @Ignore
+    
     /**Test the create method.
      * Creates an addressbook*/
     public void createBlog() 
@@ -126,7 +162,7 @@ public class JiveModuleOperationsTest
     }
     
     @Test
-    @Ignore
+    
     /**Test the create method.
      * Creates an addressbook*/
     public void deleteBlog() 
@@ -136,7 +172,7 @@ public class JiveModuleOperationsTest
     }
     
     @Test
-    @Ignore
+    
     /**Test the execution of an {@link Operation} with a {@link CustomOp}.*/
     public void executeOperationWithCustomOp() 
     {
@@ -154,7 +190,7 @@ public class JiveModuleOperationsTest
     }
     
     @Test
-    @Ignore
+    
     public void executeOperationWithBaseUri() 
     {
         final Map<String, Object> entity = new HashMap<String, Object>();
@@ -165,7 +201,7 @@ public class JiveModuleOperationsTest
     }
     
     @Test
-    @Ignore
+    
     public void executeRegularOperation() 
     {
         final Map<String, Object> entity = new HashMap<String, Object>();
@@ -181,7 +217,7 @@ public class JiveModuleOperationsTest
      * Deletes the blog and verifies the deletion.
      * */
     @Test
-    @Ignore
+    
     public final void operationFlowTest() 
     {
         final Map<String, Object> blog = new HashMap<String, Object>();
@@ -210,7 +246,7 @@ public class JiveModuleOperationsTest
     
     /**Attemps to create a blog already created and handles the error.*/
     @Test
-    @Ignore
+    
     public final void errorHandlingTest() 
     {
         final Map<String, Object> blog = new HashMap<String, Object>();
@@ -226,7 +262,7 @@ public class JiveModuleOperationsTest
     }
 
     /**Test the get count.*/
-    @Ignore
+    
     @Test
     public final void getCount() 
     {
@@ -235,7 +271,7 @@ public class JiveModuleOperationsTest
 
     /**Test the delete service.
      * */
-    @Ignore
+    
     @Test
     public final void testDeleteSingular() 
     {

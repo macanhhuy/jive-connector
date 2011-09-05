@@ -29,14 +29,13 @@ import org.junit.Test;
 /**Test for the mappings of the {@link Map} entities to and from XML.*/
 public class MappingTest {
     /**The module instance we'll use to map.*/
-    private static final XmlMapper FACADE = new XmlMapper();
+    private final XmlMapper mapper = new XmlMapper();
 
     /**Test the xml to and from mapping.
      * In a classic entity, with no exceptions in the rest uri or the xml
      * elements.*/
     @Test
-    public final void testMappingSimple() {
-
+    public final void testMap2Xml() {
         final String simpleEntityExpectedXMLFromMap =
             "<?xml version=\"1.0\" ?>"
             + "<createAvatar>"
@@ -46,9 +45,18 @@ public class MappingTest {
                 + "<contentType>image/jpeg</contentType>"
             + "</createAvatar>";
 
-        //This is not the expected response, but is an example of a response
-        //that if we parse it to a Map should generate the Map created in
-        //newTestMapSimple().
+        final Writer writer = new StringWriter();
+
+        //The root tag sent to the map2xml method is generated from the service enum.
+        mapper.map2xml("createAvatar",
+            newTestMapSimple(), writer);
+        assertEquals("The entity xml returned wasn't the one expected",
+            simpleEntityExpectedXMLFromMap, writer.toString());
+    }
+    
+    @Test
+    public final void testXml2Map()
+    {
         final String simpleEntityXMLResponseExample =
             "<createAvatarResponse>"
                 + "<return>"
@@ -59,18 +67,12 @@ public class MappingTest {
                 + "</return>"
             + "</createAvatarResponse>";
 
-        final Writer writer = new StringWriter();
-
-        //The root tag sent to the map2xml method is generated from the service enum.
-        FACADE.map2xml("createAvatar",
-            newTestMapSimple(), writer);
-        assertEquals("The entity xml returned wasn't the one expected",
-            simpleEntityExpectedXMLFromMap, writer.toString());
-
         Map<String, Object> res =
-            FACADE.xml2map(new StringReader(simpleEntityXMLResponseExample));
+            mapper.xml2map(new StringReader(simpleEntityXMLResponseExample));
         final String msg = "The map generated from the xml does not match"
             + "the original";
+        
+        assertNotNull(res);
         assertEquals(msg, res.get("ownerID").toString(), "123");
         assertEquals(msg, res.get("name").toString(), "foo");
         assertEquals(msg, res.get("data").toString(), "f123f123");
@@ -90,7 +92,7 @@ public class MappingTest {
         final Writer writer = new StringWriter();
         addressbookUser.put("userID", 123L);
         addressbookUser.put("usernameToAdd", "fooNewUser");
-        FACADE.map2xml(CustomOp.ADDRESSBOOK_ADD_USER.getRootTagElementName(),
+        mapper.map2xml(CustomOp.ADDRESSBOOK_ADD_USER.getRootTagElementName(),
             addressbookUser, writer);
         assertEquals(customOpExpectedXMLFromMap, writer.toString());
     }
@@ -144,13 +146,13 @@ public class MappingTest {
 
         final Writer writer = new StringWriter();
 
-        FACADE.map2xml("mmmmm",
+        mapper.map2xml("mmmmm",
             newTestMapWithAdditionalTag(), writer);
         assertEquals("The entity xml returned wasn't the one expected",
             additionalTagEntityExpectedXMLFromMap, writer.toString());
 
         Map<String, Object> res =
-            FACADE.xml2map(new StringReader(
+            mapper.xml2map(new StringReader(
                 additionalTagEntityXMLResponseExample));
         final String msg = "The map generated from the xml does not match"
             + "the original";
