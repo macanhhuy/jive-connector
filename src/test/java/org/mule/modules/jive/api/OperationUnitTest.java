@@ -10,8 +10,6 @@
 
 package org.mule.modules.jive.api;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class OperationUnitTest

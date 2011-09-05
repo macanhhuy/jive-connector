@@ -20,8 +20,9 @@
  */
 
 package org.mule.modules.jive;
-import static org.junit.Assert.*;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.Operation;
@@ -29,29 +30,30 @@ import org.mule.modules.jive.api.Operation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-/**JiveConnector Test.
+/**
+ * JiveConnector Test.
+ * 
  * @author Pablo Diez
  * @since Jul 20, 2011
  */
-public class JiveModuleTestDriver 
+public class JiveModuleTestDriver
 {
-    /**The gateway uri.*/
-    private final String gatewayUri =
-        "https://app-sandbox.jivesoftware.com/rpc/rest";
-    /**Facade instance.*/
+    /** The gateway uri. */
+    private final String gatewayUri = "https://app-sandbox.jivesoftware.com/rpc/rest";
+    /** Facade instance. */
     private JiveModule facade;
 
-    /**Instantiates the JiveModule with the test properties.*/
+    /** Instantiates the JiveModule with the test properties. */
     @Before
-    public final void init() 
+    public final void init()
     {
         facade = new JiveModule();
         facade.setGatewayUri(gatewayUri);
@@ -65,7 +67,7 @@ public class JiveModuleTestDriver
      * Creates an Avatar*/
     public void getExistingIsNotNull()
     {
-        String id = (String) facade.create(EntityType.AVATAR, newAvatar()).get("id");
+        String id = (String) facade.create(EntityType.AVATAR, newAvatar()).get("ID");
 
         try
         {
@@ -75,41 +77,46 @@ public class JiveModuleTestDriver
         finally
         {
             facade.delete(EntityType.AVATAR, id);
-        }        
+        }
     }
 
     @SuppressWarnings({"unchecked", "serial"})
     private HashMap<String, Object> newAvatar()
     {
-        return new HashMap<String, Object>() {{
-            put("ownerID", facade.getUserID());
-            put("name", "avatarTest");
-            put("contentType", "image/jpg");
-            put("data", Arrays.asList("qwertyui", 12345678));
-        }};
+        return new HashMap<String, Object>()
+        {
+            {
+                put("ownerID", facade.getUserID());
+                put("name", "avatarTest10");
+                put("contentType", "image/jpg");
+                put("data", Arrays.asList("qwertyui", "12345678"));
+            }
+        };
     }
-    
+
     @Test(expected = NoSuchElementException.class)
     // TODO check
     public void getInexistentFails() throws Exception
     {
         facade.get(EntityType.AVATAR, "foobar1234");
     }
-    
-    /**Test the delete method.
-     * Deletes an Avatar*/
-    @Test(expected=NoSuchElementException.class)
-    public void deleteInexistentFails() 
+
+    /**
+     * Test the delete method. Deletes an Avatar
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void deleteInexistentFails()
     {
         facade.delete(EntityType.AVATAR, "foobar1234");
     }
-    
-    /**Test the delete method.
-     * Deletes an Avatar*/
+
+    /**
+     * Test the delete method. Deletes an Avatar
+     */
     @Test
-    public void deleteExistentSucceeds() 
+    public void deleteExistentSucceeds()
     {
-        String id = (String) facade.create(EntityType.AVATAR, newAvatar()).get("id");
+        String id = (String) facade.create(EntityType.AVATAR, newAvatar()).get("ID");
         facade.delete(EntityType.AVATAR, id);
     }
     
@@ -118,63 +125,65 @@ public class JiveModuleTestDriver
     {
         Map<String, Object> avatar = facade.create(EntityType.AVATAR, newAvatar());
         assertNotNull(avatar);
-        assertNotNull(avatar.get("id"));
+        assertNotNull(avatar.get("ID"));
+        
+        facade.delete(EntityType.AVATAR, (String) avatar.get("ID"));
     }
-    
+
     /**
      * Test the get-all call.
      */
     @Test
-    public void getAllReturnsNonNullResult() 
+    public void getAllReturnsNonNullResult()
     {
         Map<String, Object> result = facade.getAll(EntityType.USER, "");
         assertNotNull(result);
     }
-    
+
     @Test
-    
     /**Test the create method.
      * Creates an addressbook*/
-    public void createAddressbook() 
+    public void createAddressbook()
     {
         final Map<String, Object> fooData = new HashMap<String, Object>();
         facade.create(EntityType.ADDRESSBOOK, fooData);
     }
-    
+
     @Test
-    
     /**Test the create method.
      * Creates an addressbook*/
-    public void deleteAddressbook() 
+    public void deleteAddressbook()
     {
         final String id = "bla/foo";
         facade.delete(EntityType.ADDRESSBOOK, id);
     }
-    
+
     @Test
-    
-    /**Test the create method.
-     * Creates an addressbook*/
-    public void createBlog() 
+    public void createBlogReturnsNonNullObjectWithNonNullId() throws Exception
     {
-        final Map<String, Object> fooData = new HashMap<String, Object>();
-        facade.create(EntityType.BLOG, fooData);
+        Map<String, Object> blog = facade.create(EntityType.BLOG, newBlog());
+        
+        assertNotNull(blog);
+        assertNotNull(blog.get("ID"));
+        facade.delete(EntityType.BLOG, (String) blog.get("ID"));
     }
-    
-    @Test
-    
-    /**Test the create method.
-     * Creates an addressbook*/
-    public void deleteBlog() 
+
+    @SuppressWarnings("serial")
+    private LinkedHashMap<String, Object> newBlog()
     {
-        final String id = "bla/foo";
-        facade.delete(EntityType.BLOG, id);
+        return new LinkedHashMap<String, Object>()
+        {
+            {
+                put("userID", facade.getUserID());
+                put("blogName", "foobaz15");
+                put("displayName", "foobazbar");
+            }
+        };
     }
-    
+
     @Test
-    
     /**Test the execution of an {@link Operation} with a {@link CustomOp}.*/
-    public void executeOperationWithCustomOp() 
+    public void executeOperationWithCustomOp()
     {
         final int magicNumber = 123;
         final Map<String, Object> entity = new HashMap<String, Object>();
@@ -188,10 +197,9 @@ public class JiveModuleTestDriver
         entity.put("source", sources);
         facade.execute(Operation.BLOG_ADD_ATTACHMENT_TO_BLOG_POST, entity);
     }
-    
+
     @Test
-    
-    public void executeOperationWithBaseUri() 
+    public void executeOperationWithBaseUri()
     {
         final Map<String, Object> entity = new HashMap<String, Object>();
         entity.put("userID", facade.getUserID());
@@ -199,10 +207,9 @@ public class JiveModuleTestDriver
         entity.put("displayName", "Great Blog Display Name!");
         facade.execute(Operation.BLOG_CREATE_BLOG, entity);
     }
-    
+
     @Test
-    
-    public void executeRegularOperation() 
+    public void executeRegularOperation()
     {
         final Map<String, Object> entity = new HashMap<String, Object>();
         entity.put("userID", facade.getUserID());
@@ -212,13 +219,12 @@ public class JiveModuleTestDriver
         facade.execute(Operation.BLOG_CREATE_BLOG_POST, entity);
     }
 
-    /**Test the creation of entities.
-     * Creates a new blog, make a get request to the new blog to verify the creation.
-     * Deletes the blog and verifies the deletion.
-     * */
+    /**
+     * Test the creation of entities. Creates a new blog, make a get request to the
+     * new blog to verify the creation. Deletes the blog and verifies the deletion.
+     */
     @Test
-    
-    public final void operationFlowTest() 
+    public final void operationFlowTest()
     {
         final Map<String, Object> blog = new HashMap<String, Object>();
         final Map<String, Object> createResponse;
@@ -227,53 +233,51 @@ public class JiveModuleTestDriver
         blog.put("userID", facade.getUserID());
         blog.put("blogName", "fooBlog");
         blog.put("displayName", "fooDisplayBlogName");
-        
-        //Creates the blog
+
+        // Creates the blog
         createResponse = facade.create(EntityType.BLOG, blog);
         assertEquals("fooDisplayBlogName", createResponse.get("displayName"));
-        
-        //Get the blog just created
-        getResponse = facade.get(EntityType.BLOG, 
-            createResponse.get("ID").toString());
+
+        // Get the blog just created
+        getResponse = facade.get(EntityType.BLOG, createResponse.get("ID").toString());
         assertEquals(createResponse, getResponse);
-        
-        //Deletes the blog just created and verifies
-        //that the server doesn't return an error
-        deleteResponse = facade.delete(EntityType.BLOG,
-            createResponse.get("ID").toString());
+
+        // Deletes the blog just created and verifies
+        // that the server doesn't return an error
+        deleteResponse = facade.delete(EntityType.BLOG, createResponse.get("ID").toString());
         assertEquals("deleteBlogResponse", deleteResponse.get("response"));
     }
-    
-    /**Attemps to create a blog already created and handles the error.*/
+
+    /** Attemps to create a blog already created and handles the error. */
     @Test
-    
-    public final void errorHandlingTest() 
+    public final void errorHandlingTest()
     {
         final Map<String, Object> blog = new HashMap<String, Object>();
         blog.put("userID", facade.getUserID());
         blog.put("blogName", "fooBlog");
         blog.put("displayName", "fooDisplayBlogName");
-        
-        //Creates the blog
+
+        // Creates the blog
         facade.create(EntityType.BLOG, blog);
-        
-        //Attemps to create the same blog should throw an error
+
+        // Attemps to create the same blog should throw an error
         facade.create(EntityType.BLOG, blog);
     }
 
-    /**Test the get count.*/
-    
+    /** Test the get count. */
+
     @Test
-    public final void getCount() 
+    public final void getCount()
     {
         facade.count(EntityType.BLOG, "");
     }
 
-    /**Test the delete service.
-     * */
-    
+    /**
+     * Test the delete service.
+     */
+
     @Test
-    public final void testDeleteSingular() 
+    public final void testDeleteSingular()
     {
         facade.delete(EntityType.ADDRESSBOOK, "123");
     }

@@ -13,7 +13,6 @@ package org.mule.modules.jive.api;
 import static org.mule.modules.jive.api.EntityTypeBuilder.from;
 
 import org.mule.modules.jive.api.xml.XmlMapper;
-import org.mule.modules.jive.utils.ServiceUriFactory;
 
 import com.sun.jersey.api.client.WebResource;
 
@@ -149,7 +148,7 @@ public final class EntityType
         }
         return "/" + serviceUri;
     }
-
+    
     /**
      * Generates the complete uri for the get or delete service.
      * 
@@ -161,8 +160,7 @@ public final class EntityType
     {
         final StringBuffer completeUri = new StringBuffer();
         final String[] pathParams = StringUtils.split(id, ':');
-
-        completeUri.append(ServiceUriFactory.generateBaseUri(this));
+        completeUri.append(this.generateBaseUri());
         for (int i = 0; i < pathParams.length; i++)
         {
             completeUri.append("/" + pathParams[i]);
@@ -248,15 +246,16 @@ public final class EntityType
         return putOperation.execute(resource, mapper, type, entityData);
     }
     
-    /**
-     * 
-     */
+    /**Generates the base uri for the service type given.
+     * @return The service base uri. E.g. For the AVATAR service, the base
+     * uri would be /avatarService/avatars
+     * @param type The service
+     * */
     public String generateBaseUri()
     {
-        final StringBuilder uri = new StringBuilder(getServiceUri() + "/");
-        uri.append(pluralize(this.entityTypeName.toLowerCase()));
-        return uri.toString();
+        return getServiceUri() + "/" + pluralize(this.entityTypeName.toLowerCase());
     }
+    
     
     /**Pluralizes the service name.
      * @param str The {@link String} to pluralize
@@ -269,5 +268,7 @@ public final class EntityType
         }
         return str + "s";
     }
+    
+    
 
 }
