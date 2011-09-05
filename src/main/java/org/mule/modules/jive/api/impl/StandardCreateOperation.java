@@ -15,7 +15,6 @@ import org.mule.modules.jive.api.PayloadOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
 import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.core.util.Base64;
 
 import java.io.StringReader;
 import java.io.StringWriter;

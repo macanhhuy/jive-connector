@@ -10,8 +10,6 @@
 
 package org.mule.modules.jive.api;
 
-import org.mule.modules.jive.api.EntityType;
-import org.mule.modules.jive.api.ReferenceOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
 import com.sun.jersey.api.client.WebResource;

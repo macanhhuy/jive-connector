@@ -10,13 +10,14 @@ package org.mule.modules.jive.api;
  * LICENSE.txt file.
  */
 
+import org.mule.modules.jive.JiveFacade;
+import org.mule.modules.jive.JiveModule;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import org.mule.modules.jive.JiveFacade;
-import org.mule.modules.jive.JiveModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

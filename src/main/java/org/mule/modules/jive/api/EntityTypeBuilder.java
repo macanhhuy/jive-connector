@@ -11,11 +11,11 @@
 package org.mule.modules.jive.api;
 
 import org.mule.modules.jive.api.impl.StandardCountOperation;
+import org.mule.modules.jive.api.impl.StandardCreateOperation;
 import org.mule.modules.jive.api.impl.StandardDeleteOperation;
 import org.mule.modules.jive.api.impl.StandardGetAllOperation;
 import org.mule.modules.jive.api.impl.StandardGetOperation;
 import org.mule.modules.jive.api.impl.StandardPayloadOperation;
-import org.mule.modules.jive.api.impl.StandardCreateOperation;
 
 /**
  * Builder to hold all the crud operations.
