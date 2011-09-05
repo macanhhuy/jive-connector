@@ -41,7 +41,7 @@ import org.junit.Test;
  * @author Pablo Diez
  * @since Jul 20, 2011
  */
-public class JiveModuleFooTest  //TODO rename
+public class JiveModuleOperationsTest 
 {
     /**The gateway uri.*/
     private final String gatewayUri =
@@ -94,6 +94,7 @@ public class JiveModuleFooTest  //TODO rename
     
     
     @Test
+    @Ignore
     /**Testing create method.
      * Creates an Avatar*/
     public void create()
@@ -117,6 +118,16 @@ public class JiveModuleFooTest  //TODO rename
     {
         final String avatarID = String.valueOf(123);
         facade.delete(EntityType.AVATAR, avatarID);
+    }
+    
+    /**
+     * Test the get-all call.
+     */
+    @Test
+    @Ignore
+    public void getAll() 
+    {
+        facade.getAll(EntityType.USER, "");
     }
     
     @Test
@@ -164,8 +175,9 @@ public class JiveModuleFooTest  //TODO rename
     /**Test the execution of an {@link Operation} with a {@link CustomOp}.*/
     public void executeOperationWithCustomOp() 
     {
+        final int magicNumber = 123;
         final Map<String, Object> entity = new HashMap<String, Object>();
-        entity.put("blogPost", 123);
+        entity.put("blogPost", magicNumber);
         entity.put("name", "Great Blog");
         entity.put("contentTypes", "Great Blog Display Name!");
         List<String> sources = new ArrayList<String>();
