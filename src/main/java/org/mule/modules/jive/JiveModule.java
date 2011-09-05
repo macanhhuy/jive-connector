@@ -116,6 +116,12 @@ public class JiveModule
     {
         return facade.getUserID();
     }
+    
+    @Processor
+    public Map<String, Object> getAll(EntityType entityType, String id)
+    {
+        return facade.getAll(entityType, id);
+    }
 
 
     public void setUsername(String username)
@@ -137,5 +143,7 @@ public class JiveModule
     {
         this.facade = facade;
     }
+
+    
 
 }
