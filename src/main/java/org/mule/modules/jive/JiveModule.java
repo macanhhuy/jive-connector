@@ -73,12 +73,46 @@ public class JiveModule
         return facade;
     }
     
+    /**
+     * Creates an entity of the given type. 
+     * 
+     * Example: 
+     * {@code 
+     *    <jive:create service="BLOG">
+     *       <jive:entity>
+     *         <creationDate>#[variable:creationDate]</creationDate>
+     *         <author>#[variable:author]</author>
+     *       </jive:entity>
+     *     </jive:create>}
+     * TODO what if already exists?
+     * TODO what if bad data passed?
+     * 
+     * @param type the type of entity to create
+     * @param entity the entity attributes
+     * @return TODO what?
+     */
     @Processor
     public Map<String, Object> create(EntityType type, Map<String, Object> entity) 
     {
         return facade.create(type, entity);
     }
     
+    /**
+     * Updates an existent entity
+     * 
+     * TODO overrides all the original value with the given one or merges both?
+     * TODO if not exists?
+     * 
+     * {@code     
+     *      <jive:update type="BLOG">
+     *        <jive:entity>
+     *            <author>#[variable:author]</author>
+     *        </jive:entity>
+     *      </jive:update>}
+     * 
+     * @param type the type of entity to update
+     * @param entity the attributes of the entity 
+     */
     @Processor
     public void update(EntityType type, Map<String, Object> entity)
     {
@@ -122,7 +156,6 @@ public class JiveModule
     {
         return facade.getAll(entityType, id);
     }
-
 
     public void setUsername(String username)
     {
