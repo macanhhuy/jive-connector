@@ -58,14 +58,19 @@ public class JiveModule
     {
         if (facade == null) 
         {
-            JiveFacade newFacade = new JerseyJiveFacade();
-            facade.setPassword(password);
-            facade.setUsername(username);
-            facade.setGatewayUri(gatewayUri);
-            facade.init();
-            this.facade = JiveModuleAdaptor.getFacadeProxy(newFacade);
+            this.facade = JiveModuleAdaptor.getFacadeProxy(newFacade());
         }
         facade.init();
+    }
+
+    protected JiveFacade newFacade()
+    {
+        JiveFacade facade = new JerseyJiveFacade();
+        facade.setPassword(password);
+        facade.setUsername(username);
+        facade.setGatewayUri(gatewayUri);
+        facade.init();
+        return facade;
     }
     
     @Processor
@@ -106,6 +111,11 @@ public class JiveModule
         return facade.get(type, id);
     }
 
+    @Processor
+    public Long getUserID()
+    {
+        return facade.getUserID();
+    }
 
 
     public void setUsername(String username)
