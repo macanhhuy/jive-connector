@@ -65,9 +65,9 @@ public enum Operation
     /** Sets whether or not users can create their own custom avatars. */
     AVATAR_SET_USER_AVATARS_ENABLED(EntityType.AVATAR),
     /** Adds a new comment to the specified content object. */
-    COMMENT_ADD_COMMENT(CustomOp.COMMENT_ADD),
+  //  COMMENT_ADD_COMMENT(CustomOp.COMMENT_ADD), FIXME
     /** Adds a new comment to the specified parent comment. */
-    COMMENT_ADD_COMMENT_TO_COMMENT(CustomOp.COMMENT_ADD_COMMENT_TO_COMMENT),
+  //  COMMENT_ADD_COMMENT_TO_COMMENT(CustomOp.COMMENT_ADD_COMMENT_TO_COMMENT), FIXME
     /** Deletes all comments on the object. */
     COMMENT_DELETE_ALL_COMMENTS(EntityType.COMMENT, EntityTypes.BASE_URI),
     /** Deletes a comment in the object. */
