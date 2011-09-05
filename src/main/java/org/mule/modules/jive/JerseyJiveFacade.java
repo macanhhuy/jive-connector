@@ -212,6 +212,7 @@ public class JerseyJiveFacade implements JiveFacade
      * */
     public final Map<String, Object> count(final EntityType type, final String id) 
     {
+        Validate.notNull(type);
         return type.count(type, id, mapper, gateway);
 //        String response = this.gateway.path(ServiceUriFactory.generateBaseUri(type))
 //            .get(String.class);

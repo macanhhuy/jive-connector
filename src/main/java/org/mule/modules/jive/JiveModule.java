@@ -136,6 +136,17 @@ public class JiveModule
         return facade.delete(type, id);
     }
     
+    /**
+     * Counts all the instances of the given entity type
+     * 
+     * TODO why id?
+     * Example:
+     * {@code <jive:count type="AVATAR" />}
+     * 
+     * @param type
+     * @param id
+     * @return TODO WHAT?
+     */
     @Processor
     public Map<String, Object> count(final EntityType type, final String id) 
     {
@@ -148,7 +159,17 @@ public class JiveModule
     {
         return facade.execute(op, entity);
     }
-    
+
+    /**
+     * Retrieves the attributes for the entity of the given type and id.
+     * 
+     * TODO if not exists?
+     * {@code <jive:get type="AVATAR" id="#[map-payload:avatarId]"/>}
+     * 
+     * @param type the entity type
+     * @param id the entity id
+     * @return the entity attributes, as a String-Object Map
+     */
     @Processor
     public Map<String, Object> get(EntityType type, 
         final String id) 
@@ -156,6 +177,11 @@ public class JiveModule
         return facade.get(type, id);
     }
 
+    /**
+     * Answers the id of the logged user
+     * 
+     * @return the user id
+     */
     @Processor
     public Long getUserID()
     {
