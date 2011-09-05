@@ -41,12 +41,12 @@ import org.junit.Test;
  * @author Pablo Diez
  * @since Jul 20, 2011
  */
-public class JiveModuleOperationsTest 
+public class JiveModuleTestDriver 
 {
     /**The gateway uri.*/
     private final String gatewayUri =
         "https://app-sandbox.jivesoftware.com/rpc/rest";
-    /**Facade instance.*/ //TODO test the module, not the facade
+    /**Facade instance.*/
     private JiveModule facade;
 
     /**Instantiates the JiveModule with the test properties.*/
