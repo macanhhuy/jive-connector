@@ -14,5 +14,7 @@ public class EntityTypes
 {
     /** Default strategy. */
     public static final String DEFAULT_SERVICE_URI = null;
+    /** For operations that use the base uri. */
+    public static final int BASE_URI = 1;
 
 }
