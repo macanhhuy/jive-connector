@@ -20,16 +20,18 @@
  */
 
 package org.mule.modules.jive;
-
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.Operation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -39,13 +41,13 @@ import org.junit.Test;
  * @author Pablo Diez
  * @since Jul 20, 2011
  */
-public class JiveModuleFooTest 
+public class JiveModuleFooTest  //TODO rename
 {
     /**The gateway uri.*/
     private final String gatewayUri =
         "https://app-sandbox.jivesoftware.com/rpc/rest";
-    /**Facade instance.*/
-    private static JiveFacade facade;
+    /**Facade instance.*/ //TODO test the module, not the facade
+    private JiveFacade facade;
 
     /**Instantiates the JiveModule with the test properties.*/
     @Before
@@ -57,6 +59,39 @@ public class JiveModuleFooTest
         facade.setPassword(System.getenv("SandboxPass"));
         facade.init();
     }
+    
+    @SuppressWarnings({"unchecked", "serial"})
+    @Test
+    /**Testing create method.
+     * Creates an Avatar*/
+    public void getExistingIsNotNull()
+    {
+        String id = (String) facade.create(EntityType.AVATAR, 
+            new HashMap<String, Object>() {{
+                put("ownerID", facade.getUserID());
+                put("name", "avatarTest");
+                put("contentType", "image/jpg");
+                put("data", Arrays.asList("qwertyui", 12345678));
+            }}).get("id");
+
+        try
+        {
+            Map<String, Object> avatar = facade.get(EntityType.AVATAR, id);
+            assertNotNull(avatar);
+        }
+        finally
+        {
+            facade.delete(EntityType.AVATAR, id);
+        }        
+    }
+    
+    @Test(expected = NoSuchElementException.class)
+    // TODO check
+    public void getInexistentFails() throws Exception
+    {
+        facade.get(EntityType.AVATAR, "foobar1234");
+    }
+    
     
     @Test
     /**Testing create method.
