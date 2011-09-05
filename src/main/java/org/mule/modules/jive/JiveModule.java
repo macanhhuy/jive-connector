@@ -119,6 +119,17 @@ public class JiveModule
         facade.update(type, entity);
     }
     
+    /**
+     * Deletes an existent entity 
+     * 
+     * TODO if no exists?
+     * Example:
+     * {@code <jive:delete type="BLOG" id="#[map-payload:blogId]" />}
+     * 
+     * @param type the entity type
+     * @param id the id of the entity to delete
+     * @return TODO WHAT? 
+     */
     @Processor
     public Map<String, Object> delete(final EntityType type, final String id) 
     {

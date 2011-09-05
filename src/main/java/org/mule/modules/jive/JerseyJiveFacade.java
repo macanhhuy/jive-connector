@@ -183,6 +183,8 @@ public class JerseyJiveFacade implements JiveFacade
     public final Map<String, Object> delete(final EntityType type,
         final String id) 
     {
+        Validate.notNull(type);
+        Validate.notEmpty(id);
         return type.delete(type, id, mapper, gateway);
     }
     

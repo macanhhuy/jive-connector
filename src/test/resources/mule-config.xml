@@ -27,6 +27,10 @@
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
         http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0-SNAPSHOT/mule-jive.xsd">
 
+<!--      <flow name="deleteBlog"> -->
+<!--        <jive:delete type="BLOG" id="#[map-payload:blogId]" />-->
+<!--     </flow> -->
+
 <!--     <jive:config username="myUsername" password="password" gatewayUri="lalalalla"/> -->
 
 <!--     <flow name="createBlog"> -->
