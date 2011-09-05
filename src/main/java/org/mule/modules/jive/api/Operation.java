@@ -1,10 +1,9 @@
 
 package org.mule.modules.jive.api;
 
-import org.apache.commons.lang.StringUtils;
-
 import org.mule.modules.jive.CustomOp;
-import org.mule.modules.jive.utils.ServiceUriFactory;
+
+import org.apache.commons.lang.StringUtils;
 
 /**The complete list of operations the user can execute.*/
 public enum Operation 
@@ -14,26 +13,26 @@ public enum Operation
      * Creates a new avatar for a user using the specified byte array as the contents
      * of the avatar image.
      */
-    AVATAR_CREATE_AVATAR(EntityType.AVATAR, 1),
+    AVATAR_CREATE_AVATAR(EntityType.AVATAR, EntityTypes.BASE_URI),
     /** Deletes an avatar from the system. */
-    AVATAR_DELETE_AVATAR(EntityType.AVATAR, 1),
+    AVATAR_DELETE_AVATAR(CustomOp.AVATAR_DELETE),
     /**
      * Returns the active avatar for the specified user, or the SystemDefaultAvatar
      * if the user does not have an active avatar specified.
      */
     AVATAR_GET_ACTIVE_AVATAR(EntityType.AVATAR),
     /** Returns an avatar by its ID. */
-    AVATAR_GET_AVATAR(EntityType.AVATAR),
+    AVATAR_GET_AVATAR(CustomOp.AVATAR_GET_AVATAR_BY_ID),
     /** Used to acquire a count of all the avatars for a specific user. */
     AVATAR_GET_AVATAR_COUNT(EntityType.AVATAR),
     /** Returns a list of avatars for the specified user. */
-    AVATAR_GET_AVATARS(EntityType.AVATAR),
+    AVATAR_GET_AVATARS(CustomOp.AVATAR_GET_AVATARS),
     /** Returns a list of all of the global avatars. */
     AVATAR_GET_GLOBAL_AVATARS(EntityType.AVATAR),
     /** Returns the maximum allowable height for an avatar image. */
-    AVATAR_GET_MAX_ALLOWABLE_HEIGHT(EntityType.AVATAR),
+    AVATAR_GET_MAX_ALLOWABLE_HEIGHT(CustomOp.AVATAR_GET_MAX_ALLOWABLE_HEIGHT),
     /** Returns the maximum allowable width for an avatar image. */
-    AVATAR_GET_MAX_ALLOWABLE_WIDTH(EntityType.AVATAR),
+    AVATAR_GET_MAX_ALLOWABLE_WIDTH(CustomOp.AVATAR_GET_MAX_ALLOWABLE_WIDTH),
     /**
      * Returns the maximum number of avatars a user is allowed to have; returns -1
      * when there is no limit.
@@ -44,7 +43,7 @@ public enum Operation
     /** Returns a collection of all of the avatars that require moderation. */
     AVATAR_GET_MODERATION_AVATARS(EntityType.AVATAR),
     /** Returns true if the system should attempt to resize avatar images. */
-    AVATAR_IS_ALLOW_IMAGE_RESIZE(EntityType.AVATAR),
+    AVATAR_IS_ALLOW_IMAGE_RESIZE(CustomOp.AVATAR_IS_ALLOW_IMAGE_RESIZE),
     /** Returns true if the avatars feature is enabled; false otherwise. */
     AVATAR_IS_AVATARS_ENABLED(EntityType.AVATAR),
     /** Returns whether or not user avatars will be moderated. */
@@ -54,11 +53,11 @@ public enum Operation
     /** Sets the specified avatar as the user's avatar. */
     AVATAR_SET_ACTIVE_AVATAR(EntityType.AVATAR),
     /** Set whether the system should attempt to resize avatar images. */
-    AVATAR_SET_ALLOW_IMAGE_RESIZE(EntityType.AVATAR),
+    AVATAR_SET_ALLOW_IMAGE_RESIZE(CustomOp.AVATAR_SET_ALLOW_IMAGE_RESIZE),
     /** Sets the maximum allowable height for an avatar image. */
-    AVATAR_SET_MAX_ALLOWABLE_HEIGHT(EntityType.AVATAR),
+    AVATAR_SET_MAX_ALLOWABLE_HEIGHT(CustomOp.AVATAR_SET_MAX_ALLOWABLE_HEIGHT),
     /** Sets the maximum allowable width for an avatar image. */
-    AVATAR_SET_MAX_ALLOWABLE_WIDTH(EntityType.AVATAR),
+    AVATAR_SET_MAX_ALLOWABLE_WIDTH(CustomOp.AVATAR_SET_MAX_ALLOWABLE_WIDTH),
     /** Sets the maximum number of avatars a user can have. */
     AVATAR_SET_MAX_USER_AVATARS(EntityType.AVATAR),
     /** Sets whether or not user-create avatars will be moderated. */
@@ -66,54 +65,54 @@ public enum Operation
     /** Sets whether or not users can create their own custom avatars. */
     AVATAR_SET_USER_AVATARS_ENABLED(EntityType.AVATAR),
     /** Adds a new comment to the specified content object. */
-    COMMENTSERVICE_ADD_COMMENT(EntityType.COMMENT),
+    COMMENT_ADD_COMMENT(CustomOp.COMMENT_ADD),
     /** Adds a new comment to the specified parent comment. */
-    COMMENTSERVICE_ADD_COMMENT_TO_COMMENT(EntityType.COMMENT),
+    COMMENT_ADD_COMMENT_TO_COMMENT(CustomOp.COMMENT_ADD_COMMENT_TO_COMMENT),
     /** Deletes all comments on the object. */
-    COMMENTSERVICE_DELETE_ALL_COMMENTS(EntityType.COMMENT),
+    COMMENT_DELETE_ALL_COMMENTS(EntityType.COMMENT, EntityTypes.BASE_URI),
     /** Deletes a comment in the object. */
-    COMMENTSERVICE_DELETE_COMMENT(EntityType.COMMENT),
+    COMMENT_DELETE_COMMENT(EntityType.COMMENT),
     /** Deletes a comment in the object. */
-    COMMENTSERVICE_DELETE_COMMENT_RECURSIVE(EntityType.COMMENT),
+    COMMENT_DELETE_COMMENT_RECURSIVE(EntityType.COMMENT),
     /** Returns the specified comment. */
-    COMMENTSERVICE_GET_COMMENT(EntityType.COMMENT),
+    COMMENT_GET_COMMENT(EntityType.COMMENT),
     /**
      * Returns the number of comments on the content specified by objectType and
      * objectID.
      */
-    COMMENTSERVICE_GET_COMMENT_COUNT(EntityType.COMMENT),
+    COMMENT_GET_COMMENT_COUNT(EntityType.COMMENT),
     /**
      * Returns the number of comments on the content specified by objectType and
      * objectID, where the number is constrained by the filter.
      */
-    COMMENTSERVICE_GET_COMMENT_COUNT_WITH_FILTER(EntityType.COMMENT),
+    COMMENT_GET_COMMENT_COUNT_WITH_FILTER(EntityType.COMMENT),
     /**
      * Returns a list of the comments on the content specified by objectType and
      * objectID.
      */
-    COMMENTSERVICE_GET_COMMENTS(EntityType.COMMENT),
+    COMMENT_GET_COMMENTS(EntityType.COMMENT),
     /**
      * Returns a count of all the comments in all content that has been authored by
      * the specified user.
      */
-    COMMENTSERVICE_GET_USER_CONTENT_COMMENT_COUNT(EntityType.COMMENT),
+    COMMENT_GET_USER_CONTENT_COMMENT_COUNT(EntityType.COMMENT),
     /**
      * Returns a count of all the comments in all content which has been authored by
      * the supplied user, with the count constrained by the specified filter.
      */
-    COMMENTSERVICE_GET_USER_CONTENT_COMMENT_COUNT_WITH_FILTER(EntityType.COMMENT),
+    COMMENT_GET_USER_CONTENT_COMMENT_COUNT_WITH_FILTER(EntityType.COMMENT),
     /**
      * Returns a list of all the comments in all content which has been authored by
      * the supplied user.
      */
-    COMMENTSERVICE_GET_USER_CONTENT_COMMENTS(EntityType.COMMENT),
+    COMMENT_GET_USER_CONTENT_COMMENTS(EntityType.COMMENT),
     /**
      * Returns a list of all the comments in all content which has been authored by
      * the supplied user.
      */
-    COMMENTSERVICE_GET_USER_CONTENT_COMMENTS_WITH_FILTER(EntityType.COMMENT),
+    COMMENT_GET_USER_CONTENT_COMMENTS_WITH_FILTER(EntityType.COMMENT),
     /** Updates an existing comment. */
-    COMMENTSERVICE_UPDATE_COMMENT(EntityType.COMMENT),
+    COMMENT_UPDATE_COMMENT(EntityType.COMMENT),
     /** Adds an attachment to the specified blog post. */
     BLOG_ADD_ATTACHMENT_TO_BLOG_POST(EntityType.BLOG),
     /** Adds an image to the specified blog post. */
@@ -1288,8 +1287,7 @@ public enum Operation
         this.entityType = type;
         if (strategy == BASE_URI)
         {
-            this.resourceUri = null;
-            // this.resourceUri =UriFactory.generateBaseUri(entityType);
+            this.resourceUri = this.entityType.generateBaseUri();
         }
         else
         {
