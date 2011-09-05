@@ -27,6 +27,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.UnhandledException;
 
 public class XmlMapper
@@ -99,7 +100,12 @@ public class XmlMapper
             }
             else 
             {
-                w.writeStartElement(entry.getKey());
+                String key = entry.getKey();
+                if (StringUtils.startsWith(key, "return")) 
+                {
+                    key = "return";
+                }
+                w.writeStartElement(key);
                 if (!HashMap.class.isInstance(entry.getValue())) 
                 {
                     w.writeCharacters(entry.getValue().toString());
@@ -131,7 +137,8 @@ public class XmlMapper
                 xmlInputFactory.createXMLStreamReader(reader);
             StringBuilder lastText = new StringBuilder();
             String currentElement = null;
-            while (r.hasNext()) 
+            int returnCount = 0;
+            while (r.hasNext())
             {
                 final int eventType = r.next();
                 if (eventType == CHARACTERS || eventType == CDATA
@@ -140,17 +147,22 @@ public class XmlMapper
                 {
                     lastText.append(r.getText());
                 } 
-                else if (eventType == END_DOCUMENT) 
+                else if (eventType == END_DOCUMENT)
                 {
                     break;
                 }
-                else if (eventType == START_ELEMENT) 
+                else if (eventType == START_ELEMENT)
                 {
-                    if (currentElement != null) 
+                    if (currentElement != null)
                     {
                         maps.push(current);
                         final Map<String, Object> map =
                             new HashMap<String, Object>();
+                        if (StringUtils.startsWith(currentElement, "return")) 
+                        {
+                            currentElement = currentElement + "--" + String.valueOf(returnCount);
+                            returnCount++;
+                        }
                         current.put(currentElement, map);
                         current = map;
                     }
@@ -189,6 +201,10 @@ public class XmlMapper
                 final Map<String, Object> returnXMLElement = (Map<String, Object>)
                 ret.get(ret.keySet().iterator().next());
 
+                if (returnXMLElement.keySet().contains("return--1")) 
+                {
+                    return returnXMLElement;
+                }
                 return (Map<String, Object>) returnXMLElement.get("return");
             }
             
