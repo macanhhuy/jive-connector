@@ -47,13 +47,13 @@ public class JiveModuleOperationsTest
     private final String gatewayUri =
         "https://app-sandbox.jivesoftware.com/rpc/rest";
     /**Facade instance.*/ //TODO test the module, not the facade
-    private JiveFacade facade;
+    private JiveModule facade;
 
     /**Instantiates the JiveModule with the test properties.*/
     @Before
     public final void init() 
     {
-        facade = new JerseyJiveFacade();
+        facade = new JiveModule();
         facade.setGatewayUri(gatewayUri);
         facade.setUsername(System.getenv("SandboxUser"));
         facade.setPassword(System.getenv("SandboxPass"));
