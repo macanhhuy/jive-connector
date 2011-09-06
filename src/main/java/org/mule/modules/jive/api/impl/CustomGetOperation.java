@@ -12,6 +12,7 @@ package org.mule.modules.jive.api.impl;
 
 import org.mule.modules.jive.CustomOp;
 import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.JiveIds;
 import org.mule.modules.jive.api.ReferenceOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
@@ -66,15 +67,7 @@ public final class CustomGetOperation implements ReferenceOperation
     private String getCompleteUriForCustomOp(final CustomOp customType,
                                              final String id) 
     {
-        final StringBuilder completeUri = new StringBuilder();
-        final String[] pathParams = StringUtils.split(id, ':');
-
-        completeUri.append(customType.getGenerateCustomUri());
-        for (int i = 0; i < pathParams.length; i++) 
-        {
-            completeUri.append("/" + pathParams[i]);
-        }
-        return completeUri.toString();
+        return  customType.getGenerateCustomUri() + "/" + JiveIds.toPathVariable(id);
     }
     
     public static ReferenceOperation from(CustomOp customOp)

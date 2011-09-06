@@ -160,13 +160,9 @@ public final class EntityType
      */
     public String getCompletePluralUri(final String id)
     {
-        return getBasePluralUri() + "/" +  generateIdPathVariable(id); 
+        return getBasePluralUri() + "/" +  JiveIds.toPathVariable(id); 
     }
     
-    public String generateIdPathVariable(final String id)
-    {
-        return id.replace(':', '/');
-    }
     
     
     /**
