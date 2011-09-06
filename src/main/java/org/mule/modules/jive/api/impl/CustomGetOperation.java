@@ -8,10 +8,11 @@
  * LICENSE.txt file.
  */
 
-package org.mule.modules.jive;
+package org.mule.modules.jive.api.impl;
 
-import org.mule.modules.jive.api.CustomReferenceOperation;
+import org.mule.modules.jive.CustomOp;
 import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.ReferenceOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 import org.mule.modules.jive.utils.ServiceUriFactory;
 
@@ -27,14 +28,14 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.lang.StringUtils;
 
-public final class CustomReferenceOperationImpl implements CustomReferenceOperation
+public final class CustomGetOperation implements ReferenceOperation
 {
     private CustomOp customOp;
     
     /**
      * @param customOp
      */
-    private CustomReferenceOperationImpl(CustomOp customOp)
+    private CustomGetOperation(CustomOp customOp)
     {
         super();
         this.customOp = customOp;
@@ -80,26 +81,11 @@ public final class CustomReferenceOperationImpl implements CustomReferenceOperat
         return completeUri.toString();
     }
     
-    public static CustomReferenceOperation from(CustomOp customOp)
+    public static ReferenceOperation from(CustomOp customOp)
     { 
-        return new CustomReferenceOperationImpl(customOp);
+        return new CustomGetOperation(customOp);
     }
     
-    /* (non-Javadoc)
-     * @see org.mule.modules.jive.api.ReferenceOperation#execute(com.sun.jersey.api.client.WebResource, org.mule.modules.jive.api.xml.XmlMapper, org.mule.modules.jive.api.EntityType, java.util.Map)
-     */
-    @Override
-    public Map<String, Object> execute(WebResource resource,
-                                       XmlMapper mapper,
-                                       EntityType type,
-                                       Map<String, Object> entityData)
-    {
-        final Writer writer = new StringWriter();
-        mapper.map2xml(type.getXmlRootElementName(), entityData, writer);
-        final String response = resource.path(type.getServiceUri()).post(String.class, writer.toString());
-        // validar error
-        return mapper.xml2map(new StringReader(response));
-    }
 
 }
 
