@@ -87,45 +87,12 @@ public class JerseyJiveFacade implements JiveFacade
 
 
     @Override
-    /**{@inheritDoc}*/
-    public final Map<String, Object> execute(final String uri,
-        final String id) 
-    {
-
-        throw new NotImplementedException();
-    }
-    
-    public final Map<String, Object> execute(final Operation op,
-                                             final Map<String, Object> entity) 
-    {
-        final String response;
-        final Builder partialRequest = this.gateway.path(op.getResourceUri())
-            .type(MediaType.APPLICATION_FORM_URLENCODED)
-            .header("content-type", "text/xml");
-        final Writer writer = new StringWriter();
-        map2xml(op.getRootTagElementName(), entity, writer);
-        if (op.getProtocol().equals("POST")) 
-        {
-            response = partialRequest.post(String.class, writer.toString());
-        } 
-        else if (op.getProtocol().equals("PUT")) 
-        {
-            response = partialRequest.put(String.class);
-        } 
-        else 
-        {
-            response = "";
-        }
-        return xml2map(new StringReader(response));
-    }
-    
-    @Override
-    public final Map<String, Object> execute(final Operation op,
+    public final Map<String, Object> execute(final CustomOp op,
                                              final String id) 
     {
         final String response;
         
-        final StringBuilder opUri = new StringBuilder(op.getResourceUri());
+        final StringBuilder opUri = new StringBuilder(op.getGenerateCustomUri());
         for (final String part : StringUtils.split(id, ':')) 
         {
             opUri.append("/" + part);
@@ -135,7 +102,7 @@ public class JerseyJiveFacade implements JiveFacade
             .type(MediaType.APPLICATION_FORM_URLENCODED)
             .header("content-type", "text/xml");
 
-        if (op.getProtocol().equals("GET")) 
+        if (op.getMethod().equals("GET")) 
         {
             response = partialRequest.get(String.class);
         }

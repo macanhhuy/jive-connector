@@ -92,11 +92,8 @@ public interface JiveFacade
      * {@link ServiceUriFactory#generateCustomUri(String, EntityType)}.
      * This new enum will exist mainly to give the user a proper
      * operations list.*/
-    Map<String, Object> execute(final String uri,
-            final String id);
-    
-    Map<String, Object> execute(final Operation op,
-            final Map<String, Object> entity);
+    Map<String, Object> execute(final CustomOp op,
+            String id);
 
 
     /***/
@@ -110,12 +107,6 @@ public interface JiveFacade
     
     void init();
 
-    /**
-     * @param op
-     * @param id
-     * @return
-     */
-    Map<String, Object> execute(Operation op, String id);
 
 
     
