@@ -145,12 +145,13 @@ public class JiveModuleTestDriver
     @Test
     public void createAvatarReturnsNonNullObjectWithNonNullId() throws Exception
     {
-        Map<String, Object> blog = facade.create(EntityType.BLOG, newBlog());
+        Map<String, Object> blog = facade.create(EntityType.AVATAR, newAvatar());
         
         assertNotNull(blog);
         assertNotNull(blog.get("ID"));
-        facade.delete(EntityType.BLOG, (String) blog.get("ID"));
+        facade.delete(EntityType.AVATAR, (String) blog.get("ID"));
     }
+    
 
     @SuppressWarnings("serial")
     private LinkedHashMap<String, Object> newBlog()
@@ -256,16 +257,6 @@ public class JiveModuleTestDriver
     {
         //TODO should return integer
         facade.count(EntityType.BLOG);
-    }
-
-    /**
-     * Test the delete service.
-     */
-
-    @Test
-    public final void testDeleteSingular()
-    {
-        facade.delete(EntityType.ADDRESSBOOK, "123");
     }
 
 }

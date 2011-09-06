@@ -19,6 +19,7 @@ import static javax.xml.stream.XMLStreamConstants.SPACE;
 import static javax.xml.stream.XMLStreamConstants.START_ELEMENT;
 
 import java.io.Reader;
+import java.io.StringReader;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
@@ -123,6 +124,10 @@ public class XmlMapper
                 w.writeEndElement();
             }
         }
+    }
+    
+    public final Map<String, Object> xml2map(final String string) {
+        return xml2map(new StringReader(string));
     }
     
     /**Maps an xml from a {@link Reader} to a {@link Map}.

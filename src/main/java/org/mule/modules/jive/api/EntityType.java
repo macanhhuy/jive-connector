@@ -163,7 +163,7 @@ public final class EntityType
     /**
      * @return the serviceUri
      */
-    public String getServiceUri()
+    protected String getTypeUri()
     {
         if (serviceUri == EntityTypes.DEFAULT_SERVICE_URI)
         {
@@ -171,20 +171,6 @@ public final class EntityType
         }
         return "/" + serviceUri;
     }
-    
-    /**
-     * Generates the complete uri for the get or delete service.
-     * 
-     * @param this The {@link EntityType} that is being executed
-     * @param id A {@link String} containing the path parameters to add
-     * @return The resouce uri with the path parameters added
-     */
-    public String getCompletePluralUri(final String id)
-    {
-        return getBasePluralUri() + "/" +  JiveIds.toPathVariable(id); 
-    }
-    
-    
     
     /**
      * @param type
@@ -270,12 +256,12 @@ public final class EntityType
      * */
     public String getBasePluralUri()
     {
-        return getServiceUri() + "/" + pluralize(this.entityTypeName.toLowerCase());
+        return getTypeUri() + "/" + pluralize(this.entityTypeName.toLowerCase());
     }
     
     public String getBaseSingularUri()
     {
-        return getServiceUri() + "/" + this.entityTypeName.toLowerCase();
+        return getTypeUri() + "/" + this.entityTypeName.toLowerCase();
     }
 
     

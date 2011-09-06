@@ -19,13 +19,12 @@ import org.mule.modules.jive.api.xml.XmlMapper;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.WebResource.Builder;
 
-import java.io.StringReader;
 import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
 
-import org.apache.commons.lang.StringUtils;
-
+import org.apache.commons.lang.Validate;
+//TODO should validate that tpye od entity and operation matches
 public final class CustomGetOperation implements ReferenceOperation
 {
     private CustomOp customOp;
@@ -39,24 +38,15 @@ public final class CustomGetOperation implements ReferenceOperation
         this.customOp = customOp;
     }
 
-
     @Override
     public Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, String id)
     {
-
-        final String response;
-        final Builder partialRequest = resource.path( getCompleteUriForCustomOp(customOp, id))
+        Validate.isTrue(customOp.getMethod().equals("GET"), "Get requests should be always based on a HTTP GET method");
+        
+        final Builder partialRequest = resource.path(getCompleteUriForCustomOp(customOp, id))
             .type(MediaType.APPLICATION_FORM_URLENCODED)
             .header("content-type", "text/xml");
-        if (customOp.getMethod().equals("GET"))
-        {
-            response = partialRequest.get(String.class);
-        }
-        else
-        { // It's a DELETE request
-            response = partialRequest.delete(String.class);
-        }
-        return mapper.xml2map(new StringReader(response));
+        return mapper.xml2map(partialRequest.get(String.class));
     }
     
     /**Generates the complete uri for the get or delete {@link CustomOp}.
@@ -67,7 +57,7 @@ public final class CustomGetOperation implements ReferenceOperation
     protected String getCompleteUriForCustomOp(final CustomOp customType,
                                              final String id) 
     {
-        return  customType.getOperationUri() + "/" + JiveIds.toPathVariable(id);
+        return  customType.getBaseOperationUri() + "/" + JiveIds.toPathVariable(id);
     }
     
     public static ReferenceOperation from(CustomOp customOp)

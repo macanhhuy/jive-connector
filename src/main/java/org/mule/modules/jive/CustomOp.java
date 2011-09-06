@@ -227,7 +227,7 @@ public enum CustomOp
     /**
      * @return
      */
-    public String getOperationUri()
+    public String getBaseOperationUri()
     {
         return this.entityType.toLowerCase() + "Service" + "/" + getOperationName();
     }
