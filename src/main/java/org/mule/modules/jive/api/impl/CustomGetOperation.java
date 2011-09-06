@@ -64,10 +64,10 @@ public final class CustomGetOperation implements ReferenceOperation
      * @param id A {@link String} containing the path parameters to add
      * @return The resouce uri with the path parameters added
      */
-    private String getCompleteUriForCustomOp(final CustomOp customType,
+    protected String getCompleteUriForCustomOp(final CustomOp customType,
                                              final String id) 
     {
-        return  customType.getGenerateCustomUri() + "/" + JiveIds.toPathVariable(id);
+        return  customType.getOperationUri() + "/" + JiveIds.toPathVariable(id);
     }
     
     public static ReferenceOperation from(CustomOp customOp)

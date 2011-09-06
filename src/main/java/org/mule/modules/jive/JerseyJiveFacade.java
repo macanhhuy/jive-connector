@@ -57,7 +57,7 @@ public class JerseyJiveFacade implements JiveFacade
         final Writer writer = new StringWriter();
         final String response;
 
-        final Builder partialRequest = this.gateway.path(customType.getGenerateCustomUri())
+        final Builder partialRequest = this.gateway.path(customType.getOperationUri())
             .type(MediaType.APPLICATION_FORM_URLENCODED)
             .header("content-type", "text/xml");
 
@@ -88,7 +88,7 @@ public class JerseyJiveFacade implements JiveFacade
     {
         final String response;
         
-        final StringBuilder opUri = new StringBuilder(op.getGenerateCustomUri());
+        final StringBuilder opUri = new StringBuilder(op.getOperationUri());
         for (final String part : StringUtils.split(id, ':')) 
         {
             opUri.append("/" + part);

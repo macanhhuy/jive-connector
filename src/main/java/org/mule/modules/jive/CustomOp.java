@@ -132,10 +132,10 @@ public enum CustomOp
     TASK_CREATE("TASK", "tasks");
 
     /**The service of this operation.*/
-    private final String serviceType;
+    private final String entityType;
 
     /**This operation uri.*/
-    private final String opUri;
+    private final String operationName;
 
     /**The http protocol for this operation.*/
     private final String method;
@@ -144,16 +144,16 @@ public enum CustomOp
     private final String rootTagElementName;
     
     /**Contructor for the {@link CustomOp}.
-     * @param type This op service
-     * @param op The operation uri
-     * @param protocol The http procolol
+     * @param type the entity type to which this operation applies
+     * @param operationName The operation name, as present in the uri
+     * @param method The http method
      * */
-    private CustomOp(final String type, final String op,
-                     final String protocol) 
+    private CustomOp(final String type, final String operationName,
+                     final String method) 
     {
-        this.opUri = op;
-        this.serviceType = type;
-        this.method = protocol;
+        this.operationName = operationName;
+        this.entityType = type;
+        this.method = method;
         this.rootTagElementName = getRootTagElementFromName();
     }
 
@@ -163,8 +163,8 @@ public enum CustomOp
      * */
     private CustomOp(final String type, final String op) 
     {
-        this.opUri = op;
-        this.serviceType = type;
+        this.operationName = op;
+        this.entityType = type;
         this.rootTagElementName = getRootTagElementFromName();
 
         final String[] split = StringUtils.split(this.toString(), '_');
@@ -190,15 +190,6 @@ public enum CustomOp
         }
     }
 
-
-    /**
-     * @return the serviceType
-     */
-    public String getServiceType() 
-    {
-        return serviceType;
-    }
-    
     /**
      * @return The root tag xml element name for this custom operation.
      */
@@ -220,9 +211,9 @@ public enum CustomOp
     /**
      * @return the opUri
      */
-    public String getOpUri() 
+    public String getOperationName() 
     {
-        return opUri;
+        return operationName;
     }
 
     /**
@@ -236,9 +227,9 @@ public enum CustomOp
     /**
      * @return
      */
-    public String getGenerateCustomUri()
+    public String getOperationUri()
     {
-        return this.serviceType.toLowerCase() + "Service" + "/" + getOpUri();
+        return this.entityType.toLowerCase() + "Service" + "/" + getOperationName();
     }
     
     /**
