@@ -140,6 +140,9 @@ public enum CustomOp
     /**The http protocol for this operation.*/
     private final String method;
     
+    /**Custom root tag element name*/
+    private final String rootTagElementName;
+    
     /**Contructor for the {@link CustomOp}.
      * @param type This op service
      * @param op The operation uri
@@ -151,6 +154,7 @@ public enum CustomOp
         this.opUri = op;
         this.serviceType = type;
         this.method = protocol;
+        this.rootTagElementName = getRootTagElementFromName();
     }
 
     /**Contructor for the {@link CustomOp}.
@@ -161,6 +165,7 @@ public enum CustomOp
     {
         this.opUri = op;
         this.serviceType = type;
+        this.rootTagElementName = getRootTagElementFromName();
 
         final String[] split = StringUtils.split(this.toString(), '_');
         if (split[1].equals("ADD") || split[1].equals("CREATE")) 
@@ -197,7 +202,7 @@ public enum CustomOp
     /**
      * @return The root tag xml element name for this custom operation.
      */
-    public final String getRootTagElementName() 
+    private String getRootTagElementFromName() 
     {
         final String[] split = StringUtils.split(this.toString(), '_');
         final StringBuffer res = new StringBuffer();
@@ -234,6 +239,14 @@ public enum CustomOp
     public String getGenerateCustomUri()
     {
         return this.serviceType.toLowerCase() + "Service" + "/" + getOpUri();
+    }
+    
+    /**
+     * @return The root tag element for the xml of this custom operation.
+     */
+    public String getRootTagElementName() 
+    {
+        return this.rootTagElementName;
     }
 }
 

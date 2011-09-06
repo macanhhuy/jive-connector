@@ -1260,26 +1260,17 @@ public enum Operation
     private final String resourceUri;
     private EntityType entityType = null;
     private String protocol;
+    private String rootTagElementName = getRootTagElementFromName();
 
     private Operation(final EntityType type)
     {
-        final String[] split = StringUtils.split(this.toString(), '_');
-        final StringBuffer str = new StringBuffer();
-        str.append(split[1].toLowerCase());
-        for (int i = 2; i < split.length; i++)
-        {
-            str.append(StringUtils.capitalize(split[i].toLowerCase()));
-        }
-        this.resourceUri = str.toString();
-
+        this.resourceUri = getResourceUriFromOperationName();
         setProtocolFromName();
-
         this.entityType = type;
     }
 
     private Operation(final CustomOp customType)
     {
-        // this.resourceUri =UriFactory.generateCustomUri(customType);
         this.resourceUri = null;
         this.protocol = customType.getMethod();
     }
@@ -1297,6 +1288,21 @@ public enum Operation
         }
         setProtocolFromName();
     }
+    
+    /**
+     * @return
+     */
+    private String getResourceUriFromOperationName()
+    {
+        final String[] split = StringUtils.split(this.toString(), '_');
+        final StringBuffer str = new StringBuffer();
+        str.append(split[1].toLowerCase());
+        for (int i = 2; i < split.length; i++)
+        {
+            str.append(StringUtils.capitalize(split[i].toLowerCase()));
+        }
+        return str.toString();
+    }
 
     public String getResourceUri()
     {
@@ -1311,7 +1317,7 @@ public enum Operation
     /**
      * @return The root tag xml element name for this custom operation.
      */
-    public final String getRootTagElementName()
+    public final String getRootTagElementFromName()
     {
         final String[] split = StringUtils.split(this.toString(), '_');
         final StringBuffer res = new StringBuffer();
@@ -1349,5 +1355,10 @@ public enum Operation
         {
             this.protocol = "";
         }
+    }
+    
+    public String getRootTagElementName() 
+    {
+        return this.rootTagElementName;
     }
 }
