@@ -142,24 +142,6 @@ public class JiveModuleTestDriver
     }
 
     @Test
-    /**Test the create method.
-     * Creates an addressbook*/
-    public void createAddressbook()
-    {
-        final Map<String, Object> fooData = new HashMap<String, Object>();
-        facade.create(EntityType.ADDRESSBOOK, fooData);
-    }
-
-    @Test
-    /**Test the create method.
-     * Creates an addressbook*/
-    public void deleteAddressbook()
-    {
-        final String id = "bla/foo";
-        facade.delete(EntityType.ADDRESSBOOK, id);
-    }
-
-    @Test
     public void createBlogReturnsNonNullObjectWithNonNullId() throws Exception
     {
         Map<String, Object> blog = facade.create(EntityType.BLOG, newBlog());
