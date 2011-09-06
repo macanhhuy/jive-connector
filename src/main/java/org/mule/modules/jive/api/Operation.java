@@ -1287,7 +1287,7 @@ public enum Operation
         this.entityType = type;
         if (strategy == BASE_URI)
         {
-            this.resourceUri = this.entityType.generateBaseUri();
+            this.resourceUri = this.entityType.getBasePluralUri();
         }
         else
         {

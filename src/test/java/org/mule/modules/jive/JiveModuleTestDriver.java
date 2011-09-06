@@ -128,6 +128,7 @@ public class JiveModuleTestDriver
         assertNotNull(avatar.get("ID"));
         
         facade.delete(EntityType.AVATAR, (String) avatar.get("ID"));
+        //FIXME plurals
     }
 
     /**
@@ -269,7 +270,8 @@ public class JiveModuleTestDriver
     @Test
     public final void getCount()
     {
-        facade.count(EntityType.BLOG, "");
+        //TODO should return integer
+        facade.count(EntityType.BLOG);
     }
 
     /**

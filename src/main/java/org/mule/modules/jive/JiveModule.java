@@ -139,18 +139,16 @@ public class JiveModule
     /**
      * Counts all the instances of the given entity type
      * 
-     * TODO why id?
      * Example:
-     * {@code <jive:count type="AVATAR" />}
+     * {@code <jive:count type="BLOG" />}
      * 
      * @param type
-     * @param id
      * @return TODO WHAT?
      */
     @Processor
-    public Map<String, Object> count(final EntityType type, final String id) 
+    public Map<String, Object> count(final EntityType type) 
     {
-        return facade.count(type, id);
+        return facade.count(type);
     }
 
     @Processor

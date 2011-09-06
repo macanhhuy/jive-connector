@@ -30,7 +30,7 @@ public class EntityTypeBuilder
     private ReferenceOperation deleteOp = StandardDeleteOperation.STANDARD;
     private ReferenceOperation getOp = StandardGetOperation.STANDARD;
     private ReferenceOperation getAllOp = StandardGetAllOperation.STANDARD;
-    private ReferenceOperation countOp = StandardCountOperation.STANDARD;
+    private TypeOperation countOp = StandardCountOperation.STANDARD;
 
     
     /**
@@ -117,7 +117,7 @@ public class EntityTypeBuilder
     /**
      * @param countOperation the countOperation to set
      */
-    public void addCustomCountOperation(ReferenceOperation countOperation)
+    public void addCustomCountOperation(TypeOperation countOperation)
     {
         this.countOp = countOperation;
     }

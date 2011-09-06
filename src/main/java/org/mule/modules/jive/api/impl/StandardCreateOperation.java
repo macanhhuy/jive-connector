@@ -36,7 +36,7 @@ public class StandardCreateOperation implements PayloadOperation
     {
         final Writer writer = new StringWriter();
         mapper.map2xml("create" + type.getXmlRootElementName(), entityData, writer);
-        return mapper.xml2map(new StringReader(resource.path(type.generateBaseUri()).post(String.class, writer.toString())));
+        return mapper.xml2map(new StringReader(resource.path(type.getBasePluralUri()).post(String.class, writer.toString())));
     }
 
 }

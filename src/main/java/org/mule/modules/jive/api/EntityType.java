@@ -89,7 +89,7 @@ public final class EntityType
     private String entityTypeName;
     private ReferenceOperation getAllOperation;
     private ReferenceOperation getOperation;
-    private ReferenceOperation countOperation;
+    private TypeOperation countOperation;
 
     /**
      * @param entityType
@@ -108,7 +108,7 @@ public final class EntityType
                       ReferenceOperation getOp,
                       ReferenceOperation getAllOp,
                       PayloadOperation putOp,
-                      ReferenceOperation countOp)
+                      TypeOperation countOp)
     {
         this.entityTypeName = entityType;
         this.serviceUri = serviceNameException;
@@ -156,18 +156,17 @@ public final class EntityType
      * @param id A {@link String} containing the path parameters to add
      * @return The resouce uri with the path parameters added
      */
-    public String getCompleteUri(final String id)
+    public String getCompletePluralUri(final String id)
     {
-        final StringBuffer completeUri = new StringBuffer();
-        final String[] pathParams = StringUtils.split(id, ':');
-        completeUri.append(this.generateBaseUri());
-        for (int i = 0; i < pathParams.length; i++)
-        {
-            completeUri.append("/" + pathParams[i]);
-        }
-        return completeUri.toString();
+        return getBasePluralUri() + "/" +  generateIdPathVariable(id); 
     }
-
+    
+    public String generateIdPathVariable(final String id)
+    {
+        return id.replace(':', '/');
+    }
+    
+    
     /**
      * @param type
      * @param entity
@@ -201,10 +200,9 @@ public final class EntityType
      * @param resource
      * @return
      */
-    public Map<String, Object> count(final EntityType type, final String id,
-        final XmlMapper mapper, final WebResource resource)
+    public Map<String, Object> count(final EntityType type, final XmlMapper mapper, final WebResource resource)
     {
-        return countOperation.execute(resource, mapper, type, id);
+        return countOperation.execute(resource, mapper, type);
     }
     
     /**
@@ -251,10 +249,16 @@ public final class EntityType
      * uri would be /avatarService/avatars
      * @param type The service
      * */
-    public String generateBaseUri()
+    public String getBasePluralUri()
     {
         return getServiceUri() + "/" + pluralize(this.entityTypeName.toLowerCase());
     }
+    
+    public String getBaseSingularUri()
+    {
+        return getServiceUri() + "/" + this.entityTypeName.toLowerCase();
+    }
+
     
     
     /**Pluralizes the service name.
@@ -268,6 +272,7 @@ public final class EntityType
         }
         return str + "s";
     }
+
     
     
 
