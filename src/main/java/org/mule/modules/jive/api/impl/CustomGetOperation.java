@@ -35,7 +35,7 @@ public final class CustomGetOperation implements ReferenceOperation
     /**
      * @param customOp
      */
-    private CustomGetOperation(CustomOp customOp)
+    public CustomGetOperation(CustomOp customOp)
     {
         super();
         this.customOp = customOp;

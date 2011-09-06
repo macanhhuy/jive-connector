@@ -10,6 +10,8 @@
 
 package org.mule.modules.jive.api;
 
+import org.mule.modules.jive.CustomOp;
+import org.mule.modules.jive.api.impl.CustomGetOperation;
 import org.mule.modules.jive.api.impl.StandardCountOperation;
 import org.mule.modules.jive.api.impl.StandardCreateOperation;
 import org.mule.modules.jive.api.impl.StandardDeleteOperation;
@@ -63,7 +65,7 @@ public class EntityTypeBuilder
      * @param deleteOp the deleteOp to set
      * @return 
      */
-    public EntityTypeBuilder addCustomDeleteOp(ReferenceOperation deleteOp)
+    public EntityTypeBuilder withDelete(ReferenceOperation deleteOp)
     {
         this.deleteOp = deleteOp;
         return this;
@@ -73,17 +75,22 @@ public class EntityTypeBuilder
      * @param getOp the getOp to set
      * @return 
      */
-    public EntityTypeBuilder addCustomGetOp(ReferenceOperation getOp)
+    public EntityTypeBuilder withGet(ReferenceOperation getOp)
     {
         this.getOp = getOp;
         return this;
+    }
+    
+    public EntityTypeBuilder withGet(CustomOp getOp)
+    {
+        return withGet(new CustomGetOperation(getOp));
     }
 
     /**
      * @param getAllOp the getAllOp to set
      * @return 
      */
-    public EntityTypeBuilder addCustomGetAllOp(ReferenceOperation getAllOp)
+    public EntityTypeBuilder withGetAll(ReferenceOperation getAllOp)
     {
         this.getAllOp = getAllOp;
         return this;
@@ -93,7 +100,7 @@ public class EntityTypeBuilder
      * @param updateOp the updateOp to set
      * @return 
      */
-    public EntityTypeBuilder addCustomPutOp(PayloadOperation updateOp)
+    public EntityTypeBuilder withPut(PayloadOperation updateOp)
     {
         this.putOp = updateOp;
         return this;

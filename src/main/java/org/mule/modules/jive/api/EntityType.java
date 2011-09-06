@@ -9,9 +9,11 @@
  */
 
 package org.mule.modules.jive.api;
-
+import static org.mule.modules.jive.CustomOp.*;
 import static org.mule.modules.jive.api.EntityTypeBuilder.from;
 
+import org.mule.modules.jive.CustomOp;
+import org.mule.modules.jive.api.impl.CustomGetOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
 import com.sun.jersey.api.client.WebResource;
@@ -28,9 +30,9 @@ public final class EntityType
     /** Audit service. */
     public static final EntityType AUDIT = from("AUDIT").build();
     /** Avatar service. */
-    public static final EntityType AVATAR = from("AVATAR").build();
+    public static final EntityType AVATAR = from("AVATAR").withGet(AVATAR_GET_AVATAR_BY_ID).build();
     /** Blog service. */
-    public static final EntityType BLOG = from("BLOG").build();
+    public static final EntityType BLOG = from("BLOG").withGet(BLOG_GET_BLOG_BY_ID).build();
     /** Task service. */
     public static final EntityType TASK = from("TASK").build();
     /** Comment service. */
