@@ -24,17 +24,38 @@ import org.apache.commons.lang.StringUtils;
 /** Services enum. */
 public final class EntityType
 {
-
+//TODO address book does not support create/delete
+    
     /** Addressbook service. */
-    public static final EntityType ADDRESSBOOK = from("ADDRESSBOOK").withServiceUri("addressBookService").build();
+    public static final EntityType ADDRESSBOOK = 
+         from("ADDRESSBOOK")
+        .withServiceUri("addressBookService")
+        .build();
+    
     /** Audit service. */
-    public static final EntityType AUDIT = from("AUDIT").build();
+    public static final EntityType AUDIT = 
+            from("AUDIT")
+            .build();
+    
     /** Avatar service. */
-    public static final EntityType AVATAR = from("AVATAR").withGet(AVATAR_GET_AVATAR_BY_ID).build();
+    public static final EntityType AVATAR = 
+            from("AVATAR")
+            .withGet(AVATAR_GET_AVATAR_BY_ID)
+            .withDelete(AVATAR_DELETE)
+            .build();
+    
     /** Blog service. */
-    public static final EntityType BLOG = from("BLOG").withGet(BLOG_GET_BLOG_BY_ID).build();
+    public static final EntityType BLOG = 
+            from("BLOG")
+            .withGet(BLOG_GET_BLOG_BY_ID)
+            .build();
+    
     /** Task service. */
-    public static final EntityType TASK = from("TASK").build();
+    public static final EntityType TASK = 
+        from("TASK")
+        .withCreate(TASK_CREATE)
+        .build();
+    
     /** Comment service. */
     public static final EntityType COMMENT = from("COMMENT").build();
     /** Community service. */
