@@ -71,11 +71,11 @@ public enum Operation
     /** Deletes all comments on the object. */
     COMMENT_DELETE_ALL_COMMENTS(EntityType.COMMENT, EntityTypes.BASE_URI),
     /** Deletes a comment in the object. */
-    COMMENT_DELETE_COMMENT(EntityType.COMMENT),
+    COMMENT_DELETE_COMMENT(EntityType.COMMENT, EntityTypes.BASE_URI),
     /** Deletes a comment in the object. */
-    COMMENT_DELETE_COMMENT_RECURSIVE(EntityType.COMMENT),
+    COMMENT_DELETE_COMMENT_RECURSIVE(CustomOp.COMMENT_DELETE_COMMENT_RECURSIVE),
     /** Returns the specified comment. */
-    COMMENT_GET_COMMENT(EntityType.COMMENT),
+    COMMENT_GET_COMMENT(EntityType.COMMENT, EntityTypes.BASE_URI),
     /**
      * Returns the number of comments on the content specified by objectType and
      * objectID.
@@ -85,107 +85,109 @@ public enum Operation
      * Returns the number of comments on the content specified by objectType and
      * objectID, where the number is constrained by the filter.
      */
-    COMMENT_GET_COMMENT_COUNT_WITH_FILTER(EntityType.COMMENT),
+    COMMENT_GET_COMMENT_COUNT_WITH_FILTER(CustomOp.COMMENT_GET_COMMENT_COUNT_WITH_FILTER),
     /**
      * Returns a list of the comments on the content specified by objectType and
      * objectID.
      */
-    COMMENT_GET_COMMENTS(EntityType.COMMENT),
+    COMMENT_GET_COMMENTS(EntityType.COMMENT, EntityTypes.BASE_URI),
     /**
      * Returns a count of all the comments in all content that has been authored by
      * the specified user.
      */
-    COMMENT_GET_USER_CONTENT_COMMENT_COUNT(EntityType.COMMENT),
+    COMMENT_GET_USER_CONTENT_COMMENT_COUNT(CustomOp.COMMENT_GET_USER_CONTENT_COMMENT_COUNT),
     /**
      * Returns a count of all the comments in all content which has been authored by
      * the supplied user, with the count constrained by the specified filter.
      */
-    COMMENT_GET_USER_CONTENT_COMMENT_COUNT_WITH_FILTER(EntityType.COMMENT),
+    COMMENT_GET_USER_CONTENT_COMMENT_COUNT_WITH_FILTER(CustomOp.COMMENT_GET_USER_CONTENT_COMMENT_COUNT_WITH_FILTER),
     /**
      * Returns a list of all the comments in all content which has been authored by
      * the supplied user.
      */
-    COMMENT_GET_USER_CONTENT_COMMENTS(EntityType.COMMENT),
+    COMMENT_GET_USER_CONTENT_COMMENTS(CustomOp.COMMENT_GET_USER_CONTENT_COMMENTS),
     /**
      * Returns a list of all the comments in all content which has been authored by
      * the supplied user.
      */
-    COMMENT_GET_USER_CONTENT_COMMENTS_WITH_FILTER(EntityType.COMMENT),
+    COMMENT_GET_USER_CONTENT_COMMENTS_WITH_FILTER(CustomOp.COMMENT_GET_USER_CONTENT_COMMENTS_WITH_FILTER),
     /** Updates an existing comment. */
-    COMMENT_UPDATE_COMMENT(EntityType.COMMENT),
+    COMMENT_UPDATE_COMMENT(CustomOp.COMMENT_UPDATE_COMMENT),
     /** Adds an attachment to the specified blog post. */
-    BLOG_ADD_ATTACHMENT_TO_BLOG_POST(EntityType.BLOG),
+    BLOG_ADD_ATTACHMENT_TO_BLOG_POST(CustomOp.BLOG_ADD_ATTACHMENT_TO_BLOG_POST),
     /** Adds an image to the specified blog post. */
-    BLOG_ADD_IMAGE_TO_BLOG_POST(EntityType.BLOG),
+    BLOG_ADD_IMAGE_TO_BLOG_POST(CustomOp.BLOG_ADD_IMAGE_TO_BLOG_POST),
     /** Creates a new blog. */
-    BLOG_CREATE_BLOG(EntityType.BLOG),
+    BLOG_CREATE_BLOG(EntityType.BLOG, EntityTypes.BASE_URI),
     /** Creates a new blog post. */
-    BLOG_CREATE_BLOG_POST(EntityType.BLOG),
+    BLOG_CREATE_BLOG_POST(CustomOp.BLOG_CREATE_BLOG_POST),
     /**
      * Permanently deletes a blog and all of the posts and comments associated with
      * it.
      */
-    BLOG_DELETE_BLOG(EntityType.BLOG),
+    BLOG_DELETE_BLOG(EntityType.BLOG, EntityTypes.BASE_URI),
     /**
      * Permanently deletes a blog post and all of the comments associated with the
      * it.
      */
-    BLOG_DELETE_BLOG_POST(EntityType.BLOG),
+    BLOG_DELETE_BLOG_POST(CustomOp.BLOG_DELETE_BLOG_POST),
     /** Returns an array of attachments for the specified blog post. */
-    BLOG_GET_ATTACHMENTS_BY_BLOG_POST_ID(EntityType.BLOG),
+    BLOG_GET_ATTACHMENTS_BY_BLOG_POST_ID(CustomOp.BLOG_GET_ATTACHMENTS_BY_POST_ID),
     /** Returns a blog by blog name. */
-    BLOG_GET_BLOG_BY_NAME(EntityType.BLOG),
+    BLOG_GET_BLOG_BY_NAME(CustomOp.BLOG_GET_BLOG_BY_NAME),
     /** Returns a blog by its ID. */
-    BLOG_GET_BLOG_BY_ID(EntityType.BLOG),
+    BLOG_GET_BLOG_BY_ID(CustomOp.BLOG_GET_BLOG_BY_ID),
     /** Returns the total number of blogs on this system. */
-    BLOG_GET_BLOG_COUNT(EntityType.BLOG),
+    BLOG_GET_BLOG_COUNT(CustomOp.BLOG_GET_BLOG_COUNT),
     /**
      * Returns the total number of blogs on this system that match the criteria
      * specified by the filter.
      */
-    BLOG_GET_BLOG_COUNT_BY_RESULTFILTER(EntityType.BLOG),
+    BLOG_GET_BLOG_COUNT_BY_RESULTFILTER(CustomOp.BLOG_GET_BLOG_COUNT_BY_RESULTFILTER),
     /** Returns the count of all blogs associated with the specified user. */
-    BLOG_GET_BLOG_COUNT_FOR_USER(EntityType.BLOG),
+    BLOG_GET_BLOG_COUNT_FOR_USER(CustomOp.BLOG_GET_BLOG_COUNT_FOR_USER),
     /** Returns a blog post by its ID. */
-    BLOG_GET_BLOG_POST(EntityType.BLOG),
+    BLOG_GET_BLOG_POST(CustomOp.BLOG_GET_BLOG_POST),
     /**
      * Returns the number of blog posts on the system, by default only includes blog
      * posts where status = WSBlogPost.STATUS_PUBLISH and publish date less than now.
      */
-    BLOG_GET_BLOG_POST_COUNT_1(EntityType.BLOG),
-    /** Returns the number of blog posts on the system. */
-    BLOG_GET_BLOG_POST_COUNT_2(EntityType.BLOG),
+    BLOG_GET_BLOG_POST_COUNT(CustomOp.BLOG_GET_BLOG_COUNT),
+    /**Returns the number of blog posts on the system.
+     * The default blog post result filter () only includes
+     * blog posts where status = and publish date less than now().*/
+    BLOG_GET_BLOG_POST_COUNT_BY_RESULTFILTER(CustomOp.BLOG_GET_BLOG_COUNT_BY_RESULTFILTER),
     /** Returns all the blog posts that match the criteria specified by the filter. */
-    BLOG_GET_BLOG_POSTS(EntityType.BLOG),
+    BLOG_GET_BLOG_POSTS(CustomOp.BLOG_GET_BLOG_POSTS_BY_RESULTFILTER),
     /**
      * Returns all the blogs on this system whose display name is LIKE the given
      * query.
      */
     BLOG_GET_BLOGS_BY_DISPLAY_NAME(EntityType.BLOG),
     /** Returns all blogs associated with the specified user. */
-    BLOG_GET_BLOGS_FOR_USER(EntityType.BLOG),
+    BLOG_GET_BLOGS_FOR_USER(CustomOp.BLOG_GET_BLOGS_FOR_USER),
     /** Returns the number of comments on blog posts in the system. */
     BLOG_GET_COMMENT_COUNT(EntityType.BLOG),
     /**
      * Returns the number of blog post comments that match the criteria specified by
      * the filter.
      */
-    BLOG_GET_COMMENT_COUNT_BY_RESULTFILTER(EntityType.BLOG),
+    BLOG_GET_COMMENT_COUNT_BY_RESULTFILTER(CustomOp.BLOG_GET_COMMENT_COUNT_WITH_FILTER),
     /**
      * Returns all the blog post comments that match the criteria specified by the
      * filter.
      */
-    BLOG_GET_COMMENTS(EntityType.BLOG),
+    BLOG_GET_COMMENTS(CustomOp.BLOG_GET_COMMENTS_WITH_FILTER),
     /** Returns an array of images that are attached to the specified blog post. */
-    BLOG_GET_IMAGES_BY_BLOG_POST_ID(EntityType.BLOG),
+    BLOG_GET_IMAGES_BY_BLOG_POST_ID(CustomOp.BLOG_GET_IMAGES_BY_BLOG_POST_ID),
     /** Returns a comma-delimited list of available pings for the system. */
     BLOG_GET_PING_SERVICES(EntityType.BLOG),
     /** Returns up to ten of the most recent blogs created on this system. */
     BLOG_GET_RECENT_BLOGS(EntityType.BLOG),
     /** Returns all of the tags for blogs in the system. */
-    BLOG_GET_TAGS(EntityType.BLOG),
+    BLOG_GET_TAGS(CustomOp.BLOG_GET_TAGS),
     /** Returns all tags for blogs as constrained by the specified filter. */
-    BLOG_GET_TAGS_BY_RESULTFILTER(EntityType.BLOG),
+    BLOG_GET_TAGS_BY_RESULTFILTER(CustomOp.BLOG_GET_TAGS_BY_RESULTFILTER),
     /** Returns true if the blogs feature is turned on. */
     BLOG_IS_BLOGS_ENABLED(EntityType.BLOG),
     /** Returns true if the comments feature is turned on. */
@@ -200,9 +202,9 @@ public enum Operation
     /** Returns true if the trackbacks feature is turned on. */
     BLOG_IS_TRACKBACKS_ENABLED(EntityType.BLOG),
     /** Publishes a blog post with the specified subject and body. */
-    BLOG_PUBLISH_BLOG_POST(EntityType.BLOG),
+    BLOG_PUBLISH_BLOG_POST(CustomOp.BLOG_PUBLISH_BLOG_POST),
     /** Removes the attachment with the supplied ID. */
-    BLOG_REMOVE_ATTACHMENT(EntityType.BLOG),
+    BLOG_REMOVE_ATTACHMENT(CustomOp.BLOG_REMOVE_ATTACHMENT),
     /** Enables or disables the blogs feature. */
     BLOG_SET_BLOGS_ENABLED(EntityType.BLOG),
     /** Enables or disables the comments feature system wide. */
@@ -219,14 +221,14 @@ public enum Operation
     /** Enables or disables the trackbacks feature system wide. */
     BLOG_SET_TRACKBACKS_ENABLED(EntityType.BLOG),
     /** Updates the specified blog post with what's contained in blogPost. */
-    BLOG_UPDATE_BLOG_POST(EntityType.BLOG),
+    BLOG_UPDATE_BLOG_POST(CustomOp.BLOG_UPDATE_BLOG_POST),
     /** Uploads a new attachment to the specified blog post. */
-    BLOG_UPLOAD_ATTACHMENT_TO_BLOG_POST(EntityType.BLOG),
+    BLOG_UPLOAD_ATTACHMENT_TO_BLOG_POST(CustomOp.BLOG_UPLOAD_ATTACHMENTS_TO_BLOG_POST),
     /**
      * Returns <tt>true</tt> if the specified user has one or more blogs;
      * <tt>false</tt> if the user does not have a blog.
      */
-    BLOG_USER_HAS_BLOGS(EntityType.BLOG),
+    BLOG_USER_HAS_BLOGS(CustomOp.BLOG_USER_HAS_BLOGS),
     /** Creates a new community as a sub-community of the specified community. */
     COMUNITYSERVICE_CREATE_COMMUNITY(EntityType.COMMUNITY),
     /** Deletes the specified community. */
@@ -1331,7 +1333,7 @@ public enum Operation
         {
             this.protocol = "POST";
         }
-        else if (split[1].equals("REMOVE"))
+        else if (split[1].equals("REMOVE") || split[1].equals("DELETE"))
         {
             this.protocol = "DELETE";
         }

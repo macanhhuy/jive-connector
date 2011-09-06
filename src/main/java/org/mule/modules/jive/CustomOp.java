@@ -51,9 +51,11 @@ public enum CustomOp
     /**Sets the maximum allowable width for an avatar image.*/
     AVATAR_SET_MAX_ALLOWABLE_WIDTH("AVATAR", "avatarMaxAllowableWidth"),
     /**Adds an attachment to the blog post with the specified ID.*/
-    /**Adds an image to the blog post with the specified ID.*/
     BLOG_ADD_ATTACHMENT_TO_BLOG_POST("BLOG", "attachments"),
+    /**Adds an image to the blog post with the specified ID.*/
     BLOG_ADD_IMAGE_TO_BLOG_POST("BLOG", "images"),
+    /**Creates a new blog post.*/
+    BLOG_CREATE_BLOG_POST("BLOG", "blogPosts"),
     /**Permanently deletes a blog post and all of the comments
      * associated with the it.*/
     BLOG_DELETE_BLOG_POST("BLOG", "blogPosts"),
@@ -72,16 +74,16 @@ public enum CustomOp
     /**Returns the count of all blogs which are associated with the given user.*/
     BLOG_GET_BLOG_COUNT_FOR_USER("BLOG", "userBlogCount"),
     /**Returns a blog by blog ID.*/
-    BLOG_GET_BLOG_POST("BLOG", "blogPosts"),
+    BLOG_GET_BLOG_POST("BLOG", "blogPosts", "POST"),
+    /**Returns all the blog posts that match the criteria specified by the
+     * BlogPostResultFilter on the entire system.*/
+    BLOG_GET_BLOG_POSTS_BY_RESULTFILTER("BLOG", "blogPostsWithFilter", "POST"),
     /**Returns the number of blog posts on the system. The default blog
      * post result filter () only includes blog posts where status = and
      * publish date less than now().*/
     BLOG_GET_BLOG_POST_COUNT_BY_RESULTFILTER("BLOG", "blogPosts", "POST"),
-    /**Returns all the blog posts that match the criteria specified by the
-     * BlogPostResultFilter on the entire system.*/
-    BLOG_GET_BLOG_POST_BY_RESULTFILTER("BLOG", "blogPostsWithFilter", "POST"),
     /**Returns all blogs which are associated with the given user.*/
-    BLOG_GET_BLOG_FOR_USER("BLOG", "userBlogs"),
+    BLOG_GET_BLOGS_FOR_USER("BLOG", "userBlogs"),
     /**Returns the number of comments on blog posts that match
      * the criteria specified by the FeedbackResultFilter in the entire system.*/
     BLOG_GET_COMMENT_COUNT_WITH_FILTER("BLOG", "commentCountWithFilter", "POST"),
@@ -90,9 +92,13 @@ public enum CustomOp
     BLOG_GET_COMMENTS_WITH_FILTER("BLOG", "commentsWithFilter", "POST"),
     /**Returns an array of images that are attached to the specified blog post.*/
     BLOG_GET_IMAGES_BY_BLOG_POST_ID("BLOG", "images"),
+    /**Returns all of the tags for blogs in the system.*/
+    BLOG_GET_TAGS("BLOG", "tags"),
     /**Returns all tags for blogs in the system filtered by the
      * BlogTagResultFilter.*/
-    BLOG_GET_TAGS("BLOG", "tags", "POST"),
+    BLOG_GET_TAGS_BY_RESULTFILTER("BLOG", "tags", "POST"),
+    /***/
+    BLOG_PUBLISH_BLOG_POST("BLOG", "publishBlogPost", "POST"),
     /**Removes the attachment with the supplied id as an attachment of a blog.
      * Only administrators or the creator of the blog are allowed to call this method.*/
     BLOG_REMOVE_ATTACHMENT("BLOG", "attachments"),
@@ -100,6 +106,28 @@ public enum CustomOp
     BLOG_UPLOAD_ATTACHMENTS_TO_BLOG_POST("BLOG", "attachmentUpload", "POST"),
     /**Uploads a new attachment to the blog post with the specified ID.*/
     BLOG_USER_HAS_BLOGS("BLOG", "userHasBlogs", "GET"),
+    /***/
+    BLOG_UPDATE_BLOG_POST("BLOG", "blogPosts", "PUT"),
+    /**Adds a new comment to an object.*/
+    COMMENT_ADD("COMMENT", "comments"),
+    /**Adds a new comment having a parent comment to the object.*/
+    COMMENT_ADD_COMMENT_TO_COMMENT("COMMENT", "addChild"),
+    /**Deletes a comment in the object. The search index and other
+     * resources that referenced the comment will also be updated appropriately.*/
+    COMMENT_DELETE_COMMENT_RECURSIVE("COMMENT", "recursiveDelete"),
+    /**Returns the number of comments in the object based on the specified ResultFilter.
+     * This is useful for determining such things as the number of comments in a date range, etc.*/
+    COMMENT_GET_COMMENT_COUNT_WITH_FILTER("COMMENT", "count"),
+    /**Returns a count of all the comments in all content which has been authored by the supplied user.*/
+    COMMENT_GET_USER_CONTENT_COMMENT_COUNT("COMMENT", "usercommentcount"),
+    /**Returns a count of all the comments in all content which has been authored by the supplied user.*/
+    COMMENT_GET_USER_CONTENT_COMMENT_COUNT_WITH_FILTER("COMMENT", "user/count"),
+    /**Returns array of all the comments in all content which has been authored by the supplied user.*/
+    COMMENT_GET_USER_CONTENT_COMMENTS("COMMENT", "usercomments"),
+    /**Returns array of all the comments in all content which has been authored by the supplied user.*/
+    COMMENT_GET_USER_CONTENT_COMMENTS_WITH_FILTER("COMMENT", "user", "POST"),
+    /**Updates an existing comment.*/
+    COMMENT_UPDATE_COMMENT("COMMENT", "comments", "PUT"),
     /**TODO([a-zA-Z ]+) Service,(.+),*/
     TASK_CREATE("TASK", "tasks");
 

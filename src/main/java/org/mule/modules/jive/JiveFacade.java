@@ -109,6 +109,13 @@ public interface JiveFacade
     
     void init();
 
+    /**
+     * @param op
+     * @param id
+     * @return
+     */
+    Map<String, Object> execute(Operation op, String id);
+
 
     
 }
