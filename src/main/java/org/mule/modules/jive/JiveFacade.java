@@ -21,8 +21,6 @@
 package org.mule.modules.jive;
 
 import org.mule.modules.jive.api.EntityType;
-import org.mule.modules.jive.api.Operation;
-import org.mule.modules.jive.utils.ServiceUriFactory;
 
 import java.util.Map;
 

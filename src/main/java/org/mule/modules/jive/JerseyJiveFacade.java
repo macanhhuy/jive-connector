@@ -1,9 +1,7 @@
 package org.mule.modules.jive;
 
 import org.mule.modules.jive.api.EntityType;
-import org.mule.modules.jive.api.Operation;
 import org.mule.modules.jive.api.xml.XmlMapper;
-import org.mule.modules.jive.utils.ServiceUriFactory;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -20,7 +18,6 @@ import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
@@ -60,8 +57,7 @@ public class JerseyJiveFacade implements JiveFacade
         final Writer writer = new StringWriter();
         final String response;
 
-        final Builder partialRequest = this.gateway.path(ServiceUriFactory.
-                generateCustomUri(customType))
+        final Builder partialRequest = this.gateway.path(customType.getGenerateCustomUri())
             .type(MediaType.APPLICATION_FORM_URLENCODED)
             .header("content-type", "text/xml");
 

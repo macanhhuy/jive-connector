@@ -14,14 +14,11 @@ import org.mule.modules.jive.CustomOp;
 import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.ReferenceOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
-import org.mule.modules.jive.utils.ServiceUriFactory;
 
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.WebResource.Builder;
 
 import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
@@ -72,8 +69,7 @@ public final class CustomGetOperation implements ReferenceOperation
         final StringBuilder completeUri = new StringBuilder();
         final String[] pathParams = StringUtils.split(id, ':');
 
-        completeUri.append(ServiceUriFactory
-            .generateCustomUri(customType));
+        completeUri.append(customType.getGenerateCustomUri());
         for (int i = 0; i < pathParams.length; i++) 
         {
             completeUri.append("/" + pathParams[i]);
