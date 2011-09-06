@@ -1255,110 +1255,16 @@ public enum Operation
      */
     WATCHSERVICE_SET_DELETE_DAYS(EntityType.WATCH);
 
-    private static final int BASE_URI = 1;
-
-    private final String resourceUri;
-    private EntityType entityType = null;
-    private String protocol;
-    private String rootTagElementName = getRootTagElementFromName();
-
     private Operation(final EntityType type)
     {
-        this.resourceUri = getResourceUriFromOperationName();
-        setProtocolFromName();
-        this.entityType = type;
     }
 
     private Operation(final CustomOp customType)
     {
-        this.resourceUri = null;
-        this.protocol = customType.getMethod();
     }
 
     private Operation(final EntityType type, final int strategy)
     {
-        this.entityType = type;
-        if (strategy == BASE_URI)
-        {
-            this.resourceUri = this.entityType.getBasePluralUri();
-        }
-        else
-        {
-            this.resourceUri = "";
-        }
-        setProtocolFromName();
     }
     
-    /**
-     * @return
-     */
-    private String getResourceUriFromOperationName()
-    {
-        final String[] split = StringUtils.split(this.toString(), '_');
-        final StringBuffer str = new StringBuffer();
-        str.append(split[1].toLowerCase());
-        for (int i = 2; i < split.length; i++)
-        {
-            str.append(StringUtils.capitalize(split[i].toLowerCase()));
-        }
-        return str.toString();
-    }
-
-    public String getResourceUri()
-    {
-        return resourceUri;
-    }
-
-    public String getProtocol()
-    {
-        return protocol;
-    }
-
-    /**
-     * @return The root tag xml element name for this custom operation.
-     */
-    public final String getRootTagElementFromName()
-    {
-        final String[] split = StringUtils.split(this.toString(), '_');
-        final StringBuffer res = new StringBuffer();
-        res.append(split[1].toLowerCase());
-        if (split.length > 2)
-        {
-            for (int i = 2; i < split.length; i++)
-            {
-                res.append(StringUtils.capitalize(split[i].toLowerCase()));
-            }
-        }
-        return res.toString();
-    }
-
-    private void setProtocolFromName()
-    {
-        final String[] split = StringUtils.split(this.toString(), '_');
-        if (split[1].equals("ADD") || split[1].equals("CREATE"))
-        {
-            this.protocol = "POST";
-        }
-        else if (split[1].equals("REMOVE") || split[1].equals("DELETE"))
-        {
-            this.protocol = "DELETE";
-        }
-        else if (split[1].equals("GET") || split[1].equals("IS"))
-        {
-            this.protocol = "GET";
-        }
-        else if (split[1].equals("PUT"))
-        {
-            this.protocol = "PUT";
-        }
-        else
-        {
-            this.protocol = "";
-        }
-    }
-    
-    public String getRootTagElementName() 
-    {
-        return this.rootTagElementName;
-    }
-}
+   }

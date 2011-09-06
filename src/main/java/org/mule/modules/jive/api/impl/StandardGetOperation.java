@@ -16,7 +16,6 @@ import org.mule.modules.jive.api.xml.XmlMapper;
 
 import com.sun.jersey.api.client.WebResource;
 
-import java.io.StringReader;
 import java.util.Map;
 
 public class StandardGetOperation implements ReferenceOperation
@@ -24,14 +23,10 @@ public class StandardGetOperation implements ReferenceOperation
 
     public static final ReferenceOperation STANDARD = new StandardGetOperation();
 
-    /* (non-Javadoc)
-     * @see org.mule.modules.jive.api.ReferenceOperation#execute(com.sun.jersey.api.client.WebResource, org.mule.modules.jive.api.xml.XmlMapper, org.mule.modules.jive.api.EntityType, java.lang.String)
-     */
     @Override
     public Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, String id)
     {
-        final String response = resource.path(type.getBasePluralUri()).get(String.class);
-        return mapper.xml2map(new StringReader(response));
+        return mapper.xml2map(resource.path(type.getBasePluralUri()).get(String.class));
     }
 
 }

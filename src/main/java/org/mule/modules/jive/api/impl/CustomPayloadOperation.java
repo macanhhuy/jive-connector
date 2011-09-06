@@ -42,10 +42,12 @@ public class CustomPayloadOperation implements PayloadOperation
     {
         final Writer writer = new StringWriter();
         mapper.map2xml(customOp.getRootTagElementName(), entityData, writer);
-        final String response = resource.path(customOp.getGenerateCustomUri()).post(String.class, writer.toString());
+        final String response = resource.path(customOp.getBaseOperationUri()).post(String.class, writer.toString());
         // validar error
         return mapper.xml2map(new StringReader(response));
     }
+    
+
 
 }
 

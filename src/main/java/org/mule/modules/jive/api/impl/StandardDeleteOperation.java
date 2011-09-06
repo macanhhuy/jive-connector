@@ -11,6 +11,7 @@
 package org.mule.modules.jive.api.impl;
 
 import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.JiveUris;
 import org.mule.modules.jive.api.ReferenceOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
@@ -26,10 +27,9 @@ public final class StandardDeleteOperation implements ReferenceOperation
     @Override
     public Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, String id)
     {
-        final String response = resource.path(type.getCompletePluralUri(id)).delete(String.class);
         // validar error
         // is the response of a successful delete req always ""?
-        return mapper.xml2map(new StringReader(response));
+        return mapper.xml2map(resource.path(JiveUris.getOperationUri(type.getBasePluralUri(), id)).delete(String.class));
     }
 
 }

@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -65,18 +66,18 @@ public class JiveModuleTestDriver
     @Test
     /**Testing create method.
      * Creates an Avatar*/
-    public void getExistingIsNotNull()
+    public void getExistingBlogIsNotNull()
     {
-        String id = (String) facade.create(EntityType.AVATAR, newAvatar()).get("ID");
+        String id = (String) facade.create(EntityType.BLOG, newBlog()).get("ID");
 
         try
         {
-            Map<String, Object> avatar = facade.get(EntityType.AVATAR, id);
-            assertNotNull(avatar);
+            Map<String, Object> blog = facade.get(EntityType.BLOG, id);
+            assertNotNull(blog);
         }
         finally
         {
-            facade.delete(EntityType.AVATAR, id);
+            facade.delete(EntityType.BLOG, id);
         }
     }
 
@@ -96,18 +97,18 @@ public class JiveModuleTestDriver
 
     @Test(expected = NoSuchElementException.class)
     // TODO check
-    public void getInexistentFails() throws Exception
+    public void getInexistentBlogFails() throws Exception
     {
-        facade.get(EntityType.AVATAR, "foobar1234");
+        facade.get(EntityType.BLOG, "foobar1234");
     }
 
     /**
      * Test the delete method. Deletes an Avatar
      */
     @Test(expected = NoSuchElementException.class)
-    public void deleteInexistentFails()
+    public void deleteInexistentBlogFails()
     {
-        facade.delete(EntityType.AVATAR, "foobar1234");
+        facade.delete(EntityType.BLOG, "foobar1234");
     }
 
     /**
@@ -116,21 +117,10 @@ public class JiveModuleTestDriver
     @Test
     public void deleteExistentSucceeds()
     {
-        String id = (String) facade.create(EntityType.AVATAR, newAvatar()).get("ID");
-        facade.delete(EntityType.AVATAR, id);
+        String id = (String) facade.create(EntityType.BLOG, newBlog()).get("ID");
+        facade.delete(EntityType.BLOG, id);
     }
     
-    @Test
-    public void createReturnsNonNullObjectWithNonNullId() throws Exception
-    {
-        Map<String, Object> avatar = facade.create(EntityType.AVATAR, newAvatar());
-        assertNotNull(avatar);
-        assertNotNull(avatar.get("ID"));
-        
-        facade.delete(EntityType.AVATAR, (String) avatar.get("ID"));
-        //FIXME plurals
-    }
-
     /**
      * Test the get-all call.
      */
@@ -142,24 +132,6 @@ public class JiveModuleTestDriver
     }
 
     @Test
-    /**Test the create method.
-     * Creates an addressbook*/
-    public void createAddressbook()
-    {
-        final Map<String, Object> fooData = new HashMap<String, Object>();
-        facade.create(EntityType.ADDRESSBOOK, fooData);
-    }
-
-    @Test
-    /**Test the create method.
-     * Creates an addressbook*/
-    public void deleteAddressbook()
-    {
-        final String id = "bla/foo";
-        facade.delete(EntityType.ADDRESSBOOK, id);
-    }
-
-    @Test
     public void createBlogReturnsNonNullObjectWithNonNullId() throws Exception
     {
         Map<String, Object> blog = facade.create(EntityType.BLOG, newBlog());
@@ -168,6 +140,18 @@ public class JiveModuleTestDriver
         assertNotNull(blog.get("ID"));
         facade.delete(EntityType.BLOG, (String) blog.get("ID"));
     }
+    
+    
+    @Test
+    public void createAvatarReturnsNonNullObjectWithNonNullId() throws Exception
+    {
+        Map<String, Object> blog = facade.create(EntityType.AVATAR, newAvatar());
+        
+        assertNotNull(blog);
+        assertNotNull(blog.get("ID"));
+        facade.delete(EntityType.AVATAR, (String) blog.get("ID"));
+    }
+    
 
     @SuppressWarnings("serial")
     private LinkedHashMap<String, Object> newBlog()
@@ -176,8 +160,8 @@ public class JiveModuleTestDriver
         {
             {
                 put("userID", facade.getUserID());
-                put("blogName", "foobaz15");
-                put("displayName", "foobazbar");
+                put("blogName", "foobaz05");
+                put("displayName", "foobazbar0");
             }
         };
     }
@@ -196,7 +180,7 @@ public class JiveModuleTestDriver
         sources.add("base64ab");
         sources.add("base64ac");
         entity.put("source", sources);
-        facade.execute(Operation.BLOG_ADD_ATTACHMENT_TO_BLOG_POST, entity);
+        facade.execute(CustomOp.BLOG_ADD_ATTACHMENT_TO_BLOG_POST, entity);
     }
 
     @Test
@@ -206,7 +190,8 @@ public class JiveModuleTestDriver
         entity.put("userID", facade.getUserID());
         entity.put("blogName", "Great Blog");
         entity.put("displayName", "Great Blog Display Name!");
-        facade.execute(Operation.BLOG_CREATE_BLOG, entity);
+        //TODO facade.execute(CustomOp.BLOG_CREATE_BLOG, entity);
+        Assert.fail();
     }
 
     @Test
@@ -217,7 +202,7 @@ public class JiveModuleTestDriver
         entity.put("blogID", "Great Blog");
         entity.put("subject", "Great Blog Display Name!");
         entity.put("body", "The blog post for testing purpuses...");
-        facade.execute(Operation.BLOG_CREATE_BLOG_POST, entity);
+        facade.execute(CustomOp.BLOG_CREATE_BLOG_POST, entity);
     }
 
     /**
@@ -272,16 +257,6 @@ public class JiveModuleTestDriver
     {
         //TODO should return integer
         facade.count(EntityType.BLOG);
-    }
-
-    /**
-     * Test the delete service.
-     */
-
-    @Test
-    public final void testDeleteSingular()
-    {
-        facade.delete(EntityType.ADDRESSBOOK, "123");
     }
 
 }

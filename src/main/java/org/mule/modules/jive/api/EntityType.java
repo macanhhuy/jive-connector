@@ -9,9 +9,11 @@
  */
 
 package org.mule.modules.jive.api;
-
+import static org.mule.modules.jive.CustomOp.*;
 import static org.mule.modules.jive.api.EntityTypeBuilder.from;
 
+import org.mule.modules.jive.CustomOp;
+import org.mule.modules.jive.api.impl.CustomGetOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
 import com.sun.jersey.api.client.WebResource;
@@ -22,17 +24,38 @@ import org.apache.commons.lang.StringUtils;
 /** Services enum. */
 public final class EntityType
 {
-
+//TODO address book does not support create/delete
+    
     /** Addressbook service. */
-    public static final EntityType ADDRESSBOOK = from("ADDRESSBOOK").withServiceUri("addressBookService").build();
+    public static final EntityType ADDRESSBOOK = 
+         from("ADDRESSBOOK")
+        .withServiceUri("addressBookService")
+        .build();
+    
     /** Audit service. */
-    public static final EntityType AUDIT = from("AUDIT").build();
+    public static final EntityType AUDIT = 
+            from("AUDIT")
+            .build();
+    
     /** Avatar service. */
-    public static final EntityType AVATAR = from("AVATAR").build();
+    public static final EntityType AVATAR = 
+            from("AVATAR")
+            .withGet(AVATAR_GET_AVATAR_BY_ID)
+            .withDelete(AVATAR_DELETE)
+            .build();
+    
     /** Blog service. */
-    public static final EntityType BLOG = from("BLOG").build();
+    public static final EntityType BLOG = 
+            from("BLOG")
+            .withGet(BLOG_GET_BLOG_BY_ID)
+            .build();
+    
     /** Task service. */
-    public static final EntityType TASK = from("TASK").build();
+    public static final EntityType TASK = 
+        from("TASK")
+        .withCreate(TASK_CREATE)
+        .build();
+    
     /** Comment service. */
     public static final EntityType COMMENT = from("COMMENT").build();
     /** Community service. */
@@ -140,7 +163,7 @@ public final class EntityType
     /**
      * @return the serviceUri
      */
-    public String getServiceUri()
+    protected String getTypeUri()
     {
         if (serviceUri == EntityTypes.DEFAULT_SERVICE_URI)
         {
@@ -148,24 +171,6 @@ public final class EntityType
         }
         return "/" + serviceUri;
     }
-    
-    /**
-     * Generates the complete uri for the get or delete service.
-     * 
-     * @param this The {@link EntityType} that is being executed
-     * @param id A {@link String} containing the path parameters to add
-     * @return The resouce uri with the path parameters added
-     */
-    public String getCompletePluralUri(final String id)
-    {
-        return getBasePluralUri() + "/" +  generateIdPathVariable(id); 
-    }
-    
-    public String generateIdPathVariable(final String id)
-    {
-        return id.replace(':', '/');
-    }
-    
     
     /**
      * @param type
@@ -251,12 +256,12 @@ public final class EntityType
      * */
     public String getBasePluralUri()
     {
-        return getServiceUri() + "/" + pluralize(this.entityTypeName.toLowerCase());
+        return getTypeUri() + "/" + pluralize(this.entityTypeName.toLowerCase());
     }
     
     public String getBaseSingularUri()
     {
-        return getServiceUri() + "/" + this.entityTypeName.toLowerCase();
+        return getTypeUri() + "/" + this.entityTypeName.toLowerCase();
     }
 
     

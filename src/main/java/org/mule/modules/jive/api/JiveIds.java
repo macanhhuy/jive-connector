@@ -10,16 +10,11 @@
 
 package org.mule.modules.jive.api;
 
-import org.mule.modules.jive.api.xml.XmlMapper;
-
-import com.sun.jersey.api.client.WebResource;
-
-import java.util.Map;
-
-public interface CustomReferenceOperation
+public class JiveIds
 {
-    Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, Map<String, Object> entityData);
-    Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, String id);
+    public static String toPathVariable(final String id)
+    {
+        return id.replace(':', '/');
+    }
+
 }
-
-
