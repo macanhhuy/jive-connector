@@ -316,31 +316,17 @@ public enum Operation
      * Returns a list of WSApprovalStatus that show which users have approved the
      * specified document and which haven't.
      */
-    DOCUMENTSERVICE_GET_APPROVAL_STATUS_FOR_DOCUMENT(DOCUMENT),
-    /** Returns the number of attachments on the specified document. */
-    DOCUMENTSERVICE_GET_ATTACHMENT_COUNT_BY_DOCUMENT_ID(DOCUMENT),
     DOCUMENT_GET_APPROVAL_STATUS_FOR_DOCUMENT(DOCUMENT),
     /** Returns the number of attachments on the specified document. */
     DOCUMENT_GET_ATTACHMENT_COUNT_BY_DOCUMENT_ID(DOCUMENT),
+    /** Returns the number of attachments on the specified document. */
     /**
      * Returns the number of attachments on the document with the specified internal
      * ID.
      */
-    DOCUMENTSERVICE_GET_ATTACHMENT_COUNT_BY_INTERNAL_DOC_ID(DOCUMENT),
-    /** Returns the attachments for the specified document. */
-    DOCUMENTSERVICE_GET_ATTACHMENTS_BY_DOCUMENT_ID(DOCUMENT),
     DOCUMENT_GET_ATTACHMENT_COUNT_BY_INTERNAL_DOC_ID(DOCUMENT),
     /** Returns the attachments for the specified document. */
     DOCUMENT_GET_ATTACHMENTS_BY_DOCUMENT_ID(DOCUMENT),
-    /**
-     * Returns the attachments for the document with the specified internal document
-     * ID.
-     */
-    DOCUMENTSERVICE_GET_ATTACHMENTS_BY_INTERNAL_DOC_ID(DOCUMENT),
-    /** Returns the users who are allowed to edit the document. */
-    DOCUMENTSERVICE_GET_AUTHORS(DOCUMENT),
-    /** Returns the content of the specified binary document. */
-    DOCUMENTSERVICE_GET_BINARY_DOCUMENT_CONTENT(DOCUMENT),
     DOCUMENT_GET_ATTACHMENTS_BY_INTERNAL_DOC_ID(DOCUMENT),
     /** Returns the users who are allowed to edit the document. */
     DOCUMENT_GET_AUTHORS(DOCUMENT),
@@ -350,27 +336,7 @@ public enum Operation
      * Returns all of the users who must approve new documents before they can be
      * published.
      */
-    DOCUMENTSERVICE_GET_DOCUMENT_APPROVERS_ON_COMMUNITY(DOCUMENT),
     DOCUMENT_GET_DOCUMENT_APPROVERS_ON_COMMUNITY(DOCUMENT),
-    /**
-     * Returns all of the users who must approve the specified document before it can
-     * be published.
-     */
-    DOCUMENTSERVICE_GET_DOCUMENT_APPROVERS_ON_DOCUMENT(DOCUMENT),
-    /** Returns the specified document from a community. */
-    DOCUMENTSERVICE_GET_DOCUMENT_BY_DOCUMENT_ID(DOCUMENT),
-    /** Returns the specified version of a document. */
-    DOCUMENTSERVICE_GET_DOCUMENT_BY_DOCUMENT_IDAND_VERSION(DOCUMENT),
-    /** Returns the specified document. */
-    DOCUMENTSERVICE_GET_DOCUMENT_BY_INTERNAL_DOC_ID(DOCUMENT),
-    /** Returns the specified version of a document. */
-    DOCUMENTSERVICE_GET_DOCUMENT_BY_INTERNAL_DOC_IDAND_VERSION(DOCUMENT),
-    /** Returns the extended properties for the specified document. */
-    DOCUMENTSERVICE_GET_DOCUMENT_PROPERTIES(DOCUMENT),
-    /** Returns the value of the specified extended property for a document. */
-    DOCUMENTSERVICE_GET_DOCUMENT_PROPERTY(DOCUMENT),
-    /** Returns all of the documents for the specified community. */
-    DOCUMENTSERVICE_GET_DOCUMENTS_BY_COMMUNITY(DOCUMENT),
     DOCUMENT_GET_DOCUMENT_APPROVERS_ON_DOCUMENT(DOCUMENT),
     /** Returns the specified document from a community. */
     DOCUMENT_GET_DOCUMENT_BY_DOCUMENT_ID(DOCUMENT),
@@ -386,19 +352,6 @@ public enum Operation
     DOCUMENT_GET_DOCUMENT_PROPERTY(DOCUMENT),
     /** Returns all of the documents for the specified community. */
     DOCUMENT_GET_DOCUMENTS_BY_COMMUNITY(DOCUMENT),
-    /**
-     * Returns all of the documents in the specified community and constrained by the
-     * specified filter.
-     */
-    DOCUMENTSERVICE_GET_DOCUMENTS_BY_COMMUNITY_AND_FILTER(DOCUMENT),
-    /** Returns the number of images on the specified document. */
-    DOCUMENTSERVICE_GET_IMAGE_COUNT_BY_DOCUMENT_ID(DOCUMENT),
-    /** Returns the number of images on the document with the specified internal ID. */
-    DOCUMENTSERVICE_GET_IMAGE_COUNT_BY_INTERNAL_DOC_ID(DOCUMENT),
-    /** Acquire the images for a document by the document id. */
-    DOCUMENTSERVICE_GET_IMAGES_BY_DOCUMENT_ID(DOCUMENT),
-    /** Returns the images for the document specified by its internal ID. */
-    DOCUMENTSERVICE_GET_IMAGES_BY_INTERNAL_DOC_ID(DOCUMENT),
     DOCUMENT_GET_DOCUMENTS_BY_COMMUNITY_AND_FILTER(DOCUMENT),
     /** Returns the number of images on the specified document. */
     DOCUMENT_GET_IMAGE_COUNT_BY_DOCUMENT_ID(DOCUMENT),
@@ -412,22 +365,17 @@ public enum Operation
      * Returns the most popular documents from across all communities according to
      * ratings, document views and time passed since the document was created.
      */
-    DOCUMENTSERVICE_GET_POPULAR_DOCUMENTS(DOCUMENT),
     DOCUMENT_GET_POPULAR_DOCUMENTS(DOCUMENT),
     /**
      * Returns the most popular documents in the given community according to
      * ratings, document views and time passed since the document was created.
      */
-    DOCUMENTSERVICE_GET_POPULAR_DOCUMENTS_BY_COMMUNITY(DOCUMENT),
     DOCUMENT_GET_POPULAR_DOCUMENTS_BY_COMMUNITY(DOCUMENT),
     /**
      * Returns the most popular documents in the given community according to
      * ratings, document views and time passed since the document was created in the
      * specified languages.
      */
-    DOCUMENTSERVICE_GET_POPULAR_DOCUMENTS_BY_LANGUAGE(DOCUMENT),
-    /** Returns the user who authored the document. */
-    DOCUMENTSERVICE_GET_USER(DOCUMENT),
     DOCUMENT_GET_POPULAR_DOCUMENTS_BY_LANGUAGE(DOCUMENT),
     /** Returns the user who authored the document. */
     DOCUMENT_GET_USER(DOCUMENT),
@@ -435,39 +383,6 @@ public enum Operation
      * Returns a list of the documents that the specified user must approve before
      * they can be published.
      */
-    DOCUMENTSERVICE_GET_USER_APPROVAL_DOCUMENTS(DOCUMENT),
-    /** Returns true if the comments feature is turned on. */
-    DOCUMENTSERVICE_IS_COMMENTS_ENABLED(DOCUMENT),
-    /** Returns true if the trackbacks feature is turned on. */
-    DOCUMENTSERVICE_IS_TRACKBACKS_ENABLED(DOCUMENT),
-    /** Moves a document from its current community to another one. */
-    DOCUMENTSERVICE_MOVE_DOCUMENT(DOCUMENT),
-    /** Moves a document from its current container to another. */
-    DOCUMENTSERVICE_MOVE_DOCUMENT_TO_CONTAINER(DOCUMENT),
-    /** Publishes the specified binary document in the specified community. */
-    DOCUMENTSERVICE_PUBLISH_BINARY_DOCUMENT(DOCUMENT),
-    /** Publishes the specified binary document in the specified container. */
-    DOCUMENTSERVICE_PUBLISH_BINARY_DOCUMENT_IN_CONTAINER(DOCUMENT),
-    /** Publishes the specified document in the specified community. */
-    DOCUMENTSERVICE_PUBLISH_DOCUMENT(DOCUMENT),
-    /** Publishes the specified document in the specified container. */
-    DOCUMENTSERVICE_PUBLISH_DOCUMENT_IN_CONTAINER(DOCUMENT),
-    /** Removes the specified attachment. */
-    DOCUMENTSERVICE_REMOVE_ATTACHMENT(DOCUMENT),
-    /** Removes the specified user as an author of the specified document. */
-    DOCUMENTSERVICE_REMOVE_AUTHOR(DOCUMENT),
-    /** Enables or disables the comments feature system wide. */
-    DOCUMENTSERVICE_SET_COMMENTS_ENABLED(DOCUMENT),
-    /** Sets the specified extended property for a document. */
-    DOCUMENTSERVICE_SET_DOCUMENT_PROPERTY(DOCUMENT),
-    /** Enables or disables the trackbacks feature system wide. */
-    DOCUMENTSERVICE_SET_TRACKBACKS_ENABLED(DOCUMENT),
-    /** Updates the specified document with the <em>document</em> parameter value. */
-    DOCUMENTSERVICE_UPDATE_DOCUMENT(DOCUMENT),
-    /** Uploads a file as an attachment to the specified document. */
-    DOCUMENTSERVICE_UPLOAD_ATTACHMENT_TO_DOCUMENT_BY_DOCUMENT_ID(DOCUMENT),
-    /** Uploads a file as an attachment to the document specified internal ID. */
-    DOCUMENTSERVICE_UPLOAD_ATTACHMENT_TO_DOCUMENT_BY_INTERNAL_DOC_ID(DOCUMENT),
     DOCUMENT_GET_USER_APPROVAL_DOCUMENTS(DOCUMENT),
     /** Returns true if the comments feature is turned on. */
     DOCUMENT_IS_COMMENTS_ENABLED(DOCUMENT),
