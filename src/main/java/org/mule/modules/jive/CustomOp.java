@@ -132,6 +132,21 @@ public enum CustomOp
     COMMUNITY_SET_PROPERTY(COMMUNITY, "properties"),
     /**Updates the specified community with community.*/
     COMMUNITY_UPDATE_COMMUNITY(COMMUNITY, "communities"),
+    /**Adds a new attachment to the specified document.*/
+    DOCUMENT_ADD_ATTACHMENT_TO_DOCUMENT_BY_DOCUMENT_ID(DOCUMENT, "attachments", "POST", "addAttachmentToDocumentByDocumentID"),
+    /**Adds a new attachment to the specified document.*/
+    DOCUMENT_ADD_ATTACHMENT_TO_DOCUMENT_BY_INTERNAL_DOC_ID(DOCUMENT, "attachmentsByInternalDocID", "POST", "addAttachmentToDocumentByInternalDocID"),
+    /**Adds the specified user as an author of a document. Once any users have been added, the document is no
+     * longer available for editing by just anyone with the appropriate permissions.*/
+    DOCUMENT_ADD_AUTHOR(DOCUMENT, "authors"),
+    /** Adds the specified user as a document approver for an entire community. */
+    DOCUMENT_ADD_DOCUMENT_APPROVER_ON_COMMUNITY(DOCUMENT, "approval/communityUsers"),
+    /** Adds a user as an approver for the specified document. */
+    DOCUMENT_ADD_DOCUMENT_APPROVER_ON_DOCUMENT(DOCUMENT, "approval/users"),
+    /** Adds a new image to the specified document. */
+    DOCUMENT_ADD_IMAGE_TO_DOCUMENT_BY_DOCUMENT_ID(DOCUMENT, "images", "POST", "addImageToDocumentByDocumentID"),
+    /** Adds a new image to the document with the specified internal ID. */
+    DOCUMENT_ADD_IMAGE_TO_DOCUMENT_BY_INTERNAL_DOC_ID(DOCUMENT, "imagesByInternalDocID", "POST", "addImageToDocumentByInternalDocID"),
     /**Adds a new comment to an object.*/
     COMMENT_ADD(COMMENT, "comments"),
     /**Adds a new comment having a parent comment to the object.*/
@@ -179,6 +194,21 @@ public enum CustomOp
         this.entityType = type;
         this.method = method;
         this.rootTagElementName = getRootTagElementFromName();
+    }
+    
+    /**
+     * @param type the entity type to which this operation applies
+     * @param operationName The operation name, as present in the uri
+     * @param method The http method
+     * @param rootTag The root tag for the payload xml
+     */
+    private CustomOp(final EntityTypeName type, final String operationName,
+                     final String method, final String rootTag) 
+    {
+        this.operationName = operationName;
+        this.entityType = type;
+        this.method = method;
+        this.rootTagElementName = rootTag;
     }
 
     /**Contructor for the {@link CustomOp}.
