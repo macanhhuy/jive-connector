@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -116,7 +117,7 @@ public class JiveModuleTestDriver
     @Test
     public void deleteExistentSucceeds()
     {
-        String id = (String) facade.create(EntityType.BLOG, newAvatar()).get("ID");
+        String id = (String) facade.create(EntityType.BLOG, newBlog()).get("ID");
         facade.delete(EntityType.BLOG, id);
     }
     
@@ -158,8 +159,8 @@ public class JiveModuleTestDriver
         {
             {
                 put("userID", facade.getUserID());
-                put("blogName", "foobaz15");
-                put("displayName", "foobazbar");
+                put("blogName", "foobaz05");
+                put("displayName", "foobazbar0");
             }
         };
     }
@@ -178,7 +179,7 @@ public class JiveModuleTestDriver
         sources.add("base64ab");
         sources.add("base64ac");
         entity.put("source", sources);
-        facade.execute(Operation.BLOG_ADD_ATTACHMENT_TO_BLOG_POST, entity);
+        facade.execute(CustomOp.BLOG_ADD_ATTACHMENT_TO_BLOG_POST, entity);
     }
 
     @Test
@@ -188,7 +189,8 @@ public class JiveModuleTestDriver
         entity.put("userID", facade.getUserID());
         entity.put("blogName", "Great Blog");
         entity.put("displayName", "Great Blog Display Name!");
-        facade.execute(Operation.BLOG_CREATE_BLOG, entity);
+        //TODO facade.execute(CustomOp.BLOG_CREATE_BLOG, entity);
+        Assert.fail();
     }
 
     @Test
@@ -199,7 +201,7 @@ public class JiveModuleTestDriver
         entity.put("blogID", "Great Blog");
         entity.put("subject", "Great Blog Display Name!");
         entity.put("body", "The blog post for testing purpuses...");
-        facade.execute(Operation.BLOG_CREATE_BLOG_POST, entity);
+        facade.execute(CustomOp.BLOG_CREATE_BLOG_POST, entity);
     }
 
     /**
