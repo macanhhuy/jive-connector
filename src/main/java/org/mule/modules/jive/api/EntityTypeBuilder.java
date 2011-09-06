@@ -11,7 +11,9 @@
 package org.mule.modules.jive.api;
 
 import org.mule.modules.jive.CustomOp;
+import org.mule.modules.jive.api.impl.CustomDeleteOperation;
 import org.mule.modules.jive.api.impl.CustomGetOperation;
+import org.mule.modules.jive.api.impl.CustomPayloadOperation;
 import org.mule.modules.jive.api.impl.StandardCountOperation;
 import org.mule.modules.jive.api.impl.StandardCreateOperation;
 import org.mule.modules.jive.api.impl.StandardDeleteOperation;
@@ -70,7 +72,24 @@ public class EntityTypeBuilder
         this.deleteOp = deleteOp;
         return this;
     }
-
+    
+    public EntityTypeBuilder withDelete(CustomOp customOp)
+    {
+        return withDelete(new CustomDeleteOperation(customOp));
+    }
+    
+    
+    public EntityTypeBuilder withCreate(PayloadOperation createOperation)
+    {
+        this.createOp =createOperation;
+        return this;
+    }
+    
+    public EntityTypeBuilder withCreate(CustomOp customOp)
+    {
+        return withCreate(new CustomPayloadOperation(customOp));
+    }
+    
     /**
      * @param getOp the getOp to set
      * @return 
@@ -124,7 +143,7 @@ public class EntityTypeBuilder
     /**
      * @param countOperation the countOperation to set
      */
-    public void addCustomCountOperation(TypeOperation countOperation)
+    public void withCount(TypeOperation countOperation)
     {
         this.countOp = countOperation;
     }
