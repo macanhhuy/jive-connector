@@ -10,12 +10,11 @@
 
 package org.mule.modules.jive.api.xml;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.mule.api.registry.ServiceType;
 import org.mule.modules.jive.CustomOp;
-import org.mule.modules.jive.JerseyJiveFacade;
-import org.mule.modules.jive.JiveFacade;
 
 import java.io.StringReader;
 import java.io.StringWriter;

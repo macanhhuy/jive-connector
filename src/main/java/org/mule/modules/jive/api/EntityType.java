@@ -13,7 +13,6 @@ package org.mule.modules.jive.api;
 import static org.mule.modules.jive.api.EntityTypeBuilder.from;
 
 import org.mule.modules.jive.api.xml.XmlMapper;
-import org.mule.modules.jive.utils.ServiceUriFactory;
 
 import com.sun.jersey.api.client.WebResource;
 
@@ -90,7 +89,7 @@ public final class EntityType
     private String entityTypeName;
     private ReferenceOperation getAllOperation;
     private ReferenceOperation getOperation;
-    private ReferenceOperation countOperation;
+    private TypeOperation countOperation;
 
     /**
      * @param entityType
@@ -109,7 +108,7 @@ public final class EntityType
                       ReferenceOperation getOp,
                       ReferenceOperation getAllOp,
                       PayloadOperation putOp,
-                      ReferenceOperation countOp)
+                      TypeOperation countOp)
     {
         this.entityTypeName = entityType;
         this.serviceUri = serviceNameException;
@@ -149,7 +148,7 @@ public final class EntityType
         }
         return "/" + serviceUri;
     }
-
+    
     /**
      * Generates the complete uri for the get or delete service.
      * 
@@ -157,19 +156,17 @@ public final class EntityType
      * @param id A {@link String} containing the path parameters to add
      * @return The resouce uri with the path parameters added
      */
-    public String getCompleteUri(final String id)
+    public String getCompletePluralUri(final String id)
     {
-        final StringBuffer completeUri = new StringBuffer();
-        final String[] pathParams = StringUtils.split(id, ':');
-
-        completeUri.append(ServiceUriFactory.generateBaseUri(this));
-        for (int i = 0; i < pathParams.length; i++)
-        {
-            completeUri.append("/" + pathParams[i]);
-        }
-        return completeUri.toString();
+        return getBasePluralUri() + "/" +  generateIdPathVariable(id); 
     }
-
+    
+    public String generateIdPathVariable(final String id)
+    {
+        return id.replace(':', '/');
+    }
+    
+    
     /**
      * @param type
      * @param entity
@@ -203,10 +200,9 @@ public final class EntityType
      * @param resource
      * @return
      */
-    public Map<String, Object> count(final EntityType type, final String id,
-        final XmlMapper mapper, final WebResource resource)
+    public Map<String, Object> count(final EntityType type, final XmlMapper mapper, final WebResource resource)
     {
-        return countOperation.execute(resource, mapper, type, id);
+        return countOperation.execute(resource, mapper, type);
     }
     
     /**
@@ -216,10 +212,10 @@ public final class EntityType
      * @param resource
      * @return
      */
-    public Map<String, Object> get(final EntityType type, final String id,
+    public Map<String, Object> get(final String id,
         final XmlMapper mapper, final WebResource resource)
     {
-        return getOperation.execute(resource, mapper, type, id);
+        return getOperation.execute(resource, mapper, this, id);
     }
     
     /**
@@ -248,15 +244,22 @@ public final class EntityType
         return putOperation.execute(resource, mapper, type, entityData);
     }
     
-    /**
-     * 
-     */
-    public String generateBaseUri()
+    /**Generates the base uri for the service type given.
+     * @return The service base uri. E.g. For the AVATAR service, the base
+     * uri would be /avatarService/avatars
+     * @param type The service
+     * */
+    public String getBasePluralUri()
     {
-        final StringBuilder uri = new StringBuilder(getServiceUri() + "/");
-        uri.append(pluralize(this.entityTypeName.toLowerCase()));
-        return uri.toString();
+        return getServiceUri() + "/" + pluralize(this.entityTypeName.toLowerCase());
     }
+    
+    public String getBaseSingularUri()
+    {
+        return getServiceUri() + "/" + this.entityTypeName.toLowerCase();
+    }
+
+    
     
     /**Pluralizes the service name.
      * @param str The {@link String} to pluralize
@@ -269,5 +272,8 @@ public final class EntityType
         }
         return str + "s";
     }
+
+    
+    
 
 }

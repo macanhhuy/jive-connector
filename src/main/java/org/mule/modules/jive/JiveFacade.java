@@ -22,6 +22,7 @@ package org.mule.modules.jive;
 
 import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.Operation;
+import org.mule.modules.jive.utils.ServiceUriFactory;
 
 import java.util.Map;
 
@@ -51,7 +52,7 @@ public interface JiveFacade
     Map<String, Object> delete(final EntityType type, String id);
     
     /***/
-    Map<String, Object> count(final EntityType type, final String id);
+    Map<String, Object> count(final EntityType type);
     
     /**
      * @param entityType

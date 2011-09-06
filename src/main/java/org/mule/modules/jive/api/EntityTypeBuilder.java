@@ -11,11 +11,11 @@
 package org.mule.modules.jive.api;
 
 import org.mule.modules.jive.api.impl.StandardCountOperation;
+import org.mule.modules.jive.api.impl.StandardCreateOperation;
 import org.mule.modules.jive.api.impl.StandardDeleteOperation;
 import org.mule.modules.jive.api.impl.StandardGetAllOperation;
 import org.mule.modules.jive.api.impl.StandardGetOperation;
 import org.mule.modules.jive.api.impl.StandardPayloadOperation;
-import org.mule.modules.jive.api.impl.StandardCreateOperation;
 
 /**
  * Builder to hold all the crud operations.
@@ -30,7 +30,7 @@ public class EntityTypeBuilder
     private ReferenceOperation deleteOp = StandardDeleteOperation.STANDARD;
     private ReferenceOperation getOp = StandardGetOperation.STANDARD;
     private ReferenceOperation getAllOp = StandardGetAllOperation.STANDARD;
-    private ReferenceOperation countOp = StandardCountOperation.STANDARD;
+    private TypeOperation countOp = StandardCountOperation.STANDARD;
 
     
     /**
@@ -117,7 +117,7 @@ public class EntityTypeBuilder
     /**
      * @param countOperation the countOperation to set
      */
-    public void addCustomCountOperation(ReferenceOperation countOperation)
+    public void addCustomCountOperation(TypeOperation countOperation)
     {
         this.countOp = countOperation;
     }

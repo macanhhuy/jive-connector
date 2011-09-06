@@ -30,7 +30,7 @@ public class StandardGetAllOperation implements ReferenceOperation
     public Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, String id)
     {
         //TODO what is the base uri for the getAll? all customOps?
-        final String response = resource.path(type.generateBaseUri()).get(String.class);
+        final String response = resource.path(type.getBasePluralUri()).get(String.class);
         return mapper.xml2map(new StringReader(response));
     }
 

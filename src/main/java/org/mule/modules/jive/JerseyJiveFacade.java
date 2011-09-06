@@ -49,8 +49,7 @@ public class JerseyJiveFacade implements JiveFacade
     @Override
     public final Map<String, Object> get(final EntityType entityType, final String id)
     {
-        //return entityType.get(id, gateway, mapper);
-        throw new NotImplementedException();
+        return entityType.get(id, mapper, gateway);
     }
     
     @Override
@@ -211,14 +210,10 @@ public class JerseyJiveFacade implements JiveFacade
      * @return The count as a {@link Long}
      * @param type The service type
      * */
-    public final Map<String, Object> count(final EntityType type, final String id) 
+    public final Map<String, Object> count(final EntityType type) 
     {
         Validate.notNull(type);
-        return type.count(type, id, mapper, gateway);
-//        String response = this.gateway.path(ServiceUriFactory.generateBaseUri(type))
-//            .get(String.class);
-//        return Long.parseLong(StringUtils.substringBetween(
-//            response, "<return>", "</return>"));
+        return type.count(type, mapper, gateway);
     }
 
   

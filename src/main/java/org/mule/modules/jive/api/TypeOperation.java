@@ -10,15 +10,18 @@
 
 package org.mule.modules.jive.api;
 
-import org.junit.Test;
+import org.mule.modules.jive.api.xml.XmlMapper;
 
-public class OperationUnitTest
+import com.sun.jersey.api.client.WebResource;
+
+import java.util.Map;
+
+/**
+ * {@link TypeOperation} models a Jive operation that takes just a type as argument
+ * 
+ * @author flbulgarelli
+ */
+public interface TypeOperation
 {
-    @Test
-    public void testInit() throws Exception
-    {
-        @SuppressWarnings("unused")
-        Operation avatarCreateAvatar = Operation.AVATAR_CREATE_AVATAR;
-    }
-
+    Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type);
 }

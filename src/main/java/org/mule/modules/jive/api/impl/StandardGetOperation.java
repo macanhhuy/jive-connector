@@ -30,7 +30,7 @@ public class StandardGetOperation implements ReferenceOperation
     @Override
     public Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, String id)
     {
-        final String response = resource.path(type.generateBaseUri()).get(String.class);
+        final String response = resource.path(type.getBasePluralUri()).get(String.class);
         return mapper.xml2map(new StringReader(response));
     }
 

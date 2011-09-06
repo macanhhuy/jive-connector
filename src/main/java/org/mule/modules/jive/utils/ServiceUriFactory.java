@@ -43,18 +43,6 @@ public final class ServiceUriFactory {
         return customType.getGenerateCustomUri();
     }
 
-    /**Generates the base uri for the service type given.
-     * @return The service base uri. E.g. For the AVATAR service, the base
-     * uri would be /avatarService/avatars
-     * @param type The service
-     * */
-    public static String generateBaseUri(final EntityType type) 
-    {
-        final StringBuilder uri = new StringBuilder(type.getServiceUri() + "/");
-        uri.append(pluralize(type.toString().toLowerCase()));
-        return uri.toString();
-    }
-
     /**Removes the 'get' or 'set' from the beginning.
      * @return The operation uri
      * @param opName The operation entire name. Eg: 'set_Active_Avatar'
@@ -66,15 +54,5 @@ public final class ServiceUriFactory {
             res.append(opSplit[i]);
         }
         return res.toString();
-    }
-
-    /**Pluralizes the service name.
-     * @param str The {@link String} to pluralize
-     * @return str in plural*/
-    private static String pluralize(final String str) {
-        if (str.endsWith("y")) {
-            return StringUtils.substringBeforeLast(str, "y") + "ies";
-        }
-        return str + "s";
     }
 }
