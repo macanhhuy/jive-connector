@@ -108,6 +108,23 @@ public enum CustomOp
     BLOG_USER_HAS_BLOGS("BLOG", "userHasBlogs", "GET"),
     /***/
     BLOG_UPDATE_BLOG_POST("BLOG", "blogPosts", "PUT"),
+    /**Delete a property with the given name from the community with the given id.*/
+    COMMUNITY_DELETE_PROPERTY("COMMUNITY", "properties"),
+    /**Delete a property with the given name from the community with the given id.*/
+    COMMUNITY_GET_DOCUMENT_IDS("COMMUNITY", "documentIDs"),
+    /**Returns all tbe extended properties for the community with the specified id.*/
+    COMMUNITY_GET_PROPERTIES("COMMUNITY", "properties"),
+    /**Returns a specific extended property for the community
+     * with the specified property name and community ID.*/
+    COMMUNITY_GET_PROPERTY("COMMUNITY", "properties"),
+    /***/
+    COMMUNITY_GET_RECURSIVE_COMMUNITIES("COMMUNITY", "communities"),
+    /**Returns a count of sub-communities of the specified community.*/
+    COMMUNITY_GET_RECURSIVE_COMMUNITY_COUNT("COMMUNITY", "recursiveCount"),
+    /**Sets an extended propery for the specified community.*/
+    COMMUNITY_SET_PROPERTY("COMMUNITY", "properties"),
+    /**Updates the specified community with community.*/
+    COMMUNITY_UPDATE_COMMUNITY("COMMUNITY", "communities"),
     /**Adds a new comment to an object.*/
     COMMENT_ADD("COMMENT", "comments"),
     /**Adds a new comment having a parent comment to the object.*/

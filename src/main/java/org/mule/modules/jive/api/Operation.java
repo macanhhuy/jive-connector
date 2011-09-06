@@ -230,37 +230,37 @@ public enum Operation
      */
     BLOG_USER_HAS_BLOGS(CustomOp.BLOG_USER_HAS_BLOGS),
     /** Creates a new community as a sub-community of the specified community. */
-    COMUNITYSERVICE_CREATE_COMMUNITY(EntityType.COMMUNITY),
+    COMMUNITY_CREATE_COMMUNITY(EntityType.COMMUNITY, EntityTypes.BASE_URI),
     /** Deletes the specified community. */
-    COMUNITYSERVICE_DELETE_COMMUNITY(EntityType.COMMUNITY),
+    COMMUNITY_DELETE_COMMUNITY(EntityType.COMMUNITY, EntityTypes.BASE_URI),
     /** Delete the specified property from the specified community. */
-    COMUNITYSERVICE_DELETE_PROPERTY(EntityType.COMMUNITY),
+    COMMUNITY_DELETE_PROPERTY(EntityType.COMMUNITY),
     /** Returns a WSCommunity by its ID. */
-    COMUNITYSERVICE_GET_COMMUNITY(EntityType.COMMUNITY),
+    COMMUNITY_GET_COMMUNITY(EntityType.COMMUNITY, EntityTypes.BASE_URI),
     /**
      * Returns document IDs for all published documents in the specified community,
      * excluding its sub-communities.
      */
-    COMUNITYSERVICE_GET_DOCUMENT_IDS(EntityType.COMMUNITY),
+    COMMUNITY_GET_DOCUMENT_IDS(CustomOp.COMMUNITY_GET_DOCUMENT_IDS),
     /** Returns the extended properties for the specified community. */
-    COMUNITYSERVICE_GET_PROPERTIES(EntityType.COMMUNITY),
+    COMMUNITY_GET_PROPERTIES(CustomOp.COMMUNITY_GET_PROPERTIES),
     /** Returns the specified extended property for a community. */
-    COMUNITYSERVICE_GET_PROPERTY(EntityType.COMMUNITY),
+    COMMUNITY_GET_PROPERTY(CustomOp.COMMUNITY_GET_PROPERTY),
     /***/
-    COMUNITYSERVICE_GET_RECURSIVE_COMMUNITIES(EntityType.COMMUNITY),
+    COMMUNITY_GET_RECURSIVE_COMMUNITIES(CustomOp.COMMUNITY_GET_RECURSIVE_COMMUNITIES),
     /**
      * Returns all sub-communities that are descendants of the specified parent
      * community.
      */
-    COMUNITYSERVICE_GET_RECURSIVE_COMMUNITIES_BY_PARENT(EntityType.COMMUNITY),
+    COMMUNITY_GET_RECURSIVE_COMMUNITIES_BY_PARENT(EntityType.COMMUNITY),
     /** Returns a count of sub-communities of the specified community. */
-    COMUNITYSERVICE_GET_RECURSIVE_COMMUNITY_COUNT(EntityType.COMMUNITY),
+    COMMUNITY_GET_RECURSIVE_COMMUNITY_COUNT(CustomOp.COMMUNITY_GET_RECURSIVE_COMMUNITY_COUNT),
     /** Returns the immediate sub-communities of the specified parent community. */
-    COMUNITYSERVICE_GET_SUB_COMMUNITIES(EntityType.COMMUNITY),
+    COMMUNITY_GET_SUB_COMMUNITIES(EntityType.COMMUNITY),
     /** Sets an extended propery for the specified community. */
-    COMUNITYSERVICE_SET_PROPERTY(EntityType.COMMUNITY),
+    COMMUNITY_SET_PROPERTY(CustomOp.COMMUNITY_SET_PROPERTY),
     /** Updates the specified community with <em>community</em>. */
-    COMUNITYSERVICE_UPDATE_COMMUNITY(EntityType.COMMUNITY),
+    COMMUNITY_UPDATE_COMMUNITY(CustomOp.COMMUNITY_UPDATE_COMMUNITY),
     /** Adds a new attachment to the specified document. */
     DOCUMENTSERVICE_ADD_ATTACHMENT_TO_DOCUMENT_BY_DOCUMENT_ID(EntityType.DOCUMENT),
     /** Adds a new attachment to the specified document. */
