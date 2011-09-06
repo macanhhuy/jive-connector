@@ -21,11 +21,12 @@
 
 package org.mule.modules.jive;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
-import org.mule.modules.jive.api.EntityType;
-import org.mule.modules.jive.api.Operation;
+import static org.mule.modules.jive.api.EntityTypeName.AVATAR;
+import static org.mule.modules.jive.api.EntityTypeName.BLOG;
+import static org.mule.modules.jive.api.EntityTypeName.USER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,20 +65,26 @@ public class JiveModuleTestDriver
     }
     
     @Test
+    public void testGetUserIdIsNotNull() throws Exception
+    {
+        assertNotNull(facade.getUserID());
+    }
+    
+    @Test
     /**Testing create method.
      * Creates an Avatar*/
     public void getExistingBlogIsNotNull()
     {
-        String id = (String) facade.create(EntityType.BLOG, newBlog()).get("ID");
+        String id = (String) facade.create(BLOG, newBlog()).get("ID");
 
         try
         {
-            Map<String, Object> blog = facade.get(EntityType.BLOG, id);
+            Map<String, Object> blog = facade.get(BLOG, id);
             assertNotNull(blog);
         }
         finally
         {
-            facade.delete(EntityType.BLOG, id);
+            facade.delete(BLOG, id);
         }
     }
 
@@ -99,7 +106,7 @@ public class JiveModuleTestDriver
     // TODO check
     public void getInexistentBlogFails() throws Exception
     {
-        facade.get(EntityType.BLOG, "foobar1234");
+        facade.get(BLOG, "foobar1234");
     }
 
     /**
@@ -108,7 +115,7 @@ public class JiveModuleTestDriver
     @Test(expected = NoSuchElementException.class)
     public void deleteInexistentBlogFails()
     {
-        facade.delete(EntityType.BLOG, "foobar1234");
+        facade.delete(BLOG, "foobar1234");
     }
 
     /**
@@ -117,8 +124,8 @@ public class JiveModuleTestDriver
     @Test
     public void deleteExistentSucceeds()
     {
-        String id = (String) facade.create(EntityType.BLOG, newBlog()).get("ID");
-        facade.delete(EntityType.BLOG, id);
+        String id = (String) facade.create(BLOG, newBlog()).get("ID");
+        facade.delete(BLOG, id);
     }
     
     /**
@@ -127,29 +134,29 @@ public class JiveModuleTestDriver
     @Test
     public void getAllReturnsNonNullResult()
     {
-        Map<String, Object> result = facade.getAll(EntityType.USER, "");
+        Map<String, Object> result = facade.getAll(USER, "");
         assertNotNull(result);
     }
 
     @Test
     public void createBlogReturnsNonNullObjectWithNonNullId() throws Exception
     {
-        Map<String, Object> blog = facade.create(EntityType.BLOG, newBlog());
+        Map<String, Object> blog = facade.create(BLOG, newBlog());
         
         assertNotNull(blog);
         assertNotNull(blog.get("ID"));
-        facade.delete(EntityType.BLOG, (String) blog.get("ID"));
+        facade.delete(BLOG, (String) blog.get("ID"));
     }
     
     
     @Test
     public void createAvatarReturnsNonNullObjectWithNonNullId() throws Exception
     {
-        Map<String, Object> blog = facade.create(EntityType.AVATAR, newAvatar());
+        Map<String, Object> blog = facade.create(AVATAR, newAvatar());
         
         assertNotNull(blog);
         assertNotNull(blog.get("ID"));
-        facade.delete(EntityType.AVATAR, (String) blog.get("ID"));
+        facade.delete(AVATAR, (String) blog.get("ID"));
     }
     
 
@@ -221,16 +228,16 @@ public class JiveModuleTestDriver
         blog.put("displayName", "fooDisplayBlogName");
 
         // Creates the blog
-        createResponse = facade.create(EntityType.BLOG, blog);
+        createResponse = facade.create(BLOG, blog);
         assertEquals("fooDisplayBlogName", createResponse.get("displayName"));
 
         // Get the blog just created
-        getResponse = facade.get(EntityType.BLOG, createResponse.get("ID").toString());
+        getResponse = facade.get(BLOG, createResponse.get("ID").toString());
         assertEquals(createResponse, getResponse);
 
         // Deletes the blog just created and verifies
         // that the server doesn't return an error
-        deleteResponse = facade.delete(EntityType.BLOG, createResponse.get("ID").toString());
+        deleteResponse = facade.delete(BLOG, createResponse.get("ID").toString());
         assertEquals("deleteBlogResponse", deleteResponse.get("response"));
     }
 
@@ -244,10 +251,10 @@ public class JiveModuleTestDriver
         blog.put("displayName", "fooDisplayBlogName");
 
         // Creates the blog
-        facade.create(EntityType.BLOG, blog);
+        facade.create(BLOG, blog);
 
         // Attemps to create the same blog should throw an error
-        facade.create(EntityType.BLOG, blog);
+        facade.create(BLOG, blog);
     }
 
     /** Test the get count. */
@@ -256,7 +263,7 @@ public class JiveModuleTestDriver
     public final void getCount()
     {
         //TODO should return integer
-        facade.count(EntityType.BLOG);
+        facade.count(BLOG);
     }
 
 }

@@ -103,9 +103,4 @@ public interface JiveFacade
     
     void setGatewayUri(String gatewayUri);
     
-    void init();
-
-
-
-    
 }

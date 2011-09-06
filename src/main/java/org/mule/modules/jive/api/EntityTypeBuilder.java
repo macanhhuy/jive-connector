@@ -27,7 +27,7 @@ import org.mule.modules.jive.api.impl.StandardPayloadOperation;
 public class EntityTypeBuilder 
 {
     private String serviceNameException = EntityTypes.DEFAULT_SERVICE_URI;
-    private final String entityType;
+    private final EntityTypeName entityTypeName;
     
     private PayloadOperation createOp = StandardCreateOperation.STANDARD;
     private PayloadOperation putOp = StandardPayloadOperation.STANDARD;
@@ -36,22 +36,12 @@ public class EntityTypeBuilder
     private ReferenceOperation getAllOp = StandardGetAllOperation.STANDARD;
     private TypeOperation countOp = StandardCountOperation.STANDARD;
 
-    
     /**
      * Base constructor.
      */
-    public EntityTypeBuilder(String entityType)
+    public EntityTypeBuilder(EntityTypeName entityTypeName)
     {
-        this.entityType = entityType;
-    }
-    
-    /**
-     * @param string
-     */
-    public EntityTypeBuilder(String entityType, String serviceNameException)
-    {
-        this(entityType);
-        this.serviceNameException = serviceNameException;
+        this.entityTypeName = entityTypeName;
     }
     
     /**
@@ -59,7 +49,7 @@ public class EntityTypeBuilder
      */
     public EntityType build()
     {
-        return new EntityType(entityType, serviceNameException, createOp,
+        return new EntityType(entityTypeName, serviceNameException, createOp,
                               deleteOp, getOp, getAllOp, putOp, countOp);
     }
 
@@ -125,7 +115,7 @@ public class EntityTypeBuilder
         return this;
     }
 
-    public static EntityTypeBuilder from(final String entityTypeName) 
+    public static EntityTypeBuilder from(final EntityTypeName entityTypeName) 
     {
         return new EntityTypeBuilder(entityTypeName);
     }

@@ -10,9 +10,10 @@
 
 package org.mule.modules.jive.api.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.EntityTypeName;
+import org.mule.modules.jive.api.EntityTypes;
 
 import org.junit.Test;
 
@@ -28,7 +29,7 @@ public class StandardCountOperationUnitTest
     public void testGenerateUri() throws Exception
     {
         assertEquals("/blogService/blogCount",
-            ((StandardCountOperation) StandardCountOperation.STANDARD).getUri(EntityType.BLOG));
+            ((StandardCountOperation) StandardCountOperation.STANDARD).getUri(EntityTypes.fromName(EntityTypeName.BLOG)));
     }
 }
 

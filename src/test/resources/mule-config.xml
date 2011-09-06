@@ -21,19 +21,19 @@
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
         http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0-SNAPSHOT/mule-jive.xsd">
 
-<!--     <jive:config username="myUsername" password="password" gatewayUri="lalalalla"/> -->
+     <jive:config username="myUsername" password="password" gatewayUri="lalalalla"/> 
 
-<!--        <flow name="countAvatars">-->
-<!--          <jive:count type="AVATAR" />-->
-<!--        </flow>-->
-
-          <!--<flow name="getAvatar">-->
-          <!--  <jive:get type="AVATAR" id="#[map-payload:avatarId]"/>-->
-          <!--</flow>-->
-
-<!--      <flow name="deleteBlog"> -->
-<!--        <jive:delete type="BLOG" id="#[map-payload:blogId]" />-->
-<!--     </flow> -->
+        <flow name="countAvatars">
+          <jive:count type="AVATAR" />
+        </flow>
+        
+        <flow name="getAvatar">
+          <jive:get type="AVATAR" id="#[map-payload:avatarId]"/>
+        </flow>
+        
+        <flow name="deleteBlog"> 
+          <jive:delete type="BLOG" id="#[map-payload:blogId]" />
+       </flow> 
 
 
 <!--  <flow name="createBlog">-->

@@ -9,11 +9,6 @@
  */
 
 package org.mule.modules.jive.api;
-import static org.mule.modules.jive.CustomOp.*;
-import static org.mule.modules.jive.api.EntityTypeBuilder.from;
-
-import org.mule.modules.jive.CustomOp;
-import org.mule.modules.jive.api.impl.CustomGetOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
 import com.sun.jersey.api.client.WebResource;
@@ -21,95 +16,15 @@ import com.sun.jersey.api.client.WebResource;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
-/** Services enum. */
+
 public final class EntityType
 {
-//TODO address book does not support create/delete
-    
-    /** Addressbook service. */
-    public static final EntityType ADDRESSBOOK = 
-         from("ADDRESSBOOK")
-        .withServiceUri("addressBookService")
-        .build();
-    
-    /** Audit service. */
-    public static final EntityType AUDIT = 
-            from("AUDIT")
-            .build();
-    
-    /** Avatar service. */
-    public static final EntityType AVATAR = 
-            from("AVATAR")
-            .withGet(AVATAR_GET_AVATAR_BY_ID)
-            .withDelete(AVATAR_DELETE)
-            .build();
-    
-    /** Blog service. */
-    public static final EntityType BLOG = 
-            from("BLOG")
-            .withGet(BLOG_GET_BLOG_BY_ID)
-            .build();
-    
-    /** Task service. */
-    public static final EntityType TASK = 
-        from("TASK")
-        .withCreate(TASK_CREATE)
-        .build();
-    
-    /** Comment service. */
-    public static final EntityType COMMENT = from("COMMENT").build();
-    /** Community service. */
-    public static final EntityType COMMUNITY = from("COMMUNITY").build();
-    /** Document service. */
-    public static final EntityType DOCUMENT = from("DOCUMENT").build();
-    /** Entitlement service. */
-    public static final EntityType ENTITLEMENT = from("ENTITLEMENT").build();
-    /** Forum service. */
-    public static final EntityType FORUM = from("FORUM").build();
-    /** Group service. */
-    public static final EntityType GROUP = from("GROUP").build();
-    /** Intant Messages service. */
-    public static final EntityType IMSERVICE = from("IMSERVICE").build();
-    /** Plugin service. */
-    public static final EntityType PLUGIN = from("PLUGIN").build();
-    /** Poll service. */
-    public static final EntityType POLL = from("POLL").build();
-    /** Private message service. */
-    public static final EntityType PRIVATE_MESSAGE = from("PRIVATE_MESSAGE").build();
-    /** Profile field service. */
-    public static final EntityType PROFILE_FIELD = from("PROFILE_FIELD").build();
-    /** Profile search service. */
-    public static final EntityType PROFILE_SEARCH = from("PROFILE_SEARCH").build();
-    /** Profile service. */
-    public static final EntityType PROFILE = from("PROFILE").build();
-    /** Project service. */
-    public static final EntityType PROJECT = from("PROJECT").build();
-    /** Ratings service. */
-    public static final EntityType RATINGS = from("RATINGS").build();
-    /** Reference service. */
-    public static final EntityType REFERENCE = from("REFERENCE").build();
-    /** Search service. */
-    public static final EntityType SEARCH = from("SEARCH").build();
-    /** Social group service. */
-    public static final EntityType SOCIAL_GROUP = from("SOCIAL_GROUP").build();
-    /** Status level service. */
-    public static final EntityType STATUS_LEVEL = from("STATUS_LEVEL").build();
-    /** System properties service. */
-    public static final EntityType SYSTEM_PROPERTIES = from("SYSTEM_PROPERTIES").build();
-    /** Tags service. */
-    public static final EntityType TAG = from("TAG").build();
-    /** User service. */
-    public static final EntityType USER = from("USER").build();
-    /** Video service. */
-    public static final EntityType VIDEO = from("VIDEO").build();
-    /** Watch service. */
-    public static final EntityType WATCH = from("WATCH").build();
     
     private String serviceUri;
     private ReferenceOperation deleteOperation;
     private PayloadOperation createOperation;
     private PayloadOperation putOperation;
-    private String entityTypeName;
+    private EntityTypeName entityTypeName;
     private ReferenceOperation getAllOperation;
     private ReferenceOperation getOperation;
     private TypeOperation countOperation;
@@ -124,7 +39,7 @@ public final class EntityType
      * @param putOp
      * @param countOp
      */
-    public EntityType(String entityType,
+    public EntityType(EntityTypeName entityType,
                       String serviceNameException,
                       PayloadOperation createOp,
                       ReferenceOperation deleteOp,
@@ -144,20 +59,11 @@ public final class EntityType
     }
 
     /**
-     * @return the service name retrieved from the enum name.
-     */
-    private String getServiceName()
-    {
-
-        return this.entityTypeName.toLowerCase() + "Service";
-    }
-
-    /**
      * @return the rootElement of the xml request
      */
     public String getXmlRootElementName()
     {
-        return StringUtils.capitalize(this.entityTypeName.toLowerCase());
+        return entityTypeName.getXmlRootElementName();
     }
 
     /**
@@ -167,7 +73,7 @@ public final class EntityType
     {
         if (serviceUri == EntityTypes.DEFAULT_SERVICE_URI)
         {
-            return "/" + getServiceName();
+            return "/" + entityTypeName.getServiceName();
         }
         return "/" + serviceUri;
     }
@@ -256,15 +162,13 @@ public final class EntityType
      * */
     public String getBasePluralUri()
     {
-        return getTypeUri() + "/" + pluralize(this.entityTypeName.toLowerCase());
+        return getTypeUri() + "/" + pluralize(entityTypeName.getNameAsString());
     }
     
     public String getBaseSingularUri()
     {
-        return getTypeUri() + "/" + this.entityTypeName.toLowerCase();
+        return getTypeUri() + "/" + entityTypeName.getNameAsString();
     }
-
-    
     
     /**Pluralizes the service name.
      * @param str The {@link String} to pluralize
@@ -278,6 +182,10 @@ public final class EntityType
         return str + "s";
     }
 
+    public EntityTypeName getTypeName()
+    {
+        return entityTypeName;
+    }
     
     
 

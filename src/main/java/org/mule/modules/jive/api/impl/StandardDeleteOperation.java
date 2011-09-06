@@ -17,7 +17,6 @@ import org.mule.modules.jive.api.xml.XmlMapper;
 
 import com.sun.jersey.api.client.WebResource;
 
-import java.io.StringReader;
 import java.util.Map;
 
 public final class StandardDeleteOperation implements ReferenceOperation

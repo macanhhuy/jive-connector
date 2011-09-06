@@ -20,7 +20,6 @@ import java.util.Map;
 
 public class StandardGetOperation implements ReferenceOperation
 {
-
     public static final ReferenceOperation STANDARD = new StandardGetOperation();
 
     @Override

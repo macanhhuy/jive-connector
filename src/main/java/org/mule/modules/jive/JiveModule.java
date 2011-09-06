@@ -24,14 +24,13 @@ package org.mule.modules.jive;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Module;
 import org.mule.api.annotations.Processor;
+import org.mule.api.annotations.lifecycle.Start;
 import org.mule.api.annotations.param.Optional;
-import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.EntityTypeName;
+import org.mule.modules.jive.api.EntityTypes;
 import org.mule.modules.jive.api.JiveModuleAdaptor;
-import org.mule.modules.jive.api.Operation;
 
 import java.util.Map;
-
-import javax.annotation.PostConstruct;
 
 /***/
 @Module(name = "jive", namespace = "http://repository.mulesoft.org/releases/org/"
@@ -53,14 +52,13 @@ public class JiveModule
     @Configurable
     private JiveFacade facade;
 
-    @PostConstruct
+    @Start
     public void init() 
     {
         if (facade == null) 
         {
             this.facade = JiveModuleAdaptor.getFacadeProxy(newFacade());
         }
-        facade.init();
     }
 
     protected JiveFacade newFacade()
@@ -69,7 +67,6 @@ public class JiveModule
         facade.setPassword(password);
         facade.setUsername(username);
         facade.setGatewayUri(gatewayUri);
-        facade.init();
         return facade;
     }
     
@@ -92,9 +89,9 @@ public class JiveModule
      * @return TODO what?
      */
     @Processor
-    public Map<String, Object> create(EntityType type, Map<String, Object> entity) 
+    public Map<String, Object> create(EntityTypeName type, Map<String, Object> entity) 
     {
-        return facade.create(type, entity);
+        return facade.create(EntityTypes.fromName(type), entity);
     }
     
     /**
@@ -114,9 +111,9 @@ public class JiveModule
      * @param entity the attributes of the entity 
      */
     @Processor
-    public void update(EntityType type, Map<String, Object> entity)
+    public void update(EntityTypeName type, Map<String, Object> entity)
     {
-        facade.update(type, entity);
+        facade.update(EntityTypes.fromName(type), entity);
     }
     
     /**
@@ -131,9 +128,9 @@ public class JiveModule
      * @return TODO WHAT? 
      */
     @Processor
-    public Map<String, Object> delete(final EntityType type, final String id) 
+    public Map<String, Object> delete(final EntityTypeName type, final String id) 
     {
-        return facade.delete(type, id);
+        return facade.delete(EntityTypes.fromName(type), id);
     }
     
     /**
@@ -146,9 +143,9 @@ public class JiveModule
      * @return TODO WHAT?
      */
     @Processor
-    public Map<String, Object> count(final EntityType type) 
+    public Map<String, Object> count(final EntityTypeName type) 
     {
-        return facade.count(type);
+        return facade.count(EntityTypes.fromName(type));
     }
 
     @Processor
@@ -169,10 +166,10 @@ public class JiveModule
      * @return the entity attributes, as a String-Object Map
      */
     @Processor
-    public Map<String, Object> get(EntityType type, 
+    public Map<String, Object> get(EntityTypeName type, 
         final String id) 
     {
-        return facade.get(type, id);
+        return facade.get(EntityTypes.fromName(type), id);
     }
 
     /**
@@ -187,9 +184,9 @@ public class JiveModule
     }
     
     @Processor
-    public Map<String, Object> getAll(EntityType entityType, String id)
+    public Map<String, Object> getAll(EntityTypeName type, String id)
     {
-        return facade.getAll(entityType, id);
+        return facade.getAll(EntityTypes.fromName(type), id);
     }
 
     public void setUsername(String username)
