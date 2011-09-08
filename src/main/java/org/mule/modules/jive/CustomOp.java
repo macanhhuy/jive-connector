@@ -629,9 +629,21 @@ public enum CustomOp
     private CustomOp(final EntityTypeName type,
                      final String operationName,
                      final String method,
-                     final String rootTag)
+                     final String rootTagOrPathparams)
     {
-        this(type, operationName, method, rootTag, null);
+        this.operationName = operationName;
+        this.entityType = type;
+        this.method = method;
+        if (method.equals("GET")) 
+        {
+            this.rootTagElementName = null;
+            this.pathParams = rootTagOrPathparams;
+        }
+        else
+        {
+            this.rootTagElementName = rootTagOrPathparams;
+            this.pathParams = null;
+        }
     }
 
     /**
