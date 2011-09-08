@@ -163,78 +163,39 @@ public class JiveModuleTestDriver
             }
         };
     }
+    
+    
+    /**Test the execution of an {@link Operation} with a {@link CustomOp}.*/
+    @Test(expected = IllegalArgumentException.class)
+    public void executeOperationWithBadArgumentsCountThrowsIllegalArgumentException()
+    {
+        facade.execute(CustomOp.COMMENT_GET_ALL, null, "434");
+    }
 
     @Test
     /**Test the execution of an {@link Operation} with a {@link CustomOp}.*/
-    public void executeOperationWithCustomOp()
+    public void executeOperationWithCustomOpAndIdSucceeds()
     {
         Map<String, Object> blog = facade.create(BLOG, newBlog());
-
-        try
-        {
-            Map<String, Object> comments = facade.execute(CustomOp.COMMENT_GET_ALL, null,
-                (String) blog.get("ID"));
-            assertNotNull(comments);
-        }
-        finally
-        {
-            facade.delete(BLOG, (String) blog.get("ID"));
-
-        }
+        Map<String, Object> result = facade.execute(CustomOp.BLOG_DELETE, null, (String) blog.get("ID"));
+        System.out.println(result);
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
+    }
+    
+    @Test
+    /**Test the execution of an {@link Operation} with a {@link CustomOp}.*/
+    public void executeOperationWithCustomOpSucceeds()
+    {
+        Map<String, Object> comments = facade.execute(CustomOp.COMMENT_GET_ALL, null, null);
+        assertNotNull(comments);
+        assertFalse(comments.isEmpty());
     }
 
-    /**
-     * Test the creation of entities. Creates a new blog, make a get request to the
-     * new blog to verify the creation. Deletes the blog and verifies the deletion.
-     */
     @Test
-    public final void operationFlowTest()
+    public final void getCountAnswersANonNullPostiveLong()
     {
-        final Map<String, Object> blog = new HashMap<String, Object>();
-        final Map<String, Object> createResponse;
-        final Map<String, Object> getResponse;
-        final Map<String, Object> deleteResponse;
-        blog.put("userID", facade.getUserID());
-        blog.put("blogName", "fooBlog");
-        blog.put("displayName", "fooDisplayBlogName");
-
-        // Creates the blog
-        createResponse = facade.create(BLOG, blog);
-        assertEquals("fooDisplayBlogName", createResponse.get("displayName"));
-
-        // Get the blog just created
-        getResponse = facade.get(BLOG, createResponse.get("ID").toString());
-        assertEquals(createResponse, getResponse);
-
-        // Deletes the blog just created and verifies
-        // that the server doesn't return an error
-        deleteResponse = facade.delete(BLOG, createResponse.get("ID").toString());
-        assertEquals("deleteBlogResponse", deleteResponse.get("response"));
-    }
-
-    /** Attemps to create a blog already created and handles the error. */
-    @Test
-    public final void errorHandlingTest()
-    {
-        final Map<String, Object> blog = new HashMap<String, Object>();
-        blog.put("userID", facade.getUserID());
-        blog.put("blogName", "fooBlog");
-        blog.put("displayName", "fooDisplayBlogName");
-
-        // Creates the blog
-        facade.create(BLOG, blog);
-
-        // Attemps to create the same blog should throw an error
-        facade.create(BLOG, blog);
-    }
-
-    /** Test the get count. */
-
-    @Test
-    public final void getCount()
-    {
-        //TODO should return integer
-        facade.count(BLOG);
+        assertTrue(facade.count(BLOG) >= 0);
     }
 
 }
