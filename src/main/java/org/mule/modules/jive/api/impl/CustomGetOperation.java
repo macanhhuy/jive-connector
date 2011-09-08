@@ -58,7 +58,7 @@ public final class CustomGetOperation implements ReferenceOperation
     protected String getCompleteUriForCustomOp(final CustomOp customType,
                                              final String id) 
     {
-        return  JiveUris.getOperationUri(customType.getBaseOperationUri(), JiveIds.toPathVariable(id));
+        return  JiveUris.getOperationUri(customType.getBaseOperationUri(), id);
     }
     
     public static ReferenceOperation from(CustomOp customOp)

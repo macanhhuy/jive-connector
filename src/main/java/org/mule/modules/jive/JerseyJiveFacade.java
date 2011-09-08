@@ -80,7 +80,7 @@ public class JerseyJiveFacade implements JiveFacade
 
     private String getUri(final CustomOp op, final String id)
     {
-        return JiveUris.getOperationUri(op.getBaseOperationUri(), JiveIds.toPathVariable(id));
+        return JiveUris.getOperationUri(op.getBaseOperationUri(), id);
     }
 
 

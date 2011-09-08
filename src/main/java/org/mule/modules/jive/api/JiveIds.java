@@ -14,7 +14,7 @@ public class JiveIds
 {
     public static String toPathVariable(final String id)
     {
-        return id == null ? "" : id.replace(':', '/');
+        return id.replace(':', '/');
     }
 
 }

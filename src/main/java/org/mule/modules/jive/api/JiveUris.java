@@ -10,8 +10,14 @@
 
 package org.mule.modules.jive.api;
 
-public class JiveUris
+import org.apache.commons.lang.Validate;
+
+public final class JiveUris
 {
+    private JiveUris()
+    {
+    }
+    
     /**
      * Generates the complete uri for the get or delete service.
      * 
@@ -20,7 +26,8 @@ public class JiveUris
      */
     public static String getOperationUri(String baseOperationUri, final String id)
     {
-        return baseOperationUri + "/" + JiveIds.toPathVariable(id);
+        Validate.notNull(baseOperationUri);
+        return id == null ? baseOperationUri : baseOperationUri + "/" + JiveIds.toPathVariable(id);
     }
 
 }
