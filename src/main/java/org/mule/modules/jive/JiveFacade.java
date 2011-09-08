@@ -59,12 +59,6 @@ public interface JiveFacade
      */
     Map<String, Object> get(EntityType entityType, String id);
     
-    /**
-     * @param entityType
-     * @param id
-     * @return
-     */
-    Map<String, Object> getAll(EntityType entityType, String id);
     
     /**
      * @param entityType

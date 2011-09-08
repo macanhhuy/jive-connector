@@ -183,12 +183,6 @@ public class JiveModule
         return facade.getUserID();
     }
     
-    @Processor
-    public Map<String, Object> getAll(EntityTypeName type, String id)
-    {
-        return facade.getAll(EntityTypes.fromName(type), id);
-    }
-
     public void setUsername(String username)
     {
         this.username = username;

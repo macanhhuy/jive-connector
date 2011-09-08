@@ -17,7 +17,6 @@ import org.mule.modules.jive.api.impl.CustomPayloadOperation;
 import org.mule.modules.jive.api.impl.StandardCountOperation;
 import org.mule.modules.jive.api.impl.StandardCreateOperation;
 import org.mule.modules.jive.api.impl.StandardDeleteOperation;
-import org.mule.modules.jive.api.impl.StandardGetAllOperation;
 import org.mule.modules.jive.api.impl.StandardGetOperation;
 import org.mule.modules.jive.api.impl.StandardPayloadOperation;
 
@@ -33,7 +32,6 @@ public class EntityTypeBuilder
     private PayloadOperation putOp = StandardPayloadOperation.STANDARD;
     private ReferenceOperation deleteOp = StandardDeleteOperation.STANDARD;
     private ReferenceOperation getOp = StandardGetOperation.STANDARD;
-    private ReferenceOperation getAllOp = StandardGetAllOperation.STANDARD;
     private TypeOperation countOp = StandardCountOperation.STANDARD;
 
     /**
@@ -50,7 +48,7 @@ public class EntityTypeBuilder
     public EntityType build()
     {
         return new EntityType(entityTypeName, serviceNameException, createOp,
-                              deleteOp, getOp, getAllOp, putOp, countOp);
+                              deleteOp, getOp, putOp, countOp);
     }
 
     /**
@@ -95,15 +93,6 @@ public class EntityTypeBuilder
         return withGet(new CustomGetOperation(getOp));
     }
 
-    /**
-     * @param getAllOp the getAllOp to set
-     * @return 
-     */
-    public EntityTypeBuilder withGetAll(ReferenceOperation getAllOp)
-    {
-        this.getAllOp = getAllOp;
-        return this;
-    }
 
     /**
      * @param updateOp the updateOp to set

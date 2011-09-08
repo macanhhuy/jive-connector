@@ -128,16 +128,6 @@ public class JiveModuleTestDriver
         facade.delete(BLOG, id);
     }
     
-    /**
-     * Test the get-all call.
-     */
-    @Test
-    public void getAllReturnsNonNullResult()
-    {
-        Map<String, Object> result = facade.getAll(USER, "");
-        assertNotNull(result);
-    }
-
     @Test
     public void createBlogReturnsNonNullObjectWithNonNullId() throws Exception
     {
@@ -167,8 +157,8 @@ public class JiveModuleTestDriver
         {
             {
                 put("userID", facade.getUserID());
-                put("blogName", "foobaz05");
-                put("displayName", "foobazbar0");
+                put("blogName", "foob0az05");
+                put("displayName", "foobazb0ar0");
             }
         };
     }

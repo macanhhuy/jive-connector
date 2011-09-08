@@ -135,19 +135,6 @@ public class JerseyJiveFacade implements JiveFacade
         return type.delete(type, id, mapper, getGateway());
     }
 
-    /*
-     * (non-Javadoc)
-     * @see
-     * org.mule.modules.jive.JiveFacade#getAll(org.mule.modules.jive.api.EntityType,
-     * java.lang.String)
-     */
-    @Override
-    public Map<String, Object> getAll(EntityType entityType, String id)
-    {
-        // TODO add validations
-        return entityType.getAll(entityType, id, mapper, getGateway());
-    }
-
     @Override
     public Map<String, Object> update(EntityType entityType, Map<String, Object> entity)
     {
