@@ -165,8 +165,8 @@ public class JiveModuleTestDriver
     }
     
     
-    /**Test the execution of an {@link Operation} with a {@link CustomOp}.*/
-    @Test(expected = IllegalArgumentException.class)
+    /**Test the execution of a {@link CustomOp} with the wrong quantity of arguments.*/
+    @Test(expected = UniformInterfaceException.class)
     public void executeOperationWithBadArgumentsCountThrowsIllegalArgumentException()
     {
         facade.execute(CustomOp.COMMENT_GET_ALL, null, "434");
@@ -184,12 +184,12 @@ public class JiveModuleTestDriver
     }
     
     @Test
-    /**Test the execution of an {@link Operation} with a {@link CustomOp}.*/
-    public void executeOperationWithCustomOpSucceeds()
+    /**Test the execution of a {@link CustomOp}.*/
+    public void executeCustomOpSucceeds()
     {
-        Map<String, Object> comments = facade.execute(CustomOp.COMMENT_GET_ALL, null, null);
-        assertNotNull(comments);
-        assertFalse(comments.isEmpty());
+        Map<String, Object> users = facade.execute(CustomOp.USER_GET_USERS, null, null);
+        assertNotNull(users);
+        assertFalse(users.isEmpty());
     }
 
     @Test
