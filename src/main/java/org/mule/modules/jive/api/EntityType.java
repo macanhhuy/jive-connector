@@ -111,7 +111,7 @@ public final class EntityType
      * @param resource
      * @return
      */
-    public Map<String, Object> count(final EntityType type, final XmlMapper mapper, final WebResource resource)
+    public Long count(final EntityType type, final XmlMapper mapper, final WebResource resource)
     {
         return countOperation.execute(resource, mapper, type);
     }

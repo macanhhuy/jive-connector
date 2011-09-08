@@ -19,20 +19,17 @@ import com.sun.jersey.api.client.WebResource;
 import java.io.StringReader;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 public class StandardCountOperation implements TypeOperation
 {
     public static final TypeOperation STANDARD = new StandardCountOperation();
 
     @Override
-    public Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type)
+    public Long execute(WebResource resource, XmlMapper mapper, EntityType type)
     {
         final String response = resource.path(getUri(type)).get(String.class);
-        return mapper.xml2map(new StringReader(response));
-//      String response = this.gateway.path(ServiceUriFactory.generateBaseUri(type))
-//      .get(String.class);
-//  return Long.parseLong(StringUtils.substringBetween(
-//      response, "<return>", "</return>"));
-        //TODO return long
+        return Long.parseLong(StringUtils.substringBetween(response, "<return>", "</return>"));
     }
 
     protected String getUri(EntityType type)

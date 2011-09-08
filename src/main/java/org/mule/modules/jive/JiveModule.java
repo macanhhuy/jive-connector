@@ -143,7 +143,7 @@ public class JiveModule
      * @return TODO WHAT?
      */
     @Processor
-    public Map<String, Object> count(final EntityTypeName type) 
+    public Long count(final EntityTypeName type) 
     {
         return facade.count(EntityTypes.fromName(type));
     }

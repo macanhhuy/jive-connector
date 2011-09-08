@@ -162,7 +162,7 @@ public class JerseyJiveFacade implements JiveFacade
      * @return The count as a {@link Long}
      * @param type The service type
      */
-    public final Map<String, Object> count(final EntityType type)
+    public final Long count(final EntityType type)
     {
         Validate.notNull(type);
         return type.count(type, mapper, getGateway());

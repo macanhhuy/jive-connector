@@ -50,7 +50,7 @@ public interface JiveFacade
     Map<String, Object> delete(final EntityType type, String id);
     
     /***/
-    Map<String, Object> count(final EntityType type);
+    Long count(final EntityType type);
     
     /**
      * @param entityType
