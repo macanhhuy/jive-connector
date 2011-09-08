@@ -28,6 +28,8 @@ import static org.mule.modules.jive.api.EntityTypeName.AVATAR;
 import static org.mule.modules.jive.api.EntityTypeName.BLOG;
 import static org.mule.modules.jive.api.EntityTypeName.USER;
 
+import com.sun.jersey.api.client.UniformInterfaceException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -101,7 +103,7 @@ public class JiveModuleTestDriver
         };
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = UniformInterfaceException.class)
     // TODO check
     public void getInexistentBlogFails() throws Exception
     {
@@ -111,7 +113,7 @@ public class JiveModuleTestDriver
     /**
      * Test the delete method. Deletes an Avatar
      */
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = UniformInterfaceException.class)
     public void deleteInexistentBlogFails()
     {
         facade.delete(BLOG, "foobar1234");
