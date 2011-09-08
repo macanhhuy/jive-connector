@@ -54,6 +54,7 @@ public class EntityTypes
         registerType( 
                 from(BLOG)
                 .withGet(BLOG_GET_BLOG_BY_ID)
+                .withDelete(BLOG_DELETE)
                 .build());
         
         /** Task service. */
