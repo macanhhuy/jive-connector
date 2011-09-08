@@ -25,7 +25,6 @@ public final class EntityType
     private PayloadOperation createOperation;
     private PayloadOperation putOperation;
     private EntityTypeName entityTypeName;
-    private ReferenceOperation getAllOperation;
     private ReferenceOperation getOperation;
     private TypeOperation countOperation;
 
@@ -44,7 +43,6 @@ public final class EntityType
                       PayloadOperation createOp,
                       ReferenceOperation deleteOp,
                       ReferenceOperation getOp,
-                      ReferenceOperation getAllOp,
                       PayloadOperation putOp,
                       TypeOperation countOp)
     {
@@ -53,7 +51,6 @@ public final class EntityType
         this.createOperation = createOp;
         this.deleteOperation = deleteOp;
         this.getOperation = getOp;
-        this.getAllOperation = getAllOp;
         this.putOperation = putOp;
         this.countOperation = countOp;
     }
@@ -127,19 +124,6 @@ public final class EntityType
         final XmlMapper mapper, final WebResource resource)
     {
         return getOperation.execute(resource, mapper, this, id);
-    }
-    
-    /**
-     * @param type
-     * @param id
-     * @param mapper
-     * @param resource
-     * @return
-     */
-    public Map<String, Object> getAll(final EntityType type, final String id,
-        final XmlMapper mapper, final WebResource resource)
-    {
-        return getAllOperation.execute(resource, mapper, type, id);
     }
     
     /**

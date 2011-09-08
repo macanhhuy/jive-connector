@@ -150,9 +150,9 @@ public class JiveModule
 
     @Processor
     public Map<String, Object> execute(final CustomOp op, 
-        final Map<String, Object> entity) 
+        @Optional final Map<String, Object> entity, @Optional  final String id) 
     {
-        return facade.execute(op, entity);
+        return facade.execute(op, entity, id);
     }
 
     /**
@@ -183,12 +183,6 @@ public class JiveModule
         return facade.getUserID();
     }
     
-    @Processor
-    public Map<String, Object> getAll(EntityTypeName type, String id)
-    {
-        return facade.getAll(EntityTypes.fromName(type), id);
-    }
-
     public void setUsername(String username)
     {
         this.username = username;

@@ -76,7 +76,6 @@ public class JiveModuleTestDriver
     public void getExistingBlogIsNotNull()
     {
         String id = (String) facade.create(BLOG, newBlog()).get("ID");
-
         try
         {
             Map<String, Object> blog = facade.get(BLOG, id);
@@ -128,16 +127,6 @@ public class JiveModuleTestDriver
         facade.delete(BLOG, id);
     }
     
-    /**
-     * Test the get-all call.
-     */
-    @Test
-    public void getAllReturnsNonNullResult()
-    {
-        Map<String, Object> result = facade.getAll(USER, "");
-        assertNotNull(result);
-    }
-
     @Test
     public void createBlogReturnsNonNullObjectWithNonNullId() throws Exception
     {
@@ -167,8 +156,8 @@ public class JiveModuleTestDriver
         {
             {
                 put("userID", facade.getUserID());
-                put("blogName", "foobaz05");
-                put("displayName", "foobazbar0");
+                put("blogName", "foob0az05");
+                put("displayName", "foobazb0ar0");
             }
         };
     }
@@ -177,39 +166,19 @@ public class JiveModuleTestDriver
     /**Test the execution of an {@link Operation} with a {@link CustomOp}.*/
     public void executeOperationWithCustomOp()
     {
-        final int magicNumber = 123;
-        final Map<String, Object> entity = new HashMap<String, Object>();
-        entity.put("blogPost", magicNumber);
-        entity.put("name", "Great Blog");
-        entity.put("contentTypes", "Great Blog Display Name!");
-        List<String> sources = new ArrayList<String>();
-        sources.add("base64aa");
-        sources.add("base64ab");
-        sources.add("base64ac");
-        entity.put("source", sources);
-        facade.execute(CustomOp.BLOG_ADD_ATTACHMENT_TO_BLOG_POST, entity);
-    }
+        Map<String, Object> blog = facade.create(BLOG, newBlog());
 
-    @Test
-    public void executeOperationWithBaseUri()
-    {
-        final Map<String, Object> entity = new HashMap<String, Object>();
-        entity.put("userID", facade.getUserID());
-        entity.put("blogName", "Great Blog");
-        entity.put("displayName", "Great Blog Display Name!");
-        //TODO facade.execute(CustomOp.BLOG_CREATE_BLOG, entity);
-        Assert.fail();
-    }
+        try
+        {
+            Map<String, Object> comments = facade.execute(CustomOp.COMMENT_GET_ALL, null,
+                (String) blog.get("ID"));
+            assertNotNull(comments);
+        }
+        finally
+        {
+            facade.delete(BLOG, (String) blog.get("ID"));
 
-    @Test
-    public void executeRegularOperation()
-    {
-        final Map<String, Object> entity = new HashMap<String, Object>();
-        entity.put("userID", facade.getUserID());
-        entity.put("blogID", "Great Blog");
-        entity.put("subject", "Great Blog Display Name!");
-        entity.put("body", "The blog post for testing purpuses...");
-        facade.execute(CustomOp.BLOG_CREATE_BLOG_POST, entity);
+        }
     }
 
     /**
