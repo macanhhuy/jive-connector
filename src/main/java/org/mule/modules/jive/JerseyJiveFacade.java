@@ -3,6 +3,7 @@ package org.mule.modules.jive;
 
 import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.JiveIds;
+import org.mule.modules.jive.api.JiveUris;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
 import com.sun.jersey.api.client.Client;
@@ -61,8 +62,9 @@ public class JerseyJiveFacade implements JiveFacade
         {
             response = partialRequest.put(String.class, toXml(op, entity));
         }
-        else
-        { // It's a DELETE request
+        else 
+        { 
+            Validate.isTrue(op.getMethod().equals("DELETE"));
             response = partialRequest.delete(String.class);
         }
         return xml2map(new StringReader(response));
@@ -78,7 +80,7 @@ public class JerseyJiveFacade implements JiveFacade
 
     private String getUri(final CustomOp op, final String id)
     {
-        return op.getBaseOperationUri() + JiveIds.toPathVariable(id);
+        return JiveUris.getOperationUri(op.getBaseOperationUri(), JiveIds.toPathVariable(id));
     }
 
 
