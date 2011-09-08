@@ -47,7 +47,7 @@ public enum Operation
      */
     AVATAR_GET_ACTIVE_AVATAR(AVATAR),
     /** Returns an avatar by its ID. */
-    AVATAR_GET_AVATAR(CustomOp.AVATAR_GET_AVATAR_BY_ID),
+    AVATAR_GET_AVATAR(CustomOp.AVATAR_GET),
     /** Used to acquire a count of all the avatars for a specific user. */
     AVATAR_GET_AVATAR_COUNT(AVATAR),
     /** Returns a list of avatars for the specified user. */
@@ -98,7 +98,7 @@ public enum Operation
     /** Deletes a comment in the object. */
     COMMENT_DELETE_COMMENT(COMMENT, EntityTypes.BASE_URI),
     /** Deletes a comment in the object. */
-    COMMENT_DELETE_COMMENT_RECURSIVE(CustomOp.COMMENT_DELETE_COMMENT_RECURSIVE),
+    COMMENT_DELETE_COMMENT_RECURSIVE(CustomOp.COMMENT_DELETE_RECURSIVE),
     /** Returns the specified comment. */
     COMMENT_GET_COMMENT(COMMENT, EntityTypes.BASE_URI),
     /**
@@ -137,7 +137,7 @@ public enum Operation
      */
     COMMENT_GET_USER_CONTENT_COMMENTS_WITH_FILTER(CustomOp.COMMENT_GET_USER_CONTENT_COMMENTS_WITH_FILTER),
     /** Updates an existing comment. */
-    COMMENT_UPDATE_COMMENT(CustomOp.COMMENT_UPDATE_COMMENT),
+    COMMENT_UPDATE_COMMENT(CustomOp.COMMENT_UPDATE),
     /** Adds an attachment to the specified blog post. */
     BLOG_ADD_ATTACHMENT_TO_BLOG_POST(CustomOp.BLOG_ADD_ATTACHMENT_TO_BLOG_POST),
     /** Adds an image to the specified blog post. */
@@ -157,7 +157,7 @@ public enum Operation
      */
     BLOG_DELETE_BLOG_POST(CustomOp.BLOG_DELETE_BLOG_POST),
     /** Returns an array of attachments for the specified blog post. */
-    BLOG_GET_ATTACHMENTS_BY_BLOG_POST_ID(CustomOp.BLOG_GET_ATTACHMENTS_BY_POST_ID),
+    BLOG_GET_ATTACHMENTS_BY_BLOG_POST_ID(CustomOp.BLOG_GET_ATTACHMENTS_BY_BLOG_POST_ID),
     /** Returns a blog by blog name. */
     BLOG_GET_BLOG_BY_NAME(CustomOp.BLOG_GET_BLOG_BY_NAME),
     /** Returns a blog by its ID. */
@@ -168,7 +168,7 @@ public enum Operation
      * Returns the total number of blogs on this system that match the criteria
      * specified by the filter.
      */
-    BLOG_GET_BLOG_COUNT_BY_RESULTFILTER(CustomOp.BLOG_GET_BLOG_COUNT_BY_RESULTFILTER),
+    BLOG_GET_BLOG_COUNT_BY_RESULTFILTER(CustomOp.BLOG_GET_BLOG_COUNT_BY_FILTER),
     /** Returns the count of all blogs associated with the specified user. */
     BLOG_GET_BLOG_COUNT_FOR_USER(CustomOp.BLOG_GET_BLOG_COUNT_FOR_USER),
     /** Returns a blog post by its ID. */
@@ -181,9 +181,9 @@ public enum Operation
     /**Returns the number of blog posts on the system.
      * The default blog post result filter () only includes
      * blog posts where status = and publish date less than now().*/
-    BLOG_GET_BLOG_POST_COUNT_BY_RESULTFILTER(CustomOp.BLOG_GET_BLOG_COUNT_BY_RESULTFILTER),
+    BLOG_GET_BLOG_POST_COUNT_BY_RESULTFILTER(CustomOp.BLOG_GET_BLOG_COUNT_BY_FILTER),
     /** Returns all the blog posts that match the criteria specified by the filter. */
-    BLOG_GET_BLOG_POSTS(CustomOp.BLOG_GET_BLOG_POSTS_BY_RESULTFILTER),
+    BLOG_GET_BLOG_POSTS(CustomOp.BLOG_GET_BLOG_POSTS_BY_FILTER),
     /**
      * Returns all the blogs on this system whose display name is LIKE the given
      * query.
@@ -197,12 +197,12 @@ public enum Operation
      * Returns the number of blog post comments that match the criteria specified by
      * the filter.
      */
-    BLOG_GET_COMMENT_COUNT_BY_RESULTFILTER(CustomOp.BLOG_GET_COMMENT_COUNT_WITH_FILTER),
+    BLOG_GET_COMMENT_COUNT_BY_RESULTFILTER(CustomOp.BLOG_GET_COMMENT_COUNT_BY_FILTER),
     /**
      * Returns all the blog post comments that match the criteria specified by the
      * filter.
      */
-    BLOG_GET_COMMENTS(CustomOp.BLOG_GET_COMMENTS_WITH_FILTER),
+    BLOG_GET_COMMENTS(CustomOp.BLOG_GET_COMMENTS_BY_FILTER),
     /** Returns an array of images that are attached to the specified blog post. */
     BLOG_GET_IMAGES_BY_BLOG_POST_ID(CustomOp.BLOG_GET_IMAGES_BY_BLOG_POST_ID),
     /** Returns a comma-delimited list of available pings for the system. */
@@ -212,7 +212,7 @@ public enum Operation
     /** Returns all of the tags for blogs in the system. */
     BLOG_GET_TAGS(CustomOp.BLOG_GET_TAGS),
     /** Returns all tags for blogs as constrained by the specified filter. */
-    BLOG_GET_TAGS_BY_RESULTFILTER(CustomOp.BLOG_GET_TAGS_BY_RESULTFILTER),
+    BLOG_GET_TAGS_BY_RESULTFILTER(CustomOp.BLOG_GET_TAGS_BY_FILTER),
     /** Returns true if the blogs feature is turned on. */
     BLOG_IS_BLOGS_ENABLED(BLOG),
     /** Returns true if the comments feature is turned on. */
@@ -248,7 +248,7 @@ public enum Operation
     /** Updates the specified blog post with what's contained in blogPost. */
     BLOG_UPDATE_BLOG_POST(CustomOp.BLOG_UPDATE_BLOG_POST),
     /** Uploads a new attachment to the specified blog post. */
-    BLOG_UPLOAD_ATTACHMENT_TO_BLOG_POST(CustomOp.BLOG_UPLOAD_ATTACHMENTS_TO_BLOG_POST),
+    BLOG_UPLOAD_ATTACHMENT_TO_BLOG_POST(CustomOp.BLOG_UPLOAD_ATTACHMENT_TO_BLOG_POST),
     /**
      * Returns <tt>true</tt> if the specified user has one or more blogs;
      * <tt>false</tt> if the user does not have a blog.
