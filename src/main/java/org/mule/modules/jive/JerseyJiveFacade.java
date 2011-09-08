@@ -2,6 +2,7 @@
 package org.mule.modules.jive;
 
 import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.JiveIds;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
 import com.sun.jersey.api.client.Client;
@@ -42,27 +43,23 @@ public class JerseyJiveFacade implements JiveFacade
     }
 
     @Override
-    /**{@inheritDoc}*/
-    public final Map<String, Object> execute(final CustomOp customType, final Map<String, Object> entity)
+    public final Map<String, Object> execute(final CustomOp op, final Map<String, Object> entity,  final String id)
     {
-        final Writer writer = new StringWriter();
         final String response;
-
-        final Builder partialRequest = this.getGateway().path(customType.getBaseOperationUri()).type(
+        final Builder partialRequest = this.getGateway().path(getUri(op, id)).type(
             MediaType.APPLICATION_FORM_URLENCODED).header("content-type", "text/xml");
 
-        if (customType.getMethod().equals("POST"))
+        if (op.getMethod().equals("POST"))
         {
-            map2xml(customType.getRootTagElementName(), entity, writer);
-            response = partialRequest.post(String.class, writer.toString());
+            response = partialRequest.post(String.class, toXml(op, entity));
         }
-        else if (customType.getMethod().equals("GET"))
+        else if (op.getMethod().equals("GET"))
         {
             response = partialRequest.get(String.class);
         }
-        else if (customType.getMethod().equals("PUT"))
+        else if (op.getMethod().equals("PUT"))
         {
-            response = partialRequest.put(String.class);
+            response = partialRequest.put(String.class, toXml(op, entity));
         }
         else
         { // It's a DELETE request
@@ -71,30 +68,19 @@ public class JerseyJiveFacade implements JiveFacade
         return xml2map(new StringReader(response));
     }
 
-    @Override
-    public final Map<String, Object> execute(final CustomOp op, final String id)
+
+    private String toXml(final CustomOp op, final Map<String, Object> entity)
     {
-        final String response;
-
-        final StringBuilder opUri = new StringBuilder(op.getBaseOperationUri());
-        for (final String part : StringUtils.split(id, ':'))
-        {
-            opUri.append("/" + part);
-        }
-
-        final Builder partialRequest = this.getGateway().path(opUri.toString()).type(
-            MediaType.APPLICATION_FORM_URLENCODED).header("content-type", "text/xml");
-
-        if (op.getMethod().equals("GET"))
-        {
-            response = partialRequest.get(String.class);
-        }
-        else
-        {
-            response = "";
-        }
-        return xml2map(new StringReader(response));
+        final Writer writer = new StringWriter();
+        map2xml(op.getRootTagElementName(), entity, writer);
+        return writer.toString();
     }
+
+    private String getUri(final CustomOp op, final String id)
+    {
+        return op.getBaseOperationUri() + JiveIds.toPathVariable(id);
+    }
+
 
     @Override
     public final Map<String, Object> create(final EntityType type, final Map<String, Object> entity)

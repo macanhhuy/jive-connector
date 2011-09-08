@@ -26,8 +26,6 @@ public final class StandardDeleteOperation implements ReferenceOperation
     @Override
     public Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, String id)
     {
-        // validar error
-        // is the response of a successful delete req always ""?
         return mapper.xml2map(resource.path(JiveUris.getOperationUri(type.getBasePluralUri(), id)).delete(String.class));
     }
 

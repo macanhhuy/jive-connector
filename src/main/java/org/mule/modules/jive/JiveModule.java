@@ -150,9 +150,9 @@ public class JiveModule
 
     @Processor
     public Map<String, Object> execute(final CustomOp op, 
-        final Map<String, Object> entity) 
+        @Optional final Map<String, Object> entity, @Optional  final String id) 
     {
-        return facade.execute(op, entity);
+        return facade.execute(op, entity, id);
     }
 
     /**
