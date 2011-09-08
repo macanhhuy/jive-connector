@@ -75,7 +75,7 @@ public class JiveModule
      * 
      * Example: 
      * {@code 
-     *    <jive:create service="BLOG">
+     *    <jive:create type="BLOG">
      *       <jive:entity>
      *         <creationDate>#[variable:creationDate]</creationDate>
      *         <author>#[variable:author]</author>
@@ -148,6 +148,12 @@ public class JiveModule
         return facade.count(EntityTypes.fromName(type));
     }
 
+    /**
+     * @param op The custom operation to be executed
+     * @param entity The {@link Map} with the entity data to be send as payload
+     * @param id The path parameters to be added to the operation uri
+     * @return A {@link Map} with the server response
+     */
     @Processor
     public Map<String, Object> execute(final CustomOp op, 
         @Optional final Map<String, Object> entity, @Optional  final String id) 
