@@ -13,6 +13,7 @@ package org.mule.modules.jive.api.impl;
 import org.mule.modules.jive.CustomOp;
 import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.JiveIds;
+import org.mule.modules.jive.api.JiveUris;
 import org.mule.modules.jive.api.ReferenceOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
@@ -57,7 +58,7 @@ public final class CustomGetOperation implements ReferenceOperation
     protected String getCompleteUriForCustomOp(final CustomOp customType,
                                              final String id) 
     {
-        return  customType.getBaseOperationUri() + "/" + JiveIds.toPathVariable(id);
+        return  JiveUris.getOperationUri(customType.getBaseOperationUri(), JiveIds.toPathVariable(id));
     }
     
     public static ReferenceOperation from(CustomOp customOp)
