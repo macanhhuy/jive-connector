@@ -286,9 +286,9 @@ public enum CustomOp
     GROUP_REMOVE_MEMBER_FROM_GROUP(GROUP, "groupMembers/{groupID}/{userID}", "DELETE"), //
     GROUP_SET_PROPERTY(GROUP, "properties", "POST", "setProperty"), //
     GROUP_UPDATE_GROUP(GROUP, "groups", "PUT", "configureComponent"), //
-    INSTANTMESSAGE_CONFIGURE_COMPONENT(IMSERVICE, "configureComponent", "POST", "configureComponent"), //
-    INSTANTMESSAGE_GENERATE_NONCE(IMSERVICE, "generateNonce", "GET"), //
-    INSTANTMESSAGE_TEST_CREDENTIALS(IMSERVICE, "testCredentials", "GET"), //
+    IMSERVICE_CONFIGURE_COMPONENT(IMSERVICE, "configureComponent", "POST", "configureComponent"), //
+    IMSERVICE_GENERATE_NONCE(IMSERVICE, "generateNonce", "GET"), //
+    IMSERVICE_TEST_CREDENTIALS(IMSERVICE, "testCredentials", "GET"), //
     PLUGIN_GET_PLUGIN_INFO(PLUGIN, "plugins", "GET"), //
     PLUGIN_INSTALL_PLUGIN(PLUGIN, "plugins", "POST", "installPlugin"), //
     PLUGIN_UNINSTALL_PLUGIN(PLUGIN, "plugins/{pluginName}", "DELETE"), //
@@ -403,7 +403,6 @@ public enum CustomOp
     PROFILE_SET_CURRENT_STATUS(PROFILE, "status", "POST", "setCurrentStatus"), //
     PROFILE_SET_PROFILE(PROFILE, "profiles", "PUT", "setProfile"), //
     PROFILE_SET_PROFILE_IMAGE(PROFILE, "images", "POST", "setProfileImage"), //
-
     PROJECT_CREATE(PROJECT, "projects", "POST", "create"), //
     PROJECT_DELETE(PROJECT, "projects/{projectID}", "DELETE"), //
     PROJECT_GET_CHECK_POINTS(PROJECT, "checkPointsByProject/{projectID}", "GET"), //
@@ -473,55 +472,55 @@ public enum CustomOp
     SOCIAL_UPDATE_SOCIAL_GROUP(SOCIAL_GROUP, "/rpc/rest/socialGroupService/socialGroup", "PUT",
                     "updateSocialGroup"), //
     STATUS_ADD_POINTS(STATUS_LEVEL, "/rpc/rest/statusLevelService/addPoints", "POST", "addPoints"), //
-    STATUS_ADD_POINTS_BYCONTAINER(STATUS_LEVEL, "/rpc/rest/statusLevelService/addPointsByContainer", "POST",
+    STATUS_ADD_POINTS_BY_CONTAINER(STATUS_LEVEL, "/rpc/rest/statusLevelService/addPointsByContainer", "POST",
                     "addPoints"), //
-    STATUS_CREATE_STATUS_LEVELPOINTBASED(STATUS_LEVEL, "/rpc/rest/statusLevelService/pointStatusLevels",
+    STATUS_CREATE_STATUS_LEVEL_POINT_BASED(STATUS_LEVEL, "/rpc/rest/statusLevelService/pointStatusLevels",
                     "POST", "createStatusLevel"), //
-    STATUS_CREATE_STATUS_LEVELGROUPBASED(STATUS_LEVEL, "/rpc/rest/statusLevelService/groupStatusLevels",
+    STATUS_CREATE_STATUS_LEVEL_GROUP_BASED(STATUS_LEVEL, "/rpc/rest/statusLevelService/groupStatusLevels",
                     "POST", "createStatusLevel"), //
     STATUS_DELETE_STATUS_LEVEL(STATUS_LEVEL, "/rpc/rest/statusLevelService/statusLevels/{statusLevelID}",
                     "DELETE"), //
-    STATUS_GET_ALL_STATUSLEVELSCENARIOS(STATUS_LEVEL, "/rpc/rest/statusLevelService/scenarios", "GET"), //
-    STATUS_GET_GROUP_STATUSLEVEL(STATUS_LEVEL, "/rpc/rest/statusLevelService/groupStatusLevels/{groupID}",
+    STATUS_GET_ALL_STATUS_LEVEL_SCENARIOS(STATUS_LEVEL, "/rpc/rest/statusLevelService/scenarios", "GET"), //
+    STATUS_GET_GROUP_STATUS_LEVEL(STATUS_LEVEL, "/rpc/rest/statusLevelService/groupStatusLevels/{groupID}",
                     "GET"), //
-    STATUS_GET_GROUP_STATUSLEVELS(STATUS_LEVEL, "/rpc/rest/statusLevelService/groupStatusLevels", "GET"), //
+    STATUS_GET_GROUP_STATUS_LEVELS(STATUS_LEVEL, "/rpc/rest/statusLevelService/groupStatusLevels", "GET"), //
     STATUS_GET_LEADERS(STATUS_LEVEL, "/rpc/rest/statusLevelService/leaders", "GET"), //
-    STATUS_GET_LEADERS_BYSTARTINDEXANDNUMRESULTS(STATUS_LEVEL,
+    STATUS_GET_LEADERS_BY_STARTINDEX_AND_NUMRESULTS(STATUS_LEVEL,
                     "/rpc/rest/statusLevelService/leaders/{startIndex}/{numResults}", "GET"), //
-    STATUS_GET_LEADERS_BYCOMMUNITY(STATUS_LEVEL,
+    STATUS_GET_LEADERS_BY_COMMUNITY(STATUS_LEVEL,
                     "/rpc/rest/statusLevelService/leadersByCommunity/{communityID}", "GET"), //
-    STATUS_GET_LEADERS_BYCONTAINER(
+    STATUS_GET_LEADERS_BY_CONTAINER(
                     STATUS_LEVEL,
                     "/rpc/rest/statusLevelService/leadersByContainer/{containerObjectID}/{containerObjectType}",
                     "GET"), //
-    STATUS_GET_LEADERS_BYCOMMUNITYBYSTARTINDEXANDNUMRESULTS(
+    STATUS_GET_LEADERS_BY_COMMUNITY_BY_STARTINDEX_AND_NUMRESULTS(
                     STATUS_LEVEL,
                     "/rpc/rest/statusLevelService/leadersByCommunity/{communityID}/{startIndex}/{numResults}",
                     "GET"), //
-    STATUS_GET_LEADERS_BYCONTAINERITERABLE(
+    STATUS_GET_LEADERS_BY_CONTAINER_ITERABLE(
                     STATUS_LEVEL,
                     "/rpc/rest/statusLevelService/leadersByContainer/{containerObjectID}/{containerObjectType}/{startIndex}/{numResults}",
                     "GET"), //
     STATUS_GET_POINT_LEVEL(STATUS_LEVEL, "/rpc/rest/statusLevelService/pointLevel/{userID}", "GET"), //
-    STATUS_GET_POINT_LEVELBYCOMMUNITY(STATUS_LEVEL,
+    STATUS_GET_POINT_LEVEL_BY_COMMUNITY(STATUS_LEVEL,
                     "/rpc/rest/statusLevelService/pointLevel/{userID}/{communityID}", "GET"), //
-    STATUS_GET_POINT_LEVELBYCONTAINER(
+    STATUS_GET_POINT_LEVEL_BY_CONTAINER(
                     STATUS_LEVEL,
                     "/rpc/rest/statusLevelService/pointLevel/{userID}/{containerObjectID}/{containerObjectType}",
                     "GET"), //
-    STATUS_GET_POINT_STATUSLEVELS(STATUS_LEVEL, "/rpc/rest/statusLevelService/pointStatusLevels", "GET"), //
+    STATUS_GET_POINT_STATUS_LEVELS(STATUS_LEVEL, "/rpc/rest/statusLevelService/pointStatusLevels", "GET"), //
     STATUS_GET_STATUS_LEVEL(STATUS_LEVEL, "/rpc/rest/statusLevelService/statusLevels/{statusLevelID}", "GET"), //
-    STATUS_GET_STATUS_LEVELBYPOINTS(STATUS_LEVEL,
+    STATUS_GET_STATUS_LEVEL_BY_POINTS(STATUS_LEVEL,
                     "/rpc/rest/statusLevelService/statusLevelByPoints/{points}", "GET"), //
-    STATUS_GET_STATUS_LEVELSCENARIOBYCODE(STATUS_LEVEL, "/rpc/rest/statusLevelService/scenarios/{code}",
+    STATUS_GET_STATUS_LEVEL_SCENARIO_BY_CODE(STATUS_LEVEL, "/rpc/rest/statusLevelService/scenarios/{code}",
                     "GET"), //
-    STATUS_GET_STATUS_LEVELSCENARIOBYCODEENCODED(STATUS_LEVEL,
+    STATUS_GET_STATUS_LEVEL_SCENARIO_BY_CODE_ENCODED(STATUS_LEVEL,
                     "/rpc/rest/statusLevelService/scenarios/{code}/{encoded}", "GET"), //
-    STATUS_GET_USER_STATUSLEVEL(STATUS_LEVEL, "/rpc/rest/statusLevelService/userStatusLevels/{userID}", "GET"), //
-    STATUS_IS_STATUS_LEVELSENABLED(STATUS_LEVEL, "/rpc/rest/statusLevelService/statusLevelsEnabled", "GET"), //
-    STATUS_SET_STATUS_LEVELSENABLED(STATUS_LEVEL, "/rpc/rest/statusLevelService/statusLevelsEnabled", "POST",
+    STATUS_GET_USER_STATUS_LEVEL(STATUS_LEVEL, "/rpc/rest/statusLevelService/userStatusLevels/{userID}", "GET"), //
+    STATUS_IS_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "/rpc/rest/statusLevelService/statusLevelsEnabled", "GET"), //
+    STATUS_SET_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "/rpc/rest/statusLevelService/statusLevelsEnabled", "POST",
                     "setStatusLevelsEnabled"), //
-    STATUS_UPDATE_STATUS_LEVELSCENARIO(STATUS_LEVEL, "/rpc/rest/statusLevelService/scenarios", "PUT",
+    STATUS_UPDATE_STATUS_LEVEL_SCENARIO(STATUS_LEVEL, "/rpc/rest/statusLevelService/scenarios", "PUT",
                     "updateStatusLevelScenario"), //
     SYSTEM_DELETE_PROPERTY(SYSTEM_PROPERTIES, "/rpc/rest/systemPropertiesService/properties/{name}", "DELETE"), //
     SYSTEM_GET_PROPERTIES(SYSTEM_PROPERTIES, "/rpc/rest/systemPropertiesService/properties", "GET"), //
@@ -541,19 +540,18 @@ public enum CustomOp
     TASK_GET_TASK_COUNTWITHFILTER(TASK, "taskCount", "POST", "getTaskCountWithFilter"), //
     TASK_GET_TASKBY_ID(TASK, "tasks/{taskID}", "GET"), //
     TASK_GET_TASKS(TASK, "tasks", "GET"), //
-    TASK_GET_TASKS_BYPROJECT(TASK, "tasksByProject/{projectID}", "GET"), //
-    TASK_GET_TASKS_WITHFILTER(TASK, "tasksWithFilter", "POST", "getTasksWithFilter"), //
-    TASK_GET_UNCOMPLETE_TASKSBYUSERID(TASK, "tasksByUserID/{userID}", "GET"), //
+    TASK_GET_TASKS_BY_PROJECT(TASK, "tasksByProject/{projectID}", "GET"), //
+    TASK_GET_TASKS_WITH_FILTER(TASK, "tasksWithFilter", "POST", "getTasksWithFilter"), //
+    TASK_GET_UNCOMPLETE_TASKS_BY_USER_ID(TASK, "tasksByUserID/{userID}", "GET"), //
     TASK_UPDATE(TASK, "tasks", "PUT", "update"), //
-
     USER_CREATE_USER(USER, "users/create", "POST", "createUser"), //
-    USER_CREATE_USER_WITHUSER(USER, "users", "POST", "createUserWithUser"), //
+    USER_CREATE_USER_WITH_USER(USER, "users", "POST", "createUserWithUser"), //
     USER_DELETE_USER_PROPERTY(USER, "properties/{userID}/{name}", "DELETE"), //
     USER_DISABLE_USER(USER, "disable", "PUT", "disableUser"), //
     USER_ENABLE_USER(USER, "enable", "PUT", "enableUser"), //
     USER_GET_USER(USER, "usersByID/{userID}", "GET"), //
-    USER_GET_USER_BYEMAILADDRESS(USER, "usersByEmail/{emailAddress}", "GET"), //
-    USER_GET_USER_BYUSERNAME(USER, "users/{username}", "GET"), //
+    USER_GET_USER_BY_EMAIL_ADDRESS(USER, "usersByEmail/{emailAddress}", "GET"), //
+    USER_GET_USER_BY_USER_NAME(USER, "users/{username}", "GET"), //
     USER_GET_USER_COUNT(USER, "users/count", "GET"), //
     USER_GET_USER_NAMES(USER, "userNames", "GET"), //
     USER_GET_USER_PROPERTIES(USER, "properties/{userID}", "GET"), //
@@ -566,7 +564,7 @@ public enum CustomOp
     VIDEO_CREATE_VIDEO(VIDEO, "createVideo", "POST", "createVideo"), //
     VIDEO_DELETE_VIDEO(VIDEO, "rpc/rest/videoService/deleteVideo/{videoID}", "DELETE"), //
     VIDEO_GET_VIDEO(VIDEO, "rpc/rest/videoService/videoByID/{videoID}", "GET"), //
-    VIDEO_GET_VIDEOS_FORCONTAINER(VIDEO, "rpc/rest/videoService/videosForContainer", "POST",
+    VIDEO_GET_VIDEOS_FOR_CONTAINER(VIDEO, "rpc/rest/videoService/videosForContainer", "POST",
                     "getVideosForContainerResponse"), //
     VIDEO_UPDATE_VIDEO(VIDEO, "updateVideo", "PUT", "updateVideo"), //
     WATCH_CREATE_COMMUNITY_WATCH(WATCH, "communityWatches", "POST", "createCommunityWatch"), //
@@ -575,11 +573,11 @@ public enum CustomOp
     WATCH_DELETE_WATCH(WATCH, "watches/{userID}/{objectID}/{objectType}", "DELETE"), //
     WATCH_DELETE_WATCHES(WATCH, "users/{userID}", "DELETE"), //
     WATCH_GET_COMMUNITY_WATCH(WATCH, "communityWatches/{userID}/{communityID}", "GET"), //
-    WATCH_GET_COMMUNITY_WATCHCOUNT(WATCH, "communityWatches/count/{userID}/{communityID}", "GET"), //
+    WATCH_GET_COMMUNITY_WATCH_COUNT(WATCH, "communityWatches/count/{userID}/{communityID}", "GET"), //
     WATCH_GET_COMMUNITY_WATCHES(WATCH, "allCommunityWatches/{userID}/{communityID}", "GET"), //
     WATCH_GET_DELETE_DAYS(WATCH, "deleteDays", "GET"), //
     WATCH_GET_THREAD_WATCH(WATCH, "threadWatches/{userID}/{threadID}", "GET"), //
-    WATCH_GET_TOTAL_WATCHCOUNT(WATCH, "watches/count/{userID}/{objectType}", "GET"), //
+    WATCH_GET_TOTAL_WATCH_COUNT(WATCH, "watches/count/{userID}/{objectType}", "GET"), //
     WATCH_GET_USER_WATCH(WATCH, "userWatches/{userID}/{watchedUserID}", "GET"), //
     WATCH_GET_WATCH_LIST(WATCH, "watches/{userID}/{objectType}", "GET"), //
     WATCH_GET_WATCH_USERS(WATCH, "users/{objectType}/{objectID}/{watchType}", "GET"), //
