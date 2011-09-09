@@ -38,7 +38,7 @@
   
   <flow name="CreateBlogPost">
     <description>Creates a blog post returning the new blog post id and objectType</description>
-    <http:inbound-endpoint host="localhost" port"9090" path="jive-demo-create-blog-post" />
+    <http:inbound-endpoint host="localhost" port="9090" path="jive-demo-create-blog-post" />
     <jive:execute operation="BLOG_CREATE_BLOG_POST">
         <jive:entity>
             <subject>#[header:inbound:subject]</subject>
@@ -54,7 +54,7 @@
   
   <flow name="CreateBlogPostComment">
   <description>Creates a comment into a blog post</description>
-  <http:inbound-endpoint host="localhost" port"9090" path="jive-demo-create-blog-post-comment" />
+  <http:inbound-endpoint host="localhost" port="9090" path="jive-demo-create-blog-post-comment" />
   <jive:create type="COMMENT">
     <jive:entity>
       <objectType>#[header:inbound:objectType]</objectType>
