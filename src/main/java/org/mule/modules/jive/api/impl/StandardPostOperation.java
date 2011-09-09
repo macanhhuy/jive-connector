@@ -11,34 +11,32 @@
 package org.mule.modules.jive.api.impl;
 
 import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.JiveClient;
 import org.mule.modules.jive.api.PayloadOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
-
-import com.sun.jersey.api.client.WebResource;
 
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
 
-public class StandardPayloadOperation implements PayloadOperation
+public class StandardPostOperation implements PayloadOperation
 {
     
-    public static final PayloadOperation STANDARD = new StandardPayloadOperation();
+    public static final PayloadOperation STANDARD = new StandardPostOperation();
 
     /* (non-Javadoc)
-     * @see org.mule.modules.jive.api.ReferenceOperation#execute(com.sun.jersey.api.client.WebResource, org.mule.modules.jive.api.xml.XmlMapper, org.mule.modules.jive.api.EntityType, java.util.Map)
+     * @see org.mule.modules.jive.api.ReferenceOperation#execute(com.sun.jersey.api.client.JiveClient, org.mule.modules.jive.api.xml.XmlMapper, org.mule.modules.jive.api.EntityType, java.util.Map)
      */
     @Override
-    public Map<String, Object> execute(WebResource resource,
+    public Map<String, Object> execute(JiveClient resource,
                                        XmlMapper mapper,
                                        EntityType type,
                                        Map<String, Object> entityData)
     {
         final Writer writer = new StringWriter();
         mapper.map2xml(type.getXmlRootElementName(), entityData, writer);
-        final String response = resource.path(type.getBasePluralUri()).post(String.class, writer.toString());
-        return mapper.xml2map(new StringReader(response));
+        return resource.doRequestWithPayload(type.getBasePluralUri(), "POST", writer.toString());
     }
 
 }

@@ -12,13 +12,11 @@ package org.mule.modules.jive.api;
 
 import org.mule.modules.jive.api.xml.XmlMapper;
 
-import com.sun.jersey.api.client.WebResource;
-
 import java.util.Map;
 
 public interface PayloadOperation
 {
-    Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, Map<String, Object> entityData);
+    Map<String, Object> execute(JiveClient resource, XmlMapper mapper, EntityType type, Map<String, Object> entityData);
 }
 
 

@@ -10,7 +10,7 @@
 
 package org.mule.modules.jive.api.impl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.mule.modules.jive.api.EntityTypeName;
 import org.mule.modules.jive.api.EntityTypes;

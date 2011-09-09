@@ -1,32 +1,6 @@
 
 package org.mule.modules.jive.api;
-import static org.mule.modules.jive.api.EntityTypeName.AVATAR;
-import static org.mule.modules.jive.api.EntityTypeName.BLOG;
-import static org.mule.modules.jive.api.EntityTypeName.COMMENT;
-import static org.mule.modules.jive.api.EntityTypeName.COMMUNITY;
-import static org.mule.modules.jive.api.EntityTypeName.DOCUMENT;
-import static org.mule.modules.jive.api.EntityTypeName.ENTITLEMENT;
-import static org.mule.modules.jive.api.EntityTypeName.FORUM;
-import static org.mule.modules.jive.api.EntityTypeName.GROUP;
-import static org.mule.modules.jive.api.EntityTypeName.IMSERVICE;
-import static org.mule.modules.jive.api.EntityTypeName.PLUGIN;
-import static org.mule.modules.jive.api.EntityTypeName.POLL;
-import static org.mule.modules.jive.api.EntityTypeName.PRIVATE_MESSAGE;
-import static org.mule.modules.jive.api.EntityTypeName.PROFILE;
-import static org.mule.modules.jive.api.EntityTypeName.PROFILE_FIELD;
-import static org.mule.modules.jive.api.EntityTypeName.PROFILE_SEARCH;
-import static org.mule.modules.jive.api.EntityTypeName.PROJECT;
-import static org.mule.modules.jive.api.EntityTypeName.RATINGS;
-import static org.mule.modules.jive.api.EntityTypeName.REFERENCE;
-import static org.mule.modules.jive.api.EntityTypeName.SEARCH;
-import static org.mule.modules.jive.api.EntityTypeName.SOCIAL_GROUP;
-import static org.mule.modules.jive.api.EntityTypeName.STATUS_LEVEL;
-import static org.mule.modules.jive.api.EntityTypeName.SYSTEM_PROPERTIES;
-import static org.mule.modules.jive.api.EntityTypeName.TAG;
-import static org.mule.modules.jive.api.EntityTypeName.TASK;
-import static org.mule.modules.jive.api.EntityTypeName.USER;
-import static org.mule.modules.jive.api.EntityTypeName.VIDEO;
-import static org.mule.modules.jive.api.EntityTypeName.WATCH;
+import static org.mule.modules.jive.api.EntityTypeName.*;
 
 import org.mule.modules.jive.CustomOp;
 

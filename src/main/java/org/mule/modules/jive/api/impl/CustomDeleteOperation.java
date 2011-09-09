@@ -12,11 +12,10 @@ package org.mule.modules.jive.api.impl;
 
 import org.mule.modules.jive.CustomOp;
 import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.JiveClient;
 import org.mule.modules.jive.api.JiveUris;
 import org.mule.modules.jive.api.ReferenceOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
-
-import com.sun.jersey.api.client.WebResource;
 
 import java.util.Map;
 
@@ -30,10 +29,9 @@ public class CustomDeleteOperation implements ReferenceOperation
     }
 
     @Override
-    public Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, String id)
+    public Map<String, Object> execute(JiveClient resource, XmlMapper mapper, EntityType type, String id)
     {
-        return mapper.xml2map(resource.path(JiveUris.getOperationUri(op.getBaseOperationUri(), id)).delete(
-            String.class));
+        return resource.doRequest(op.getBaseOperationUri(), "DELETE", id);
     }
 
 }

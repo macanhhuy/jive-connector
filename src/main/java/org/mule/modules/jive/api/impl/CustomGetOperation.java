@@ -12,13 +12,10 @@ package org.mule.modules.jive.api.impl;
 
 import org.mule.modules.jive.CustomOp;
 import org.mule.modules.jive.api.EntityType;
-import org.mule.modules.jive.api.JiveIds;
+import org.mule.modules.jive.api.JiveClient;
 import org.mule.modules.jive.api.JiveUris;
 import org.mule.modules.jive.api.ReferenceOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
-
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.WebResource.Builder;
 
 import java.util.Map;
 
@@ -40,14 +37,11 @@ public final class CustomGetOperation implements ReferenceOperation
     }
 
     @Override
-    public Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, String id)
+    public Map<String, Object> execute(JiveClient resource, XmlMapper mapper, EntityType type, String id)
     {
         Validate.isTrue(customOp.getMethod().equals("GET"), "Get requests should be always based on a HTTP GET method");
         
-        final Builder partialRequest = resource.path(getCompleteUriForCustomOp(customOp, id))
-            .type(MediaType.APPLICATION_FORM_URLENCODED)
-            .header("content-type", "text/xml");
-        return mapper.xml2map(partialRequest.get(String.class));
+        return resource.doRequest(customOp.getBaseOperationUri(), customOp.getMethod(), id);
     }
     
     /**Generates the complete uri for the get or delete {@link CustomOp}.

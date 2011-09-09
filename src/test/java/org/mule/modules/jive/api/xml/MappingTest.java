@@ -10,8 +10,7 @@
 
 package org.mule.modules.jive.api.xml;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import org.mule.api.registry.ServiceType;
 import org.mule.modules.jive.CustomOp;

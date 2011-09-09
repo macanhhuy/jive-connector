@@ -11,8 +11,6 @@
 package org.mule.modules.jive.api;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
-import com.sun.jersey.api.client.WebResource;
-
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -83,7 +81,7 @@ public final class EntityType
      * @return
      */
     public Map<String, Object> create(final EntityType type, final Map<String, Object> entity,
-        final XmlMapper mapper, final WebResource resource)
+        final XmlMapper mapper, final JiveClient resource)
     {
         return createOperation.execute(resource, mapper, type, entity);
     }
@@ -96,7 +94,7 @@ public final class EntityType
      * @return
      */
     public Map<String, Object> delete(final EntityType type, final String id,
-        final XmlMapper mapper, final WebResource resource) 
+        final XmlMapper mapper, final JiveClient resource) 
     {
         return deleteOperation.execute(resource, mapper, type, id);
     }
@@ -108,7 +106,7 @@ public final class EntityType
      * @param resource
      * @return
      */
-    public Long count(final EntityType type, final XmlMapper mapper, final WebResource resource)
+    public Long count(final EntityType type, final XmlMapper mapper, final JiveClient resource)
     {
         return countOperation.execute(resource, mapper, type);
     }
@@ -121,7 +119,7 @@ public final class EntityType
      * @return
      */
     public Map<String, Object> get(final String id,
-        final XmlMapper mapper, final WebResource resource)
+        final XmlMapper mapper, final JiveClient resource)
     {
         return getOperation.execute(resource, mapper, this, id);
     }
@@ -134,7 +132,7 @@ public final class EntityType
      * @return
      */
     public Map<String, Object> put(final EntityType type, final Map<String, Object> entityData,
-        final XmlMapper mapper, final WebResource resource)
+        final XmlMapper mapper, final JiveClient resource)
     {
         return putOperation.execute(resource, mapper, type, entityData);
     }

@@ -12,8 +12,6 @@ package org.mule.modules.jive.api;
 
 import org.mule.modules.jive.api.xml.XmlMapper;
 
-import com.sun.jersey.api.client.WebResource;
-
 /**
  * {@link TypeOperation} models a Jive operation that takes just a type as argument
  * 
@@ -21,5 +19,5 @@ import com.sun.jersey.api.client.WebResource;
  */
 public interface TypeOperation
 {
-    Long execute(WebResource resource, XmlMapper mapper, EntityType type);
+    Long execute(JiveClient resource, XmlMapper mapper, EntityType type);
 }

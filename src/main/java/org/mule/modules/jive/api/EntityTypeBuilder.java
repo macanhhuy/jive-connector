@@ -18,7 +18,7 @@ import org.mule.modules.jive.api.impl.StandardCountOperation;
 import org.mule.modules.jive.api.impl.StandardCreateOperation;
 import org.mule.modules.jive.api.impl.StandardDeleteOperation;
 import org.mule.modules.jive.api.impl.StandardGetOperation;
-import org.mule.modules.jive.api.impl.StandardPayloadOperation;
+import org.mule.modules.jive.api.impl.StandardPostOperation;
 
 /**
  * Builder to hold all the crud operations.
@@ -29,7 +29,7 @@ public class EntityTypeBuilder
     private final EntityTypeName entityTypeName;
     
     private PayloadOperation createOp = StandardCreateOperation.STANDARD;
-    private PayloadOperation putOp = StandardPayloadOperation.STANDARD;
+    private PayloadOperation putOp = StandardPostOperation.STANDARD;
     private ReferenceOperation deleteOp = StandardDeleteOperation.STANDARD;
     private ReferenceOperation getOp = StandardGetOperation.STANDARD;
     private TypeOperation countOp = StandardCountOperation.STANDARD;

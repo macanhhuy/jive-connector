@@ -11,10 +11,9 @@
 package org.mule.modules.jive.api.impl;
 
 import org.mule.modules.jive.api.EntityType;
+import org.mule.modules.jive.api.JiveClient;
 import org.mule.modules.jive.api.ReferenceOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
-
-import com.sun.jersey.api.client.WebResource;
 
 import java.util.Map;
 
@@ -23,9 +22,9 @@ public class StandardGetOperation implements ReferenceOperation
     public static final ReferenceOperation STANDARD = new StandardGetOperation();
 
     @Override
-    public Map<String, Object> execute(WebResource resource, XmlMapper mapper, EntityType type, String id)
+    public Map<String, Object> execute(JiveClient resource, XmlMapper mapper, EntityType type, String id)
     {
-        return mapper.xml2map(resource.path(type.getBasePluralUri()).get(String.class));
+        return resource.doRequest(type.getBasePluralUri(), "GET", id);
     }
 
 }
