@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!--
+<!--
 
-    Mule jive Cloud Connector Copyright (c) MuleSoft, Inc. All rights
-    reserved. http://www.mulesoft.com The software in this package is
-    published under the terms of the CPAL v1.0 license, a copy of which
-    has been included with this distribution in the LICENSE.txt file.
-  -->
+    Mule Jive Cloud Connector
+
+    Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
+
+    The software in this package is published under the terms of the CPAL v1.0
+    license, a copy of which has been included with this distribution in the
+    LICENSE.txt file.
+
+-->
 
 <mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:spring="http://www.springframework.org/schema/beans"
@@ -19,7 +23,7 @@
         http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd
         http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0/mule-jive.xsd">
 
-  <jive:config username="${jiveUsername}" password="${jivePassword}" endpoint="https://apisandbox.jive.com/apps/services/a/29.0" />
+  <jive:config username="${jiveUsername}" password="${jivePassword}" />
 
   <flow name="CreateBlog">
   <description>Get the new blog created and returns the id</description>
