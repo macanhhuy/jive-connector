@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+  <!--
 
-    Mule Jive Cloud Connector
+    Mule Jive Cloud Connector Copyright (c) MuleSoft, Inc. All rights
+    reserved. http://www.mulesoft.com The software in this package is
+    published under the terms of the CPAL v1.0 license, a copy of which
+    has been included with this distribution in the LICENSE.txt file.
+  -->
 
-    Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
-
-    The software in this package is published under the terms of the CPAL v1.0
-    license, a copy of which has been included with this distribution in the
-    LICENSE.txt file.
-
--->
 
 <mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:spring="http://www.springframework.org/schema/beans"
-  xmlns:http="http://www.mulesoft.org/schema/mule/http"
-  xmlns:jive="http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive"
-  xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+  xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:spring="http://www.springframework.org/schema/beans"
   xmlns:twitter="http://repository.mulesoft.org/releases/org/mule/modules/mule-module-twitter"
-  xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
-        http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd
+  xmlns:json="http://www.mulesoft.org/schema/mule/json"
+  xmlns:jive="http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd
-        http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0/mule-jive.xsd
-        http://repository.mulesoft.org/releases/org/mule/modules/mule-module-twitter http://repository.mulesoft.org/releases/org/mule/modules/mule-module-twitter/2.1/mule-twitter.xsd">
+                          http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
+                          http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/3.1/mule-json.xsd
+                          http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0-SNAPSHOT/mule-jive.xsd
+                          http://repository.mulesoft.org/releases/org/mule/modules/mule-module-twitter http://repository.mulesoft.org/releases/org/mule/modules/mule-module-twitter/2.1/mule-twitter.xsd">
 
-  <jive:config username="${jiveUsername}" password="${jivePassword}" />
-  <twitter:config 
-    accessKey="${accessKey}"
-    accessSecret="${accessSecret}" 
-    consumerKey="${consumerKey}"
-    consumerSecret="${consumerSecret}" />
+
+  <twitter:config consumerKey="${twitterConsumerKey}"
+    consumerSecret="${twitterConsumerSecret}" 
+    accessSecret="${twitterAccessSecret}" 
+    accessKey="${twitterAccessKey}"/>
+    
+  <jive:config username="${jiveUsername}" password="${jivePassword}"
+    gatewayUri="${JiveGatewayUri}" />
 
 
   <flow name="CreateBlog">
-  <description>Get the new blog created and returns the id</description>
-    <http:inbound-endpoint host="localhost" port="9090" path="jive-demo-create-blog" />
+    <description>Get the new blog created and returns the id
+    </description>
+    <http:inbound-endpoint host="localhost" port="9090"
+      path="jive-demo-create-blog" />
     <jive:create type="BLOG">
       <jive:entity>
         <userID>#[header:inbound:userID]</userID>
@@ -44,49 +43,50 @@
       </jive:entity>
     </jive:create>
     <expression-transformer>
-        <return-argument expression="Blog #[map-payload:ID] created!" evaluator="string"/>
+      <return-argument expression="Blog #[map-payload:ID] created!"
+        evaluator="string" />
     </expression-transformer>
   </flow>
-  
+
   <flow name="CreateBlogPost">
-    <description>Creates a blog post returning the new blog post id and objectType</description>
-    <http:inbound-endpoint host="localhost" port="9090" path="jive-demo-create-blog-post" />
+    <description>Creates a blog post returning the new blog post id and
+      objectType</description>
+    <http:inbound-endpoint host="localhost" port="9090"
+      path="jive-demo-create-blog-post" />
     <jive:execute operation="BLOG_CREATE_BLOG_POST">
-        <jive:entity>
-            <subject>#[header:inbound:subject]</subject>
-            <body>#[header:inbound:subject]</body>
-            <blogID>#[header:inbound:blogID]</blogID>
-            <userID>#[header:inbound:subject]</userID>
-        </jive:entity>
+      <jive:entity>
+        <subject>#[header:inbound:subject]</subject>
+        <body>#[header:inbound:subject]</body>
+        <blogID>#[header:inbound:blogID]</blogID>
+        <userID>#[header:inbound:subject]</userID>
+      </jive:entity>
     </jive:execute>
-    <message-properties-transformer scope="invocation">
-      <add-message-property key="message" value="Post #[map-payload:ID] created!" />
+    <message-properties-transformer
+      scope="invocation">
+      <add-message-property key="message"
+        value="Post #[map-payload:ID] created!" />
     </message-properties-transformer>
-    <twitter:update-status status="#[header:invocation:message]"/>
+    <!--
+      <twitter:update-status status="#[header:invocation:message]" />
+    -->
     <expression-transformer>
-        <return-argument expression="#[header:invocation:message]" evaluator=""/>
+      <return-argument expression="#[header:invocation:message]"
+        evaluator="string" />
     </expression-transformer>
   </flow>
-  
+
   <flow name="CreateBlogPostComment">
-  <description>Creates a comment into a blog post</description>
-  <http:inbound-endpoint host="localhost" port="9090" path="jive-demo-create-blog-post-comment" />
-  <jive:create type="COMMENT">
-    <jive:entity>
-      <objectType>#[header:inbound:objectType]</objectType>
-      <objectID>#[header:inbound:objectID]</objectID>
-      <userID>#[header:inbound:userID]</userID>
-      <body>#[header:inbound:body]</body>
-    </jive:entity>
-  </jive:create>
+    <description>Creates a comment into a blog post</description>
+    <http:inbound-endpoint host="localhost" port="9090"
+      path="jive-demo-create-blog-post-comment" />
+    <jive:create type="COMMENT">
+      <jive:entity>
+        <objectType>#[header:inbound:objectType]</objectType>
+        <objectID>#[header:inbound:objectID]</objectID>
+        <userID>#[header:inbound:userID]</userID>
+        <body>#[header:inbound:body]</body>
+      </jive:entity>
+    </jive:create>
   </flow>
-  
-  
-  <flow name="UpdateStatus">
-    <http:inbound-endpoint host="localhost" port="9090" path="twitter-demo-update-status" />
-    
-  </flow>
-   
-</mule>
 
 </mule>

@@ -21,7 +21,7 @@ import org.junit.Test;
 
 /**Test for the {@link JiveModule}.
  * */
-public class JiveModuleTest extends FunctionalTestCase {
+public class JiveModuleNamespaceHandlerTest extends FunctionalTestCase {
     @Override
     protected final String getConfigResources() {
         return "mule-config.xml";
