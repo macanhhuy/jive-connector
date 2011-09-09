@@ -177,7 +177,7 @@ public class JiveModule
      * @return the user id
      */
     @Processor
-    public Long getUserID()
+    public Long getUserId()
     {
         return facade.getUserID();
     }

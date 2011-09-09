@@ -58,7 +58,7 @@ public class JiveModuleTestDriver
     @Test
     public void testGetUserIdIsNotNull() throws Exception
     {
-        assertNotNull(facade.getUserID());
+        assertNotNull(facade.getUserId());
     }
     
     @Test
@@ -84,7 +84,7 @@ public class JiveModuleTestDriver
         return new HashMap<String, Object>()
         {
             {
-                put("ownerID", facade.getUserID());
+                put("ownerID", facade.getUserId());
                 put("name", "avatarTest10");
                 put("contentType", "image/jpg");
                 put("data", Arrays.asList("qwertyui", "12345678"));
@@ -170,7 +170,7 @@ public class JiveModuleTestDriver
         return new LinkedHashMap<String, Object>()
         {
             {
-                put("userID", facade.getUserID());
+                put("userID", facade.getUserId());
                 put("blogName", "foob0as07");
                 put("displayName", "foobzzb1ar1");
             }

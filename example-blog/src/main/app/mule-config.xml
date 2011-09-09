@@ -27,7 +27,7 @@
     accessKey="${twitterAccessKey}"/>
     
   <jive:config username="${jiveUsername}" password="${jivePassword}"
-    gatewayUri="${JiveGatewayUri}" />
+    gatewayUri="${jiveGatewayUri}" />
 
 
   <flow name="CreateBlog">
@@ -35,9 +35,11 @@
     </description>
     <http:inbound-endpoint host="localhost" port="9090"
       path="jive-demo-create-blog" />
+      
+    <jive:get-user-id/>
     <jive:create type="BLOG">
       <jive:entity>
-        <userID>#[header:inbound:userID]</userID>
+        <userID>#[payload]</userID>
         <display>#[header:inbound:display]</display>
         <displayName>#[header:inbound:displayName]</displayName>
       </jive:entity>
