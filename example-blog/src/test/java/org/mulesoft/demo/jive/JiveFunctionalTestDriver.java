@@ -1,5 +1,5 @@
 /**
- * Mule Zuora Cloud Connector
+ * Mule Jive Cloud Connector
  *
  * Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
  *
@@ -10,9 +10,6 @@
 
 package org.mulesoft.demo.jive;
 
-import org.mule.api.MuleEvent;
-import org.mule.api.MuleMessage;
-import org.mule.api.transport.PropertyScope;
 import org.mule.construct.Flow;
 import org.mule.tck.FunctionalTestCase;
 
@@ -25,17 +22,11 @@ public class JiveFunctionalTestDriver extends FunctionalTestCase
         return "mule-config.xml";
     }
 
-    public void testCreateAccount() throws Exception
+    public void testCreateBlog() throws Exception
     {
-        System.out.println(lookupFlowConstruct("CreateAccount").process(getTestEvent("")).getMessage().getPayload());
+        System.out.println(lookupFlowConstruct("CreateBlog").process(getTestEvent("")).getMessage().getPayload());
     }
     
-    public void testSearch() throws Exception
-    {
-        MuleEvent process = lookupFlowConstruct("GetAccounts").process(getTestEvent(""));
-        System.out.println(process.getMessage().getPayload());
-    }
-
     private Flow lookupFlowConstruct(final String name)
     {
         return (Flow) muleContext.getRegistry().lookupFlowConstruct(name);
