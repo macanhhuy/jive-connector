@@ -149,16 +149,16 @@ public class JiveModule
     }
 
     /**
-     * @param op The custom operation to be executed
+     * @param operation The custom operation to be executed
      * @param entity The {@link Map} with the entity data to be send as payload
      * @param id The path parameters to be added to the operation uri
      * @return A {@link Map} with the server response
      */
     @Processor
-    public Map<String, Object> execute(final CustomOp op, 
+    public Map<String, Object> execute(final CustomOp operation, 
         @Optional final Map<String, Object> entity, @Optional  final String id) 
     {
-        return facade.execute(op, entity, id);
+        return facade.execute(operation, entity, id);
     }
 
     /**
