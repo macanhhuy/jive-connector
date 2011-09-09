@@ -14,12 +14,14 @@ import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.PayloadOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
+import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
-import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
 
 public class StandardCreateOperation implements PayloadOperation
 {
@@ -36,7 +38,13 @@ public class StandardCreateOperation implements PayloadOperation
     {
         final Writer writer = new StringWriter();
         mapper.map2xml("create" + type.getXmlRootElementName(), entityData, writer);
-        return mapper.xml2map(new StringReader(resource.path(type.getBasePluralUri()).post(String.class, writer.toString())));
+        ClientResponse result = resource.path(type.getBasePluralUri()).post(ClientResponse.class, writer.toString());
+        if (result.getStatus() > 300)
+        {
+            throw new RuntimeException(StringUtils.substringAfterLast(
+                StringUtils.substringBefore(result.getEntity(String.class), "</ns1:faultstring>"), ">"));
+        }
+        return mapper.xml2map(result.getEntity(String.class));
     }
 
 }
