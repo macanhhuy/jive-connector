@@ -16,14 +16,22 @@
   xmlns:http="http://www.mulesoft.org/schema/mule/http"
   xmlns:jive="http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive"
   xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+  xmlns:twitter="http://repository.mulesoft.org/releases/org/mule/modules/mule-module-twitter"
   xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
         http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd
         http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd
-        http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0/mule-jive.xsd">
+        http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0/mule-jive.xsd
+        http://repository.mulesoft.org/releases/org/mule/modules/mule-module-twitter http://repository.mulesoft.org/releases/org/mule/modules/mule-module-twitter/2.1/mule-twitter.xsd">
 
   <jive:config username="${jiveUsername}" password="${jivePassword}" />
+  <twitter:config 
+    accessKey="${accessKey}"
+    accessSecret="${accessSecret}" 
+    consumerKey="${consumerKey}"
+    consumerSecret="${consumerSecret}" />
+
 
   <flow name="CreateBlog">
   <description>Get the new blog created and returns the id</description>
@@ -36,7 +44,7 @@
       </jive:entity>
     </jive:create>
     <expression-transformer>
-        <return-argument expression="#[map-payload:ID]" evaluator="string"/>
+        <return-argument expression="Blog #[map-payload:ID] created!" evaluator="string"/>
     </expression-transformer>
   </flow>
   
@@ -51,8 +59,12 @@
             <userID>#[header:inbound:subject]</userID>
         </jive:entity>
     </jive:execute>
+    <message-properties-transformer scope="invocation">
+      <add-message-property key="message" value="Post #[map-payload:ID] created!" />
+    </message-properties-transformer>
+    <twitter:update-status status="#[header:invocation:message]"/>
     <expression-transformer>
-        <return-argument expression="{#[map-payload:ID], #[map-payload:objectType]}" evaluator=""/>
+        <return-argument expression="#[header:invocation:message]" evaluator=""/>
     </expression-transformer>
   </flow>
   
@@ -68,5 +80,13 @@
     </jive:entity>
   </jive:create>
   </flow>
+  
+  
+  <flow name="UpdateStatus">
+    <http:inbound-endpoint host="localhost" port="9090" path="twitter-demo-update-status" />
+    
+  </flow>
+   
+</mule>
 
 </mule>
