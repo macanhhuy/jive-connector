@@ -22,23 +22,15 @@
 package org.mule.modules.jive;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.mule.modules.jive.api.EntityTypeName.AVATAR;
-import static org.mule.modules.jive.api.EntityTypeName.BLOG;
-import static org.mule.modules.jive.api.EntityTypeName.USER;
+import static org.mule.modules.jive.api.EntityTypeName.*;
 
 import com.sun.jersey.api.client.UniformInterfaceException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -89,7 +81,7 @@ public class JiveModuleTestDriver
         }
     }
 
-    @SuppressWarnings({"unchecked", "serial"})
+    @SuppressWarnings("serial")
     private HashMap<String, Object> newAvatar()
     {
         return new HashMap<String, Object>()
@@ -158,8 +150,8 @@ public class JiveModuleTestDriver
         {
             {
                 put("userID", facade.getUserID());
-                put("blogName", "foob0az05");
-                put("displayName", "foobazb0ar0");
+                put("blogName", "foob0az07");
+                put("displayName", "foobazb0ar1");
             }
         };
     }
