@@ -22,15 +22,47 @@
   <jive:config username="${jiveUsername}" password="${jivePassword}" endpoint="https://apisandbox.jive.com/apps/services/a/29.0" />
 
   <flow name="CreateBlog">
+  <description>Get the new blog created and returns the id</description>
     <http:inbound-endpoint host="localhost" port="9090" path="jive-demo-create-blog" />
     <jive:create type="BLOG">
       <jive:entity>
-        <userID>#[map-payload:userID]</userID>
-        <display>#[map-payload:display]</display>
-        <displayName>#[map-payload:displayName]</displayName>
+        <userID>#[header:inbound:userID]</userID>
+        <display>#[header:inbound:display]</display>
+        <displayName>#[header:inbound:displayName]</displayName>
       </jive:entity>
     </jive:create>
+    <expression-transformer>
+        <return-argument expression="#[map-payload:ID]" evaluator="string"/>
+    </expression-transformer>
   </flow>
   
+  <flow name="CreateBlogPost">
+    <description>Creates a blog post returning the new blog post id and objectType</description>
+    <http:inbound-endpoint host="localhost" port"9090" path="jive-demo-create-blog-post" />
+    <jive:execute operation="BLOG_CREATE_BLOG_POST">
+        <jive:entity>
+            <subject>#[header:inbound:subject]</subject>
+            <body>#[header:inbound:subject]</body>
+            <blogID>#[header:inbound:blogID]</blogID>
+            <userID>#[header:inbound:subject]</userID>
+        </jive:entity>
+    </jive:execute>
+    <expression-transformer>
+        <return-argument expression="{#[map-payload:ID], #[map-payload:objectType]}" evaluator=""/>
+    </expression-transformer>
+  </flow>
+  
+  <flow name="CreateBlogPostComment">
+  <description>Creates a comment into a blog post</description>
+  <http:inbound-endpoint host="localhost" port"9090" path="jive-demo-create-blog-post-comment" />
+  <jive:create type="COMMENT">
+    <jive:entity>
+      <objectType>#[header:inbound:objectType]</objectType>
+      <objectID>#[header:inbound:objectID]</objectID>
+      <userID>#[header:inbound:userID]</userID>
+      <body>#[header:inbound:body]</body>
+    </jive:entity>
+  </jive:create>
+  </flow>
 
 </mule>
