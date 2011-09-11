@@ -177,6 +177,14 @@
         
     </dependencies>
 
+
+ <scm>
+    <connection>scm:git:git://github.com:mulesoft/jive-connector.git</connection>
+    <developerConnection>scm:git:git@github.com:mulesoft/jive-connector.git</developerConnection>
+    <url>http://github.com/mulesoft/jive-connector</url>
+  </scm>
+  
+  
     <repositories>
         <repository>
             <id>muleforge-releases</id>
