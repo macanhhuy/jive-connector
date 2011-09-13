@@ -394,7 +394,7 @@ public enum CustomOp
     PROJECT_CREATE(PROJECT, "projects", "POST", "create", null), //
     PROJECT_DELETE(PROJECT, "projects", "DELETE", null, "projectID"), //
     PROJECT_GET_CHECK_POINTS(PROJECT, "checkPointsByProject", "GET", null, "projectID"), //
-    PROJECT_GET_PROJECT_BYID(PROJECT, "projects", "GET", null, "projectID"), //
+    PROJECT_GET_PROJECT_BY_ID(PROJECT, "projects", "GET", null, "projectID"), //
     PROJECT_GET_PROJECT_COUNT(PROJECT, "projectCount", "GET", null, null), //
     PROJECT_GET_PROJECTS(PROJECT, "projects", "GET", null, null), //
     PROJECT_GET_USER_COUNT(PROJECT, "userCount", "GET", null, "projectID"), //
@@ -427,71 +427,71 @@ public enum CustomOp
                     "communityID:query:contentTypes"), //
     SEARCH_COUNT_QUICK_SEARCHRESULTS(SEARCH, "quickSearchCount", "POST", "countQuickSearchResults", null), //
     SEARCH_COUNT_SEARCH_RESULTS(SEARCH, "searchCount", "POST", "countSearchResults", null), //
-    SEARCH_COUNT_SEARCH_RESULTSBYCOMMUNITYID(SEARCH, "communitySearchCount", "POST",
+    SEARCH_COUNT_SEARCH_RESULTS_BY_COMMUNITY_ID(SEARCH, "communitySearchCount", "POST",
                     "countSearchResultsByCommunityID", null), //
-    SEARCH_QUICK_MESSAGE_SEARCHBYCOMMUNITYID(SEARCH, "communitySearch", "GET", null,
+    SEARCH_QUICK_MESSAGE_SEARCH_BY_COMMUNITY_ID(SEARCH, "communitySearch", "GET", null,
                     "communityID:query:contentTypes:startIndex:numResults"), //
     SEARCH_QUICK_SEARCH(SEARCH, "quickSearch", "POST", "quickSearch", null), //
     SEARCH_SEARCH(SEARCH, "search", "POST", "search", null), //
     SEARCH_SEARCH_BY_COMMUNITIES(SEARCH, "communitySearch", "POST", "searchByCommunities", null), //
-    SOCIAL_ADD_MEMBER(SOCIAL_GROUP, "socialGroupMembers", "POST", "addMember", null), //
-    SOCIAL_CREATE_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroup", "POST", "createSocialGroup", null), //
-    SOCIAL_DELETE_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroup", "DELETE", null, "socialGroupID"), //
-    SOCIAL_GET_MEMBER_COUNT(SOCIAL_GROUP, "membercount", "GET", null, "socialGroupID"), //
-    SOCIAL_GET_MEMBERS(SOCIAL_GROUP, "members", "GET", null, "socialGroupID"), //
-    SOCIAL_GET_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroupsByID", "GET", null, "socialGroupID"), //
-    SOCIAL_GET_SOCIAL_GROUPBYNAME(SOCIAL_GROUP, "socialGroupsByName", "GET", null, "displayName"), //
-    SOCIAL_GET_SOCIAL_GROUPCOUNT(SOCIAL_GROUP, "socialGroupCount", "GET", null, null), //
-    SOCIAL_GET_SOCIAL_GROUPNAMES(SOCIAL_GROUP, "socialGroupNames", "GET", null, null), //
-    SOCIAL_GET_SOCIAL_GROUPNAMESBOUNDED(SOCIAL_GROUP, "socialGroupNamesBounded", "GET", null,
+    SOCIAL_GROUP_ADD_MEMBER(SOCIAL_GROUP, "socialGroupMembers", "POST", "addMember", null), //
+    SOCIAL_GROUP_CREATE_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroup", "POST", "createSocialGroup", null), //
+    SOCIAL_GROUP_DELETE_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroup", "DELETE", null, "socialGroupID"), //
+    SOCIAL_GROUP_GET_MEMBER_COUNT(SOCIAL_GROUP, "membercount", "GET", null, "socialGroupID"), //
+    SOCIAL_GROUP_GET_MEMBERS(SOCIAL_GROUP, "members", "GET", null, "socialGroupID"), //
+    SOCIAL_GROUP_GET_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroupsByID", "GET", null, "socialGroupID"), //
+    SOCIAL_GROUP_GET_SOCIAL_GROUPBYNAME(SOCIAL_GROUP, "socialGroupsByName", "GET", null, "displayName"), //
+    SOCIAL_GROUP_GET_SOCIAL_GROUPCOUNT(SOCIAL_GROUP, "socialGroupCount", "GET", null, null), //
+    SOCIAL_GROUP_GET_SOCIAL_GROUPNAMES(SOCIAL_GROUP, "socialGroupNames", "GET", null, null), //
+    SOCIAL_GROUP_GET_SOCIAL_GROUPNAMESBOUNDED(SOCIAL_GROUP, "socialGroupNamesBounded", "GET", null,
                     "startIndex:numResults"), //
-    SOCIAL_GET_SOCIAL_GROUPS(SOCIAL_GROUP, "socialGroups", "GET", null, null), //
-    SOCIAL_GET_USER_SOCIALGROUPNAMES(SOCIAL_GROUP, "userSocialGroupNames", "GET", null, "userID"), //
-    SOCIAL_GET_USER_SOCIALGROUPS(SOCIAL_GROUP, "userSocialGroups", "GET", null, "userID"), //
-    SOCIAL_REMOVE_MEMBER(SOCIAL_GROUP, "socialGroupMembers", "DELETE", null, "socialGroupID:userID"), //
-    SOCIAL_SEARCH_SOCIAL_GROUPS(SOCIAL_GROUP, "searchSocialGroups/", "POST", "searchSocialGroups", null), //
-    SOCIAL_UPDATE_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroup", "PUT", "updateSocialGroup", null), //
-    STATUS_ADD_POINTS(STATUS_LEVEL, "addPoints", "POST", "addPoints", null), //
-    STATUS_ADD_POINTS_BY_CONTAINER(STATUS_LEVEL, "addPointsByContainer", "POST", "addPoints", null), //
-    STATUS_CREATE_STATUS_LEVEL_POINT_BASED(STATUS_LEVEL, "pointStatusLevels", "POST", "createStatusLevel",
+    SOCIAL_GROUP_GET_SOCIAL_GROUPS(SOCIAL_GROUP, "socialGroups", "GET", null, null), //
+    SOCIAL_GROUP_GET_USER_SOCIALGROUPNAMES(SOCIAL_GROUP, "userSocialGroupNames", "GET", null, "userID"), //
+    SOCIAL_GROUP_GET_USER_SOCIALGROUPS(SOCIAL_GROUP, "userSocialGroups", "GET", null, "userID"), //
+    SOCIAL_GROUP_REMOVE_MEMBER(SOCIAL_GROUP, "socialGroupMembers", "DELETE", null, "socialGroupID:userID"), //
+    SOCIAL_GROUP_SEARCH_SOCIAL_GROUPS(SOCIAL_GROUP, "searchSocialGroups/", "POST", "searchSocialGroups", null), //
+    SOCIAL_GROUP_UPDATE_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroup", "PUT", "updateSocialGroup", null), //
+    STATUS_LEVEL_ADD_POINTS(STATUS_LEVEL, "addPoints", "POST", "addPoints", null), //
+    STATUS_LEVEL_ADD_POINTS_BY_CONTAINER(STATUS_LEVEL, "addPointsByContainer", "POST", "addPoints", null), //
+    STATUS_LEVEL_CREATE_STATUS_LEVEL_POINT_BASED(STATUS_LEVEL, "pointStatusLevels", "POST", "createStatusLevel",
                     null), //
-    STATUS_CREATE_STATUS_LEVEL_GROUP_BASED(STATUS_LEVEL, "groupStatusLevels", "POST", "createStatusLevel",
+    STATUS_LEVEL_CREATE_STATUS_LEVEL_GROUP_BASED(STATUS_LEVEL, "groupStatusLevels", "POST", "createStatusLevel",
                     null), //
-    STATUS_DELETE_STATUS_LEVEL(STATUS_LEVEL, "statusLevels", "DELETE", null, "statusLevelID"), //
-    STATUS_GET_ALL_STATUS_LEVEL_SCENARIOS(STATUS_LEVEL, "scenarios", "GET", null, null), //
-    STATUS_GET_GROUP_STATUS_LEVEL(STATUS_LEVEL, "groupStatusLevels", "GET", null, "groupID"), //
-    STATUS_GET_GROUP_STATUS_LEVELS(STATUS_LEVEL, "groupStatusLevels", "GET", null, null), //
-    STATUS_GET_LEADERS(STATUS_LEVEL, "leaders", "GET", null, null), //
-    STATUS_GET_LEADERS_BY_STARTINDEX_AND_NUMRESULTS(STATUS_LEVEL, "leaders", "GET", null,
+    STATUS_LEVEL_DELETE_STATUS_LEVEL(STATUS_LEVEL, "statusLevels", "DELETE", null, "statusLevelID"), //
+    STATUS_LEVEL_GET_ALL_STATUS_LEVEL_SCENARIOS(STATUS_LEVEL, "scenarios", "GET", null, null), //
+    STATUS_LEVEL_GET_GROUP_STATUS_LEVEL(STATUS_LEVEL, "groupStatusLevels", "GET", null, "groupID"), //
+    STATUS_LEVEL_GET_GROUP_STATUS_LEVELS(STATUS_LEVEL, "groupStatusLevels", "GET", null, null), //
+    STATUS_LEVEL_GET_LEADERS(STATUS_LEVEL, "leaders", "GET", null, null), //
+    STATUS_LEVEL_GET_LEADERS_BY_STARTINDEX_AND_NUMRESULTS(STATUS_LEVEL, "leaders", "GET", null,
                     "startIndex:numResults"), //
-    STATUS_GET_LEADERS_BY_COMMUNITY(STATUS_LEVEL, "leadersByCommunity", "GET", null, "communityID"), //
-    STATUS_GET_LEADERS_BY_CONTAINER(STATUS_LEVEL, "leadersByContainer", "GET", null,
+    STATUS_LEVEL_GET_LEADERS_BY_COMMUNITY(STATUS_LEVEL, "leadersByCommunity", "GET", null, "communityID"), //
+    STATUS_LEVEL_GET_LEADERS_BY_CONTAINER(STATUS_LEVEL, "leadersByContainer", "GET", null,
                     "containerObjectID:containerObjectType"), //
-    STATUS_GET_LEADERS_BY_COMMUNITY_BY_STARTINDEX_AND_NUMRESULTS(STATUS_LEVEL, "leadersByCommunity", "GET",
+    STATUS_LEVEL_GET_LEADERS_BY_COMMUNITY_BY_STARTINDEX_AND_NUMRESULTS(STATUS_LEVEL, "leadersByCommunity", "GET",
                     null, "communityID:startIndex:numResults"), //
-    STATUS_GET_LEADERS_BY_CONTAINER_ITERABLE(STATUS_LEVEL, "leadersByContainer", "GET", null,
+    STATUS_LEVEL_GET_LEADERS_BY_CONTAINER_ITERABLE(STATUS_LEVEL, "leadersByContainer", "GET", null,
                     "containerObjectID:containerObjectType:startIndex:numResults"), //
-    STATUS_GET_POINT_LEVEL(STATUS_LEVEL, "pointLevel", "GET", null, "userID"), //
-    STATUS_GET_POINT_LEVEL_BY_COMMUNITY(STATUS_LEVEL, "pointLevel", "GET", null, "userID:communityID"), //
-    STATUS_GET_POINT_LEVEL_BY_CONTAINER(STATUS_LEVEL, "pointLevel", "GET", null,
+    STATUS_LEVEL_GET_POINT_LEVEL(STATUS_LEVEL, "pointLevel", "GET", null, "userID"), //
+    STATUS_LEVEL_GET_POINT_LEVEL_BY_COMMUNITY(STATUS_LEVEL, "pointLevel", "GET", null, "userID:communityID"), //
+    STATUS_LEVEL_GET_POINT_LEVEL_BY_CONTAINER(STATUS_LEVEL, "pointLevel", "GET", null,
                     "userID:containerObjectID:containerObjectType"), //
-    STATUS_GET_POINT_STATUS_LEVELS(STATUS_LEVEL, "pointStatusLevels", "GET", null, null), //
-    STATUS_GET_STATUS_LEVEL(STATUS_LEVEL, "statusLevels", "GET", null, "statusLevelID"), //
-    STATUS_GET_STATUS_LEVEL_BY_POINTS(STATUS_LEVEL, "statusLevelByPoints", "GET", null, "points"), //
-    STATUS_GET_STATUS_LEVEL_SCENARIO_BY_CODE(STATUS_LEVEL, "scenarios", "GET", null, "code"), //
-    STATUS_GET_STATUS_LEVEL_SCENARIO_BY_CODE_ENCODED(STATUS_LEVEL, "scenarios", "GET", null, "code:encoded"), //
-    STATUS_GET_USER_STATUS_LEVEL(STATUS_LEVEL, "userStatusLevels", "GET", null, "userID"), //
-    STATUS_IS_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "statusLevelsEnabled", "GET", null, null), //
-    STATUS_SET_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "statusLevelsEnabled", "POST", "setStatusLevelsEnabled",
+    STATUS_LEVEL_GET_POINT_STATUS_LEVELS(STATUS_LEVEL, "pointStatusLevels", "GET", null, null), //
+    STATUS_LEVEL_GET_STATUS_LEVEL(STATUS_LEVEL, "statusLevels", "GET", null, "statusLevelID"), //
+    STATUS_LEVEL_GET_STATUS_LEVEL_BY_POINTS(STATUS_LEVEL, "statusLevelByPoints", "GET", null, "points"), //
+    STATUS_LEVEL_GET_STATUS_LEVEL_SCENARIO_BY_CODE(STATUS_LEVEL, "scenarios", "GET", null, "code"), //
+    STATUS_LEVEL_GET_STATUS_LEVEL_SCENARIO_BY_CODE_ENCODED(STATUS_LEVEL, "scenarios", "GET", null, "code:encoded"), //
+    STATUS_LEVEL_GET_USER_STATUS_LEVEL(STATUS_LEVEL, "userStatusLevels", "GET", null, "userID"), //
+    STATUS_LEVEL_IS_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "statusLevelsEnabled", "GET", null, null), //
+    STATUS_LEVEL_SET_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "statusLevelsEnabled", "POST", "setStatusLevelsEnabled",
                     null), //
-    STATUS_UPDATE_STATUS_LEVEL_SCENARIO(STATUS_LEVEL, "scenarios", "PUT", "updateStatusLevelScenario", null), //
+    STATUS_LEVEL_UPDATE_STATUS_LEVEL_SCENARIO(STATUS_LEVEL, "scenarios", "PUT", "updateStatusLevelScenario", null), //
     SYSTEM_DELETE_PROPERTY(SYSTEM_PROPERTIES, "properties", "DELETE", null, "name"), //
     SYSTEM_GET_PROPERTIES(SYSTEM_PROPERTIES, "properties", "GET", null, null), //
     SYSTEM_SAVE_PROPERTY(SYSTEM_PROPERTIES, "properties", "POST", "saveProperty", null), //
     TAG_ADD_TAG(TAG, "objectTags", "POST", "addTag", null), //
     TAG_CREATE_TAG(TAG, "tags", "POST", "createTag", null), //
-    TAG_GET_TAG_BYID(TAG, "tagsByID", "GET", null, "tagID"), //
-    TAG_GET_TAG_BYNAME(TAG, "tags", "GET", null, "tagname"), //
+    TAG_GET_TAG_BY_ID(TAG, "tagsByID", "GET", null, "tagID"), //
+    TAG_GET_TAG_BY_NAME(TAG, "tags", "GET", null, "tagname"), //
     TAG_GET_TAGS(TAG, "objectTags", "GET", null, "objectID:objectType"), //
     TAG_REMOVE_ALL_TAGS(TAG, "removeAllTags", "DELETE", null, "objectID:objectType"), //
     TAG_REMOVE_TAG(TAG, "objectTags", "DELETE", null, "tag:objectID:objectType"), //
@@ -499,8 +499,8 @@ public enum CustomOp
     TASK_CREATE_PERSONAL_TASK(TASK, "personalTasks", "POST", "createPersonalTask", null), //
     TASK_DELETE(TASK, "tasks", "DELETE", null, "taskID"), //
     TASK_GET_TASK_COUNT(TASK, "taskCount", "GET", null, null), //
-    TASK_GET_TASK_COUNTWITHFILTER(TASK, "taskCount", "POST", "getTaskCountWithFilter", null), //
-    TASK_GET_TASKBY_ID(TASK, "tasks", "GET", null, "taskID"), //
+    TASK_GET_TASK_COUNT_WITH_FILTER(TASK, "taskCount", "POST", "getTaskCountWithFilter", null), //
+    TASK_GET_TASK_BY_ID(TASK, "tasks", "GET", null, "taskID"), //
     TASK_GET_TASKS(TASK, "tasks", "GET", null, null), //
     TASK_GET_TASKS_BY_PROJECT(TASK, "tasksByProject", "GET", null, "projectID"), //
     TASK_GET_TASKS_WITH_FILTER(TASK, "tasksWithFilter", "POST", "getTasksWithFilter", null), //
@@ -524,9 +524,9 @@ public enum CustomOp
     USER_SET_USER_PROPERTY(USER, "properties", "POST", "setUserProperty", null), //
     USER_UPDATE_USER(USER, "users", "PUT", "updateUser", null), //
     VIDEO_CREATE_VIDEO(VIDEO, "createVideo", "POST", "createVideo", null), //
-    VIDEO_DELETE_VIDEO(VIDEO, "rpc/rest/videoService/deleteVideo", "DELETE", null, "videoID"), //
-    VIDEO_GET_VIDEO(VIDEO, "rpc/rest/videoService/videoByID", "GET", null, "videoID"), //
-    VIDEO_GET_VIDEOS_FOR_CONTAINER(VIDEO, "rpc/rest/videoService/videosForContainer", "POST",
+    VIDEO_DELETE_VIDEO(VIDEO, "deleteVideo", "DELETE", null, "videoID"), //
+    VIDEO_GET_VIDEO(VIDEO, "videoByID", "GET", null, "videoID"), //
+    VIDEO_GET_VIDEOS_FOR_CONTAINER(VIDEO, "videosForContainer", "POST",
                     "getVideosForContainerResponse", null), //
     VIDEO_UPDATE_VIDEO(VIDEO, "updateVideo", "PUT", "updateVideo", null), //
     WATCH_CREATE_COMMUNITY_WATCH(WATCH, "communityWatches", "POST", "createCommunityWatch", null), //
