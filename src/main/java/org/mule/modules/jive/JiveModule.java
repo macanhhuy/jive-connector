@@ -79,12 +79,15 @@ public class JiveModule
      *         <author>#[variable:author]</author>
      *       </jive:entity>
      *     </jive:create>}
-     * TODO what if already exists?
-     * TODO what if bad data passed?
+     * If the entity already exists or cannot be created the system throws a {@link JiveGenericException}
+     * with the correspondat message.
+     * 
+     * If the data pass in entity it's not the data expected the system will throw a {@link JiveGenericException}
+     * with the correspondant message.
      * 
      * @param type the type of entity to create
      * @param entity the entity attributes
-     * @return TODO what?
+     * @return The jive response as a {@link Map}. Generally it will return the entity just created with additional data added by jive.
      */
     @Processor
     public Map<String, Object> create(EntityTypeName type, Map<String, Object> entity) 
@@ -95,8 +98,8 @@ public class JiveModule
     /**
      * Updates an existent entity
      * 
-     * TODO overrides all the original value with the given one or merges both?
-     * TODO if not exists?
+     * If the entity you are trying to update doesn't exist, the system thorws a {@link JiveGenericException}
+     * with an aclaratory message.
      * 
      * {@code     
      *      <jive:update type="BLOG">
@@ -117,20 +120,21 @@ public class JiveModule
     /**
      * Deletes an existent entity 
      * 
-     * If there is no blog with the given blogId the system will throw a {@link JiveGenericException}
+     * If there is no entity with the given id the system will throw a {@link JiveGenericException}
      * with the message returned from the server.
+     * 
+     * If the number of arguments is wrong the system will throw a {@link JiveGenericException}
      * 
      * Example:
      * {@code <jive:delete type="BLOG" id="#[map-payload:blogId]" />}
      * 
      * @param type the entity type
      * @param id the id of the entity to delete
-     * @return TODO WHAT? 
      */
     @Processor
-    public Map<String, Object> delete(final EntityTypeName type, final String id) 
+    public void delete(final EntityTypeName type, final String id) 
     {
-        return facade.delete(EntityTypes.fromName(type), id);
+        facade.delete(EntityTypes.fromName(type), id);
     }
     
     /**
@@ -151,6 +155,10 @@ public class JiveModule
     /**
      * Example:
      * {@code <jive:execute operation="AVATAR_GET_GLOBAL_AVATARS"/> }
+     * 
+     * If a wrong number of attributes is sent, or the operation requires an entity an none is sent,
+     * the system will repond with a {@link JiveGenericException}.
+     * 
      * @param operation The custom operation to be executed
      * @param entity The {@link Map} with the entity data to be send as payload
      * @param id The path parameters to be added to the operation uri
@@ -166,7 +174,9 @@ public class JiveModule
     /**
      * Retrieves the attributes for the entity of the given type and id.
      * 
-     * TODO if not exists?
+     * If the entity you are trying to get doesn't exist, the system will throw a
+     * {@link JiveGenericException} with the correponging message.
+     * 
      * {@code <jive:get type="AVATAR" id="#[map-payload:avatarId]"/>}
      * 
      * @param type the entity type
