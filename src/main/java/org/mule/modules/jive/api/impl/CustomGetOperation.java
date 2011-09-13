@@ -19,16 +19,16 @@ import org.mule.modules.jive.api.xml.XmlMapper;
 
 import java.util.Map;
 
-import javax.ws.rs.core.MediaType;
-
 import org.apache.commons.lang.Validate;
-//TODO should validate that tpye od entity and operation matches
+
+/**{@link ReferenceOperation} with custom properties for the get method*/
 public final class CustomGetOperation implements ReferenceOperation
 {
+    /**The {@link CustomOp} that holds the custom properties*/
     private CustomOp customOp;
     
     /**
-     * @param customOp
+     * @param customOp The {@link CustomOp} for this {@link CustomGetOperation}
      */
     public CustomGetOperation(CustomOp customOp)
     {

@@ -19,10 +19,15 @@ import org.mule.modules.jive.api.xml.XmlMapper;
 
 import java.util.Map;
 
+/**{@link ReferenceOperation} with custom properties for the delete method*/
 public class CustomDeleteOperation implements ReferenceOperation
 {
+    /**The custom operation that holds the custom properties for this {@link ReferenceOperation}*/
     private final CustomOp op;
 
+    /**
+     * @param op The {@link CustomOp} for this {@link ReferenceOperation}
+     */
     public CustomDeleteOperation(final CustomOp op)
     {
         this.op = op;

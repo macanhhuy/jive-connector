@@ -149,6 +149,8 @@ public class JiveModule
     }
 
     /**
+     * Example:
+     * {@code <jive:execute operation="AVATAR_GET_GLOBAL_AVATARS"/> }
      * @param operation The custom operation to be executed
      * @param entity The {@link Map} with the entity data to be send as payload
      * @param id The path parameters to be added to the operation uri
