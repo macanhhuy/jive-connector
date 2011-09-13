@@ -17,6 +17,7 @@ import org.mule.modules.jive.api.xml.XmlMapper;
 
 import java.util.Map;
 
+/**Generic get operation*/
 public class StandardGetOperation implements ReferenceOperation
 {
     public static final ReferenceOperation STANDARD = new StandardGetOperation();

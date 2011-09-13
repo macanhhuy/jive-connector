@@ -31,24 +31,23 @@ import javax.xml.stream.XMLStreamWriter;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.UnhandledException;
 
+/**Mapper that maps xml to and from {@link Map}s.*/
 public class XmlMapper
 {
 
-    /**XML output factory to write xml.
-     * */
+    /**XML output factory to write xml*/
     private final XMLOutputFactory xmlOutputFactory =
         XMLOutputFactory.newInstance();
 
-    /**XML input factory to read xml.
-     * */
+    /**XML input factory to read xml*/
     private final XMLInputFactory xmlInputFactory =
         XMLInputFactory.newInstance();
     
-    /**Deletes an entity.
-     * @return The xml response parse in a {@link Map}.
-     * @param type The service type used to determine the url for this resource.
-     * @param id The id to be added in the url as path parameter.
-     * */
+    /**
+     * @param xmlRootTag The root xml tag to use in the mapping
+     * @param entity The {@link Map} to be converted in xml
+     * @param writer The {@link Writer} to write the result
+     */
     public final void map2xml(final String xmlRootTag, final Map<String, Object> entity, final Writer writer) 
     {
         try 

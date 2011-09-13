@@ -16,10 +16,15 @@ import org.mule.modules.jive.api.JiveClient;
 import org.mule.modules.jive.api.TypeOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
+/**{@link TypeOperation} with custom properties*/
 public class CustomTypeOperation implements TypeOperation
 {
+    /**The {@link CustomOp} with the custom properties for this {@link TypeOperation}*/
     private final CustomOp op;
     
+    /**
+     * @param op The {@link CustomOp} for this {@link TypeOperation}
+     */
     public CustomTypeOperation(final CustomOp op) 
     {
         this.op = op;

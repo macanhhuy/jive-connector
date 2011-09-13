@@ -16,15 +16,19 @@ import org.mule.modules.jive.api.JiveClient;
 import org.mule.modules.jive.api.PayloadOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
-import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
 
+/**{@link PayloadOperation} with custom properties */
 public class CustomPayloadOperation implements PayloadOperation
 {
+    /**The {@link CustomOp} with the custom properties for this {@link PayloadOperation}*/
     private final CustomOp customOp;
 
+    /**
+     * @param customOp The {@link CustomOp} for this {@link PayloadOperation}
+     */
     public CustomPayloadOperation (CustomOp customOp) 
     {
         this.customOp = customOp;

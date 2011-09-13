@@ -19,6 +19,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
 
+/**Generic create operation*/
 public class StandardCreateOperation implements PayloadOperation
 {
     public static final PayloadOperation STANDARD = new StandardCreateOperation();

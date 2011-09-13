@@ -20,6 +20,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
 
+/**Generic post operation*/
 public class StandardPostOperation implements PayloadOperation
 {
     

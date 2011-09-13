@@ -20,10 +20,15 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
 
+/**{@link PayloadOperation} with custom properties*/
 public class CustomUpdateOperation implements PayloadOperation
 {
+    /**{@link CustomOp} that holds the properties for this {@link PayloadOperation}*/
     private final CustomOp op;
 
+    /**
+     * @param op {@link CustomOp} for this {@link PayloadOperation}
+     */
     public CustomUpdateOperation(final CustomOp op)
     {
         this.op = op;

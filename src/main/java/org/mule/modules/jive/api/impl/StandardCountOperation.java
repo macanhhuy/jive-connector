@@ -15,10 +15,7 @@ import org.mule.modules.jive.api.JiveClient;
 import org.mule.modules.jive.api.TypeOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
-import java.util.Map;
-
-import org.apache.commons.lang.StringUtils;
-
+/**Generic count operation*/
 public class StandardCountOperation implements TypeOperation
 {
     public static final TypeOperation STANDARD = new StandardCountOperation();

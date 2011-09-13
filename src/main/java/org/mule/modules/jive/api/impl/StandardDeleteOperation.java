@@ -18,6 +18,7 @@ import org.mule.modules.jive.api.xml.XmlMapper;
 
 import java.util.Map;
 
+/**Generic delete operation*/
 public final class StandardDeleteOperation implements ReferenceOperation
 {
     public static final ReferenceOperation STANDARD = new StandardDeleteOperation();
