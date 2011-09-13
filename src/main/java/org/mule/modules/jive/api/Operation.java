@@ -13,7 +13,7 @@ package org.mule.modules.jive.api;
 import static org.mule.modules.jive.api.EntityTypeName.*;
 
 import org.mule.modules.jive.CustomOp;
-
+@Deprecated
 /**The complete list of operations the user can execute.*/
 public enum Operation 
 {

@@ -14,6 +14,9 @@ import org.mule.modules.jive.api.xml.XmlMapper;
 
 import java.util.Map;
 
+/**
+ * {@link PayloadOperation} that models a jive operation that sends a payload with the request
+ */
 public interface PayloadOperation
 {
     Map<String, Object> execute(JiveClient resource, XmlMapper mapper, EntityType type, Map<String, Object> entityData);

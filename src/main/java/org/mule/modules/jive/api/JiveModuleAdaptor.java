@@ -11,7 +11,7 @@
 package org.mule.modules.jive.api;
 
 /**
- * Mule NetSuite Cloud Connector
+ * Mule Jive Connector
  *
  * Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
  *
@@ -70,7 +70,7 @@ public final class JiveModuleAdaptor
 
                 private Object invoke(Method method, JiveFacade client, Object[] args) throws Throwable
                 {
-                	try
+                    try
 					{
 					    return method.invoke(client, args);
 					}

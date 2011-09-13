@@ -14,6 +14,11 @@ import org.mule.modules.jive.api.xml.XmlMapper;
 
 import java.util.Map;
 
+/**
+ * Models a Jive Operation that may use path params but no payload
+ * 
+ * @author Pablo Diez
+ */
 public interface ReferenceOperation
 {
     Map<String, Object> execute(JiveClient resource, XmlMapper mapper, EntityType type, String id);
