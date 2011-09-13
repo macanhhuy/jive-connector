@@ -49,11 +49,12 @@ public enum CustomOp
     COMMENT_ADD_COMMENT_TO_COMMENT(COMMENT, "comments/addChild", "POST", "addCommentToComment", null), //
     COMMENT_DELETE_ALL(COMMENT, "comments", "DELETE", null, "objectType:objectID"), //
     COMMENT_DELETE(COMMENT, "comments", "DELETE", null, "objectType:objectID:commentID"), //
-    COMMENT_DELETE_RECURSIVE(COMMENT,
-                    "comments/recursiveDelete", "DELETE", null, "objectType:objectID:commentID:recursive"), //
+    COMMENT_DELETE_RECURSIVE(COMMENT, "comments/recursiveDelete", "DELETE", null,
+                    "objectType:objectID:commentID:recursive"), //
     COMMENT_GET(COMMENT, "comments", "GET", null, "objectType:objectID:commentID"), //
     COMMENT_GET_COMMENT_COUNT(COMMENT, "commentcount", "GET", null, "objectType:objectID"), //
-    COMMENT_GET_COMMENT_COUNT_WITH_FILTER(COMMENT, "comments/count", "POST", "getCommentCountWithFilter", null), //
+    COMMENT_GET_COMMENT_COUNT_WITH_FILTER(COMMENT, "comments/count", "POST", "getCommentCountWithFilter",
+                    null), //
     COMMENT_GET_ALL(COMMENT, "comments", "GET", null, "objectType:objectID"), //
     COMMENT_GET_USER_CONTENT_COMMENT_COUNT(COMMENT, "usercommentcount", "GET", null, "userID"), //
     COMMENT_GET_USER_CONTENT_COMMENT_COUNT_WITH_FILTER(COMMENT, "comments/user/count", "POST",
@@ -78,8 +79,8 @@ public enum CustomOp
     BLOG_GET_BLOG_POST_COUNT(BLOG, "blogPostCount", "GET", null, null), //
     BLOG_GET_BLOG_POST_COUNT_BY_FILTER(BLOG, "blogPostCount", "POST", "getBlogPostCount", null), //
     BLOG_GET_BLOG_POSTS_BY_FILTER(BLOG, "blogsPostsWithFilter", "POST", "getBlogPosts", null), //
-    BLOG_GET_BLOGS_BY_DISPLAY_NAME(BLOG, "blogsByDisplayName/:query:startIndex:endIndex:numResults",
-                    "GET", null, null), //
+    BLOG_GET_BLOGS_BY_DISPLAY_NAME(BLOG, "blogsByDisplayName/:query:startIndex:endIndex:numResults", "GET",
+                    null, null), //
     BLOG_GET_BLOGS_FOR_USER(BLOG, "userBlogs", "GET", null, "userID"), //
     BLOG_GET_COMMENT_COUNT(BLOG, "commentCount", "GET", null, null), //
     BLOG_GET_COMMENT_COUNT_BY_FILTER(BLOG, "commentCountWithFilter", "POST", "getCommentCount", null), //
@@ -113,7 +114,8 @@ public enum CustomOp
     COMMUNITY_GET_PROPERTIES(COMMUNITY, "properties", "GET", null, "communityID"), //
     COMMUNITY_GET_PROPERTY(COMMUNITY, "properties", "GET", null, "communityID:name"), //
     COMMUNITY_GET_RECURSIVE_COMMUNITIES(COMMUNITY, "communities", "GET", null, null), //
-    COMMUNITY_GET_RECURSIVE_COMMUNITIES_BY_COMMUNITY(COMMUNITY, "recursiveCommunities", "GET", null, "communityID"), //
+    COMMUNITY_GET_RECURSIVE_COMMUNITIES_BY_COMMUNITY(COMMUNITY, "recursiveCommunities", "GET", null,
+                    "communityID"), //
     COMMUNITY_GET_RECURSIVE_COMMUNITY_COUNT(COMMUNITY, "recursiveCount", "GET", null, "communityID"), //
     COMMUNITY_GET_SUB_COMMUNITIES(COMMUNITY, "subCommunities", "GET", null, "communityID"), //
     COMMUNITY_SET_PROPERTY(COMMUNITY, "properties", "POST", "setProperty", null), //
@@ -141,31 +143,35 @@ public enum CustomOp
     DOCUMENT_DELETE_DOCUMENT_PROPERTY(DOCUMENT, "properties", "DELETE", null, "documentID:name"), //
     DOCUMENT_GET_APPROVAL_STATUS_FOR_DOCUMENT(DOCUMENT, "approval/status", "GET", null, "documentID"), //
     DOCUMENT_GET_ATTACHMENT_COUNT_BY_DOCUMENT_ID(DOCUMENT, "attachmentCount", "GET", null, "documentID"), //
-    DOCUMENT_GET_ATTACHMENT_COUNT_BY_INTERNAL_DOC_ID(DOCUMENT,
-                    "attachmentCountByInternalDocID", "GET", null, "internalDocID"), //
+    DOCUMENT_GET_ATTACHMENT_COUNT_BY_INTERNAL_DOC_ID(DOCUMENT, "attachmentCountByInternalDocID", "GET", null,
+                    "internalDocID"), //
     DOCUMENT_GET_ATTACHMENTS_BY_DOCUMENT_ID(DOCUMENT, "attachments", "GET", null, "documentID"), //
     DOCUMENT_GET_ATTACHMENTS_BY_INTERNAL_DOC_ID(DOCUMENT, "attachementsByInternalDocID/:internalDocID",
                     "GET", null, null), //
     DOCUMENT_GET_AUTHORS(DOCUMENT, "authors", "GET", null, "documentID"), //
     DOCUMENT_GET_BINARY_DOCUMENT_CONTENT(DOCUMENT, "binaryDocument", "GET", null, "documentID"), //
-    DOCUMENT_GET_DOCUMENT_APPROVERS_ON_COMMUNITY(DOCUMENT, "approval/communityUsers", "GET", null, "communityID"), //
+    DOCUMENT_GET_DOCUMENT_APPROVERS_ON_COMMUNITY(DOCUMENT, "approval/communityUsers", "GET", null,
+                    "communityID"), //
     DOCUMENT_GET_DOCUMENT_APPROVERS_ON_DOCUMENT(DOCUMENT, "approval/users", "GET", null, "documentID"), //
     DOCUMENT_GET_DOCUMENT_BY_DOCUMENT_ID(DOCUMENT, "documents", "GET", null, "documentID"), //
     DOCUMENT_GET_DOCUMENT_BY_DOCUMENT_ID_AND_VERSION(DOCUMENT, "documents", "GET", null, "documentID:version"), //
-    DOCUMENT_GET_DOCUMENT_BY_INTERNAL_DOC_ID(DOCUMENT, "documentsByInternalDocID", "GET", null, "internalDocID"), //
-    DOCUMENT_GET_DOCUMENT_BY_INTERNAL_DOC_ID_AND_VERSION(DOCUMENT,
-                    "documentsByInternalDocID", "GET", null, "internalDocID:version"), //
+    DOCUMENT_GET_DOCUMENT_BY_INTERNAL_DOC_ID(DOCUMENT, "documentsByInternalDocID", "GET", null,
+                    "internalDocID"), //
+    DOCUMENT_GET_DOCUMENT_BY_INTERNAL_DOC_ID_AND_VERSION(DOCUMENT, "documentsByInternalDocID", "GET", null,
+                    "internalDocID:version"), //
     DOCUMENT_GET_DOCUMENT_PROPERTIES(DOCUMENT, "properties", "GET", null, "documentID"), //
     DOCUMENT_GET_DOCUMENT_PROPERTY(DOCUMENT, "properties", "GET", null, "documentID:name"), //
     DOCUMENT_GET_DOCUMENTS_BY_COMMUNITY(DOCUMENT, "documentsByCommunity", "GET", null, "communityID"), //
     DOCUMENT_GET_DOCUMENTS_BY_COMMUNITY_AND_FILTER(DOCUMENT, "documentsByCommunityAndFilter", "POST",
                     "getDocumentsByCommunityAndFilter", null), //
     DOCUMENT_GET_IMAGE_COUNT_BY_DOCUMENT_ID(DOCUMENT, "imageCount", "GET", null, "documentID"), //
-    DOCUMENT_GET_IMAGE_COUNT_BY_INTERNAL_DOC_ID(DOCUMENT, "imageCountByInternalDocID", "GET", null, "internalDocID"), //
+    DOCUMENT_GET_IMAGE_COUNT_BY_INTERNAL_DOC_ID(DOCUMENT, "imageCountByInternalDocID", "GET", null,
+                    "internalDocID"), //
     DOCUMENT_GET_IMAGES_BY_DOCUMENT_ID(DOCUMENT, "images", "GET", null, "documentID"), //
     DOCUMENT_GET_IMAGES_BY_INTERNAL_DOC_ID(DOCUMENT, "imagesByInternalDocID", "GET", null, "internalDocID"), //
     DOCUMENT_GET_POPULAR_DOCUMENTS(DOCUMENT, "popularDocuments", "GET", null, null), //
-    DOCUMENT_GET_POPULAR_DOCUMENTS_BY_COMMUNITY(DOCUMENT, "popularDocumentsByCommunity", "GET", null, "communityID"), //
+    DOCUMENT_GET_POPULAR_DOCUMENTS_BY_COMMUNITY(DOCUMENT, "popularDocumentsByCommunity", "GET", null,
+                    "communityID"), //
     DOCUMENT_GET_POPULAR_DOCUMENTS_BY_LANGUAGE(DOCUMENT, "documentsByLanguage", "GET", null, "languages"), //
     DOCUMENT_GET_USER(DOCUMENT, "user", "GET", null, "documentID"), //
     DOCUMENT_GET_USER_APPROVAL_DOCUMENTS(DOCUMENT, "approvers", "GET", null, "userID"), //
@@ -239,7 +245,8 @@ public enum CustomOp
                     "getMessagesByThreadIDAndFilter", null), //
     FORUM_GET_PARENT(FORUM, "parentMessage", "GET", null, "messageID"), //
     FORUM_GET_POPULAR_THREADS(FORUM, "popularThreads", "GET", null, null), //
-    FORUM_GET_POPULAR_THREADS_BY_COMMUNITY_ID(FORUM, "popularThreadsByCommunityID", "GET", null, "communityID"), //
+    FORUM_GET_POPULAR_THREADS_BY_COMMUNITY_ID(FORUM, "popularThreadsByCommunityID", "GET", null,
+                    "communityID"), //
     FORUM_GET_RECURSIVE_CHILD_COUNT(FORUM, "recursiveChildCount", "GET", null, "messageID"), //
     FORUM_GET_RECURSIVE_CHILDREN(FORUM, "recursiveChildren", "GET", null, "messageID"), //
     FORUM_GET_RECUSIVE_MESSAGES(FORUM, "recusiveMessages", "GET", null, "threadID"), //
@@ -302,15 +309,16 @@ public enum CustomOp
     POLL_GET_ACTIVE_POLL_COUNT_BY_OBJECT_TYPE_AND_OBJECT_ID(POLL, "activePollCount/:objectType:objectID",
                     "GET", null, null), //
     POLL_GET_ACTIVE_POLLS(POLL, "activePolls", "GET", null, null), //
-    POLL_GET_ACTIVE_POLLS_BY_OBJECT_TYPE_AND_OBJECT_ID(POLL, "activePolls", "GET", null, "objectType:objectID"), //
+    POLL_GET_ACTIVE_POLLS_BY_OBJECT_TYPE_AND_OBJECT_ID(POLL, "activePolls", "GET", null,
+                    "objectType:objectID"), //
     POLL_GET_ANONYMOUS_VOTE_COUNT(POLL, "votes/anonymousCount", "GET", null, "pollID"), //
     POLL_GET_ANONYMOUS_VOTE_COUNT_BY_INDEX(POLL, "votes/anonymousCount", "GET", null, "pollID:index"), //
     POLL_GET_ANONYMOUS_VOTE_INDICES(POLL, "votes/anonymousIndices", "GET", null, "pollID:uniqueID"), //
     POLL_GET_ANONYMOUS_VOTES(POLL, "votes/anonymous", "GET", null, "pollID"), //
     POLL_GET_ANONYMOUS_VOTES_BY_INDEX(POLL, "votes/anonymous", "GET", null, "pollID:index"), //
     POLL_GET_LIVE_POLL_COUNT(POLL, "livePollCount", "GET", null, null), //
-    POLL_GET_LIVE_POLL_COUNT_BY_OBJECT_TYPE_AND_OBJECT_ID(POLL, "livePollCount/:objectType:objectID",
-                    "GET", null, null), //
+    POLL_GET_LIVE_POLL_COUNT_BY_OBJECT_TYPE_AND_OBJECT_ID(POLL, "livePollCount/:objectType:objectID", "GET",
+                    null, null), //
     POLL_GET_LIVE_POLLS(POLL, "livePolls", "GET", null, null), //
     POLL_GET_LIVE_POLLS_BY_OBJECT_TYPE_AND_OBJECT_ID(POLL, "livePolls", "GET", null, "objectType:objectID"), //
     POLL_GET_POLL(POLL, "polls", "GET", null, "pollID"), //
@@ -334,56 +342,38 @@ public enum CustomOp
     POLL_SET_OPTION(POLL, "options", "PUT", "setOption", null), //
     POLL_SET_OPTION_INDEX(POLL, "options/index", "PUT", "setOptionIndex", null), //
     POLL_UPDATE(POLL, "polls", "PUT", "createFolder", null), //
-    PRIVATE_MESSAGE_CREATE_FOLDER(PRIVATE_MESSAGE, "/rpc/rest/privateMessageService/folders", "POST",
-                    "createFolder", null), //
-    PRIVATE_MESSAGE_CREATE_MESSAGE(PRIVATE_MESSAGE, "/rpc/rest/privateMessageService/messages", "POST",
-                    "createMessage", null), //
-    PRIVATE_MESSAGE_DELETE_FOLDER(PRIVATE_MESSAGE,
-                    "/rpc/rest/privateMessageService/folders", "DELETE", null, "userID:folderID"), //
-    PRIVATE_MESSAGE_DELETE_MESSAGE(PRIVATE_MESSAGE,
-                    "/rpc/rest/privateMessageService/userMessages", "DELETE", null, "userID:messageID"), //
-    PRIVATE_MESSAGE_GET_FOLDER(PRIVATE_MESSAGE,
-                    "/rpc/rest/privateMessageService/folders", "GET", null, "userID:folderID"), //
-    PRIVATE_MESSAGE_GET_FOLDERS(PRIVATE_MESSAGE, "/rpc/rest/privateMessageService/folders", "GET", null, "userID"), //
-    PRIVATE_MESSAGE_GET_MESSAGE(PRIVATE_MESSAGE,
-                    "/rpc/rest/privateMessageService/messages", "GET", null, "privateMessageID"), //
-    PRIVATE_MESSAGE_GET_MESSAGE_COUNT(PRIVATE_MESSAGE,
-                    "/rpc/rest/privateMessageService/messageCount", "GET", null, "userID"), //
-    PRIVATE_MESSAGE_GET_MESSAGE_COUNT_FOR_FOLDER(PRIVATE_MESSAGE,
-                    "/rpc/rest/privateMessageService/messsageCount", "GET", null, "userID:folderID"), //
-    PRIVATE_MESSAGE_GET_MESSAGES(PRIVATE_MESSAGE,
-                    "/rpc/rest/privateMessageService/userMesages", "GET", null, "userID:folderID"), //
-    PRIVATE_MESSAGE_GET_UNREAD_MESSAGE_COUNT(PRIVATE_MESSAGE,
-                    "/rpc/rest/privateMessageService/unreadMessageCount", "GET", null, "userID"), //
-    PRIVATE_MESSAGE_GET_UNREAD_MESSAGE_COUNT_FOR_FOLDER(PRIVATE_MESSAGE,
-                    "/rpc/rest/privateMessageService/unreadMessageCount", "GET", null, "userID:folderID"), //
-    PRIVATE_MESSAGE_IS_PRIVATE_MESSAGE_ENABLED(PRIVATE_MESSAGE,
-                    "/rpc/rest/privateMessageService/privateMessagesEnabled", "GET", null, null), //
-    PRIVATE_MESSAGE_MOVE_MESSAGE(PRIVATE_MESSAGE, "/rpc/rest/privateMessageService/moveMessage", "POST",
-                    "moveMessage", null), //
-    PRIVATE_MESSAGE_SAVE_MESSAGE_AS_DRAFT(PRIVATE_MESSAGE, "/rpc/rest/privateMessageService/saveDraft",
-                    "POST", "saveMessageAsDraft", null), //
-    PRIVATE_MESSAGE_SEND_MESSAGE(PRIVATE_MESSAGE, "/rpc/rest/privateMessageService/sendMessage", "POST",
-                    "sendMessage", null), //
-    PROFILE_CREATE_PROFILE_FIELD(PROFILE_FIELD, "/rpc/rest/profileFieldService/fields", "POST",
-                    "createProfileField", null), //
-    PROFILE_DELETE_PROFILE_FIELD(PROFILE_FIELD, "/rpc/rest/profileFieldService/fields", "DELETE", null, "fieldID"), //
-    PROFILE_EDIT_PROFILE_FIELD(PROFILE_FIELD, "/rpc/rest/profileFieldService/fields", "PUT",
-                    "editProfileField", null), //
-    PROFILE_EDIT_PROFILE_FIELD_OPTIONS(PROFILE_FIELD, "/rpc/rest/profileFieldService/options", "PUT",
-                    "editProfileFieldOptions", null), //
-    PROFILE_GET_DEFAULT_FIELDS(PROFILE_FIELD, "/rpc/rest/profileFieldService/defaultFields", "GET", null, null), //
-    PROFILE_GET_PROFILE_FIELD(PROFILE_FIELD, "/rpc/rest/profileFieldService/fields", "GET", null, "fieldID"), //
-    PROFILE_GET_PROFILE_FIELDS(PROFILE_FIELD, "/rpc/rest/profileFieldService/fields", "GET", null, null), //
-    PROFILE_SET_INDEX(PROFILE_FIELD, "/rpc/rest/profileFieldService/index", "POST", "setIndex", null), //
-    PROFILE_GET_SIMILAR_USER_RESULTS(EntityTypeName.PROFILE_SEARCH,
-                    "/rpc/rest/profileSearchService/similarUsers", "GET", null, "targetUserID"), //
-    PROFILE_IS_SEARCH_ENABLED(EntityTypeName.PROFILE_SEARCH,
-                    "/rpc/rest/profileSearchService/isSearchEnabled", "GET", null, null), //
-    PROFILE_SEARCH(EntityTypeName.PROFILE_SEARCH, "/rpc/rest/profileSearchService/searchProfile", "POST",
-                    "search", null), //
-    PROFILE_SEARCH_BOUNDED(EntityTypeName.PROFILE_SEARCH,
-                    "/rpc/rest/profileSearchService/searchProfileBounded", "POST", "searchBounded", null), //
+    PRIVATE_MESSAGE_CREATE_FOLDER(PRIVATE_MESSAGE, "folders", "POST", "createFolder", null), //
+    PRIVATE_MESSAGE_CREATE_MESSAGE(PRIVATE_MESSAGE, "messages", "POST", "createMessage", null), //
+    PRIVATE_MESSAGE_DELETE_FOLDER(PRIVATE_MESSAGE, "folders", "DELETE", null, "userID:folderID"), //
+    PRIVATE_MESSAGE_DELETE_MESSAGE(PRIVATE_MESSAGE, "userMessages", "DELETE", null, "userID:messageID"), //
+    PRIVATE_MESSAGE_GET_FOLDER(PRIVATE_MESSAGE, "folders", "GET", null, "userID:folderID"), //
+    PRIVATE_MESSAGE_GET_FOLDERS(PRIVATE_MESSAGE, "folders", "GET", null, "userID"), //
+    PRIVATE_MESSAGE_GET_MESSAGE(PRIVATE_MESSAGE, "messages", "GET", null, "privateMessageID"), //
+    PRIVATE_MESSAGE_GET_MESSAGE_COUNT(PRIVATE_MESSAGE, "messageCount", "GET", null, "userID"), //
+    PRIVATE_MESSAGE_GET_MESSAGE_COUNT_FOR_FOLDER(PRIVATE_MESSAGE, "messsageCount", "GET", null,
+                    "userID:folderID"), //
+    PRIVATE_MESSAGE_GET_MESSAGES(PRIVATE_MESSAGE, "userMesages", "GET", null, "userID:folderID"), //
+    PRIVATE_MESSAGE_GET_UNREAD_MESSAGE_COUNT(PRIVATE_MESSAGE, "unreadMessageCount", "GET", null, "userID"), //
+    PRIVATE_MESSAGE_GET_UNREAD_MESSAGE_COUNT_FOR_FOLDER(PRIVATE_MESSAGE, "unreadMessageCount", "GET", null,
+                    "userID:folderID"), //
+    PRIVATE_MESSAGE_IS_PRIVATE_MESSAGE_ENABLED(PRIVATE_MESSAGE, "privateMessagesEnabled", "GET", null, null), //
+    PRIVATE_MESSAGE_MOVE_MESSAGE(PRIVATE_MESSAGE, "moveMessage", "POST", "moveMessage", null), //
+    PRIVATE_MESSAGE_SAVE_MESSAGE_AS_DRAFT(PRIVATE_MESSAGE, "saveDraft", "POST", "saveMessageAsDraft", null), //
+    PRIVATE_MESSAGE_SEND_MESSAGE(PRIVATE_MESSAGE, "sendMessage", "POST", "sendMessage", null), //
+    PROFILE_CREATE_PROFILE_FIELD(PROFILE_FIELD, "fields", "POST", "createProfileField", null), //
+    PROFILE_DELETE_PROFILE_FIELD(PROFILE_FIELD, "fields", "DELETE", null, "fieldID"), //
+    PROFILE_EDIT_PROFILE_FIELD(PROFILE_FIELD, "fields", "PUT", "editProfileField", null), //
+    PROFILE_EDIT_PROFILE_FIELD_OPTIONS(PROFILE_FIELD, "options", "PUT", "editProfileFieldOptions", null), //
+    PROFILE_GET_DEFAULT_FIELDS(PROFILE_FIELD, "defaultFields", "GET", null, null), //
+    PROFILE_GET_PROFILE_FIELD(PROFILE_FIELD, "fields", "GET", null, "fieldID"), //
+    PROFILE_GET_PROFILE_FIELDS(PROFILE_FIELD, "fields", "GET", null, null), //
+    PROFILE_SET_INDEX(PROFILE_FIELD, "index", "POST", "setIndex", null), //
+    PROFILE_GET_SIMILAR_USER_RESULTS(EntityTypeName.PROFILE_SEARCH, "similarUsers", "GET", null,
+                    "targetUserID"), //
+    PROFILE_IS_SEARCH_ENABLED(EntityTypeName.PROFILE_SEARCH, "isSearchEnabled", "GET", null, null), //
+    PROFILE_SEARCH(EntityTypeName.PROFILE_SEARCH, "searchProfile", "POST", "search", null), //
+    PROFILE_SEARCH_BOUNDED(EntityTypeName.PROFILE_SEARCH, "searchProfileBounded", "POST", "searchBounded",
+                    null), //
     PROFILE_ADD_PROFILE(PROFILE, "profiles", "POST", "addProfile", null), //
     PROFILE_DELETE_PROFILE_BY_ID(PROFILE, "fields", "DELETE", null, "fieldID"), //
     PROFILE_DELETE_PROFILE_BY_USER_ID(PROFILE, "profiles", "DELETE", null, "userID"), //
@@ -424,106 +414,80 @@ public enum CustomOp
     RATINGS_REMOVE_RATING(RATINGS, "ratings", "DELETE", null, "score"), //
     RATINGS_SET_RATINGS_ENABLED(RATINGS, "ratingsEnabled", "POST", "addReference", null), //
     REFERENCE_ADD_REFERENCE(REFERENCE, "references", "POST", "addReference", null), //
-    REFERENCE_DELETE_ALL_REFERENCES(REFERENCE, "references", "DELETE", null, "refererObjectType:refererObjectID"), //
-    REFERENCE_DELETE_ALL_REFERERS(REFERENCE, "referers", "DELETE", null, "referenceObjectType:referenceObjectID"), //
-    REFERENCE_DELETE_REFERENCE(
-                    REFERENCE,
+    REFERENCE_DELETE_ALL_REFERENCES(REFERENCE, "references", "DELETE", null,
+                    "refererObjectType:refererObjectID"), //
+    REFERENCE_DELETE_ALL_REFERERS(REFERENCE, "referers", "DELETE", null,
+                    "referenceObjectType:referenceObjectID"), //
+    REFERENCE_DELETE_REFERENCE(REFERENCE,
                     "references/:refererObjectType:refererObjectID:referenceObjectType:referenceObjectID",
                     "DELETE", null, null), //
     REFERENCE_GET_REFERENCES(REFERENCE, "references", "GET", null, "refererObjectType:refererObjectID"), //
     REFERENCE_GET_REFERERS(REFERENCE, "referers", "GET", null, "referenceObjectType:referenceObjectID"), //
-    SEARCH_COUNT_QUICK_MESSAGESEARCHRESULTSBYCOMMUNITYID(SEARCH,
-                    "communitySearchCount", "GET", null, "communityID:query:contentTypes"), //
+    SEARCH_COUNT_QUICK_MESSAGESEARCHRESULTSBYCOMMUNITYID(SEARCH, "communitySearchCount", "GET", null,
+                    "communityID:query:contentTypes"), //
     SEARCH_COUNT_QUICK_SEARCHRESULTS(SEARCH, "quickSearchCount", "POST", "countQuickSearchResults", null), //
     SEARCH_COUNT_SEARCH_RESULTS(SEARCH, "searchCount", "POST", "countSearchResults", null), //
     SEARCH_COUNT_SEARCH_RESULTSBYCOMMUNITYID(SEARCH, "communitySearchCount", "POST",
                     "countSearchResultsByCommunityID", null), //
-    SEARCH_QUICK_MESSAGE_SEARCHBYCOMMUNITYID(SEARCH,
-                    "communitySearch", "GET", null, "communityID:query:contentTypes:startIndex:numResults"), //
+    SEARCH_QUICK_MESSAGE_SEARCHBYCOMMUNITYID(SEARCH, "communitySearch", "GET", null,
+                    "communityID:query:contentTypes:startIndex:numResults"), //
     SEARCH_QUICK_SEARCH(SEARCH, "quickSearch", "POST", "quickSearch", null), //
     SEARCH_SEARCH(SEARCH, "search", "POST", "search", null), //
     SEARCH_SEARCH_BY_COMMUNITIES(SEARCH, "communitySearch", "POST", "searchByCommunities", null), //
-    SOCIAL_ADD_MEMBER(SOCIAL_GROUP, "/rpc/rest/socialGroupService/socialGroupMembers", "POST", "addMember", null), //
-    SOCIAL_CREATE_SOCIAL_GROUP(SOCIAL_GROUP, "/rpc/rest/socialGroupService/socialGroup", "POST",
-                    "createSocialGroup", null), //
-    SOCIAL_DELETE_SOCIAL_GROUP(SOCIAL_GROUP, "/rpc/rest/socialGroupService/socialGroup/:socialGroupID",
-                    "DELETE", null, null), //
-    SOCIAL_GET_MEMBER_COUNT(SOCIAL_GROUP, "/rpc/rest/socialGroupService/membercount", "GET", null, "socialGroupID"), //
-    SOCIAL_GET_MEMBERS(SOCIAL_GROUP, "/rpc/rest/socialGroupService/members", "GET", null, "socialGroupID"), //
-    SOCIAL_GET_SOCIAL_GROUP(SOCIAL_GROUP, "/rpc/rest/socialGroupService/socialGroupsByID/:socialGroupID",
-                    "GET", null, null), //
-    SOCIAL_GET_SOCIAL_GROUPBYNAME(SOCIAL_GROUP,
-                    "/rpc/rest/socialGroupService/socialGroupsByName", "GET", null, "displayName"), //
-    SOCIAL_GET_SOCIAL_GROUPCOUNT(SOCIAL_GROUP, "/rpc/rest/socialGroupService/socialGroupCount", "GET", null, null), //
-    SOCIAL_GET_SOCIAL_GROUPNAMES(SOCIAL_GROUP, "/rpc/rest/socialGroupService/socialGroupNames", "GET", null, null), //
-    SOCIAL_GET_SOCIAL_GROUPNAMESBOUNDED(SOCIAL_GROUP,
-                    "/rpc/rest/socialGroupService/socialGroupNamesBounded", "GET", null, "startIndex:numResults"), //
-    SOCIAL_GET_SOCIAL_GROUPS(SOCIAL_GROUP, "/rpc/rest/socialGroupService/socialGroups", "GET", null, null), //
-    SOCIAL_GET_USER_SOCIALGROUPNAMES(SOCIAL_GROUP,
-                    "/rpc/rest/socialGroupService/userSocialGroupNames", "GET", null, "userID"), //
-    SOCIAL_GET_USER_SOCIALGROUPS(SOCIAL_GROUP, "/rpc/rest/socialGroupService/userSocialGroups/:userID",
-                    "GET", null, null), //
-    SOCIAL_REMOVE_MEMBER(SOCIAL_GROUP,
-                    "/rpc/rest/socialGroupService/socialGroupMembers", "DELETE", null, "socialGroupID:userID"), //
-    SOCIAL_SEARCH_SOCIAL_GROUPS(SOCIAL_GROUP, "/rpc/rest/socialGroupService/searchSocialGroups/", "POST",
-                    "searchSocialGroups", null), //
-    SOCIAL_UPDATE_SOCIAL_GROUP(SOCIAL_GROUP, "/rpc/rest/socialGroupService/socialGroup", "PUT",
-                    "updateSocialGroup", null), //
-    STATUS_ADD_POINTS(STATUS_LEVEL, "/rpc/rest/statusLevelService/addPoints", "POST", "addPoints", null), //
-    STATUS_ADD_POINTS_BY_CONTAINER(STATUS_LEVEL, "/rpc/rest/statusLevelService/addPointsByContainer", "POST",
-                    "addPoints", null), //
-    STATUS_CREATE_STATUS_LEVEL_POINT_BASED(STATUS_LEVEL, "/rpc/rest/statusLevelService/pointStatusLevels",
-                    "POST", "createStatusLevel", null), //
-    STATUS_CREATE_STATUS_LEVEL_GROUP_BASED(STATUS_LEVEL, "/rpc/rest/statusLevelService/groupStatusLevels",
-                    "POST", "createStatusLevel", null), //
-    STATUS_DELETE_STATUS_LEVEL(STATUS_LEVEL, "/rpc/rest/statusLevelService/statusLevels/:statusLevelID",
-                    "DELETE", null, null), //
-    STATUS_GET_ALL_STATUS_LEVEL_SCENARIOS(STATUS_LEVEL, "/rpc/rest/statusLevelService/scenarios", "GET", null, null), //
-    STATUS_GET_GROUP_STATUS_LEVEL(STATUS_LEVEL, "/rpc/rest/statusLevelService/groupStatusLevels/:groupID",
-                    "GET", null, null), //
-    STATUS_GET_GROUP_STATUS_LEVELS(STATUS_LEVEL, "/rpc/rest/statusLevelService/groupStatusLevels", "GET", null, null), //
-    STATUS_GET_LEADERS(STATUS_LEVEL, "/rpc/rest/statusLevelService/leaders", "GET", null, null), //
-    STATUS_GET_LEADERS_BY_STARTINDEX_AND_NUMRESULTS(STATUS_LEVEL,
-                    "/rpc/rest/statusLevelService/leaders", "GET", null, "startIndex:numResults"), //
-    STATUS_GET_LEADERS_BY_COMMUNITY(STATUS_LEVEL,
-                    "/rpc/rest/statusLevelService/leadersByCommunity", "GET", null, "communityID"), //
-    STATUS_GET_LEADERS_BY_CONTAINER(
-                    STATUS_LEVEL,
-                    "/rpc/rest/statusLevelService/leadersByContainer/:containerObjectID:containerObjectType",
-                    "GET", null, null), //
-    STATUS_GET_LEADERS_BY_COMMUNITY_BY_STARTINDEX_AND_NUMRESULTS(
-                    STATUS_LEVEL,
-                    "/rpc/rest/statusLevelService/leadersByCommunity/:communityID:startIndex:numResults",
-                    "GET", null, null), //
-    STATUS_GET_LEADERS_BY_CONTAINER_ITERABLE(
-                    STATUS_LEVEL,
-                    "/rpc/rest/statusLevelService/leadersByContainer/:containerObjectID:containerObjectType:startIndex:numResults",
-                    "GET", null, null), //
-    STATUS_GET_POINT_LEVEL(STATUS_LEVEL, "/rpc/rest/statusLevelService/pointLevel", "GET", null, "userID"), //
-    STATUS_GET_POINT_LEVEL_BY_COMMUNITY(STATUS_LEVEL,
-                    "/rpc/rest/statusLevelService/pointLevel", "GET", null, "userID:communityID"), //
-    STATUS_GET_POINT_LEVEL_BY_CONTAINER(
-                    STATUS_LEVEL,
-                    "/rpc/rest/statusLevelService/pointLevel/:userID:containerObjectID:containerObjectType",
-                    "GET", null, null), //
-    STATUS_GET_POINT_STATUS_LEVELS(STATUS_LEVEL, "/rpc/rest/statusLevelService/pointStatusLevels", "GET", null, null), //
-    STATUS_GET_STATUS_LEVEL(STATUS_LEVEL, "/rpc/rest/statusLevelService/statusLevels", "GET", null, "statusLevelID"), //
-    STATUS_GET_STATUS_LEVEL_BY_POINTS(STATUS_LEVEL,
-                    "/rpc/rest/statusLevelService/statusLevelByPoints", "GET", null, "points"), //
-    STATUS_GET_STATUS_LEVEL_SCENARIO_BY_CODE(STATUS_LEVEL, "/rpc/rest/statusLevelService/scenarios/:code",
-                    "GET", null, null), //
-    STATUS_GET_STATUS_LEVEL_SCENARIO_BY_CODE_ENCODED(STATUS_LEVEL,
-                    "/rpc/rest/statusLevelService/scenarios", "GET", null, "code:encoded"), //
-    STATUS_GET_USER_STATUS_LEVEL(STATUS_LEVEL, "/rpc/rest/statusLevelService/userStatusLevels", "GET", null, "userID"), //
-    STATUS_IS_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "/rpc/rest/statusLevelService/statusLevelsEnabled", "GET", null, null), //
-    STATUS_SET_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "/rpc/rest/statusLevelService/statusLevelsEnabled", "POST",
-                    "setStatusLevelsEnabled", null), //
-    STATUS_UPDATE_STATUS_LEVEL_SCENARIO(STATUS_LEVEL, "/rpc/rest/statusLevelService/scenarios", "PUT",
-                    "updateStatusLevelScenario", null), //
-    SYSTEM_DELETE_PROPERTY(SYSTEM_PROPERTIES, "/rpc/rest/systemPropertiesService/properties", "DELETE", null, "name"), //
-    SYSTEM_GET_PROPERTIES(SYSTEM_PROPERTIES, "/rpc/rest/systemPropertiesService/properties", "GET", null, null), //
-    SYSTEM_SAVE_PROPERTY(SYSTEM_PROPERTIES, "/rpc/rest/systemPropertiesService/properties", "POST",
-                    "saveProperty", null), //
+    SOCIAL_ADD_MEMBER(SOCIAL_GROUP, "socialGroupMembers", "POST", "addMember", null), //
+    SOCIAL_CREATE_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroup", "POST", "createSocialGroup", null), //
+    SOCIAL_DELETE_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroup", "DELETE", null, "socialGroupID"), //
+    SOCIAL_GET_MEMBER_COUNT(SOCIAL_GROUP, "membercount", "GET", null, "socialGroupID"), //
+    SOCIAL_GET_MEMBERS(SOCIAL_GROUP, "members", "GET", null, "socialGroupID"), //
+    SOCIAL_GET_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroupsByID", "GET", null, "socialGroupID"), //
+    SOCIAL_GET_SOCIAL_GROUPBYNAME(SOCIAL_GROUP, "socialGroupsByName", "GET", null, "displayName"), //
+    SOCIAL_GET_SOCIAL_GROUPCOUNT(SOCIAL_GROUP, "socialGroupCount", "GET", null, null), //
+    SOCIAL_GET_SOCIAL_GROUPNAMES(SOCIAL_GROUP, "socialGroupNames", "GET", null, null), //
+    SOCIAL_GET_SOCIAL_GROUPNAMESBOUNDED(SOCIAL_GROUP, "socialGroupNamesBounded", "GET", null,
+                    "startIndex:numResults"), //
+    SOCIAL_GET_SOCIAL_GROUPS(SOCIAL_GROUP, "socialGroups", "GET", null, null), //
+    SOCIAL_GET_USER_SOCIALGROUPNAMES(SOCIAL_GROUP, "userSocialGroupNames", "GET", null, "userID"), //
+    SOCIAL_GET_USER_SOCIALGROUPS(SOCIAL_GROUP, "userSocialGroups", "GET", null, "userID"), //
+    SOCIAL_REMOVE_MEMBER(SOCIAL_GROUP, "socialGroupMembers", "DELETE", null, "socialGroupID:userID"), //
+    SOCIAL_SEARCH_SOCIAL_GROUPS(SOCIAL_GROUP, "searchSocialGroups/", "POST", "searchSocialGroups", null), //
+    SOCIAL_UPDATE_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroup", "PUT", "updateSocialGroup", null), //
+    STATUS_ADD_POINTS(STATUS_LEVEL, "addPoints", "POST", "addPoints", null), //
+    STATUS_ADD_POINTS_BY_CONTAINER(STATUS_LEVEL, "addPointsByContainer", "POST", "addPoints", null), //
+    STATUS_CREATE_STATUS_LEVEL_POINT_BASED(STATUS_LEVEL, "pointStatusLevels", "POST", "createStatusLevel",
+                    null), //
+    STATUS_CREATE_STATUS_LEVEL_GROUP_BASED(STATUS_LEVEL, "groupStatusLevels", "POST", "createStatusLevel",
+                    null), //
+    STATUS_DELETE_STATUS_LEVEL(STATUS_LEVEL, "statusLevels", "DELETE", null, "statusLevelID"), //
+    STATUS_GET_ALL_STATUS_LEVEL_SCENARIOS(STATUS_LEVEL, "scenarios", "GET", null, null), //
+    STATUS_GET_GROUP_STATUS_LEVEL(STATUS_LEVEL, "groupStatusLevels", "GET", null, "groupID"), //
+    STATUS_GET_GROUP_STATUS_LEVELS(STATUS_LEVEL, "groupStatusLevels", "GET", null, null), //
+    STATUS_GET_LEADERS(STATUS_LEVEL, "leaders", "GET", null, null), //
+    STATUS_GET_LEADERS_BY_STARTINDEX_AND_NUMRESULTS(STATUS_LEVEL, "leaders", "GET", null,
+                    "startIndex:numResults"), //
+    STATUS_GET_LEADERS_BY_COMMUNITY(STATUS_LEVEL, "leadersByCommunity", "GET", null, "communityID"), //
+    STATUS_GET_LEADERS_BY_CONTAINER(STATUS_LEVEL, "leadersByContainer", "GET", null,
+                    "containerObjectID:containerObjectType"), //
+    STATUS_GET_LEADERS_BY_COMMUNITY_BY_STARTINDEX_AND_NUMRESULTS(STATUS_LEVEL, "leadersByCommunity", "GET",
+                    null, "communityID:startIndex:numResults"), //
+    STATUS_GET_LEADERS_BY_CONTAINER_ITERABLE(STATUS_LEVEL, "leadersByContainer", "GET", null,
+                    "containerObjectID:containerObjectType:startIndex:numResults"), //
+    STATUS_GET_POINT_LEVEL(STATUS_LEVEL, "pointLevel", "GET", null, "userID"), //
+    STATUS_GET_POINT_LEVEL_BY_COMMUNITY(STATUS_LEVEL, "pointLevel", "GET", null, "userID:communityID"), //
+    STATUS_GET_POINT_LEVEL_BY_CONTAINER(STATUS_LEVEL, "pointLevel", "GET", null,
+                    "userID:containerObjectID:containerObjectType"), //
+    STATUS_GET_POINT_STATUS_LEVELS(STATUS_LEVEL, "pointStatusLevels", "GET", null, null), //
+    STATUS_GET_STATUS_LEVEL(STATUS_LEVEL, "statusLevels", "GET", null, "statusLevelID"), //
+    STATUS_GET_STATUS_LEVEL_BY_POINTS(STATUS_LEVEL, "statusLevelByPoints", "GET", null, "points"), //
+    STATUS_GET_STATUS_LEVEL_SCENARIO_BY_CODE(STATUS_LEVEL, "scenarios", "GET", null, "code"), //
+    STATUS_GET_STATUS_LEVEL_SCENARIO_BY_CODE_ENCODED(STATUS_LEVEL, "scenarios", "GET", null, "code:encoded"), //
+    STATUS_GET_USER_STATUS_LEVEL(STATUS_LEVEL, "userStatusLevels", "GET", null, "userID"), //
+    STATUS_IS_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "statusLevelsEnabled", "GET", null, null), //
+    STATUS_SET_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "statusLevelsEnabled", "POST", "setStatusLevelsEnabled",
+                    null), //
+    STATUS_UPDATE_STATUS_LEVEL_SCENARIO(STATUS_LEVEL, "scenarios", "PUT", "updateStatusLevelScenario", null), //
+    SYSTEM_DELETE_PROPERTY(SYSTEM_PROPERTIES, "properties", "DELETE", null, "name"), //
+    SYSTEM_GET_PROPERTIES(SYSTEM_PROPERTIES, "properties", "GET", null, null), //
+    SYSTEM_SAVE_PROPERTY(SYSTEM_PROPERTIES, "properties", "POST", "saveProperty", null), //
     TAG_ADD_TAG(TAG, "objectTags", "POST", "addTag", null), //
     TAG_CREATE_TAG(TAG, "tags", "POST", "createTag", null), //
     TAG_GET_TAG_BYID(TAG, "tagsByID", "GET", null, "tagID"), //
@@ -595,10 +559,10 @@ public enum CustomOp
 
     /** Custom root tag element name */
     private final String rootTagElementName;
-    
-    /**List of path parameters required separated by ':'*/
+
+    /** List of path parameters required separated by ':' */
     private final String pathParams;
-    
+
     /**
      * @param type the entity type to which this operation applies
      * @param operationName The operation name, as present in the uri
@@ -617,7 +581,7 @@ public enum CustomOp
         this.rootTagElementName = rootTag;
         this.pathParams = pathParams;
     }
-    
+
     // /////////////
 
     /**
@@ -651,7 +615,7 @@ public enum CustomOp
     {
         return this.rootTagElementName;
     }
-    
+
     /**
      * @return The path params for this operation separated by ':'.
      */
