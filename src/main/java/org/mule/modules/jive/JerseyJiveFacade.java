@@ -33,14 +33,19 @@ import org.apache.commons.lang.Validate;
 
 public class JerseyJiveFacade implements JiveFacade
 {
-    /** The userID. */
+    /** The userID from jive. */
     private Long userID;
+    /** The jive username */
     private String username;
-    /** The password. */
+    /** The  jive password. */
     private String password;
+    /**The base uri of the rest server*/
     private String gatewayUri;
+    /**The xml mapper*/
     private final XmlMapper mapper = new XmlMapper();
+    /**The jersey client*/
     private Client client = createClient();
+    /**Syncronized object for the userID operation*/
     private Object initUserId = new Object();
 
     @Override

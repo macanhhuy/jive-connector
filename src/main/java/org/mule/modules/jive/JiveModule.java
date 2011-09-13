@@ -21,11 +21,12 @@ import org.mule.api.annotations.lifecycle.Start;
 import org.mule.api.annotations.param.Optional;
 import org.mule.modules.jive.api.EntityTypeName;
 import org.mule.modules.jive.api.EntityTypes;
+import org.mule.modules.jive.api.JiveGenericException;
 import org.mule.modules.jive.api.JiveModuleAdaptor;
 
 import java.util.Map;
 
-/***/
+/**The jive connector*/
 @Module(name = "jive", 
         namespace = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive", 
         schemaLocation = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0-SNAPSHOT/mule-jive.xsd")
@@ -37,14 +38,16 @@ public class JiveModule
     /** The password. */
     @Configurable
     private String password;
-
+    /**The base rest server url*/
     @Configurable
     private String gatewayUri;
 
+    /**The jive facade*/
     @Optional
     @Configurable
     private JiveFacade facade;
 
+    /**Initialise the facade*/
     @Start
     public void init() 
     {
@@ -54,6 +57,8 @@ public class JiveModule
         }
     }
 
+    /**Creates a {@link JerseyJiveFacade} for and sets the password, username and gatewayUri.
+     * @return The facade ready to make requests*/
     protected JiveFacade newFacade()
     {
         JiveFacade facade = new JerseyJiveFacade();
@@ -112,7 +117,9 @@ public class JiveModule
     /**
      * Deletes an existent entity 
      * 
-     * TODO if no exists?
+     * If there is no blog with the given blogId the system will throw a {@link JiveGenericException}
+     * with the message returned from the server.
+     * 
      * Example:
      * {@code <jive:delete type="BLOG" id="#[map-payload:blogId]" />}
      * 
@@ -133,7 +140,7 @@ public class JiveModule
      * {@code <jive:count type="BLOG" />}
      * 
      * @param type
-     * @return TODO WHAT?
+     * @return The number of instances of the given type
      */
     @Processor
     public Long count(final EntityTypeName type) 

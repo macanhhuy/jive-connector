@@ -602,7 +602,7 @@ public enum CustomOp
     }
 
     /**
-     * @return
+     * @return The operation uri including the service path.
      */
     public String getBaseOperationUri()
     {

@@ -42,21 +42,24 @@ public interface JiveFacade
      * */
     Map<String, Object> delete(final EntityType type, String id);
     
-    /***/
+    /**Get count method.
+     * @return The count of the {@link EntityType} returned by the server as {@link Long}
+     * @param type The entity type to count
+     * */
     Long count(final EntityType type);
     
-    /**
-     * @param entityType
-     * @param id
-     * @return
+    /**Executes a get request with the given id as path params for the given {@link EntityType}
+     * @param entityType The entity type
+     * @param id The path params to add to the resource uri
+     * @return The server response as a {@link Map}
      */
     Map<String, Object> get(EntityType entityType, String id);
     
     
-    /**
-     * @param entityType
-     * @param id
-     * @return
+    /**Executes a put method for the given {@link EntityType} sending as payload the given entity.
+     * @param entityType The entity type
+     * @param entity The data to be send as payload in the request
+     * @return The server response as a {@link Map}
      */
     Map<String, Object> update(EntityType entityType, Map<String, Object> entity);
     
@@ -70,13 +73,14 @@ public interface JiveFacade
      * */
     Map<String, Object> execute(final CustomOp customType, Map<String, Object> entity, String id);
 
-    /***/
+    /**Sets the jive username*/
     void setUsername(String user);
-    /***/
+    /**Sets the jive password*/
     void setPassword(String pass);
-    /***/
+    /**Make a request for the userID to the jive server for the given username and password.
+     * @return The jive userID*/
     Long getUserID();
-    
+    /**Sets the gatewayUri to be used as base url for the rest server*/
     void setGatewayUri(String gatewayUri);
     
 }
