@@ -23,7 +23,7 @@ import org.mule.modules.jive.api.impl.StandardGetOperation;
 import org.mule.modules.jive.api.impl.StandardPostOperation;
 
 /**
- * Builder to hold all the crud operations.
+ * Builder for the {@link EntityType}
  */
 public class EntityTypeBuilder 
 {
@@ -45,7 +45,7 @@ public class EntityTypeBuilder
     }
     
     /**
-     * Sets all the remaining operations.
+     * Builds the {@link EntityType} with all the associated methods.
      */
     public EntityType build()
     {
@@ -54,42 +54,55 @@ public class EntityTypeBuilder
     }
 
     /**
-     * @param deleteOp the deleteOp to set
-     * @return 
+     * Sets the delete operation.  
      */
-    public EntityTypeBuilder withDelete(ReferenceOperation deleteOp)
+    private EntityTypeBuilder withDelete(ReferenceOperation deleteOp)
     {
         this.deleteOp = deleteOp;
         return this;
     }
     
+    /**
+     * @param customOp The custom delete operation to set this entity with
+     * @return The {@link EntityTypeBuilder} with the custom delete operation setted up
+     */
     public EntityTypeBuilder withDelete(CustomOp customOp)
     {
         return withDelete(new CustomDeleteOperation(customOp));
     }
     
     
-    public EntityTypeBuilder withCreate(PayloadOperation createOperation)
+    /**
+     * Sets the create operation
+     */
+    private EntityTypeBuilder withCreate(PayloadOperation createOperation)
     {
         this.createOp = createOperation;
         return this;
     }
     
+    /**
+     * @param createOperation The createOperation for the {@link EntityType}
+     * @return The {@link EntityTypeBuilder} with the create operation setted up
+     */
     public EntityTypeBuilder withCreate(CustomOp customOp)
     {
         return withCreate(new CustomPayloadOperation(customOp));
     }
     
     /**
-     * @param getOp the getOp to set
-     * @return 
+     * Sets the get method
      */
-    public EntityTypeBuilder withGet(ReferenceOperation getOp)
+    private EntityTypeBuilder withGet(ReferenceOperation getOp)
     {
         this.getOp = getOp;
         return this;
     }
     
+    /**
+     * @param getOp The get operation fot the {@link EntityType}
+     * @return The {@link EntityTypeBuilder} with the get operation setted up
+     */
     public EntityTypeBuilder withGet(CustomOp getOp)
     {
         return withGet(new CustomGetOperation(getOp));
@@ -97,28 +110,35 @@ public class EntityTypeBuilder
 
 
     /**
-     * @param updateOp the updateOp to set
-     * @return 
+     * Sets the update method for the {@link EntityType}
      */
-    public EntityTypeBuilder withPut(PayloadOperation updateOp)
+    private EntityTypeBuilder withPut(PayloadOperation updateOp)
     {
         this.putOp = updateOp;
         return this;
     }
     
+    /**
+     * @param custom The custom update operation for the {@link EntityType}
+     * @return The {@link EntityTypeBuilder} with the update operation setted up
+     */
     public EntityTypeBuilder withPut(final CustomOp custom)
     {
         return withPut(new CustomUpdateOperation(custom));
     }
 
+    /**
+     * @param entityTypeName the {@link EntityTypeName} for the {@link EntityType} to be build
+     * @return The {@link EntityTypeBuilder} with the {@link EntityTypeName} setted up
+     */
     public static EntityTypeBuilder from(final EntityTypeName entityTypeName) 
     {
         return new EntityTypeBuilder(entityTypeName);
     }
 
     /**
-     * @param serviceUri
-     * @return
+     * @param serviceUri The service uri for the {@link EntityType} to be build
+     * @return The {@link EntityTypeBuilder} with the service uri setted up
      */
     public EntityTypeBuilder withServiceUri(final String serviceUri)
     {
@@ -127,7 +147,7 @@ public class EntityTypeBuilder
     }
 
     /**
-     * @param countOperation the countOperation to set
+     * Sets the count operation for the {@link EntityType} to be build
      */
     public EntityTypeBuilder withCount(TypeOperation countOperation)
     {
@@ -136,8 +156,8 @@ public class EntityTypeBuilder
     }
 
     /**
-     * @param op
-     * @return
+     * @param op The custom count operation for the {@link EntityType} to be build
+     * @return The {@link EntityTypeBuilder} with the custom count operation setted up
      */
     public EntityTypeBuilder withCount(CustomOp op)
     {

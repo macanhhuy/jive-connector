@@ -19,6 +19,7 @@ import org.mule.modules.jive.CustomOp;
 import java.util.EnumMap;
 import java.util.Map;
 
+/**Class that register and hold all the services and their respective crud operations*/
 public class EntityTypes
 {
     /** Default strategy. */
@@ -26,9 +27,13 @@ public class EntityTypes
     /** For operations that use the base uri. */
     public static final int BASE_URI = 1;
     
-    
+    /**{@link Map} that links an {@link EntityTypeName} with it's respective {@link EntityType}*/
     private static final Map<EntityTypeName, EntityType> TYPES = new EnumMap<EntityTypeName, EntityType>(
         EntityTypeName.class);
+    
+    /**
+     * @param entityType The {@link EntityType} to register
+     */
     private static void registerType(EntityType entityType) 
     {
         TYPES.put(entityType.getTypeName(), entityType);
@@ -162,6 +167,10 @@ public class EntityTypes
         registerType( from(WATCH).build());
     }
 
+    /**
+     * @param type The {@link EntityTypeName} to use as a key to retrieve the {@link EntityType}
+     * @return The {@link EntityType} corresponding with the type given
+     */
     public static EntityType fromName(EntityTypeName type)
     {
         return TYPES.get(type);

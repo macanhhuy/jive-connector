@@ -74,16 +74,26 @@ public enum EntityTypeName
     /** Watch service. */
     WATCH;
 
+    
+    /**
+     * @return The service name in lowercase
+     */
     public String getNameAsString()
     {
         return name().toLowerCase();
     }
     
+    /**
+     * @return The service uri
+     */
     public String getServiceName()
     {
         return getNameAsString() + "Service";
     }
 
+    /**
+     * @return The generic xml root element name for the put or post operations
+     */
     public String getXmlRootElementName()
     {
         return StringUtils.capitalize(getNameAsString());

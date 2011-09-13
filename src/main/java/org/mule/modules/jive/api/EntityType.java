@@ -62,7 +62,7 @@ public final class EntityType
     }
 
     /**
-     * @return the serviceUri
+     * @return the serviceUri. E.g.: avatar -> "avatarService"
      */
     protected String getTypeUri()
     {
@@ -73,12 +73,12 @@ public final class EntityType
         return "/" + serviceUri;
     }
     
-    /**
-     * @param type
-     * @param entity
-     * @param mapper 
-     * @param resource 
-     * @return
+    /**Executes the create operation associated with this {@link EntityType}.
+     * @param type The entity type to create
+     * @param entity The data to be send as payload in the post request
+     * @param mapper The mapper to parsed the data
+     * @param resource The client that will make the request
+     * @return The response as a {@link Map}
      */
     public Map<String, Object> create(final EntityType type, final Map<String, Object> entity,
         final XmlMapper mapper, final JiveClient resource)
@@ -86,12 +86,12 @@ public final class EntityType
         return createOperation.execute(resource, mapper, type, entity);
     }
     
-    /**
-     * @param type
-     * @param id
-     * @param mapper
-     * @param resource
-     * @return
+    /**Executes the delete method associated with this entity type.
+     * @param type The entity type to be deleted
+     * @param id The path params separated by ':'
+     * @param mapper The mapper to parsed the data
+     * @param resource The client that will make the request
+     * @return The server response as a {@link Map}
      */
     public Map<String, Object> delete(final EntityType type, final String id,
         final XmlMapper mapper, final JiveClient resource) 
@@ -99,24 +99,24 @@ public final class EntityType
         return deleteOperation.execute(resource, mapper, type, id);
     }
     
-    /**
-     * @param type
-     * @param id
-     * @param mapper
-     * @param resource
-     * @return
+    /**Executes the count operation associated with this entity
+     * @param type The entity type to count
+     * @param id The path params separated by ':'
+     * @param mapper The mapper to parse the data
+     * @param resource The client that will make the request
+     * @return The number of instances of the given entity
      */
     public Long count(final EntityType type, final XmlMapper mapper, final JiveClient resource)
     {
         return countOperation.execute(resource, mapper, type);
     }
     
-    /**
-     * @param type
-     * @param id
-     * @param mapper
-     * @param resource
-     * @return
+    /**Executes the get operation associated with this entity
+     * @param type The entity type to get
+     * @param id The path params to separated by ':'
+     * @param mapper The mapper to parse the data
+     * @param resource The client that will make the request
+     * @return The entity given by the server as a {@link Map}
      */
     public Map<String, Object> get(final String id,
         final XmlMapper mapper, final JiveClient resource)
@@ -124,12 +124,12 @@ public final class EntityType
         return getOperation.execute(resource, mapper, this, id);
     }
     
-    /**
-     * @param type
-     * @param entityData
-     * @param mapper
-     * @param resource
-     * @return
+    /**Executes the update operation associated with this entity
+     * @param type The entity to update
+     * @param entityData The data to be send as payload
+     * @param mapper The mapper to parse the data
+     * @param resource The client that will make the request
+     * @return The server response as a {@link Map}
      */
     public Map<String, Object> put(final EntityType type, final Map<String, Object> entityData,
         final XmlMapper mapper, final JiveClient resource)
@@ -140,7 +140,6 @@ public final class EntityType
     /**Generates the base uri for the service type given.
      * @return The service base uri. E.g. For the AVATAR service, the base
      * uri would be /avatarService/avatars
-     * @param type The service
      * */
     public String getBasePluralUri()
     {

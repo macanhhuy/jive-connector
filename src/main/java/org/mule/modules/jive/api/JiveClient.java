@@ -19,11 +19,15 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
+/**Class that holds the {@link WebResource} and make the requests.*/
 public class JiveClient
 {
+    /**The server response minimun acceptable status*/
     private static final int serverMinAcceptableStatus = 300;
     
+    /**Mapper to parse the data from {@link Map} to xml and viceversa*/
     private final XmlMapper mapper = new XmlMapper();
+    /**The jersey {@link WebResource} to perform the requests*/
     private final WebResource resource;
     
     /**
@@ -34,6 +38,12 @@ public class JiveClient
         this.resource = gateway;
     }
 
+    /**Executes a request sending the payload given
+     * @param uri The resource uri to make the request
+     * @param method The http method to use
+     * @param payload The payload as xml
+     * @return The response as a {@link Map}
+     */
     public Map<String, Object> doRequestWithPayload(final String uri, final String method, final String payload) 
     {
         ClientResponse result = resource.path(uri).method(method, ClientResponse.class, payload);
@@ -45,6 +55,12 @@ public class JiveClient
         return mapper.xml2map(result.getEntity(String.class));
     }
     
+    /**
+     * @param uri The resource uri to make the request
+     * @param method The http method to use
+     * @param pathParams The path params to add to the resource uri separated by ':'
+     * @return A {@link Map} with the server response
+     */
     public Map<String, Object> doRequest(final String uri, final String method, final String pathParams)
     {
         ClientResponse result = resource.path(JiveUris.getOperationUri(uri, pathParams)).method(method, ClientResponse.class);
@@ -56,13 +72,13 @@ public class JiveClient
         return mapper.xml2map(result.getEntity(String.class));
     }
 
-    /**
-     * @param uri
-     * @param method
-     * @param string2
+    /**Executes an operation and extract the response from the xml from the given tagName.
+     * @param uri The resource uri to make the request
+     * @param method The http method to use
+     * @param tagName The tagName that holds the answer
      * @return
      */
-    public String doRequestAndExtractTagBetween(String uri, String method, String tagName)
+    public String doRequestAndExtractTagBetween(final String uri, final String method, final String tagName)
     {
         final String response = resource.path(uri).method(method, String.class);
         return StringUtils.substringBetween(response, "<" + tagName + ">", "</" + tagName + ">");
