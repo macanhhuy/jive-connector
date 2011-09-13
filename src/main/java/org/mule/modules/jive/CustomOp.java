@@ -453,10 +453,10 @@ public enum CustomOp
     SOCIAL_GROUP_UPDATE_SOCIAL_GROUP(SOCIAL_GROUP, "socialGroup", "PUT", "updateSocialGroup", null), //
     STATUS_LEVEL_ADD_POINTS(STATUS_LEVEL, "addPoints", "POST", "addPoints", null), //
     STATUS_LEVEL_ADD_POINTS_BY_CONTAINER(STATUS_LEVEL, "addPointsByContainer", "POST", "addPoints", null), //
-    STATUS_LEVEL_CREATE_STATUS_LEVEL_POINT_BASED(STATUS_LEVEL, "pointStatusLevels", "POST", "createStatusLevel",
-                    null), //
-    STATUS_LEVEL_CREATE_STATUS_LEVEL_GROUP_BASED(STATUS_LEVEL, "groupStatusLevels", "POST", "createStatusLevel",
-                    null), //
+    STATUS_LEVEL_CREATE_STATUS_LEVEL_POINT_BASED(STATUS_LEVEL, "pointStatusLevels", "POST",
+                    "createStatusLevel", null), //
+    STATUS_LEVEL_CREATE_STATUS_LEVEL_GROUP_BASED(STATUS_LEVEL, "groupStatusLevels", "POST",
+                    "createStatusLevel", null), //
     STATUS_LEVEL_DELETE_STATUS_LEVEL(STATUS_LEVEL, "statusLevels", "DELETE", null, "statusLevelID"), //
     STATUS_LEVEL_GET_ALL_STATUS_LEVEL_SCENARIOS(STATUS_LEVEL, "scenarios", "GET", null, null), //
     STATUS_LEVEL_GET_GROUP_STATUS_LEVEL(STATUS_LEVEL, "groupStatusLevels", "GET", null, "groupID"), //
@@ -467,8 +467,8 @@ public enum CustomOp
     STATUS_LEVEL_GET_LEADERS_BY_COMMUNITY(STATUS_LEVEL, "leadersByCommunity", "GET", null, "communityID"), //
     STATUS_LEVEL_GET_LEADERS_BY_CONTAINER(STATUS_LEVEL, "leadersByContainer", "GET", null,
                     "containerObjectID:containerObjectType"), //
-    STATUS_LEVEL_GET_LEADERS_BY_COMMUNITY_BY_STARTINDEX_AND_NUMRESULTS(STATUS_LEVEL, "leadersByCommunity", "GET",
-                    null, "communityID:startIndex:numResults"), //
+    STATUS_LEVEL_GET_LEADERS_BY_COMMUNITY_BY_STARTINDEX_AND_NUMRESULTS(STATUS_LEVEL, "leadersByCommunity",
+                    "GET", null, "communityID:startIndex:numResults"), //
     STATUS_LEVEL_GET_LEADERS_BY_CONTAINER_ITERABLE(STATUS_LEVEL, "leadersByContainer", "GET", null,
                     "containerObjectID:containerObjectType:startIndex:numResults"), //
     STATUS_LEVEL_GET_POINT_LEVEL(STATUS_LEVEL, "pointLevel", "GET", null, "userID"), //
@@ -479,12 +479,14 @@ public enum CustomOp
     STATUS_LEVEL_GET_STATUS_LEVEL(STATUS_LEVEL, "statusLevels", "GET", null, "statusLevelID"), //
     STATUS_LEVEL_GET_STATUS_LEVEL_BY_POINTS(STATUS_LEVEL, "statusLevelByPoints", "GET", null, "points"), //
     STATUS_LEVEL_GET_STATUS_LEVEL_SCENARIO_BY_CODE(STATUS_LEVEL, "scenarios", "GET", null, "code"), //
-    STATUS_LEVEL_GET_STATUS_LEVEL_SCENARIO_BY_CODE_ENCODED(STATUS_LEVEL, "scenarios", "GET", null, "code:encoded"), //
+    STATUS_LEVEL_GET_STATUS_LEVEL_SCENARIO_BY_CODE_ENCODED(STATUS_LEVEL, "scenarios", "GET", null,
+                    "code:encoded"), //
     STATUS_LEVEL_GET_USER_STATUS_LEVEL(STATUS_LEVEL, "userStatusLevels", "GET", null, "userID"), //
     STATUS_LEVEL_IS_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "statusLevelsEnabled", "GET", null, null), //
-    STATUS_LEVEL_SET_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "statusLevelsEnabled", "POST", "setStatusLevelsEnabled",
+    STATUS_LEVEL_SET_STATUS_LEVELS_ENABLED(STATUS_LEVEL, "statusLevelsEnabled", "POST",
+                    "setStatusLevelsEnabled", null), //
+    STATUS_LEVEL_UPDATE_STATUS_LEVEL_SCENARIO(STATUS_LEVEL, "scenarios", "PUT", "updateStatusLevelScenario",
                     null), //
-    STATUS_LEVEL_UPDATE_STATUS_LEVEL_SCENARIO(STATUS_LEVEL, "scenarios", "PUT", "updateStatusLevelScenario", null), //
     SYSTEM_DELETE_PROPERTY(SYSTEM_PROPERTIES, "properties", "DELETE", null, "name"), //
     SYSTEM_GET_PROPERTIES(SYSTEM_PROPERTIES, "properties", "GET", null, null), //
     SYSTEM_SAVE_PROPERTY(SYSTEM_PROPERTIES, "properties", "POST", "saveProperty", null), //
@@ -526,8 +528,7 @@ public enum CustomOp
     VIDEO_CREATE_VIDEO(VIDEO, "createVideo", "POST", "createVideo", null), //
     VIDEO_DELETE_VIDEO(VIDEO, "deleteVideo", "DELETE", null, "videoID"), //
     VIDEO_GET_VIDEO(VIDEO, "videoByID", "GET", null, "videoID"), //
-    VIDEO_GET_VIDEOS_FOR_CONTAINER(VIDEO, "videosForContainer", "POST",
-                    "getVideosForContainerResponse", null), //
+    VIDEO_GET_VIDEOS_FOR_CONTAINER(VIDEO, "videosForContainer", "POST", "getVideosForContainerResponse", null), //
     VIDEO_UPDATE_VIDEO(VIDEO, "updateVideo", "PUT", "updateVideo", null), //
     WATCH_CREATE_COMMUNITY_WATCH(WATCH, "communityWatches", "POST", "createCommunityWatch", null), //
     WATCH_CREATE_THREAD_WATCH(WATCH, "threadWatches", "POST", "createThreadWatch", null), //
