@@ -13,11 +13,12 @@
 
 <mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:spring="http://www.springframework.org/schema/beans"
-  xmlns:jive="http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive"
+  xmlns:jive="http://www.mulesoft.org/schema/mule/jive"
   xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
-        http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0-SNAPSHOT/mule-jive.xsd">
+        http://www.mulesoft.org/schema/mule/jive http://www.mulesoft.org/schema/mule/jive/1.0/mule-jive.xsd
+        ">
 
      <jive:config username="myUsername" password="password" gatewayUri="lalalalla"/> 
 

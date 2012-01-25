@@ -27,9 +27,7 @@ import org.mule.modules.jive.api.JiveModuleAdaptor;
 import java.util.Map;
 
 /**The jive connector*/
-@Module(name = "jive", 
-        namespace = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive", 
-        schemaLocation = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-jive/1.0-SNAPSHOT/mule-jive.xsd")
+@Module(name = "jive", schemaVersion = "1.0")
 public class JiveModule
 {
     /** The username to access the jive instance. */

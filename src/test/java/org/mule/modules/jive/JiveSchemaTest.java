@@ -13,15 +13,12 @@
  */
 package org.mule.modules.jive;
 
-import org.mule.construct.SimpleFlowConstruct;
-import org.mule.tck.AbstractMuleTestCase;
-import org.mule.tck.FunctionalTestCase;
-
 import org.junit.Test;
+import org.mule.tck.FunctionalTestCase;
 
 /**Test for the {@link JiveModule}.
  * */
-public class JiveModuleNamespaceHandlerTest extends FunctionalTestCase {
+public class JiveSchemaTest extends FunctionalTestCase {
     @Override
     protected final String getConfigResources() {
         return "mule-config.xml";
@@ -35,13 +32,4 @@ public class JiveModuleNamespaceHandlerTest extends FunctionalTestCase {
     {
     }
 
-    /**
-     * Retrieve a flow by name from the registry
-     *
-     * @param name Name of the flow to retrieve
-     */
-    protected SimpleFlowConstruct lookupFlowConstruct(String name)
-    {
-        return (SimpleFlowConstruct) AbstractMuleTestCase.muleContext.getRegistry().lookupFlowConstruct(name);
-    }
 }
