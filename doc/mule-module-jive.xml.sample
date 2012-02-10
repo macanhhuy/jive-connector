@@ -1,0 +1,36 @@
+<!-- BEGIN_INCLUDE(jive:create) -->
+<jive:create type="BLOG">
+	<jive:entity>
+     	<creationDate>#[variable:creationDate]</creationDate>
+        <author>#[variable:author]</author>
+    </jive:entity>
+</jive:create>
+<!-- END_INCLUDE(jive:create) -->
+
+<!-- BEGIN_INCLUDE(jive:update) -->
+<jive:update type="BLOG">
+	<jive:entity>
+		<author>#[variable:author]</author>
+	</jive:entity>
+</jive:update>}
+<!-- END_INCLUDE(jive:update) -->
+ 
+<!-- BEGIN_INCLUDE(jive:delete) -->
+<jive:delete type="BLOG" id="#[map-payload:blogId]" />
+<!-- END_INCLUDE(jive:delete) -->
+ 
+<!-- BEGIN_INCLUDE(jive:count) -->
+<jive:count type="BLOG" />
+<!-- END_INCLUDE(jive:count) -->
+
+<!-- BEGIN_INCLUDE(jive:execute) -->
+<jive:execute operation="AVATAR_GET_GLOBAL_AVATARS"/>
+<!-- END_INCLUDE(jive:execute) -->
+
+<!-- BEGIN_INCLUDE(jive:get) -->
+ <jive:get type="AVATAR" id="#[map-payload:avatarId]"/>
+<!-- END_INCLUDE(jive:get) --> 
+
+<!-- BEGIN_INCLUDE(jive:getUserId) -->
+ <jive:get-user-id/>
+<!-- END_INCLUDE(jive:getUserId) --> 
