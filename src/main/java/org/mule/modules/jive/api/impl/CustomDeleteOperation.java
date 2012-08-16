@@ -13,7 +13,6 @@ package org.mule.modules.jive.api.impl;
 import org.mule.modules.jive.CustomOp;
 import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.JiveClient;
-import org.mule.modules.jive.api.JiveUris;
 import org.mule.modules.jive.api.ReferenceOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 

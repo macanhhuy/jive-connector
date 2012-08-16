@@ -13,7 +13,6 @@ package org.mule.modules.jive;
 
 import org.mule.modules.jive.api.EntityType;
 import org.mule.modules.jive.api.JiveClient;
-import org.mule.modules.jive.api.JiveUris;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
 import com.sun.jersey.api.client.Client;
@@ -26,9 +25,6 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
 
-import javax.ws.rs.core.MediaType;
-
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
 public class JerseyJiveFacade implements JiveFacade
@@ -82,12 +78,6 @@ public class JerseyJiveFacade implements JiveFacade
         map2xml(op.getRootTagElementName(), entity, writer);
         return writer.toString();
     }
-
-    private String getUri(final CustomOp op, final String id)
-    {
-        return JiveUris.getOperationUri(op.getBaseOperationUri(), id);
-    }
-
 
     @Override
     public final Map<String, Object> create(final EntityType type, final Map<String, Object> entity)

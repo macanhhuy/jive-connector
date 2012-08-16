@@ -15,7 +15,6 @@ import org.mule.modules.jive.api.JiveClient;
 import org.mule.modules.jive.api.PayloadOperation;
 import org.mule.modules.jive.api.xml.XmlMapper;
 
-import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;

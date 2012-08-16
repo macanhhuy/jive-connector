@@ -13,8 +13,10 @@
  */
 package org.mule.modules.jive;
 
+
+import org.mule.tck.junit4.FunctionalTestCase;
+
 import org.junit.Test;
-import org.mule.tck.FunctionalTestCase;
 
 /**Test for the {@link JiveModule}.
  * */
