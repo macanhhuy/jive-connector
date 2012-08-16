@@ -1,7 +1,10 @@
 org.mule.modules.jive
+org.mule.modules.jive.adapters
 org.mule.modules.jive.api
 org.mule.modules.jive.api.impl
 org.mule.modules.jive.api.xml
 org.mule.modules.jive.config
 org.mule.modules.jive.config.spring
+org.mule.modules.jive.processors
+org.mule.modules.jive.transformers
 

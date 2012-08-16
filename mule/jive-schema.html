@@ -1,0 +1,1231 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Documentation for Mule Jive Connector." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+<title>
+
+  JiveModule
+
+
+| Mule Jive Connector
+
+</title>
+<link href="../assets/mule-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../assets/mule-developer-prettify.css" rel="stylesheet" type="text/css" />
+<link href="../assets/customizations.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+<script src="../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../assets/jquery-toc.js" type="text/javascript"></script>
+<script src="../assets/mule-developer-docs.js" type="text/javascript"></script>
+<script src="../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../", "../assets/");
+</script>
+<script src="../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+<script type="text/javascript" charset="utf-8">
+  var is_ssl = ("https:" == document.location.protocol);
+  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";
+  feedback_widget_options.company = "mulesoft";
+  feedback_widget_options.placement = "right";
+  feedback_widget_options.color = "#2F74AE";
+  feedback_widget_options.style = "question";
+
+  feedback_widget_options.tag = "Mule Jive Connector";
+
+  feedback_widget_options.limit = "3";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
+</head>
+
+<body class="">
+
+<div id="header">
+    <div id="headerLeft">
+    
+      <span id="masthead-title">Mule Jive Connector</span>
+    
+    <ul id="header-tabs" class="mule">
+    
+    	<li id="guide"><a href="../guide/install.html">
+	    	<span class="en">Install Guide</span>
+    	</a></li>
+    
+    	<li id="java"><a href="../java/packages.html">
+	    	<span class="en">Java API Reference</span>
+    	</a></li>
+    
+    	<li id="mule"><a href="../mule/modules.html">
+	    	<span class="en">Mule API Reference</span>
+    	</a></li>
+    
+    </ul>
+    </div>
+    <div id="headerRight">
+      <a href="http://www.mulesoft.com" tabindex="-1">
+      <img src="../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../')"
+                      onkeyup="return search_changed(event, false, '../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+<div class="g-unit" id="all-content">
+
+<div id="api-info-block">
+
+<div class="api-level">
+  
+
+
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF MODULE DATA ======== -->
+
+<div id="jd-header">
+    org.mule.modules
+<h1>mule-module-jive</h1>
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+
+
+<div class="jd-tagdata">
+      <table class="jd-tagtable">
+        <tbody><tr>
+          <th>Namespace</th><td>http://www.mulesoft.org/schema/mule/jive</td>
+        </tr><tr>
+          <th>Schema Location</th><td>http://www.mulesoft.org/schema/mule/jive/current/mule-jive.xsd&nbsp;&nbsp;(<a href="jive-schema.html">View Schema</a>)</td>
+        </tr>
+<tr>
+          <th>Schema Version</th><td>1.0</td>
+        </tr>
+<tr>
+          <th>Minimum Mule Version</th><td>3.2</td>
+        </tr>
+    </tbody></table>
+  </div>
+
+<div class="jd-descr">
+<h2>Schema</h2>
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;xs:schema xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; elementFormDefault=&quot;qualified&quot; attributeFormDefault=&quot;unqualified&quot; targetNamespace=&quot;http://www.mulesoft.org/schema/mule/jive&quot;&gt;
+  &lt;xs:import namespace=&quot;http://www.w3.org/XML/1998/namespace&quot;&gt;&lt;/xs:import&gt;
+  &lt;xs:import schemaLocation=&quot;http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot; namespace=&quot;http://www.springframework.org/schema/beans&quot;&gt;&lt;/xs:import&gt;
+  &lt;xs:import schemaLocation=&quot;http://www.mulesoft.org/schema/mule/core/current/mule.xsd&quot; namespace=&quot;http://www.mulesoft.org/schema/mule/core&quot;&gt;&lt;/xs:import&gt;
+  &lt;xs:import schemaLocation=&quot;http://www.mulesoft.org/schema/mule/devkit/current/mule-devkit.xsd&quot; namespace=&quot;http://www.mulesoft.org/schema/mule/devkit&quot;&gt;&lt;/xs:import&gt;
+  &lt;xs:simpleType name=&quot;integerType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:integer&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;decimalType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:decimal&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;floatType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:float&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;doubleType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:double&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;dateTimeType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:dateTime&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;longType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:long&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;byteType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:byte&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;booleanType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:boolean&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;anyUriType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:anyURI&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;charType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:minLength value=&quot;1&quot;&gt;&lt;/xs:minLength&gt;
+          &lt;xs:maxLength value=&quot;1&quot;&gt;&lt;/xs:maxLength&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:complexType name=&quot;XmlType&quot;&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:any maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; processContents=&quot;lax&quot;&gt;&lt;/xs:any&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+      &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+      &lt;/xs:annotation&gt;
+    &lt;/xs:attribute&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns:devkit=&quot;http://www.mulesoft.org/schema/mule/devkit&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;config&quot; substitutionGroup=&quot;mule:abstract-extension&quot; devkit:javaClass=&quot;org.mule.modules.jive.adapters.JiveModuleLifecycleAdapter&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:complexContent&gt;
+        &lt;xs:extension base=&quot;mule:abstractExtensionType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Provides Jive connectivity to Mule:
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Allows CRUD operations on Jive objects&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+          &lt;xs:attribute name=&quot;name&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;Give a name to this configuration so it can be later referenced by config-ref.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+          &lt;/xs:attribute&gt;
+          &lt;xs:attribute name=&quot;username&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;The username to access the jive instance.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+          &lt;/xs:attribute&gt;
+          &lt;xs:attribute name=&quot;password&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;The password.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+          &lt;/xs:attribute&gt;
+          &lt;xs:attribute name=&quot;gatewayUri&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;The base rest server url&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+          &lt;/xs:attribute&gt;
+          &lt;xs:attribute name=&quot;facade-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;The jive facade&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+          &lt;/xs:attribute&gt;
+        &lt;/xs:extension&gt;
+      &lt;/xs:complexContent&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;create&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;CreateType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Creates an entity of the given type.
+If the entity already exists or cannot be created the system throws a 
+with the correspondat message.
+
+If the data pass in entity it's not the data expected the system will throw a 
+with the correspondant message.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;CreateType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name=&quot;entity&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;the entity attributes&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:choice&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&quot;entity&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                    &lt;xs:complexType&gt;
+                      &lt;xs:simpleContent&gt;
+                        &lt;xs:extension base=&quot;xs:string&quot;&gt;
+                          &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                          &lt;xs:attribute name=&quot;key&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                        &lt;/xs:extension&gt;
+                      &lt;/xs:simpleContent&gt;
+                    &lt;/xs:complexType&gt;
+                  &lt;/xs:element&gt;
+                &lt;/xs:sequence&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:any maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; processContents=&quot;lax&quot;&gt;&lt;/xs:any&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:choice&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; name=&quot;type&quot; use=&quot;required&quot; type=&quot;EntityTypeNameEnumType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the type of entity to create&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;update&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;UpdateType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Updates an existent entity
+
+If the entity you are trying to update doesn't exist, the system thorws a 
+with an aclaratory message.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;UpdateType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name=&quot;entity&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;the attributes of the entity&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:choice&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&quot;entity&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                    &lt;xs:complexType&gt;
+                      &lt;xs:simpleContent&gt;
+                        &lt;xs:extension base=&quot;xs:string&quot;&gt;
+                          &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                          &lt;xs:attribute name=&quot;key&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                        &lt;/xs:extension&gt;
+                      &lt;/xs:simpleContent&gt;
+                    &lt;/xs:complexType&gt;
+                  &lt;/xs:element&gt;
+                &lt;/xs:sequence&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:any maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; processContents=&quot;lax&quot;&gt;&lt;/xs:any&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:choice&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; name=&quot;type&quot; use=&quot;required&quot; type=&quot;EntityTypeNameEnumType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the type of entity to update&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;delete&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;DeleteType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Deletes an existent entity
+
+If there is no entity with the given id the system will throw a 
+with the message returned from the server.
+
+If the number of arguments is wrong the system will throw a&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;DeleteType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; name=&quot;type&quot; use=&quot;required&quot; type=&quot;EntityTypeNameEnumType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the entity type&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;id&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the id of the entity to delete&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;count&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;CountType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Counts all the instances of the given entity type&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;CountType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; name=&quot;type&quot; use=&quot;required&quot; type=&quot;EntityTypeNameEnumType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the entity type to be counted&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;execute&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;ExecuteType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Executes a custom operation
+
+
+
+If a wrong number of attributes is sent, or the operation requires an entity an none is sent,
+the system will repond with a .&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;ExecuteType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name=&quot;entity&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;The  with the entity data to be send as payload&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:choice&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&quot;entity&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                    &lt;xs:complexType&gt;
+                      &lt;xs:simpleContent&gt;
+                        &lt;xs:extension base=&quot;xs:string&quot;&gt;
+                          &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                          &lt;xs:attribute name=&quot;key&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                        &lt;/xs:extension&gt;
+                      &lt;/xs:simpleContent&gt;
+                    &lt;/xs:complexType&gt;
+                  &lt;/xs:element&gt;
+                &lt;/xs:sequence&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:any maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; processContents=&quot;lax&quot;&gt;&lt;/xs:any&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:choice&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; name=&quot;operation&quot; use=&quot;required&quot; type=&quot;CustomOpEnumType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;The custom operation to be executed&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;id&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;The path parameters to be added to the operation uri&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Retrieves the attributes for the entity of the given type and id.
+
+
+
+If the entity you are trying to get doesn't exist, the system will throw a
+ with the correponging message.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; name=&quot;type&quot; use=&quot;required&quot; type=&quot;EntityTypeNameEnumType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the entity type&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;id&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the entity id&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/jive&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-user-id&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetUserIdType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Answers the id of the logged user&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetUserIdType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:simpleType name=&quot;EntityTypeNameEnumType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:enumeration value=&quot;ADDRESSBOOK&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AUDIT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TASK&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;ENTITLEMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;IMSERVICE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PLUGIN&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_FIELD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_SEARCH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROJECT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;REFERENCE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SEARCH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SYSTEM_PROPERTIES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TAG&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;VIDEO&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH&quot;&gt;&lt;/xs:enumeration&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;\#\[[^\]]+\]&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;CustomOpEnumType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:enumeration value=&quot;ADDRESSBOOK_ADD_USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;ADDRESSBOOK_GET_ROSTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;ADDRESSBOOK_REMOVE_USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AUDIT_EVENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_CREATE_AVATAR&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_DELETE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_GET_ACTIVE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_GET&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_GET_AVATAR_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_GET_AVATARS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_GET_GLOBAL_AVATARS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_GET_MAX_ALLOWABLE_HEIGHT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_GET_MAX_ALLOWABLE_WIDTH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_GET_MAX_USER_AVATARS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_GET_MODERATION_AVATAR_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_GET_MODERATION_AVATARS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_IS_ALLOW_IMAGE_RESIZE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_IS_AVATARS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_IS_MODERATE_USER_AVATARS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_IS_USER_AVATARS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_SET_ACTIVE_AVATAR&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_SET_ALLOW_IMAGE_RESIZE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_SET_MAX_ALLOWABLE_HEIGHT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_SET_MAX_ALLOWABLE_WIDTH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_SET_MAX_USER_AVATARS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_SET_MODERATE_USER_AVATARS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AVATAR_SET_USER_AVATARS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_ADD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_ADD_COMMENT_TO_COMMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_DELETE_ALL&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_DELETE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_DELETE_RECURSIVE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_GET&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_GET_COMMENT_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_GET_COMMENT_COUNT_WITH_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_GET_ALL&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_GET_USER_CONTENT_COMMENT_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_GET_USER_CONTENT_COMMENT_COUNT_WITH_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_GET_USER_CONTENT_COMMENTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_GET_USER_CONTENT_COMMENTS_WITH_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMENT_UPDATE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_ADD_ATTACHMENT_TO_BLOG_POST&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_ADD_IMAGE_TO_BLOG_POST&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_CREATE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_CREATE_BLOG_POST&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_DELETE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_DELETE_BLOG_POST&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_ATTACHMENTS_BY_BLOG_POST_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_BLOG_BY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_BLOG_BY_NAME&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_BLOG_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_BLOG_COUNT_BY_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_BLOG_COUNT_FOR_USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_BLOG_POST&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_BLOG_POST_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_BLOG_POST_COUNT_BY_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_BLOG_POSTS_BY_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_BLOGS_BY_DISPLAY_NAME&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_BLOGS_FOR_USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_COMMENT_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_COMMENT_COUNT_BY_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_COMMENTS_BY_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_IMAGES_BY_BLOG_POST_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_PING_SERVICES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_RECENT_BLOGS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_TAGS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_GET_TAGS_BY_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_IS_BLOGS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_IS_COMMENTS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_IS_PINGS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_IS_PINGS_OVERRIDE_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_IS_TRACKBACKS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_PUBLISH_BLOG_POST&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_REMOVE_ATTACHMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_SET_BLOGS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_SET_COMMENTS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_SET_PING_SERVICES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_SET_PINGS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_SET_PINGS_OVERRIDE_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_SET_TRACKBACKS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_UPDATE_BLOG_POST&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_UPLOAD_ATTACHMENT_TO_BLOG_POST&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;BLOG_USER_HAS_BLOGS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_CREATE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_DELETE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_DELETE_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_GET&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_GET_DOCUMENT_IDS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_GET_PROPERTIES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_GET_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_GET_RECURSIVE_COMMUNITIES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_GET_RECURSIVE_COMMUNITIES_BY_COMMUNITY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_GET_RECURSIVE_COMMUNITY_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_GET_SUB_COMMUNITIES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_SET_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COMMUNITY_UPDATE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_ADD_ATTACHMENT_TO_DOCUMENT_BY_DOCUMENT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_ADD_ATTACHMENT_TO_DOCUMENT_BY_INTERNAL_DOC_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_ADD_AUTHOR&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_ADD_DOCUMENT_APPROVER_ON_COMMUNITY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_ADD_DOCUMENT_APPROVER_ON_DOCUMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_ADD_IMAGE_TO_DOCUMENT_BY_DOCUMENT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_ADD_IMAGE_TO_DOCUMENT_BY_INTERNAL_DOC_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_CREATE_BINARY_DOCUMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_CREATE_BINARY_DOCUMENT_IN_CONTAINER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_CREATE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_CREATE_DOCUMENT_IN_CONTAINER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_DELETE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_DELETE_DOCUMENT_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_APPROVAL_STATUS_FOR_DOCUMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_ATTACHMENT_COUNT_BY_DOCUMENT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_ATTACHMENT_COUNT_BY_INTERNAL_DOC_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_ATTACHMENTS_BY_DOCUMENT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_ATTACHMENTS_BY_INTERNAL_DOC_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_AUTHORS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_BINARY_DOCUMENT_CONTENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_DOCUMENT_APPROVERS_ON_COMMUNITY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_DOCUMENT_APPROVERS_ON_DOCUMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_DOCUMENT_BY_DOCUMENT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_DOCUMENT_BY_DOCUMENT_ID_AND_VERSION&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_DOCUMENT_BY_INTERNAL_DOC_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_DOCUMENT_BY_INTERNAL_DOC_ID_AND_VERSION&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_DOCUMENT_PROPERTIES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_DOCUMENT_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_DOCUMENTS_BY_COMMUNITY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_DOCUMENTS_BY_COMMUNITY_AND_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_IMAGE_COUNT_BY_DOCUMENT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_IMAGE_COUNT_BY_INTERNAL_DOC_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_IMAGES_BY_DOCUMENT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_IMAGES_BY_INTERNAL_DOC_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_POPULAR_DOCUMENTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_POPULAR_DOCUMENTS_BY_COMMUNITY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_POPULAR_DOCUMENTS_BY_LANGUAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_GET_USER_APPROVAL_DOCUMENTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_IS_COMMENTS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_IS_TRACKBACKS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_MOVE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_MOVE_DOCUMENT_TO_CONTAINER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_PUBLISH_BINARY_DOCUMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_PUBLISH_BINARY_DOCUMENT_IN_CONTAINER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_PUBLISH_DOCUMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_PUBLISH_DOCUMENT_IN_CONTAINER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_REMOVE_ATTACHMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_REMOVE_AUTHOR&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_SET_COMMENTS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_SET_DOCUMENT_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_SET_TRACKBACKS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_UPDATE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_UPLOAD_ATTACHMENT_TO_DOCUMENT_BY_DOCUMENT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DOCUMENT_UPLOAD_ATTACHMENT_TO_DOCUMENT_BY_INTERNAL_DOC_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;ENTITLEMENT_ADD_GROUP_ENTITLEMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;ENTITLEMENT_ADD_USER_ENTITLEMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;ENTITLEMENT_GET_ENTITLEMENT_MASKS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;ENTITLEMENT_IS_USER_ENTITLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;ENTITLEMENT_REMOVE_GROUP_ENTITLEMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;ENTITLEMENT_REMOVE_USER_ENTITLEMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_ADD_ATTACHMENT_TO_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_ADD_IMAGE_TO_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_CREATE_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_CREATE_REPLY_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_CREATE_THREAD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_DELETE_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_DELETE_MESSAGE_AND_CHILDREN&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_DELETE_MESSAGE_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_DELETE_THREAD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_DELETE_THREAD_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_ATTACHMENTS_BY_MESSAGE_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_CHILD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_CHILD_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_CHILDREN&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_FORUM_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_FORUM_THREAD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_IMAGES_BY_MESSAGE_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_INDEX_OF_CHILD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGE_COUNT_BY_COMMUNITY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGE_COUNT_BY_COMMUNITY_ID_AND_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGE_COUNT_BY_THREAD_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGE_COUNT_BY_THREAD_ID_AND_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGE_COUNTS_BY_COMMUNITY_ID_AND_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGE_DEPTH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGE_IDS_BY_COMMUNITY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGE_IDS_BY_COMMUNITY_ID_AND_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGE_IDS_BY_THREAD_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGE_IDS_BY_THREAD_ID_AND_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGE_PROPERTIES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGE_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGES_BY_COMMUNITY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGES_BY_COMMUNITY_ID_AND_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGES_BY_THREAD_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_MESSAGES_BY_THREAD_ID_AND_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_PARENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_POPULAR_THREADS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_POPULAR_THREADS_BY_COMMUNITY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_RECURSIVE_CHILD_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_RECURSIVE_CHILDREN&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_RECUSIVE_MESSAGES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_ROOT_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_THREAD_COUNT_BY_COMMUNITY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_THREAD_COUNT_BY_COMMUNITY_ID_AND_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_THREAD_PROPERTIES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_THREAD_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_THREADS_BY_COMMUNITY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_THREADS_BY_COMMUNITY_ID_AND_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_GET_UNFILTERED_MESSAGE_PROPERTIES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_HAS_PARENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_IS_LEAF&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_MOVE_THREAD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_MOVE_THREAD_TO_CONTAINER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_REMOVE_ATTACHMENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_SET_MESSAGE_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_SET_THREAD_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_UPDATE_FORUM_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;FORUM_UPLOAD_ATTACHMENT_TO_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_ADD_ADMINISTRATOR_TO_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_ADD_MEMBER_TO_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_CREATE_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_DELETE_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_DELETE_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_GET_ADMINISTRATOR_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_GET_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_GET_GROUP_ADMINS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_GET_GROUP_BYNAME&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_GET_GROUP_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_GET_GROUP_MEMBERS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_GET_GROUP_NAMES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_GET_GROUP_NAMES_BOUNDED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_GET_GROUPS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_GET_PROPERTIES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_GET_USER_GROUP_NAMES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_GET_USER_GROUPS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_IS_READ_ONLY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_REMOVE_ADMINISTRATOR_FROM_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_REMOVE_MEMBER_FROM_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_SET_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;GROUP_UPDATE_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;IMSERVICE_CONFIGURE_COMPONENT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;IMSERVICE_GENERATE_NONCE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;IMSERVICE_TEST_CREDENTIALS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PLUGIN_GET_PLUGIN_INFO&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PLUGIN_INSTALL_PLUGIN&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PLUGIN_UNINSTALL_PLUGIN&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_ADD_ANONYMOUS_VOTE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_ADD_OPTION&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_ADD_USER_VOTE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_CHANGE_ANONYMOUS_VOTE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_CHANGE_USER_VOTE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_CREATE_POLL&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_DELETE_OPTION&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_DELETE_POLL&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_ACTIVE_POLL_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_ACTIVE_POLL_COUNT_BY_OBJECT_TYPE_AND_OBJECT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_ACTIVE_POLLS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_ACTIVE_POLLS_BY_OBJECT_TYPE_AND_OBJECT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_ANONYMOUS_VOTE_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_ANONYMOUS_VOTE_COUNT_BY_INDEX&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_ANONYMOUS_VOTE_INDICES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_ANONYMOUS_VOTES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_ANONYMOUS_VOTES_BY_INDEX&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_LIVE_POLL_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_LIVE_POLL_COUNT_BY_OBJECT_TYPE_AND_OBJECT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_LIVE_POLLS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_LIVE_POLLS_BY_OBJECT_TYPE_AND_OBJECT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_POLL&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_POLL_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_POLL_COUNT_BY_OBJECT_TYPE_AND_OBJECT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_POLLS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_POLLS_BY_OBJECT_TYPE_AND_OBJECT_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_USER_VOTE_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_USER_VOTE_COUNT_BY_INDEX&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_USER_VOTE_INDICES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_USER_VOTES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_USER_VOTES_BY_INDEX&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_VOTE_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_GET_VOTE_COUNT_BY_INDEX&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_HAS_ANONYMOUS_VOTED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_HAS_USER_VOTED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_IS_MODE_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_REMOVE_ANONYMOUS_VOTE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_REMOVE_USER_VOTE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_SET_MODE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_SET_OPTION&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_SET_OPTION_INDEX&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;POLL_UPDATE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_CREATE_FOLDER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_CREATE_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_DELETE_FOLDER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_DELETE_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_GET_FOLDER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_GET_FOLDERS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_GET_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_GET_MESSAGE_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_GET_MESSAGE_COUNT_FOR_FOLDER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_GET_MESSAGES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_GET_UNREAD_MESSAGE_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_GET_UNREAD_MESSAGE_COUNT_FOR_FOLDER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_IS_PRIVATE_MESSAGE_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_MOVE_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_SAVE_MESSAGE_AS_DRAFT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PRIVATE_MESSAGE_SEND_MESSAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_CREATE_PROFILE_FIELD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_DELETE_PROFILE_FIELD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_EDIT_PROFILE_FIELD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_EDIT_PROFILE_FIELD_OPTIONS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_GET_DEFAULT_FIELDS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_GET_PROFILE_FIELD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_GET_PROFILE_FIELDS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_SET_INDEX&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_GET_SIMILAR_USER_RESULTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_IS_SEARCH_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_SEARCH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_SEARCH_BOUNDED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_ADD_PROFILE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_DELETE_PROFILE_BY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_DELETE_PROFILE_BY_USER_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_DELETE_USER_STATUS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_GET_CURRENT_STATUS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_PROFILE_FIELD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_GET_PROFILE_IMAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_GET_RECENT_STATUS_UPDATES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_GET_RECENT_STATUS_UPDATES_FOR_USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_GET_STATUS_MESSAGE_MAX_LENGTH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_GET_TODAYS_STATUS_UPDATES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_GET_USER_STATUS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_GET_YESTERDAYS_STATUS_UPDATES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_IS_STATUS_UPDATES_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_SET_CURRENT_STATUS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_SET_PROFILE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROFILE_SET_PROFILE_IMAGE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROJECT_CREATE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROJECT_DELETE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROJECT_GET_CHECK_POINTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROJECT_GET_PROJECT_BY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROJECT_GET_PROJECT_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROJECT_GET_PROJECTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROJECT_GET_USER_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROJECT_SET_CHECK_POINTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;PROJECT_UPDATE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_ADD_RATING&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_CREATE_RATING&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_GET_AVAILABLE_RATINGCOUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_GET_AVAILABLE_RATINGS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_GET_MEAN_RATING&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_GET_RATING&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_GET_RATING_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_GET_RATING_FROM_SCORE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_GET_RATINGS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_HAS_RATED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_IS_RATINGS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_REMOVE_RATING&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RATINGS_SET_RATINGS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;REFERENCE_ADD_REFERENCE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;REFERENCE_DELETE_ALL_REFERENCES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;REFERENCE_DELETE_ALL_REFERERS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;REFERENCE_DELETE_REFERENCE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;REFERENCE_GET_REFERENCES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;REFERENCE_GET_REFERERS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SEARCH_COUNT_QUICK_MESSAGESEARCHRESULTSBYCOMMUNITYID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SEARCH_COUNT_QUICK_SEARCHRESULTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SEARCH_COUNT_SEARCH_RESULTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SEARCH_COUNT_SEARCH_RESULTS_BY_COMMUNITY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SEARCH_QUICK_MESSAGE_SEARCH_BY_COMMUNITY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SEARCH_QUICK_SEARCH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SEARCH_SEARCH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SEARCH_SEARCH_BY_COMMUNITIES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_ADD_MEMBER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_CREATE_SOCIAL_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_DELETE_SOCIAL_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_GET_MEMBER_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_GET_MEMBERS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_GET_SOCIAL_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_GET_SOCIAL_GROUPBYNAME&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_GET_SOCIAL_GROUPCOUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_GET_SOCIAL_GROUPNAMES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_GET_SOCIAL_GROUPNAMESBOUNDED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_GET_SOCIAL_GROUPS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_GET_USER_SOCIALGROUPNAMES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_GET_USER_SOCIALGROUPS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_REMOVE_MEMBER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_SEARCH_SOCIAL_GROUPS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SOCIAL_GROUP_UPDATE_SOCIAL_GROUP&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_ADD_POINTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_ADD_POINTS_BY_CONTAINER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_CREATE_STATUS_LEVEL_POINT_BASED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_CREATE_STATUS_LEVEL_GROUP_BASED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_DELETE_STATUS_LEVEL&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_ALL_STATUS_LEVEL_SCENARIOS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_GROUP_STATUS_LEVEL&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_GROUP_STATUS_LEVELS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_LEADERS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_LEADERS_BY_STARTINDEX_AND_NUMRESULTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_LEADERS_BY_COMMUNITY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_LEADERS_BY_CONTAINER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_LEADERS_BY_COMMUNITY_BY_STARTINDEX_AND_NUMRESULTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_LEADERS_BY_CONTAINER_ITERABLE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_POINT_LEVEL&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_POINT_LEVEL_BY_COMMUNITY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_POINT_LEVEL_BY_CONTAINER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_POINT_STATUS_LEVELS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_STATUS_LEVEL&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_STATUS_LEVEL_BY_POINTS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_STATUS_LEVEL_SCENARIO_BY_CODE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_STATUS_LEVEL_SCENARIO_BY_CODE_ENCODED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_GET_USER_STATUS_LEVEL&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_IS_STATUS_LEVELS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_SET_STATUS_LEVELS_ENABLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;STATUS_LEVEL_UPDATE_STATUS_LEVEL_SCENARIO&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SYSTEM_DELETE_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SYSTEM_GET_PROPERTIES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SYSTEM_SAVE_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TAG_ADD_TAG&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TAG_CREATE_TAG&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TAG_GET_TAG_BY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TAG_GET_TAG_BY_NAME&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TAG_GET_TAGS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TAG_REMOVE_ALL_TAGS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TAG_REMOVE_TAG&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TASK_CREATE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TASK_CREATE_PERSONAL_TASK&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TASK_DELETE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TASK_GET_TASK_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TASK_GET_TASK_COUNT_WITH_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TASK_GET_TASK_BY_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TASK_GET_TASKS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TASK_GET_TASKS_BY_PROJECT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TASK_GET_TASKS_WITH_FILTER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TASK_GET_UNCOMPLETE_TASKS_BY_USER_ID&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;TASK_UPDATE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_CREATE_USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_CREATE_USER_WITH_USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_DELETE_USER_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_DISABLE_USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_ENABLE_USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_GET_USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_GET_USER_BY_EMAIL_ADDRESS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_GET_USER_BY_USER_NAME&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_GET_USER_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_GET_USER_NAMES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_GET_USER_PROPERTIES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_GET_USERS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_GET_USERS_BOUNDED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_IS_READ_ONLY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_SET_PASSWORD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_SET_USER_PROPERTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USER_UPDATE_USER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;VIDEO_CREATE_VIDEO&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;VIDEO_DELETE_VIDEO&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;VIDEO_GET_VIDEO&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;VIDEO_GET_VIDEOS_FOR_CONTAINER&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;VIDEO_UPDATE_VIDEO&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_CREATE_COMMUNITY_WATCH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_CREATE_THREAD_WATCH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_CREATE_USER_WATCH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_DELETE_WATCH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_DELETE_WATCHES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_GET_COMMUNITY_WATCH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_GET_COMMUNITY_WATCH_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_GET_COMMUNITY_WATCHES&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_GET_DELETE_DAYS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_GET_THREAD_WATCH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_GET_TOTAL_WATCH_COUNT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_GET_USER_WATCH&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_GET_WATCH_LIST&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_GET_WATCH_USERS&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_IS_COMMUNITY_WATCHED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_IS_THREAD_WATCHED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_IS_USER_WATCHED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;WATCH_SET_DELETE_DAYS&quot;&gt;&lt;/xs:enumeration&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;\#\[[^\]]+\]&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+&lt;/xs:schema&gt;</pre>
+</div><!-- jd-descr -->
+
+<div id="footer">
+Generated by <a href="http://www.mulesoft.com/devkit">Mule DevKit</a>. Document generation technology based on <a href="http://code.google.com/p/doclava/">Google's Doclava</a>.
+</div> <!-- end footer -->
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize mule-developer-docs.js */
+</script>
+
+</body>
+</html>

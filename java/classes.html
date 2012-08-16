@@ -64,6 +64,8 @@
 
 
 
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -85,6 +87,7 @@
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 <script src="../assets/search_autocomplete.js" type="text/javascript"></script>
 <script src="../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../assets/jquery-toc.js" type="text/javascript"></script>
 <script src="../assets/mule-developer-docs.js" type="text/javascript"></script>
 <script src="../assets/prettify.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -103,6 +106,27 @@
     #resize-packages-nav{border-bottom:3px solid #666;}
   </style>
 </noscript>
+<script type="text/javascript" charset="utf-8">
+  var is_ssl = ("https:" == document.location.protocol);
+  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";
+  feedback_widget_options.company = "mulesoft";
+  feedback_widget_options.placement = "right";
+  feedback_widget_options.color = "#2F74AE";
+  feedback_widget_options.style = "question";
+
+  feedback_widget_options.tag = "Mule Jive Connector";
+
+  feedback_widget_options.limit = "3";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
 </head>
 
 
@@ -181,6 +205,8 @@
     <li class="api apilevel-">
   <a href="../java/org/mule/modules/jive/package-summary.html">org.mule.modules.jive</a></li>
     <li class="api apilevel-">
+  <a href="../java/org/mule/modules/jive/adapters/package-summary.html">org.mule.modules.jive.adapters</a></li>
+    <li class="api apilevel-">
   <a href="../java/org/mule/modules/jive/api/package-summary.html">org.mule.modules.jive.api</a></li>
     <li class="api apilevel-">
   <a href="../java/org/mule/modules/jive/api/impl/package-summary.html">org.mule.modules.jive.api.impl</a></li>
@@ -190,6 +216,10 @@
   <a href="../java/org/mule/modules/jive/config/package-summary.html">org.mule.modules.jive.config</a></li>
     <li class="api apilevel-">
   <a href="../java/org/mule/modules/jive/config/spring/package-summary.html">org.mule.modules.jive.config.spring</a></li>
+    <li class="api apilevel-">
+  <a href="../java/org/mule/modules/jive/processors/package-summary.html">org.mule.modules.jive.processors</a></li>
+    <li class="api apilevel-">
+  <a href="../java/org/mule/modules/jive/transformers/package-summary.html">org.mule.modules.jive.transformers</a></li>
               </ul><br/>
             </div> <!-- end packages -->
           </div> <!-- end resize-packages -->
@@ -258,25 +288,49 @@
     
     
         <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/CountDefinitionParser.html">CountDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/spring/CountDefinitionParser.html">CountDefinitionParser</a></td>
             <td class="jd-descrcol" width="100%">&nbsp;</td>
         </tr>
     
     
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/CountMessageProcessor.html">CountMessageProcessor</a></td>
             <td class="jd-descrcol" width="100%">CountMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#count(org.mule.modules.jive.api.EntityTypeName)">count(org.mule.modules.jive.api.EntityTypeName)</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
         </tr>
     
     
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/processors/CountMessageProcessor.html">CountMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">CountMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#count(org.mule.modules.jive.api.EntityTypeName)">count(org.mule.modules.jive.api.EntityTypeName)</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
+        </tr>
+    
+    
         <tr class="alt-color api apilevel-" >
-            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/spring/CreateDefinitionParser.html">CreateDefinitionParser</a></td>
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/CreateDefinitionParser.html">CreateDefinitionParser</a></td>
             <td class="jd-descrcol" width="100%">&nbsp;</td>
         </tr>
     
     
         <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/spring/CreateDefinitionParser.html">CreateDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/CreateMessageProcessor.html">CreateMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">CreateMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#create(org.mule.modules.jive.api.EntityTypeName, java.util.Map<java.lang.String, java.lang.Object>)">create(org.mule.modules.jive.api.EntityTypeName, java.util.Map)</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/processors/CreateMessageProcessor.html">CreateMessageProcessor</a></td>
             <td class="jd-descrcol" width="100%">CreateMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#create(org.mule.modules.jive.api.EntityTypeName, java.util.Map<java.lang.String, java.lang.Object>)">create(org.mule.modules.jive.api.EntityTypeName, java.util.Map)</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
         </tr>
     
@@ -306,18 +360,24 @@
     
     
         <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/transformers/CustomOpEnumTransformer.html">CustomOpEnumTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/api/impl/CustomPayloadOperation.html">CustomPayloadOperation</a></td>
             <td class="jd-descrcol" width="100%"><code><a href="../java/org/mule/modules/jive/api/PayloadOperation.html">PayloadOperation</a></code> with custom properties &nbsp;</td>
         </tr>
     
     
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/api/impl/CustomTypeOperation.html">CustomTypeOperation</a></td>
             <td class="jd-descrcol" width="100%"><code><a href="../java/org/mule/modules/jive/api/TypeOperation.html">TypeOperation</a></code> with custom properties&nbsp;</td>
         </tr>
     
     
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/api/impl/CustomUpdateOperation.html">CustomUpdateOperation</a></td>
             <td class="jd-descrcol" width="100%"><code><a href="../java/org/mule/modules/jive/api/PayloadOperation.html">PayloadOperation</a></code> with custom properties&nbsp;</td>
         </tr>
@@ -331,13 +391,25 @@
     
     
         <tr class="alt-color api apilevel-" >
-            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/spring/DeleteDefinitionParser.html">DeleteDefinitionParser</a></td>
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/DeleteDefinitionParser.html">DeleteDefinitionParser</a></td>
             <td class="jd-descrcol" width="100%">&nbsp;</td>
         </tr>
     
     
         <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/spring/DeleteDefinitionParser.html">DeleteDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/DeleteMessageProcessor.html">DeleteMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">DeleteMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#delete(org.mule.modules.jive.api.EntityTypeName, java.lang.String)">delete(org.mule.modules.jive.api.EntityTypeName, java.lang.String)</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/processors/DeleteMessageProcessor.html">DeleteMessageProcessor</a></td>
             <td class="jd-descrcol" width="100%">DeleteMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#delete(org.mule.modules.jive.api.EntityTypeName, java.lang.String)">delete(org.mule.modules.jive.api.EntityTypeName, java.lang.String)</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
         </tr>
     
@@ -375,8 +447,20 @@
     
     
         <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/transformers/EntityTypeNameEnumTransformer.html">EntityTypeNameEnumTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/api/EntityTypes.html">EntityTypes</a></td>
             <td class="jd-descrcol" width="100%">Class that register and hold all the services and their respective crud operations&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/ExecuteDefinitionParser.html">ExecuteDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
         </tr>
     
     
@@ -392,6 +476,12 @@
         </tr>
     
     
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/processors/ExecuteMessageProcessor.html">ExecuteMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">ExecuteMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#execute(org.mule.modules.jive.CustomOp, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String)">execute(org.mule.modules.jive.CustomOp, java.util.Map, java.lang.String)</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
+        </tr>
+    
+    
 </table>
 
 
@@ -400,25 +490,49 @@
     
     
         <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/GetDefinitionParser.html">GetDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/spring/GetDefinitionParser.html">GetDefinitionParser</a></td>
             <td class="jd-descrcol" width="100%">&nbsp;</td>
         </tr>
     
     
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/GetMessageProcessor.html">GetMessageProcessor</a></td>
             <td class="jd-descrcol" width="100%">GetMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#get(org.mule.modules.jive.api.EntityTypeName, java.lang.String)">get(org.mule.modules.jive.api.EntityTypeName, java.lang.String)</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
         </tr>
     
     
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/processors/GetMessageProcessor.html">GetMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">GetMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#get(org.mule.modules.jive.api.EntityTypeName, java.lang.String)">get(org.mule.modules.jive.api.EntityTypeName, java.lang.String)</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
+        </tr>
+    
+    
         <tr class="alt-color api apilevel-" >
-            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/spring/GetUserIdDefinitionParser.html">GetUserIdDefinitionParser</a></td>
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/GetUserIdDefinitionParser.html">GetUserIdDefinitionParser</a></td>
             <td class="jd-descrcol" width="100%">&nbsp;</td>
         </tr>
     
     
         <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/spring/GetUserIdDefinitionParser.html">GetUserIdDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/GetUserIdMessageProcessor.html">GetUserIdMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">GetUserIdMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#getUserId()">getUserId()</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/processors/GetUserIdMessageProcessor.html">GetUserIdMessageProcessor</a></td>
             <td class="jd-descrcol" width="100%">GetUserIdMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#getUserId()">getUserId()</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
         </tr>
     
@@ -476,8 +590,20 @@
     
     
         <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/adapters/JiveModuleCapabilitiesAdapter.html">JiveModuleCapabilitiesAdapter</a></td>
+            <td class="jd-descrcol" width="100%">A <code>JiveModuleCapabilitiesAdapter</code> is a wrapper around <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code> that implements org.mule.api.Capabilities interface.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/JiveModuleCapabilitiesAdapter.html">JiveModuleCapabilitiesAdapter</a></td>
             <td class="jd-descrcol" width="100%">A <code>JiveModuleCapabilitiesAdapter</code> is a wrapper around <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code> that implements org.mule.api.Capabilities interface.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/JiveModuleConfigDefinitionParser.html">JiveModuleConfigDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
         </tr>
     
     
@@ -488,8 +614,20 @@
     
     
         <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/adapters/JiveModuleLifecycleAdapter.html">JiveModuleLifecycleAdapter</a></td>
+            <td class="jd-descrcol" width="100%">A <code>JiveModuleLifecycleAdapter</code> is a wrapper around <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code> that adds lifecycle methods to the pojo.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/JiveModuleLifecycleAdapter.html">JiveModuleLifecycleAdapter</a></td>
             <td class="jd-descrcol" width="100%">A <code>JiveModuleLifecycleAdapter</code> is a wrapper around <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code> that adds lifecycle methods to the pojo.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/JiveModuleNamespaceHandler.html">JiveModuleNamespaceHandler</a></td>
+            <td class="jd-descrcol" width="100%">Registers bean definitions parsers for handling elements in <code>http://www.mulesoft.org/schema/mule/jive</code>.&nbsp;</td>
         </tr>
     
     
@@ -609,13 +747,25 @@
     
     
         <tr class="alt-color api apilevel-" >
-            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/spring/UpdateDefinitionParser.html">UpdateDefinitionParser</a></td>
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/UpdateDefinitionParser.html">UpdateDefinitionParser</a></td>
             <td class="jd-descrcol" width="100%">&nbsp;</td>
         </tr>
     
     
         <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/spring/UpdateDefinitionParser.html">UpdateDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
             <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/config/UpdateMessageProcessor.html">UpdateMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">UpdateMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#update(org.mule.modules.jive.api.EntityTypeName, java.util.Map<java.lang.String, java.lang.Object>)">update(org.mule.modules.jive.api.EntityTypeName, java.util.Map)</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/modules/jive/processors/UpdateMessageProcessor.html">UpdateMessageProcessor</a></td>
             <td class="jd-descrcol" width="100%">UpdateMessageProcessor invokes the <code><a href="../java/org/mule/modules/jive/JiveModule.html#update(org.mule.modules.jive.api.EntityTypeName, java.util.Map<java.lang.String, java.lang.Object>)">update(org.mule.modules.jive.api.EntityTypeName, java.util.Map)</a></code> method in <code><a href="../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code>.&nbsp;</td>
         </tr>
     

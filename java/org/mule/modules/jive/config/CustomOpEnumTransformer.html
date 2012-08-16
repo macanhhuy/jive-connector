@@ -63,6 +63,8 @@
 
 
 
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -84,6 +86,7 @@
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 <script src="../../../../../../assets/search_autocomplete.js" type="text/javascript"></script>
 <script src="../../../../../../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../../../../../../assets/jquery-toc.js" type="text/javascript"></script>
 <script src="../../../../../../assets/mule-developer-docs.js" type="text/javascript"></script>
 <script src="../../../../../../assets/prettify.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -102,6 +105,27 @@
     #resize-packages-nav{border-bottom:3px solid #666;}
   </style>
 </noscript>
+<script type="text/javascript" charset="utf-8">
+  var is_ssl = ("https:" == document.location.protocol);
+  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";
+  feedback_widget_options.company = "mulesoft";
+  feedback_widget_options.placement = "right";
+  feedback_widget_options.color = "#2F74AE";
+  feedback_widget_options.style = "question";
+
+  feedback_widget_options.tag = "Mule Jive Connector";
+
+  feedback_widget_options.limit = "3";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
 </head>
 
 <body class="">
@@ -181,6 +205,8 @@
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/jive/package-summary.html">org.mule.modules.jive</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/jive/adapters/package-summary.html">org.mule.modules.jive.adapters</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/jive/api/package-summary.html">org.mule.modules.jive.api</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/jive/api/impl/package-summary.html">org.mule.modules.jive.api.impl</a></li>
@@ -190,6 +216,10 @@
   <a href="../../../../../../java/org/mule/modules/jive/config/package-summary.html">org.mule.modules.jive.config</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/jive/config/spring/package-summary.html">org.mule.modules.jive.config.spring</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/jive/processors/package-summary.html">org.mule.modules.jive.processors</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/jive/transformers/package-summary.html">org.mule.modules.jive.transformers</a></li>
               </ul><br/>
             </div> <!-- end packages -->
           </div> <!-- end resize-packages -->
@@ -199,16 +229,25 @@
               
     <li><h2>Classes</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/CountDefinitionParser.html">CountDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/CountMessageProcessor.html">CountMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/CreateDefinitionParser.html">CreateDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/CreateMessageProcessor.html">CreateMessageProcessor</a></li>
           <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/CustomOpEnumTransformer.html">CustomOpEnumTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/DeleteDefinitionParser.html">DeleteDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/DeleteMessageProcessor.html">DeleteMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/EntityTypeNameEnumTransformer.html">EntityTypeNameEnumTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/ExecuteDefinitionParser.html">ExecuteDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/ExecuteMessageProcessor.html">ExecuteMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/GetDefinitionParser.html">GetDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/GetMessageProcessor.html">GetMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/GetUserIdDefinitionParser.html">GetUserIdDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/GetUserIdMessageProcessor.html">GetUserIdMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/JiveModuleCapabilitiesAdapter.html">JiveModuleCapabilitiesAdapter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/JiveModuleConfigDefinitionParser.html">JiveModuleConfigDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/JiveModuleLifecycleAdapter.html">JiveModuleLifecycleAdapter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/JiveModuleNamespaceHandler.html">JiveModuleNamespaceHandler</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/UpdateDefinitionParser.html">UpdateDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/jive/config/UpdateMessageProcessor.html">UpdateMessageProcessor</a></li>
       </ul>
     </li>
@@ -329,6 +368,11 @@
   
   
    
+  
+  
+  
+
+  
   
   
   
@@ -631,16 +675,16 @@ org.mule.api.lifecycle.Initialisable
 <tr class="api apilevel-" >
 <td colspan="12">
 
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-org.mule.api.transformer.DiscoverableTransformer" class="jd-expando-trigger closed"
-          ><img id="inherited-constants-org.mule.api.transformer.DiscoverableTransformer-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-org.mule.api.transformer.Converter" class="jd-expando-trigger closed"
+          ><img id="inherited-constants-org.mule.api.transformer.Converter-trigger"
           src="../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>From interface
-org.mule.api.transformer.DiscoverableTransformer
-<div id="inherited-constants-org.mule.api.transformer.DiscoverableTransformer">
-  <div id="inherited-constants-org.mule.api.transformer.DiscoverableTransformer-list"
+org.mule.api.transformer.Converter
+<div id="inherited-constants-org.mule.api.transformer.Converter">
+  <div id="inherited-constants-org.mule.api.transformer.Converter-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-constants-org.mule.api.transformer.DiscoverableTransformer-summary" style="display: none;">
+  <div id="inherited-constants-org.mule.api.transformer.Converter-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -670,6 +714,8 @@ org.mule.api.transformer.DiscoverableTransformer
   </div>
 </div>
 </td></tr>
+
+
 
 
 
@@ -900,6 +946,8 @@ org.mule.transformer.AbstractTransformer
 
 
 
+
+
 </table>
 
 
@@ -1056,22 +1104,6 @@ From class
             
             
             
-            Object</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">checkReturnClass</span>(Object arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
@@ -1081,7 +1113,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             abstract
             
@@ -1097,7 +1129,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1113,7 +1145,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1129,7 +1161,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1145,7 +1177,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1161,7 +1193,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1177,7 +1209,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1193,7 +1225,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1209,7 +1241,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1225,7 +1257,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1241,7 +1273,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1257,7 +1289,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1273,7 +1305,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1289,7 +1321,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1305,7 +1337,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1321,7 +1353,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1337,7 +1369,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1353,7 +1385,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1369,7 +1401,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1385,7 +1417,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1401,7 +1433,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1417,7 +1449,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1433,7 +1465,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1449,7 +1481,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1465,7 +1497,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1481,7 +1513,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1497,7 +1529,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             synchronized
@@ -1513,7 +1545,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1529,7 +1561,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1545,7 +1577,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1561,7 +1593,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1577,7 +1609,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1593,7 +1625,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1609,7 +1641,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1625,7 +1657,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1641,7 +1673,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1657,7 +1689,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1673,7 +1705,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1689,7 +1721,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1705,7 +1737,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -2257,19 +2289,19 @@ From interface
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.transformer.DiscoverableTransformer" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.transformer.DiscoverableTransformer-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.transformer.Converter" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.api.transformer.Converter-trigger"
           src="../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From interface
 
-  org.mule.api.transformer.DiscoverableTransformer
+  org.mule.api.transformer.Converter
 
-<div id="inherited-methods-org.mule.api.transformer.DiscoverableTransformer">
-  <div id="inherited-methods-org.mule.api.transformer.DiscoverableTransformer-list"
+<div id="inherited-methods-org.mule.api.transformer.Converter">
+  <div id="inherited-methods-org.mule.api.transformer.Converter-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-org.mule.api.transformer.DiscoverableTransformer-summary" style="display: none;">
+  <div id="inherited-methods-org.mule.api.transformer.Converter-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -2310,6 +2342,8 @@ From interface
   </div>
 </div>
 </td></tr>
+
+
 
 
 
