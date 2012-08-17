@@ -18,6 +18,8 @@ import com.sun.jersey.api.client.WebResource;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**Class that holds the {@link WebResource} and make the requests.*/
 public class JiveClient
@@ -29,6 +31,8 @@ public class JiveClient
     private final XmlMapper mapper = new XmlMapper();
     /**The jersey {@link WebResource} to perform the requests*/
     private final WebResource resource;
+    
+    private final Logger logger = LoggerFactory.getLogger(JiveClient.class);
     
     /**
      * @param gateway 
@@ -63,13 +67,17 @@ public class JiveClient
      */
     public Map<String, Object> doRequest(final String uri, final String method, final String pathParams)
     {
-        ClientResponse result = resource.path(JiveUris.getOperationUri(uri, pathParams)).method(method, ClientResponse.class);
+        String completeUri = JiveUris.getOperationUri(uri, pathParams);
+        ClientResponse result = resource.path(completeUri).method(method, ClientResponse.class);
+        String response = result.getEntity(String.class);
+        logger.trace("Request to: {}", completeUri);
+        logger.trace("Response: {}", response);
         if (result.getStatus() > serverMinAcceptableStatus)
         {
             throw new JiveGenericException(StringUtils.substringAfterLast(
-                StringUtils.substringBefore(result.getEntity(String.class), "</ns1:faultstring>"), ">"));
+                StringUtils.substringBefore(response, "</ns1:faultstring>"), ">"));
         }
-        return mapper.xml2map(result.getEntity(String.class));
+        return mapper.xml2map(response);
     }
 
     /**Executes an operation and extract the response from the xml from the given tagName.
