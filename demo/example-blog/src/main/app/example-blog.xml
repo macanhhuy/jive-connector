@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:twitter="http://www.mulesoft.org/schema/mule/twitter" xmlns:jive="http://www.mulesoft.org/schema/mule/jive" xmlns:context="http://www.springframework.org/schema/context" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="EE-3.3.0" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/twitter http://www.mulesoft.org/schema/mule/twitter/2.4/mule-twitter.xsd 
+http://www.mulesoft.org/schema/mule/jive http://www.mulesoft.org/schema/mule/jive/1.0/mule-jive.xsd 
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd 
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd ">
+    <context:property-placeholder location="mule.properties"/>
+    <jive:config name="Jive" gatewayUri="${jiveGatewayUri}" password="${jivePassword}" username="${jiveUsername}" doc:name="Jive"/>
+    <twitter:config name="Twitter" accessKey="${twitterAccessKey}" accessSecret="${twitterAccessSecret}" consumerKey="${twitterConsumerKey}" consumerSecret="${twitterConsumerSecret}" doc:name="Twitter"/>
+    <flow name="CreateBlog" doc:name="CreateBlog" doc:description="Get the new blog created and returns the id">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="jive-demo-create-blog" doc:name="HTTP"/>
+        <jive:get-user-id config-ref="Jive" doc:name="Jive"/>
+        <jive:create config-ref="Jive" type="BLOG" doc:name="Jive">
+            <jive:entity>
+                <jive:entity key="blogName">#[header:inbound:blogName]</jive:entity>
+                <jive:entity key="userID">#[payload]</jive:entity>
+                <jive:entity key="displayName">#[header:inbound:displayName]</jive:entity>
+            </jive:entity>
+        </jive:create>
+        <scripting:transformer doc:name="Groovy">
+            <scripting:script engine="Groovy">
+                <scripting:text><![CDATA["Blog " + payload['ID'] + " created!"]]></scripting:text>
+            </scripting:script>
+        </scripting:transformer>
+    </flow>
+    <flow name="CreateBlogPost" doc:name="CreateBlogPost" doc:description="Creates a blog post returning the new blog post id and objectType">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="jive-demo-create-blog-post" doc:name="HTTP"/>
+        <jive:get-user-id config-ref="Jive" doc:name="Jive"/>
+        <jive:execute config-ref="Jive" operation="BLOG_CREATE_BLOG_POST" doc:name="Jive">
+            <jive:entity>
+                <jive:entity key="body">#[header:inbound:subject]</jive:entity>
+                <jive:entity key="userID">#[payload]</jive:entity>
+                <jive:entity key="subject">#[header:inbound:subject]</jive:entity>
+                <jive:entity key="blogID">#[header:inbound:blogID]</jive:entity>
+            </jive:entity>
+        </jive:execute>
+        <set-variable variableName="postId" value="#[map-payload:ID]" doc:name="Variable"/>
+        <twitter:update-status config-ref="Twitter" status="Post #[variable:postId] created!" doc:name="Twitter"/>
+        <scripting:transformer doc:name="Groovy">
+            <scripting:script engine="Groovy">
+                <scripting:text><![CDATA["Post " + message.getInvocationProperty('postId') + " created!"]]></scripting:text>
+            </scripting:script>
+        </scripting:transformer>
+    </flow>
+    <flow name="CreateBlogPostComment" doc:name="CreateBlogPostComment" doc:description="Creates a comment into a blog post">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="jive-demo-create-blog-post-comment" doc:name="HTTP"/>
+        <jive:get-user-id config-ref="Jive" doc:name="Jive"/>
+        <jive:create config-ref="Jive" type="COMMENT" doc:name="Jive">
+            <jive:entity>
+                <jive:entity key="objectType">#[header:inbound:objectType]</jive:entity>
+                <jive:entity key="body">#[header:inbound:body]</jive:entity>
+                <jive:entity key="userID">#[payload]</jive:entity>
+                <jive:entity key="objectID">#[header:inbound:objectID]</jive:entity>
+            </jive:entity>
+        </jive:create>
+        <scripting:transformer doc:name="Groovy">
+            <scripting:script engine="Groovy">
+                <scripting:text><![CDATA["Comment " + payload['ID'] + " created!"]]></scripting:text>
+            </scripting:script>
+        </scripting:transformer>
+    </flow>
+</mule>
