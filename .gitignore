@@ -2,6 +2,8 @@
 /.settings
 /.project
 /.jruby
+.mule
+.metadata
 *.iml
 *.ipr
 *.iws
