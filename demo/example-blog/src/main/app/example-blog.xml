@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:twitter="http://www.mulesoft.org/schema/mule/twitter" xmlns:jive="http://www.mulesoft.org/schema/mule/jive" xmlns:context="http://www.springframework.org/schema/context" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="EE-3.3.0" xsi:schemaLocation="
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:twitter="http://www.mulesoft.org/schema/mule/twitter" xmlns:jive="http://www.mulesoft.org/schema/mule/jive" xmlns:context="http://www.springframework.org/schema/context" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="EE-3.3.0" xsi:schemaLocation="
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
 http://www.mulesoft.org/schema/mule/twitter http://www.mulesoft.org/schema/mule/twitter/2.4/mule-twitter.xsd 
 http://www.mulesoft.org/schema/mule/jive http://www.mulesoft.org/schema/mule/jive/1.0/mule-jive.xsd 
+http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd 
 http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd 
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd 
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd 
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd ">
     <context:property-placeholder location="mule.properties"/>
     <jive:config name="Jive" gatewayUri="${jiveGatewayUri}" password="${jivePassword}" username="${jiveUsername}" doc:name="Jive"/>
     <twitter:config name="Twitter" accessKey="${twitterAccessKey}" accessSecret="${twitterAccessSecret}" consumerKey="${twitterConsumerKey}" consumerSecret="${twitterConsumerSecret}" doc:name="Twitter"/>
+    <data-mapper:config name="create-new-comment" transformationGraphPath="create-new-comment.grf" doc:name="create-new-comment"/>
     <flow name="CreateBlog" doc:name="CreateBlog" doc:description="Get the new blog created and returns the id">
         <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="jive-demo-create-blog" doc:name="HTTP"/>
         <jive:get-user-id config-ref="Jive" doc:name="Jive"/>
@@ -62,5 +65,28 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
                 <scripting:text><![CDATA["Comment " + payload['ID'] + " created!"]]></scripting:text>
             </scripting:script>
         </scripting:transformer>
+    </flow>
+    <flow name="MigrateTimeline" doc:name="MigrateTimeline">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="jive-demo-migrate-timeline" mimeType="text/plain" doc:name="HTTP"/>
+        <set-variable variableName="blogID" value="#[header:inbound:blogID]" doc:name="blogID"/>
+        <jive:get-user-id config-ref="Jive" doc:name="Jive"/>
+        <set-variable variableName="userID" value="#[payload]" doc:name="userID"/>
+        <twitter:get-user-timeline config-ref="Twitter" count="40" doc:name="Twitter"/>
+        <foreach collection="#[payload]" doc:name="Foreach">
+            <data-mapper:transform config-ref="create-new-comment" doc:name="DataMapper">
+                <data-mapper:input-arguments>
+                    <data-mapper:input-argument key="userID">#[variable:userID]</data-mapper:input-argument>
+                    <data-mapper:input-argument key="blogID">#[variable:blogID]</data-mapper:input-argument>
+                </data-mapper:input-arguments>
+            </data-mapper:transform>
+            <jive:execute config-ref="Jive" operation="BLOG_CREATE_BLOG_POST" doc:name="Jive">
+                <jive:entity ref="#[payload]"/>
+            </jive:execute>
+        </foreach>
+        <scripting:component doc:name="Groovy">
+            <scripting:script engine="Groovy">
+                <scripting:text><![CDATA["The migration timeline is complete"]]></scripting:text>
+            </scripting:script>
+        </scripting:component>
     </flow>
 </mule>

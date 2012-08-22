@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="example-blog">
-    <global-element type="http://www.springframework.org/schema/context/property-placeholder" name="Property Placeholder" entity-id="af3d97b8-607a-471b-b362-2c7ae8516b9e">
+    <global-element type="http://www.springframework.org/schema/context/property-placeholder" name="Property Placeholder" entity-id="122b0579-bca9-4065-882d-001e45a1ffa8">
         <properties>
             <property value="mule.properties" name="location"/>
         </properties>
     </global-element>
-    <global-element type="http://www.mulesoft.org/schema/mule/jive/config" name="Jive" entity-id="e04a588d-2c54-4758-9f3a-a99304aea8ba">
+    <global-element type="http://www.mulesoft.org/schema/mule/jive/config" name="Jive" entity-id="2a50c46c-78f9-4786-b4eb-aa115cb26acc">
         <properties>
             <property value="Jive" name="name"/>
             <property value="${jiveGatewayUri}" name="gatewayUri"/>
@@ -14,7 +14,7 @@
             <property name="facade-ref"/>
         </properties>
     </global-element>
-    <global-element type="http://www.mulesoft.org/schema/mule/twitter/config" name="Twitter" entity-id="d71f34c0-dbb1-4d7e-b5aa-c5f6767607be">
+    <global-element type="http://www.mulesoft.org/schema/mule/twitter/config" name="Twitter" entity-id="bc2cc645-1076-4758-8c2f-105004ac5610">
         <properties>
             <property value="Twitter" name="name"/>
             <property value="${twitterAccessKey}" name="accessKey"/>
@@ -28,6 +28,12 @@
             <property name="proxyPassword"/>
         </properties>
     </global-element>
+    <global-element type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" name="create-new-comment" entity-id="c10d34fb-60d6-4a6c-a419-44c244280d69">
+        <properties>
+            <property value="create-new-comment" name="name"/>
+            <property value="create-new-comment.grf" name="transformationGraphPath"/>
+        </properties>
+    </global-element>
     <flow SubFlow="false" name="CreateBlog">
         <properties>
             <property name="processingStrategy2"/>
@@ -36,8 +42,8 @@
             <property name="tracking:enable-default-events"/>
         </properties>
         <description>Get the new blog created and returns the id</description>
-        <lane hadOnlyOneElement="false" entity-id="974d1943-2bf2-4fd4-919d-5157e2fb1453">
-            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="14abf428-d9ba-47fe-9b78-c4b6451faf9b">
+        <lane hadOnlyOneElement="false" entity-id="d80ac7d3-b30b-4916-b02c-324d1a39147b">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="c3eff57b-a9db-4ef2-ae4e-8b7dae0a9907">
                 <properties>
                     <property value="one-way" name="exchange-pattern"/>
                     <property value="request-response" name="exchange-pattern"/>
@@ -65,27 +71,27 @@
                     <property name="keep-alive"/>
                 </properties>
             </endpoint>
-            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="44961a30-ca89-4422-a4c8-8efa5bfaab59">
+            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="a8037b98-f201-492a-b335-1671088f3904">
                 <properties>
                     <property value="Jive" name="config-ref"/>
                     <property value="http://www.mulesoft.org/schema/mule/jive/get-user-id" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
                     <property value="Jive" name="config-ref"/>
                 </properties>
             </pattern>
-            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="0ba49231-2d8b-4add-9c60-4105751f576b">
+            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="8790870c-baee-401a-a33c-5f21925c736d">
                 <properties>
                     <property value="Jive" name="config-ref"/>
                     <property value="http://www.mulesoft.org/schema/mule/jive/create" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
                     <property value="Jive" name="config-ref"/>
                     <property value="BLOG" name="type"/>
                     <property-collection name="@http://www.mulesoft.org/schema/mule/jive/create-entitys;0">
-                        <property-collection name="@http://www.mulesoft.org/schema/mule/jive/create-entity;2">
-                            <property value="#[payload]" name="value"/>
-                            <property value="userID" name="key"/>
-                        </property-collection>
                         <property-collection name="@http://www.mulesoft.org/schema/mule/jive/create-entity;1">
                             <property value="#[header:inbound:blogName]" name="value"/>
                             <property value="blogName" name="key"/>
+                        </property-collection>
+                        <property-collection name="@http://www.mulesoft.org/schema/mule/jive/create-entity;2">
+                            <property value="#[payload]" name="value"/>
+                            <property value="userID" name="key"/>
                         </property-collection>
                         <property-collection name="@http://www.mulesoft.org/schema/mule/jive/create-entity;3">
                             <property value="#[header:inbound:displayName]" name="value"/>
@@ -94,7 +100,7 @@
                     </property-collection>
                 </properties>
             </pattern>
-            <pattern type="http://www.mulesoft.org/schema/mule/scripting/groovyTransformer" name="Groovy" entity-id="3520a570-aea9-4f04-b0cb-1f172e291254">
+            <pattern type="http://www.mulesoft.org/schema/mule/scripting/groovyTransformer" name="Groovy" entity-id="6df0e88f-1ae2-477e-9f96-e15c1138d1e0">
                 <properties>
                     <property name="returnClass"/>
                     <property name="ignoreBadInput"/>
@@ -116,8 +122,8 @@
             <property name="tracking:enable-default-events"/>
         </properties>
         <description>Creates a blog post returning the new blog post id and objectType</description>
-        <lane hadOnlyOneElement="false" entity-id="d7ffd4c7-3597-42d8-9901-7927e7dfd4b4">
-            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="811d0ee6-cd44-4ae4-b17d-2ec802d4c904">
+        <lane hadOnlyOneElement="false" entity-id="2a50344a-4a5a-4e3e-ae5a-0d39d8658820">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="568af113-10e9-45e2-b844-d864d5f74821">
                 <properties>
                     <property value="one-way" name="exchange-pattern"/>
                     <property value="request-response" name="exchange-pattern"/>
@@ -145,14 +151,14 @@
                     <property name="keep-alive"/>
                 </properties>
             </endpoint>
-            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="8b0fa0a5-69fa-43ed-8cd4-42f0696e5964">
+            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="07350d6e-6a29-4ba8-bb11-7a1c04b1d94a">
                 <properties>
                     <property value="Jive" name="config-ref"/>
                     <property value="http://www.mulesoft.org/schema/mule/jive/get-user-id" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
                     <property value="Jive" name="config-ref"/>
                 </properties>
             </pattern>
-            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="ae1690f9-df05-417c-b009-49613c7d4094">
+            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="04ee4e97-4f4c-4b3c-a089-9ecf7aaf7450">
                 <properties>
                     <property value="Jive" name="config-ref"/>
                     <property value="http://www.mulesoft.org/schema/mule/jive/execute" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
@@ -179,14 +185,14 @@
                     </property-collection>
                 </properties>
             </pattern>
-            <pattern type="http://www.mulesoft.org/schema/mule/core/variable-transformer" name="Variable" entity-id="27369d8d-da7a-4ee1-8886-f53f0fb05687">
+            <pattern type="http://www.mulesoft.org/schema/mule/core/variable-transformer" name="Variable" entity-id="08b906ce-5972-47f6-a106-2c972cb64ff5">
                 <properties>
                     <property value="http://www.mulesoft.org/schema/mule/core/set-variable" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
                     <property value="postId" name="variableName"/>
                     <property value="#[map-payload:ID]" name="value"/>
                 </properties>
             </pattern>
-            <pattern type="http://www.mulesoft.org/schema/mule/twitter/twitter-connector" name="Twitter" entity-id="af95587c-0367-40de-aa4a-3a565646c3aa">
+            <pattern type="http://www.mulesoft.org/schema/mule/twitter/twitter-connector" name="Twitter" entity-id="08384392-3cf8-4e3a-a496-c241a2a802db">
                 <properties>
                     <property value="Twitter" name="config-ref"/>
                     <property value="http://www.mulesoft.org/schema/mule/twitter/update-status" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
@@ -197,7 +203,7 @@
                     <property name="longitude"/>
                 </properties>
             </pattern>
-            <pattern type="http://www.mulesoft.org/schema/mule/scripting/groovyTransformer" name="Groovy" entity-id="eaefa840-6ce4-4cbd-9d93-5d33929bb5fc">
+            <pattern type="http://www.mulesoft.org/schema/mule/scripting/groovyTransformer" name="Groovy" entity-id="0553bd20-cccf-41c4-a8b4-6633ce84a3f8">
                 <properties>
                     <property name="returnClass"/>
                     <property name="ignoreBadInput"/>
@@ -219,8 +225,8 @@
             <property name="tracking:enable-default-events"/>
         </properties>
         <description>Creates a comment into a blog post</description>
-        <lane hadOnlyOneElement="false" entity-id="6b0db9d7-7ae9-4169-96da-f8512dde11c9">
-            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="fab34bee-6a1d-46d0-8862-7f2d892ad440">
+        <lane hadOnlyOneElement="false" entity-id="f402268d-d2fd-43fb-b2a1-57b16ffb140e">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="11ab04ff-dcca-40eb-8cbe-f74642d50d14">
                 <properties>
                     <property value="one-way" name="exchange-pattern"/>
                     <property value="request-response" name="exchange-pattern"/>
@@ -248,27 +254,27 @@
                     <property name="keep-alive"/>
                 </properties>
             </endpoint>
-            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="61ffad09-dcd8-4ee3-a483-aed6d66dd10e">
+            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="62f1e631-79ed-44f0-ab1d-82c1687eaf06">
                 <properties>
                     <property value="Jive" name="config-ref"/>
                     <property value="http://www.mulesoft.org/schema/mule/jive/get-user-id" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
                     <property value="Jive" name="config-ref"/>
                 </properties>
             </pattern>
-            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="9a108e4c-4218-4233-b8da-640e32f8385b">
+            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="f8d1c1de-72b6-43c5-9e5f-84ce2e97b83a">
                 <properties>
                     <property value="Jive" name="config-ref"/>
                     <property value="http://www.mulesoft.org/schema/mule/jive/create" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
                     <property value="Jive" name="config-ref"/>
                     <property value="COMMENT" name="type"/>
                     <property-collection name="@http://www.mulesoft.org/schema/mule/jive/create-entitys;0">
-                        <property-collection name="@http://www.mulesoft.org/schema/mule/jive/create-entity;2">
-                            <property value="#[header:inbound:body]" name="value"/>
-                            <property value="body" name="key"/>
-                        </property-collection>
                         <property-collection name="@http://www.mulesoft.org/schema/mule/jive/create-entity;1">
                             <property value="#[header:inbound:objectType]" name="value"/>
                             <property value="objectType" name="key"/>
+                        </property-collection>
+                        <property-collection name="@http://www.mulesoft.org/schema/mule/jive/create-entity;2">
+                            <property value="#[header:inbound:body]" name="value"/>
+                            <property value="body" name="key"/>
                         </property-collection>
                         <property-collection name="@http://www.mulesoft.org/schema/mule/jive/create-entity;3">
                             <property value="#[payload]" name="value"/>
@@ -281,7 +287,7 @@
                     </property-collection>
                 </properties>
             </pattern>
-            <pattern type="http://www.mulesoft.org/schema/mule/scripting/groovyTransformer" name="Groovy" entity-id="b5825c31-3fb7-4f82-b4e6-5cdf5b351c80">
+            <pattern type="http://www.mulesoft.org/schema/mule/scripting/groovyTransformer" name="Groovy" entity-id="0a4270a5-2c4e-49b2-946b-a83490a7270f">
                 <properties>
                     <property name="returnClass"/>
                     <property name="ignoreBadInput"/>
@@ -289,6 +295,134 @@
                     <property name="mimeType"/>
                     <property-collection name="@http://www.mulesoft.org/schema/mule/scripting/script;0">
                         <property value="&quot;Comment &quot; + payload['ID'] + &quot; created!&quot;" name="text"/>
+                        <property value="Groovy" name="engine"/>
+                    </property-collection>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="MigrateTimeline">
+        <properties>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+        </properties>
+        <lane hadOnlyOneElement="false" entity-id="c199a2c2-d320-41da-97ec-ca14e04e72fd">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="5ac903f7-26cb-4697-880f-478682ef212e">
+                <properties>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property name="httpLabel"/>
+                    <property value="localhost" name="host"/>
+                    <property value="8081" name="port"/>
+                    <property value="jive-demo-migrate-timeline" name="path"/>
+                    <property name="method"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="address"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property value="text/plain" name="mimeType"/>
+                    <property name="responseTimeout"/>
+                    <property name="followRedirects"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="responseTransformer-refs"/>
+                    <property name="user"/>
+                    <property name="password"/>
+                    <property name="contentType"/>
+                    <property name="keep-alive"/>
+                </properties>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/core/variable-transformer" name="blogID" entity-id="a37dae56-c07d-49c8-868d-b3bf720a1a35">
+                <properties>
+                    <property value="http://www.mulesoft.org/schema/mule/core/set-variable" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="blogID" name="variableName"/>
+                    <property value="#[header:inbound:blogID]" name="value"/>
+                </properties>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="f67e0fb4-ee75-48d2-b829-de8b004400eb">
+                <properties>
+                    <property value="Jive" name="config-ref"/>
+                    <property value="http://www.mulesoft.org/schema/mule/jive/get-user-id" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="Jive" name="config-ref"/>
+                </properties>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/core/variable-transformer" name="userID" entity-id="cb7c691c-147c-44e4-b819-94a91a67adee">
+                <properties>
+                    <property value="http://www.mulesoft.org/schema/mule/core/set-variable" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="userID" name="variableName"/>
+                    <property value="#[payload]" name="value"/>
+                </properties>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/twitter/twitter-connector" name="Twitter" entity-id="25ec2c2e-df20-4733-ab69-013f4cc19b48">
+                <properties>
+                    <property value="Twitter" name="config-ref"/>
+                    <property value="http://www.mulesoft.org/schema/mule/twitter/get-user-timeline" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="Twitter" name="config-ref"/>
+                    <property name="page"/>
+                    <property value="40" name="count"/>
+                    <property name="sinceId"/>
+                </properties>
+            </pattern>
+            <scope type="http://www.mulesoft.org/schema/mule/core/foreach" name="Foreach" entity-id="3c528747-8a2c-4f19-96fa-c30d08b8d5ec">
+                <properties>
+                    <property value="#[payload]" name="collection"/>
+                    <property name="counterVariableName"/>
+                    <property name="batchSize"/>
+                    <property name="rootMessageVariableName"/>
+                </properties>
+                <compartment entity-id="29ac44e4-4513-4f7e-a99c-7029f4a39abd">
+                    <lane hadOnlyOneElement="false" entity-id="93a23969-538a-4674-ad31-67a2f9744289">
+                        <pattern type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" name="DataMapper" entity-id="19c58555-2f95-4337-9cb8-119899f8d4e5">
+                            <properties>
+<property value="create-new-comment" name="config-ref"/>
+<property value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+<property value="create-new-comment" name="config-ref"/>
+<property name="input-ref"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-arguments;0">
+    <property value="true" name="isProcessed$$$$"/>
+    <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-argument;1">
+        <property value="#[variable:userID]" name="value"/>
+        <property value="userID" name="key"/>
+        <property value="true" name="isProcessed$$$$"/>
+    </property-collection>
+    <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-argument;2">
+        <property value="#[variable:blogID]" name="value"/>
+        <property value="blogID" name="key"/>
+        <property value="true" name="isProcessed$$$$"/>
+    </property-collection>
+</property-collection>
+                            </properties>
+                        </pattern>
+                        <pattern type="http://www.mulesoft.org/schema/mule/jive/jive-connector" name="Jive" entity-id="f7dc296e-e766-42b4-91c4-84e30a9b2271">
+                            <properties>
+<property value="" name="id"/>
+<property value="#[payload]" name="ref"/>
+<property value="BLOG_CREATE_BLOG_POST" name="operation"/>
+<property value="http://www.mulesoft.org/schema/mule/jive/execute" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+<property value="Jive" name="config-ref"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/jive/execute-entitys;1">
+    <property value="#[payload]" name="ref"/>
+    <property value="true" name="isProcessed$$$$"/>
+</property-collection>
+                            </properties>
+                            <description></description>
+                        </pattern>
+                    </lane>
+                </compartment>
+            </scope>
+            <pattern type="http://www.mulesoft.org/schema/mule/scripting/groovyComponent" name="Groovy" entity-id="53808b99-1244-4f57-8b7a-00efec5ec7f5">
+                <properties>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/scripting/script;0">
+                        <property value="&quot;The migration timeline is complete&quot;" name="text"/>
+                        <property value="Groovy" name="engine"/>
+                    </property-collection>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/scripting/script-for-properties;0">
+                        <property value="&quot;The migration timeline is complete&quot;" name="text"/>
                         <property value="Groovy" name="engine"/>
                     </property-collection>
                 </properties>

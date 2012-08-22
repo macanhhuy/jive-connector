@@ -8,5 +8,6 @@
 	<classpathentry kind="src" path="src/test/resources"/>
 	<classpathentry kind="con" path="MULE_LIB/Netsuite"/>
 	<classpathentry kind="con" path="MULE_LIB/Twitter"/>
+	<classpathentry kind="con" path="MULE_LIB/Jive"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

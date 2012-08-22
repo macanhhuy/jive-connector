@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Graph author="gaston" created="Tue Aug 21 11:39:03 ART 2012" guiVersion="3.3.0.M2" id="1345574940025" licenseCode="Unlicensed" licenseType="Unknown" modified="Tue Aug 21 11:39:03 ART 2012" modifiedBy="gaston" name="create-new-comment" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __sourcePath="{}/object/place/boundingBoxCoordinates" _dataStructure="MULTI_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="3" _type="Input" id="Metadata5">
+<Record fieldDelimiter="|" name="boundingBoxCoordinates" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/retweetedStatus/place/boundingBoxCoordinates" _dataStructure="MULTI_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="5" _type="Input" id="Metadata9">
+<Record fieldDelimiter="|" name="boundingBoxCoordinates" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/user/status/place/boundingBoxCoordinates" _dataStructure="MULTI_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="11" _type="Input" id="Metadata18">
+<Record fieldDelimiter="|" name="boundingBoxCoordinates" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/place/boundingBoxCoordinates/item" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata5" _parent_id="__parent_id" _position="0" _type="Input" id="Metadata6">
+<Record fieldDelimiter="|" name="GeoLocation" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/place/boundingBoxCoordinates/item/latitude" label="latitude" name="latitude" type="number"/>
+<Field __sourcePath="{}/object/place/boundingBoxCoordinates/item/longitude" label="longitude" name="longitude" type="number"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/place/geometryCoordinates/item" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata7" _parent_id="__parent_id" _position="0" _type="Input" id="Metadata8">
+<Record fieldDelimiter="|" name="GeoLocation" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/place/geometryCoordinates/item/latitude" label="latitude" name="latitude" type="number"/>
+<Field __sourcePath="{}/object/place/geometryCoordinates/item/longitude" label="longitude" name="longitude" type="number"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/retweetedStatus/place/boundingBoxCoordinates/item" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata9" _parent_id="__parent_id" _position="0" _type="Input" id="Metadata10">
+<Record fieldDelimiter="|" name="GeoLocation" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/boundingBoxCoordinates/item/latitude" label="latitude" name="latitude" type="number"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/boundingBoxCoordinates/item/longitude" label="longitude" name="longitude" type="number"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/retweetedStatus/place/geometryCoordinates/item" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata11" _parent_id="__parent_id" _position="0" _type="Input" id="Metadata12">
+<Record fieldDelimiter="|" name="GeoLocation" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/geometryCoordinates/item/latitude" label="latitude" name="latitude" type="number"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/geometryCoordinates/item/longitude" label="longitude" name="longitude" type="number"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/user/status/place/boundingBoxCoordinates/item" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata18" _parent_id="__parent_id" _position="0" _type="Input" id="Metadata19">
+<Record fieldDelimiter="|" name="GeoLocation" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/user/status/place/boundingBoxCoordinates/item/latitude" label="latitude" name="latitude" type="number"/>
+<Field __sourcePath="{}/object/user/status/place/boundingBoxCoordinates/item/longitude" label="longitude" name="longitude" type="number"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/user/status/place/geometryCoordinates/item" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata20" _parent_id="__parent_id" _position="0" _type="Input" id="Metadata21">
+<Record fieldDelimiter="|" name="GeoLocation" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/user/status/place/geometryCoordinates/item/latitude" label="latitude" name="latitude" type="number"/>
+<Field __sourcePath="{}/object/user/status/place/geometryCoordinates/item/longitude" label="longitude" name="longitude" type="number"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/place/geometryCoordinates" _dataStructure="MULTI_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="4" _type="Input" id="Metadata7">
+<Record fieldDelimiter="|" name="geometryCoordinates" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/retweetedStatus/place/geometryCoordinates" _dataStructure="MULTI_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="6" _type="Input" id="Metadata11">
+<Record fieldDelimiter="|" name="geometryCoordinates" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/user/status/place/geometryCoordinates" _dataStructure="MULTI_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="12" _type="Input" id="Metadata20">
+<Record fieldDelimiter="|" name="geometryCoordinates" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/hashtagEntities" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="1" _type="Input" id="Metadata2">
+<Record fieldDelimiter="|" name="HashtagEntity" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/hashtagEntities/end" label="end" name="end" type="integer"/>
+<Field __sourcePath="{}/object/hashtagEntities/start" label="start" name="start" type="integer"/>
+<Field __sourcePath="{}/object/hashtagEntities/text" label="text" name="text" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/retweetedStatus/hashtagEntities" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="8" _type="Input" id="Metadata14">
+<Record fieldDelimiter="|" name="HashtagEntity" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/hashtagEntities/end" label="end" name="end" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/hashtagEntities/start" label="start" name="start" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/hashtagEntities/text" label="text" name="text" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/user/status/hashtagEntities" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="14" _type="Input" id="Metadata23">
+<Record fieldDelimiter="|" name="HashtagEntity" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/user/status/hashtagEntities/end" label="end" name="end" type="integer"/>
+<Field __sourcePath="{}/object/user/status/hashtagEntities/start" label="start" name="start" type="integer"/>
+<Field __sourcePath="{}/object/user/status/hashtagEntities/text" label="text" name="text" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/mediaEntities" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="2" _type="Input" id="Metadata3">
+<Record fieldDelimiter="|" name="MediaEntity" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/mediaEntities/id" label="id" name="id" type="long"/>
+<Field __sourcePath="{}/object/mediaEntities/mediaURL" label="mediaURL" name="mediaURL" type="string"/>
+<Field __sourcePath="{}/object/mediaEntities/mediaURLHttps" label="mediaURLHttps" name="mediaURLHttps" type="string"/>
+<Field __sourcePath="{}/object/mediaEntities/URL" label="URL" name="URL" type="string"/>
+<Field __sourcePath="{}/object/mediaEntities/displayURL" label="displayURL" name="displayURL" type="string"/>
+<Field __sourcePath="{}/object/mediaEntities/end" label="end" name="end" type="integer"/>
+<Field __sourcePath="{}/object/mediaEntities/expandedURL" label="expandedURL" name="expandedURL" type="string"/>
+<Field __sourcePath="{}/object/mediaEntities/start" label="start" name="start" type="integer"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/retweetedStatus/mediaEntities" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="9" _type="Input" id="Metadata15">
+<Record fieldDelimiter="|" name="MediaEntity" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/mediaEntities/id" label="id" name="id" type="long"/>
+<Field __sourcePath="{}/object/retweetedStatus/mediaEntities/mediaURL" label="mediaURL" name="mediaURL" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/mediaEntities/mediaURLHttps" label="mediaURLHttps" name="mediaURLHttps" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/mediaEntities/URL" label="URL" name="URL" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/mediaEntities/displayURL" label="displayURL" name="displayURL" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/mediaEntities/end" label="end" name="end" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/mediaEntities/expandedURL" label="expandedURL" name="expandedURL" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/mediaEntities/start" label="start" name="start" type="integer"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/user/status/mediaEntities" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="15" _type="Input" id="Metadata24">
+<Record fieldDelimiter="|" name="MediaEntity" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/user/status/mediaEntities/id" label="id" name="id" type="long"/>
+<Field __sourcePath="{}/object/user/status/mediaEntities/mediaURL" label="mediaURL" name="mediaURL" type="string"/>
+<Field __sourcePath="{}/object/user/status/mediaEntities/mediaURLHttps" label="mediaURLHttps" name="mediaURLHttps" type="string"/>
+<Field __sourcePath="{}/object/user/status/mediaEntities/URL" label="URL" name="URL" type="string"/>
+<Field __sourcePath="{}/object/user/status/mediaEntities/displayURL" label="displayURL" name="displayURL" type="string"/>
+<Field __sourcePath="{}/object/user/status/mediaEntities/end" label="end" name="end" type="integer"/>
+<Field __sourcePath="{}/object/user/status/mediaEntities/expandedURL" label="expandedURL" name="expandedURL" type="string"/>
+<Field __sourcePath="{}/object/user/status/mediaEntities/start" label="start" name="start" type="integer"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/outputMetadata" _dataStructure="OBJECT" _id="__id" _type="Output" id="b9537845-d507-43fb-a248-801e00be9de1">
+<Record fieldDelimiter="|" label="outputMetadata" name="outputMetadata" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __sourcePath="{}/outputMetadata/body" label="body" name="body" type="string"/>
+<Field __sourcePath="{=}/outputMetadata/userID" name="userID" type="long"/>
+<Field __sourcePath="{=}/outputMetadata/subject" name="subject" type="string"/>
+<Field __sourcePath="{=}/outputMetadata/blogID" name="blogID" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/user/status/mediaEntities/sizes/entry" _dataStructure="OBJECT" _id="__id" _metadataParentId="Metadata24" _parent_id="__parent_id" _position="0" _type="Input" id="Metadata25">
+<Record fieldDelimiter="|" name="sizes" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/user/status/mediaEntities/sizes/entry/key" label="key" name="key" type="string"/>
+<Field __sourcePath="{}/object/user/status/mediaEntities/sizes/entry/value" label="value" name="value" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/retweetedStatus/mediaEntities/sizes/entry" _dataStructure="OBJECT" _id="__id" _metadataParentId="Metadata15" _parent_id="__parent_id" _position="0" _type="Input" id="Metadata16">
+<Record fieldDelimiter="|" name="sizes" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/mediaEntities/sizes/entry/key" label="key" name="key" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/mediaEntities/sizes/entry/value" label="value" name="value" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/mediaEntities/sizes/entry" _dataStructure="OBJECT" _id="__id" _metadataParentId="Metadata3" _parent_id="__parent_id" _position="0" _type="Input" id="Metadata4">
+<Record fieldDelimiter="|" name="sizes" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/mediaEntities/sizes/entry/key" label="key" name="key" type="string"/>
+<Field __sourcePath="{}/object/mediaEntities/sizes/entry/value" label="value" name="value" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="Metadata0">
+<Record fieldDelimiter="|" name="StatusJSONImpl" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __sourcePath="{}/object/accessLevel" label="accessLevel" name="accessLevel7" type="integer"/>
+<Field __sourcePath="{}/object/annotations/annotations" containerType="list" label="annotations" name="annotations2" type="string"/>
+<Field __sourcePath="{}/object/annotations/empty" label="empty" name="empty2" type="boolean"/>
+<Field __sourcePath="{}/object/annotations/exceedingLengthLimit" label="exceedingLengthLimit" name="exceedingLengthLimit2" type="boolean"/>
+<Field __sourcePath="{}/object/contributors" containerType="list" label="contributors" name="contributors2" type="long"/>
+<Field __sourcePath="{}/object/createdAt" label="createdAt" name="createdAt4" type="date"/>
+<Field __sourcePath="{}/object/favorited" label="favorited" name="favorited2" type="boolean"/>
+<Field __sourcePath="{}/object/geoLocation/latitude" label="latitude" name="latitude2" type="number"/>
+<Field __sourcePath="{}/object/geoLocation/longitude" label="longitude" name="longitude2" type="number"/>
+<Field __sourcePath="{}/object/id" label="id" name="id7" type="long"/>
+<Field __sourcePath="{}/object/inReplyToScreenName" label="inReplyToScreenName" name="inReplyToScreenName2" type="string"/>
+<Field __sourcePath="{}/object/inReplyToStatusId" label="inReplyToStatusId" name="inReplyToStatusId2" type="long"/>
+<Field __sourcePath="{}/object/inReplyToUserId" label="inReplyToUserId" name="inReplyToUserId2" type="long"/>
+<Field __sourcePath="{}/object/place/URL" label="URL" name="URL4" type="string"/>
+<Field __sourcePath="{}/object/place/boundingBoxType" label="boundingBoxType" name="boundingBoxType2" type="string"/>
+<Field __sourcePath="{}/object/place/country" label="country" name="country2" type="string"/>
+<Field __sourcePath="{}/object/place/countryCode" label="countryCode" name="countryCode2" type="string"/>
+<Field __sourcePath="{}/object/place/fullName" label="fullName" name="fullName2" type="string"/>
+<Field __sourcePath="{}/object/place/geometryType" label="geometryType" name="geometryType2" type="string"/>
+<Field __sourcePath="{}/object/place/id" label="id" name="id8" type="string"/>
+<Field __sourcePath="{}/object/place/name" label="name" name="name4" type="string"/>
+<Field __sourcePath="{}/object/place/placeType" label="placeType" name="placeType2" type="string"/>
+<Field __sourcePath="{}/object/place/streetAddress" label="streetAddress" name="streetAddress2" type="string"/>
+<Field __sourcePath="{}/object/place/accessLevel" label="accessLevel" name="accessLevel8" type="integer"/>
+<Field __sourcePath="{}/object/place/rateLimitStatus/hourlyLimit" label="hourlyLimit" name="hourlyLimit7" type="integer"/>
+<Field __sourcePath="{}/object/place/rateLimitStatus/remainingHits" label="remainingHits" name="remainingHits7" type="integer"/>
+<Field __sourcePath="{}/object/place/rateLimitStatus/resetTime" label="resetTime" name="resetTime7" type="date"/>
+<Field __sourcePath="{}/object/place/rateLimitStatus/resetTimeInSeconds" label="resetTimeInSeconds" name="resetTimeInSeconds7" type="integer"/>
+<Field __sourcePath="{}/object/place/rateLimitStatus/secondsUntilReset" label="secondsUntilReset" name="secondsUntilReset7" type="integer"/>
+<Field __sourcePath="{}/object/rateLimitStatus/hourlyLimit" label="hourlyLimit" name="hourlyLimit8" type="integer"/>
+<Field __sourcePath="{}/object/rateLimitStatus/remainingHits" label="remainingHits" name="remainingHits8" type="integer"/>
+<Field __sourcePath="{}/object/rateLimitStatus/resetTime" label="resetTime" name="resetTime8" type="date"/>
+<Field __sourcePath="{}/object/rateLimitStatus/resetTimeInSeconds" label="resetTimeInSeconds" name="resetTimeInSeconds8" type="integer"/>
+<Field __sourcePath="{}/object/rateLimitStatus/secondsUntilReset" label="secondsUntilReset" name="secondsUntilReset8" type="integer"/>
+<Field __sourcePath="{}/object/retweet" label="retweet" name="retweet2" type="boolean"/>
+<Field __sourcePath="{}/object/retweetCount" label="retweetCount" name="retweetCount2" type="long"/>
+<Field __sourcePath="{}/object/retweetedByMe" label="retweetedByMe" name="retweetedByMe2" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/annotations/annotations" containerType="list" label="annotations" name="annotations3" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/annotations/empty" label="empty" name="empty3" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/annotations/exceedingLengthLimit" label="exceedingLengthLimit" name="exceedingLengthLimit3" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/contributors" containerType="list" label="contributors" name="contributors3" type="long"/>
+<Field __sourcePath="{}/object/retweetedStatus/createdAt" label="createdAt" name="createdAt5" type="date"/>
+<Field __sourcePath="{}/object/retweetedStatus/favorited" label="favorited" name="favorited3" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/geoLocation/latitude" label="latitude" name="latitude3" type="number"/>
+<Field __sourcePath="{}/object/retweetedStatus/geoLocation/longitude" label="longitude" name="longitude3" type="number"/>
+<Field __sourcePath="{}/object/retweetedStatus/id" label="id" name="id9" type="long"/>
+<Field __sourcePath="{}/object/retweetedStatus/inReplyToScreenName" label="inReplyToScreenName" name="inReplyToScreenName3" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/inReplyToStatusId" label="inReplyToStatusId" name="inReplyToStatusId3" type="long"/>
+<Field __sourcePath="{}/object/retweetedStatus/inReplyToUserId" label="inReplyToUserId" name="inReplyToUserId3" type="long"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/URL" label="URL" name="URL5" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/boundingBoxType" label="boundingBoxType" name="boundingBoxType3" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/country" label="country" name="country3" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/countryCode" label="countryCode" name="countryCode3" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/fullName" label="fullName" name="fullName3" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/geometryType" label="geometryType" name="geometryType3" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/id" label="id" name="id10" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/name" label="name" name="name5" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/placeType" label="placeType" name="placeType3" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/streetAddress" label="streetAddress" name="streetAddress3" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/accessLevel" label="accessLevel" name="accessLevel9" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/rateLimitStatus/hourlyLimit" label="hourlyLimit" name="hourlyLimit9" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/rateLimitStatus/remainingHits" label="remainingHits" name="remainingHits9" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/rateLimitStatus/resetTime" label="resetTime" name="resetTime9" type="date"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/rateLimitStatus/resetTimeInSeconds" label="resetTimeInSeconds" name="resetTimeInSeconds9" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/place/rateLimitStatus/secondsUntilReset" label="secondsUntilReset" name="secondsUntilReset9" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/retweet" label="retweet" name="retweet3" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/retweetCount" label="retweetCount" name="retweetCount3" type="long"/>
+<Field __sourcePath="{}/object/retweetedStatus/retweetedByMe" label="retweetedByMe" name="retweetedByMe3" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/source" label="source" name="source2" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/text" label="text" name="text2" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/truncated" label="truncated" name="truncated2" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/URL" label="URL" name="URL6" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/contributorsEnabled" label="contributorsEnabled" name="contributorsEnabled" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/createdAt" label="createdAt" name="createdAt6" type="date"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/description" label="description" name="description" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/favouritesCount" label="favouritesCount" name="favouritesCount" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/followRequestSent" label="followRequestSent" name="followRequestSent" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/followersCount" label="followersCount" name="followersCount" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/friendsCount" label="friendsCount" name="friendsCount" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/geoEnabled" label="geoEnabled" name="geoEnabled" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/id" label="id" name="id11" type="long"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/lang" label="lang" name="lang" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/listedCount" label="listedCount" name="listedCount" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/location" label="location" name="location" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/name" label="name" name="name6" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/profileBackgroundColor" label="profileBackgroundColor" name="profileBackgroundColor" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/profileBackgroundImageUrl" label="profileBackgroundImageUrl" name="profileBackgroundImageUrl" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/profileBackgroundImageUrlHttps" label="profileBackgroundImageUrlHttps" name="profileBackgroundImageUrlHttps" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/profileBackgroundTiled" label="profileBackgroundTiled" name="profileBackgroundTiled" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/profileImageURL" label="profileImageURL" name="profileImageURL" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/profileImageUrlHttps" label="profileImageUrlHttps" name="profileImageUrlHttps" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/profileLinkColor" label="profileLinkColor" name="profileLinkColor" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/profileSidebarBorderColor" label="profileSidebarBorderColor" name="profileSidebarBorderColor" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/profileSidebarFillColor" label="profileSidebarFillColor" name="profileSidebarFillColor" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/profileTextColor" label="profileTextColor" name="profileTextColor" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/profileUseBackgroundImage" label="profileUseBackgroundImage" name="profileUseBackgroundImage" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/protected" label="protected" name="protected" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/screenName" label="screenName" name="screenName" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/showAllInlineMedia" label="showAllInlineMedia" name="showAllInlineMedia" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/statusesCount" label="statusesCount" name="statusesCount" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/timeZone" label="timeZone" name="timeZone" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/translator" label="translator" name="translator" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/utcOffset" label="utcOffset" name="utcOffset" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/verified" label="verified" name="verified" type="boolean"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/accessLevel" label="accessLevel" name="accessLevel10" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/rateLimitStatus/hourlyLimit" label="hourlyLimit" name="hourlyLimit10" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/rateLimitStatus/remainingHits" label="remainingHits" name="remainingHits10" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/rateLimitStatus/resetTime" label="resetTime" name="resetTime10" type="date"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/rateLimitStatus/resetTimeInSeconds" label="resetTimeInSeconds" name="resetTimeInSeconds10" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/user/rateLimitStatus/secondsUntilReset" label="secondsUntilReset" name="secondsUntilReset10" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/accessLevel" label="accessLevel" name="accessLevel11" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/rateLimitStatus/hourlyLimit" label="hourlyLimit" name="hourlyLimit11" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/rateLimitStatus/remainingHits" label="remainingHits" name="remainingHits11" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/rateLimitStatus/resetTime" label="resetTime" name="resetTime11" type="date"/>
+<Field __sourcePath="{}/object/retweetedStatus/rateLimitStatus/resetTimeInSeconds" label="resetTimeInSeconds" name="resetTimeInSeconds11" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/rateLimitStatus/secondsUntilReset" label="secondsUntilReset" name="secondsUntilReset11" type="integer"/>
+<Field __sourcePath="{}/object/source" label="source" name="source3" type="string"/>
+<Field __sourcePath="{}/object/text" label="text" name="text3" type="string"/>
+<Field __sourcePath="{}/object/truncated" label="truncated" name="truncated3" type="boolean"/>
+<Field __sourcePath="{}/object/user/URL" label="URL" name="URL7" type="string"/>
+<Field __sourcePath="{}/object/user/contributorsEnabled" label="contributorsEnabled" name="contributorsEnabled2" type="boolean"/>
+<Field __sourcePath="{}/object/user/createdAt" label="createdAt" name="createdAt7" type="date"/>
+<Field __sourcePath="{}/object/user/description" label="description" name="description2" type="string"/>
+<Field __sourcePath="{}/object/user/favouritesCount" label="favouritesCount" name="favouritesCount2" type="integer"/>
+<Field __sourcePath="{}/object/user/followRequestSent" label="followRequestSent" name="followRequestSent2" type="boolean"/>
+<Field __sourcePath="{}/object/user/followersCount" label="followersCount" name="followersCount2" type="integer"/>
+<Field __sourcePath="{}/object/user/friendsCount" label="friendsCount" name="friendsCount2" type="integer"/>
+<Field __sourcePath="{}/object/user/geoEnabled" label="geoEnabled" name="geoEnabled2" type="boolean"/>
+<Field __sourcePath="{}/object/user/id" label="id" name="id12" type="long"/>
+<Field __sourcePath="{}/object/user/lang" label="lang" name="lang2" type="string"/>
+<Field __sourcePath="{}/object/user/listedCount" label="listedCount" name="listedCount2" type="integer"/>
+<Field __sourcePath="{}/object/user/location" label="location" name="location2" type="string"/>
+<Field __sourcePath="{}/object/user/name" label="name" name="name7" type="string"/>
+<Field __sourcePath="{}/object/user/profileBackgroundColor" label="profileBackgroundColor" name="profileBackgroundColor2" type="string"/>
+<Field __sourcePath="{}/object/user/profileBackgroundImageUrl" label="profileBackgroundImageUrl" name="profileBackgroundImageUrl2" type="string"/>
+<Field __sourcePath="{}/object/user/profileBackgroundImageUrlHttps" label="profileBackgroundImageUrlHttps" name="profileBackgroundImageUrlHttps2" type="string"/>
+<Field __sourcePath="{}/object/user/profileBackgroundTiled" label="profileBackgroundTiled" name="profileBackgroundTiled2" type="boolean"/>
+<Field __sourcePath="{}/object/user/profileImageURL" label="profileImageURL" name="profileImageURL2" type="string"/>
+<Field __sourcePath="{}/object/user/profileImageUrlHttps" label="profileImageUrlHttps" name="profileImageUrlHttps2" type="string"/>
+<Field __sourcePath="{}/object/user/profileLinkColor" label="profileLinkColor" name="profileLinkColor2" type="string"/>
+<Field __sourcePath="{}/object/user/profileSidebarBorderColor" label="profileSidebarBorderColor" name="profileSidebarBorderColor2" type="string"/>
+<Field __sourcePath="{}/object/user/profileSidebarFillColor" label="profileSidebarFillColor" name="profileSidebarFillColor2" type="string"/>
+<Field __sourcePath="{}/object/user/profileTextColor" label="profileTextColor" name="profileTextColor2" type="string"/>
+<Field __sourcePath="{}/object/user/profileUseBackgroundImage" label="profileUseBackgroundImage" name="profileUseBackgroundImage2" type="boolean"/>
+<Field __sourcePath="{}/object/user/protected" label="protected" name="protected2" type="boolean"/>
+<Field __sourcePath="{}/object/user/screenName" label="screenName" name="screenName2" type="string"/>
+<Field __sourcePath="{}/object/user/showAllInlineMedia" label="showAllInlineMedia" name="showAllInlineMedia2" type="boolean"/>
+<Field __sourcePath="{}/object/user/status/annotations/annotations" containerType="list" label="annotations" name="annotations4" type="string"/>
+<Field __sourcePath="{}/object/user/status/annotations/empty" label="empty" name="empty4" type="boolean"/>
+<Field __sourcePath="{}/object/user/status/annotations/exceedingLengthLimit" label="exceedingLengthLimit" name="exceedingLengthLimit4" type="boolean"/>
+<Field __sourcePath="{}/object/user/status/contributors" containerType="list" label="contributors" name="contributors4" type="long"/>
+<Field __sourcePath="{}/object/user/status/createdAt" label="createdAt" name="createdAt8" type="date"/>
+<Field __sourcePath="{}/object/user/status/favorited" label="favorited" name="favorited4" type="boolean"/>
+<Field __sourcePath="{}/object/user/status/geoLocation/latitude" label="latitude" name="latitude4" type="number"/>
+<Field __sourcePath="{}/object/user/status/geoLocation/longitude" label="longitude" name="longitude4" type="number"/>
+<Field __sourcePath="{}/object/user/status/id" label="id" name="id13" type="long"/>
+<Field __sourcePath="{}/object/user/status/inReplyToScreenName" label="inReplyToScreenName" name="inReplyToScreenName4" type="string"/>
+<Field __sourcePath="{}/object/user/status/inReplyToStatusId" label="inReplyToStatusId" name="inReplyToStatusId4" type="long"/>
+<Field __sourcePath="{}/object/user/status/inReplyToUserId" label="inReplyToUserId" name="inReplyToUserId4" type="long"/>
+<Field __sourcePath="{}/object/user/status/place/URL" label="URL" name="URL8" type="string"/>
+<Field __sourcePath="{}/object/user/status/place/boundingBoxType" label="boundingBoxType" name="boundingBoxType4" type="string"/>
+<Field __sourcePath="{}/object/user/status/place/country" label="country" name="country4" type="string"/>
+<Field __sourcePath="{}/object/user/status/place/countryCode" label="countryCode" name="countryCode4" type="string"/>
+<Field __sourcePath="{}/object/user/status/place/fullName" label="fullName" name="fullName4" type="string"/>
+<Field __sourcePath="{}/object/user/status/place/geometryType" label="geometryType" name="geometryType4" type="string"/>
+<Field __sourcePath="{}/object/user/status/place/id" label="id" name="id14" type="string"/>
+<Field __sourcePath="{}/object/user/status/place/name" label="name" name="name8" type="string"/>
+<Field __sourcePath="{}/object/user/status/place/placeType" label="placeType" name="placeType4" type="string"/>
+<Field __sourcePath="{}/object/user/status/place/streetAddress" label="streetAddress" name="streetAddress4" type="string"/>
+<Field __sourcePath="{}/object/user/status/place/accessLevel" label="accessLevel" name="accessLevel12" type="integer"/>
+<Field __sourcePath="{}/object/user/status/place/rateLimitStatus/hourlyLimit" label="hourlyLimit" name="hourlyLimit12" type="integer"/>
+<Field __sourcePath="{}/object/user/status/place/rateLimitStatus/remainingHits" label="remainingHits" name="remainingHits12" type="integer"/>
+<Field __sourcePath="{}/object/user/status/place/rateLimitStatus/resetTime" label="resetTime" name="resetTime12" type="date"/>
+<Field __sourcePath="{}/object/user/status/place/rateLimitStatus/resetTimeInSeconds" label="resetTimeInSeconds" name="resetTimeInSeconds12" type="integer"/>
+<Field __sourcePath="{}/object/user/status/place/rateLimitStatus/secondsUntilReset" label="secondsUntilReset" name="secondsUntilReset12" type="integer"/>
+<Field __sourcePath="{}/object/user/status/retweet" label="retweet" name="retweet4" type="boolean"/>
+<Field __sourcePath="{}/object/user/status/retweetCount" label="retweetCount" name="retweetCount4" type="long"/>
+<Field __sourcePath="{}/object/user/status/retweetedByMe" label="retweetedByMe" name="retweetedByMe4" type="boolean"/>
+<Field __sourcePath="{}/object/user/status/source" label="source" name="source4" type="string"/>
+<Field __sourcePath="{}/object/user/status/text" label="text" name="text4" type="string"/>
+<Field __sourcePath="{}/object/user/status/truncated" label="truncated" name="truncated4" type="boolean"/>
+<Field __sourcePath="{}/object/user/status/accessLevel" label="accessLevel" name="accessLevel13" type="integer"/>
+<Field __sourcePath="{}/object/user/status/rateLimitStatus/hourlyLimit" label="hourlyLimit" name="hourlyLimit13" type="integer"/>
+<Field __sourcePath="{}/object/user/status/rateLimitStatus/remainingHits" label="remainingHits" name="remainingHits13" type="integer"/>
+<Field __sourcePath="{}/object/user/status/rateLimitStatus/resetTime" label="resetTime" name="resetTime13" type="date"/>
+<Field __sourcePath="{}/object/user/status/rateLimitStatus/resetTimeInSeconds" label="resetTimeInSeconds" name="resetTimeInSeconds13" type="integer"/>
+<Field __sourcePath="{}/object/user/status/rateLimitStatus/secondsUntilReset" label="secondsUntilReset" name="secondsUntilReset13" type="integer"/>
+<Field __sourcePath="{}/object/user/statusesCount" label="statusesCount" name="statusesCount2" type="integer"/>
+<Field __sourcePath="{}/object/user/timeZone" label="timeZone" name="timeZone2" type="string"/>
+<Field __sourcePath="{}/object/user/translator" label="translator" name="translator2" type="boolean"/>
+<Field __sourcePath="{}/object/user/utcOffset" label="utcOffset" name="utcOffset2" type="integer"/>
+<Field __sourcePath="{}/object/user/verified" label="verified" name="verified2" type="boolean"/>
+<Field __sourcePath="{}/object/user/accessLevel" label="accessLevel" name="accessLevel14" type="integer"/>
+<Field __sourcePath="{}/object/user/rateLimitStatus/hourlyLimit" label="hourlyLimit" name="hourlyLimit14" type="integer"/>
+<Field __sourcePath="{}/object/user/rateLimitStatus/remainingHits" label="remainingHits" name="remainingHits14" type="integer"/>
+<Field __sourcePath="{}/object/user/rateLimitStatus/resetTime" label="resetTime" name="resetTime14" type="date"/>
+<Field __sourcePath="{}/object/user/rateLimitStatus/resetTimeInSeconds" label="resetTimeInSeconds" name="resetTimeInSeconds14" type="integer"/>
+<Field __sourcePath="{}/object/user/rateLimitStatus/secondsUntilReset" label="secondsUntilReset" name="secondsUntilReset14" type="integer"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/user/status/URLEntities" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="13" _type="Input" id="Metadata22">
+<Record fieldDelimiter="|" name="URLEntity" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/user/status/URLEntities/URL" label="URL" name="URL" type="string"/>
+<Field __sourcePath="{}/object/user/status/URLEntities/displayURL" label="displayURL" name="displayURL" type="string"/>
+<Field __sourcePath="{}/object/user/status/URLEntities/end" label="end" name="end" type="integer"/>
+<Field __sourcePath="{}/object/user/status/URLEntities/expandedURL" label="expandedURL" name="expandedURL" type="string"/>
+<Field __sourcePath="{}/object/user/status/URLEntities/start" label="start" name="start" type="integer"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/retweetedStatus/URLEntities" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="7" _type="Input" id="Metadata13">
+<Record fieldDelimiter="|" name="URLEntity" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/URLEntities/URL" label="URL" name="URL" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/URLEntities/displayURL" label="displayURL" name="displayURL" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/URLEntities/end" label="end" name="end" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/URLEntities/expandedURL" label="expandedURL" name="expandedURL" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/URLEntities/start" label="start" name="start" type="integer"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/URLEntities" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="0" _type="Input" id="Metadata1">
+<Record fieldDelimiter="|" name="URLEntity" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/URLEntities/URL" label="URL" name="URL" type="string"/>
+<Field __sourcePath="{}/object/URLEntities/displayURL" label="displayURL" name="displayURL" type="string"/>
+<Field __sourcePath="{}/object/URLEntities/end" label="end" name="end" type="integer"/>
+<Field __sourcePath="{}/object/URLEntities/expandedURL" label="expandedURL" name="expandedURL" type="string"/>
+<Field __sourcePath="{}/object/URLEntities/start" label="start" name="start" type="integer"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/userMentionEntities" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="17" _type="Input" id="Metadata27">
+<Record fieldDelimiter="|" name="UserMentionEntity" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/userMentionEntities/end" label="end" name="end" type="integer"/>
+<Field __sourcePath="{}/object/userMentionEntities/id" label="id" name="id" type="long"/>
+<Field __sourcePath="{}/object/userMentionEntities/name" label="name" name="name" type="string"/>
+<Field __sourcePath="{}/object/userMentionEntities/screenName" label="screenName" name="screenName" type="string"/>
+<Field __sourcePath="{}/object/userMentionEntities/start" label="start" name="start" type="integer"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/user/status/userMentionEntities" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="16" _type="Input" id="Metadata26">
+<Record fieldDelimiter="|" name="UserMentionEntity" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/user/status/userMentionEntities/end" label="end" name="end" type="integer"/>
+<Field __sourcePath="{}/object/user/status/userMentionEntities/id" label="id" name="id" type="long"/>
+<Field __sourcePath="{}/object/user/status/userMentionEntities/name" label="name" name="name" type="string"/>
+<Field __sourcePath="{}/object/user/status/userMentionEntities/screenName" label="screenName" name="screenName" type="string"/>
+<Field __sourcePath="{}/object/user/status/userMentionEntities/start" label="start" name="start" type="integer"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/object/retweetedStatus/userMentionEntities" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="Metadata0" _parent_id="__parent_id" _position="10" _type="Input" id="Metadata17">
+<Record fieldDelimiter="|" name="UserMentionEntity" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/userMentionEntities/end" label="end" name="end" type="integer"/>
+<Field __sourcePath="{}/object/retweetedStatus/userMentionEntities/id" label="id" name="id" type="long"/>
+<Field __sourcePath="{}/object/retweetedStatus/userMentionEntities/name" label="name" name="name" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/userMentionEntities/screenName" label="screenName" name="screenName" type="string"/>
+<Field __sourcePath="{}/object/retweetedStatus/userMentionEntities/start" label="start" name="start" type="integer"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+<Entry id="DictionaryEntry2" input="true" name="userId" output="false" type="string"/>
+<Entry id="DictionaryEntry3" input="true" name="userID" output="false" type="long"/>
+<Entry id="DictionaryEntry4" input="true" name="blogID" output="false" type="string"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" fileURL="dict:inputPayload" guiHeight="0" guiName="JAVA Reader" guiWidth="0" guiX="20" guiY="20" id="BEAN_READER0" type="BEAN_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context outPort="0" sequenceField="__id" xpath=".">
+  <Mapping cloverField="accessLevel7" trim="true" xpath="accessLevel"/>
+  <Mapping cloverField="annotations2" trim="true" xpath="annotations/annotations"/>
+  <Mapping cloverField="empty2" trim="true" xpath="annotations/empty"/>
+  <Mapping cloverField="exceedingLengthLimit2" trim="true" xpath="annotations/exceedingLengthLimit"/>
+  <Mapping cloverField="contributors2" trim="true" xpath="contributors"/>
+  <Mapping cloverField="createdAt4" trim="true" xpath="createdAt"/>
+  <Mapping cloverField="favorited2" trim="true" xpath="favorited"/>
+  <Mapping cloverField="latitude2" trim="true" xpath="geoLocation/latitude"/>
+  <Mapping cloverField="longitude2" trim="true" xpath="geoLocation/longitude"/>
+  <Mapping cloverField="id7" trim="true" xpath="id"/>
+  <Mapping cloverField="inReplyToScreenName2" trim="true" xpath="inReplyToScreenName"/>
+  <Mapping cloverField="inReplyToStatusId2" trim="true" xpath="inReplyToStatusId"/>
+  <Mapping cloverField="inReplyToUserId2" trim="true" xpath="inReplyToUserId"/>
+  <Mapping cloverField="URL4" trim="true" xpath="place/URL"/>
+  <Mapping cloverField="boundingBoxType2" trim="true" xpath="place/boundingBoxType"/>
+  <Mapping cloverField="country2" trim="true" xpath="place/country"/>
+  <Mapping cloverField="countryCode2" trim="true" xpath="place/countryCode"/>
+  <Mapping cloverField="fullName2" trim="true" xpath="place/fullName"/>
+  <Mapping cloverField="geometryType2" trim="true" xpath="place/geometryType"/>
+  <Mapping cloverField="id8" trim="true" xpath="place/id"/>
+  <Mapping cloverField="name4" trim="true" xpath="place/name"/>
+  <Mapping cloverField="placeType2" trim="true" xpath="place/placeType"/>
+  <Mapping cloverField="streetAddress2" trim="true" xpath="place/streetAddress"/>
+  <Mapping cloverField="accessLevel8" trim="true" xpath="place/accessLevel"/>
+  <Mapping cloverField="hourlyLimit7" trim="true" xpath="place/rateLimitStatus/hourlyLimit"/>
+  <Mapping cloverField="remainingHits7" trim="true" xpath="place/rateLimitStatus/remainingHits"/>
+  <Mapping cloverField="resetTime7" trim="true" xpath="place/rateLimitStatus/resetTime"/>
+  <Mapping cloverField="resetTimeInSeconds7" trim="true" xpath="place/rateLimitStatus/resetTimeInSeconds"/>
+  <Mapping cloverField="secondsUntilReset7" trim="true" xpath="place/rateLimitStatus/secondsUntilReset"/>
+  <Mapping cloverField="hourlyLimit8" trim="true" xpath="rateLimitStatus/hourlyLimit"/>
+  <Mapping cloverField="remainingHits8" trim="true" xpath="rateLimitStatus/remainingHits"/>
+  <Mapping cloverField="resetTime8" trim="true" xpath="rateLimitStatus/resetTime"/>
+  <Mapping cloverField="resetTimeInSeconds8" trim="true" xpath="rateLimitStatus/resetTimeInSeconds"/>
+  <Mapping cloverField="secondsUntilReset8" trim="true" xpath="rateLimitStatus/secondsUntilReset"/>
+  <Mapping cloverField="retweet2" trim="true" xpath="retweet"/>
+  <Mapping cloverField="retweetCount2" trim="true" xpath="retweetCount"/>
+  <Mapping cloverField="retweetedByMe2" trim="true" xpath="retweetedByMe"/>
+  <Mapping cloverField="annotations3" trim="true" xpath="retweetedStatus/annotations/annotations"/>
+  <Mapping cloverField="empty3" trim="true" xpath="retweetedStatus/annotations/empty"/>
+  <Mapping cloverField="exceedingLengthLimit3" trim="true" xpath="retweetedStatus/annotations/exceedingLengthLimit"/>
+  <Mapping cloverField="contributors3" trim="true" xpath="retweetedStatus/contributors"/>
+  <Mapping cloverField="createdAt5" trim="true" xpath="retweetedStatus/createdAt"/>
+  <Mapping cloverField="favorited3" trim="true" xpath="retweetedStatus/favorited"/>
+  <Mapping cloverField="latitude3" trim="true" xpath="retweetedStatus/geoLocation/latitude"/>
+  <Mapping cloverField="longitude3" trim="true" xpath="retweetedStatus/geoLocation/longitude"/>
+  <Mapping cloverField="id9" trim="true" xpath="retweetedStatus/id"/>
+  <Mapping cloverField="inReplyToScreenName3" trim="true" xpath="retweetedStatus/inReplyToScreenName"/>
+  <Mapping cloverField="inReplyToStatusId3" trim="true" xpath="retweetedStatus/inReplyToStatusId"/>
+  <Mapping cloverField="inReplyToUserId3" trim="true" xpath="retweetedStatus/inReplyToUserId"/>
+  <Mapping cloverField="URL5" trim="true" xpath="retweetedStatus/place/URL"/>
+  <Mapping cloverField="boundingBoxType3" trim="true" xpath="retweetedStatus/place/boundingBoxType"/>
+  <Mapping cloverField="country3" trim="true" xpath="retweetedStatus/place/country"/>
+  <Mapping cloverField="countryCode3" trim="true" xpath="retweetedStatus/place/countryCode"/>
+  <Mapping cloverField="fullName3" trim="true" xpath="retweetedStatus/place/fullName"/>
+  <Mapping cloverField="geometryType3" trim="true" xpath="retweetedStatus/place/geometryType"/>
+  <Mapping cloverField="id10" trim="true" xpath="retweetedStatus/place/id"/>
+  <Mapping cloverField="name5" trim="true" xpath="retweetedStatus/place/name"/>
+  <Mapping cloverField="placeType3" trim="true" xpath="retweetedStatus/place/placeType"/>
+  <Mapping cloverField="streetAddress3" trim="true" xpath="retweetedStatus/place/streetAddress"/>
+  <Mapping cloverField="accessLevel9" trim="true" xpath="retweetedStatus/place/accessLevel"/>
+  <Mapping cloverField="hourlyLimit9" trim="true" xpath="retweetedStatus/place/rateLimitStatus/hourlyLimit"/>
+  <Mapping cloverField="remainingHits9" trim="true" xpath="retweetedStatus/place/rateLimitStatus/remainingHits"/>
+  <Mapping cloverField="resetTime9" trim="true" xpath="retweetedStatus/place/rateLimitStatus/resetTime"/>
+  <Mapping cloverField="resetTimeInSeconds9" trim="true" xpath="retweetedStatus/place/rateLimitStatus/resetTimeInSeconds"/>
+  <Mapping cloverField="secondsUntilReset9" trim="true" xpath="retweetedStatus/place/rateLimitStatus/secondsUntilReset"/>
+  <Mapping cloverField="retweet3" trim="true" xpath="retweetedStatus/retweet"/>
+  <Mapping cloverField="retweetCount3" trim="true" xpath="retweetedStatus/retweetCount"/>
+  <Mapping cloverField="retweetedByMe3" trim="true" xpath="retweetedStatus/retweetedByMe"/>
+  <Mapping cloverField="source2" trim="true" xpath="retweetedStatus/source"/>
+  <Mapping cloverField="text2" trim="true" xpath="retweetedStatus/text"/>
+  <Mapping cloverField="truncated2" trim="true" xpath="retweetedStatus/truncated"/>
+  <Mapping cloverField="URL6" trim="true" xpath="retweetedStatus/user/URL"/>
+  <Mapping cloverField="contributorsEnabled" trim="true" xpath="retweetedStatus/user/contributorsEnabled"/>
+  <Mapping cloverField="createdAt6" trim="true" xpath="retweetedStatus/user/createdAt"/>
+  <Mapping cloverField="description" trim="true" xpath="retweetedStatus/user/description"/>
+  <Mapping cloverField="favouritesCount" trim="true" xpath="retweetedStatus/user/favouritesCount"/>
+  <Mapping cloverField="followRequestSent" trim="true" xpath="retweetedStatus/user/followRequestSent"/>
+  <Mapping cloverField="followersCount" trim="true" xpath="retweetedStatus/user/followersCount"/>
+  <Mapping cloverField="friendsCount" trim="true" xpath="retweetedStatus/user/friendsCount"/>
+  <Mapping cloverField="geoEnabled" trim="true" xpath="retweetedStatus/user/geoEnabled"/>
+  <Mapping cloverField="id11" trim="true" xpath="retweetedStatus/user/id"/>
+  <Mapping cloverField="lang" trim="true" xpath="retweetedStatus/user/lang"/>
+  <Mapping cloverField="listedCount" trim="true" xpath="retweetedStatus/user/listedCount"/>
+  <Mapping cloverField="location" trim="true" xpath="retweetedStatus/user/location"/>
+  <Mapping cloverField="name6" trim="true" xpath="retweetedStatus/user/name"/>
+  <Mapping cloverField="profileBackgroundColor" trim="true" xpath="retweetedStatus/user/profileBackgroundColor"/>
+  <Mapping cloverField="profileBackgroundImageUrl" trim="true" xpath="retweetedStatus/user/profileBackgroundImageUrl"/>
+  <Mapping cloverField="profileBackgroundImageUrlHttps" trim="true" xpath="retweetedStatus/user/profileBackgroundImageUrlHttps"/>
+  <Mapping cloverField="profileBackgroundTiled" trim="true" xpath="retweetedStatus/user/profileBackgroundTiled"/>
+  <Mapping cloverField="profileImageURL" trim="true" xpath="retweetedStatus/user/profileImageURL"/>
+  <Mapping cloverField="profileImageUrlHttps" trim="true" xpath="retweetedStatus/user/profileImageUrlHttps"/>
+  <Mapping cloverField="profileLinkColor" trim="true" xpath="retweetedStatus/user/profileLinkColor"/>
+  <Mapping cloverField="profileSidebarBorderColor" trim="true" xpath="retweetedStatus/user/profileSidebarBorderColor"/>
+  <Mapping cloverField="profileSidebarFillColor" trim="true" xpath="retweetedStatus/user/profileSidebarFillColor"/>
+  <Mapping cloverField="profileTextColor" trim="true" xpath="retweetedStatus/user/profileTextColor"/>
+  <Mapping cloverField="profileUseBackgroundImage" trim="true" xpath="retweetedStatus/user/profileUseBackgroundImage"/>
+  <Mapping cloverField="protected" trim="true" xpath="retweetedStatus/user/protected"/>
+  <Mapping cloverField="screenName" trim="true" xpath="retweetedStatus/user/screenName"/>
+  <Mapping cloverField="showAllInlineMedia" trim="true" xpath="retweetedStatus/user/showAllInlineMedia"/>
+  <Mapping cloverField="statusesCount" trim="true" xpath="retweetedStatus/user/statusesCount"/>
+  <Mapping cloverField="timeZone" trim="true" xpath="retweetedStatus/user/timeZone"/>
+  <Mapping cloverField="translator" trim="true" xpath="retweetedStatus/user/translator"/>
+  <Mapping cloverField="utcOffset" trim="true" xpath="retweetedStatus/user/utcOffset"/>
+  <Mapping cloverField="verified" trim="true" xpath="retweetedStatus/user/verified"/>
+  <Mapping cloverField="accessLevel10" trim="true" xpath="retweetedStatus/user/accessLevel"/>
+  <Mapping cloverField="hourlyLimit10" trim="true" xpath="retweetedStatus/user/rateLimitStatus/hourlyLimit"/>
+  <Mapping cloverField="remainingHits10" trim="true" xpath="retweetedStatus/user/rateLimitStatus/remainingHits"/>
+  <Mapping cloverField="resetTime10" trim="true" xpath="retweetedStatus/user/rateLimitStatus/resetTime"/>
+  <Mapping cloverField="resetTimeInSeconds10" trim="true" xpath="retweetedStatus/user/rateLimitStatus/resetTimeInSeconds"/>
+  <Mapping cloverField="secondsUntilReset10" trim="true" xpath="retweetedStatus/user/rateLimitStatus/secondsUntilReset"/>
+  <Mapping cloverField="accessLevel11" trim="true" xpath="retweetedStatus/accessLevel"/>
+  <Mapping cloverField="hourlyLimit11" trim="true" xpath="retweetedStatus/rateLimitStatus/hourlyLimit"/>
+  <Mapping cloverField="remainingHits11" trim="true" xpath="retweetedStatus/rateLimitStatus/remainingHits"/>
+  <Mapping cloverField="resetTime11" trim="true" xpath="retweetedStatus/rateLimitStatus/resetTime"/>
+  <Mapping cloverField="resetTimeInSeconds11" trim="true" xpath="retweetedStatus/rateLimitStatus/resetTimeInSeconds"/>
+  <Mapping cloverField="secondsUntilReset11" trim="true" xpath="retweetedStatus/rateLimitStatus/secondsUntilReset"/>
+  <Mapping cloverField="source3" trim="true" xpath="source"/>
+  <Mapping cloverField="text3" trim="true" xpath="text"/>
+  <Mapping cloverField="truncated3" trim="true" xpath="truncated"/>
+  <Mapping cloverField="URL7" trim="true" xpath="user/URL"/>
+  <Mapping cloverField="contributorsEnabled2" trim="true" xpath="user/contributorsEnabled"/>
+  <Mapping cloverField="createdAt7" trim="true" xpath="user/createdAt"/>
+  <Mapping cloverField="description2" trim="true" xpath="user/description"/>
+  <Mapping cloverField="favouritesCount2" trim="true" xpath="user/favouritesCount"/>
+  <Mapping cloverField="followRequestSent2" trim="true" xpath="user/followRequestSent"/>
+  <Mapping cloverField="followersCount2" trim="true" xpath="user/followersCount"/>
+  <Mapping cloverField="friendsCount2" trim="true" xpath="user/friendsCount"/>
+  <Mapping cloverField="geoEnabled2" trim="true" xpath="user/geoEnabled"/>
+  <Mapping cloverField="id12" trim="true" xpath="user/id"/>
+  <Mapping cloverField="lang2" trim="true" xpath="user/lang"/>
+  <Mapping cloverField="listedCount2" trim="true" xpath="user/listedCount"/>
+  <Mapping cloverField="location2" trim="true" xpath="user/location"/>
+  <Mapping cloverField="name7" trim="true" xpath="user/name"/>
+  <Mapping cloverField="profileBackgroundColor2" trim="true" xpath="user/profileBackgroundColor"/>
+  <Mapping cloverField="profileBackgroundImageUrl2" trim="true" xpath="user/profileBackgroundImageUrl"/>
+  <Mapping cloverField="profileBackgroundImageUrlHttps2" trim="true" xpath="user/profileBackgroundImageUrlHttps"/>
+  <Mapping cloverField="profileBackgroundTiled2" trim="true" xpath="user/profileBackgroundTiled"/>
+  <Mapping cloverField="profileImageURL2" trim="true" xpath="user/profileImageURL"/>
+  <Mapping cloverField="profileImageUrlHttps2" trim="true" xpath="user/profileImageUrlHttps"/>
+  <Mapping cloverField="profileLinkColor2" trim="true" xpath="user/profileLinkColor"/>
+  <Mapping cloverField="profileSidebarBorderColor2" trim="true" xpath="user/profileSidebarBorderColor"/>
+  <Mapping cloverField="profileSidebarFillColor2" trim="true" xpath="user/profileSidebarFillColor"/>
+  <Mapping cloverField="profileTextColor2" trim="true" xpath="user/profileTextColor"/>
+  <Mapping cloverField="profileUseBackgroundImage2" trim="true" xpath="user/profileUseBackgroundImage"/>
+  <Mapping cloverField="protected2" trim="true" xpath="user/protected"/>
+  <Mapping cloverField="screenName2" trim="true" xpath="user/screenName"/>
+  <Mapping cloverField="showAllInlineMedia2" trim="true" xpath="user/showAllInlineMedia"/>
+  <Mapping cloverField="annotations4" trim="true" xpath="user/status/annotations/annotations"/>
+  <Mapping cloverField="empty4" trim="true" xpath="user/status/annotations/empty"/>
+  <Mapping cloverField="exceedingLengthLimit4" trim="true" xpath="user/status/annotations/exceedingLengthLimit"/>
+  <Mapping cloverField="contributors4" trim="true" xpath="user/status/contributors"/>
+  <Mapping cloverField="createdAt8" trim="true" xpath="user/status/createdAt"/>
+  <Mapping cloverField="favorited4" trim="true" xpath="user/status/favorited"/>
+  <Mapping cloverField="latitude4" trim="true" xpath="user/status/geoLocation/latitude"/>
+  <Mapping cloverField="longitude4" trim="true" xpath="user/status/geoLocation/longitude"/>
+  <Mapping cloverField="id13" trim="true" xpath="user/status/id"/>
+  <Mapping cloverField="inReplyToScreenName4" trim="true" xpath="user/status/inReplyToScreenName"/>
+  <Mapping cloverField="inReplyToStatusId4" trim="true" xpath="user/status/inReplyToStatusId"/>
+  <Mapping cloverField="inReplyToUserId4" trim="true" xpath="user/status/inReplyToUserId"/>
+  <Mapping cloverField="URL8" trim="true" xpath="user/status/place/URL"/>
+  <Mapping cloverField="boundingBoxType4" trim="true" xpath="user/status/place/boundingBoxType"/>
+  <Mapping cloverField="country4" trim="true" xpath="user/status/place/country"/>
+  <Mapping cloverField="countryCode4" trim="true" xpath="user/status/place/countryCode"/>
+  <Mapping cloverField="fullName4" trim="true" xpath="user/status/place/fullName"/>
+  <Mapping cloverField="geometryType4" trim="true" xpath="user/status/place/geometryType"/>
+  <Mapping cloverField="id14" trim="true" xpath="user/status/place/id"/>
+  <Mapping cloverField="name8" trim="true" xpath="user/status/place/name"/>
+  <Mapping cloverField="placeType4" trim="true" xpath="user/status/place/placeType"/>
+  <Mapping cloverField="streetAddress4" trim="true" xpath="user/status/place/streetAddress"/>
+  <Mapping cloverField="accessLevel12" trim="true" xpath="user/status/place/accessLevel"/>
+  <Mapping cloverField="hourlyLimit12" trim="true" xpath="user/status/place/rateLimitStatus/hourlyLimit"/>
+  <Mapping cloverField="remainingHits12" trim="true" xpath="user/status/place/rateLimitStatus/remainingHits"/>
+  <Mapping cloverField="resetTime12" trim="true" xpath="user/status/place/rateLimitStatus/resetTime"/>
+  <Mapping cloverField="resetTimeInSeconds12" trim="true" xpath="user/status/place/rateLimitStatus/resetTimeInSeconds"/>
+  <Mapping cloverField="secondsUntilReset12" trim="true" xpath="user/status/place/rateLimitStatus/secondsUntilReset"/>
+  <Mapping cloverField="retweet4" trim="true" xpath="user/status/retweet"/>
+  <Mapping cloverField="retweetCount4" trim="true" xpath="user/status/retweetCount"/>
+  <Mapping cloverField="retweetedByMe4" trim="true" xpath="user/status/retweetedByMe"/>
+  <Mapping cloverField="source4" trim="true" xpath="user/status/source"/>
+  <Mapping cloverField="text4" trim="true" xpath="user/status/text"/>
+  <Mapping cloverField="truncated4" trim="true" xpath="user/status/truncated"/>
+  <Mapping cloverField="accessLevel13" trim="true" xpath="user/status/accessLevel"/>
+  <Mapping cloverField="hourlyLimit13" trim="true" xpath="user/status/rateLimitStatus/hourlyLimit"/>
+  <Mapping cloverField="remainingHits13" trim="true" xpath="user/status/rateLimitStatus/remainingHits"/>
+  <Mapping cloverField="resetTime13" trim="true" xpath="user/status/rateLimitStatus/resetTime"/>
+  <Mapping cloverField="resetTimeInSeconds13" trim="true" xpath="user/status/rateLimitStatus/resetTimeInSeconds"/>
+  <Mapping cloverField="secondsUntilReset13" trim="true" xpath="user/status/rateLimitStatus/secondsUntilReset"/>
+  <Mapping cloverField="statusesCount2" trim="true" xpath="user/statusesCount"/>
+  <Mapping cloverField="timeZone2" trim="true" xpath="user/timeZone"/>
+  <Mapping cloverField="translator2" trim="true" xpath="user/translator"/>
+  <Mapping cloverField="utcOffset2" trim="true" xpath="user/utcOffset"/>
+  <Mapping cloverField="verified2" trim="true" xpath="user/verified"/>
+  <Mapping cloverField="accessLevel14" trim="true" xpath="user/accessLevel"/>
+  <Mapping cloverField="hourlyLimit14" trim="true" xpath="user/rateLimitStatus/hourlyLimit"/>
+  <Mapping cloverField="remainingHits14" trim="true" xpath="user/rateLimitStatus/remainingHits"/>
+  <Mapping cloverField="resetTime14" trim="true" xpath="user/rateLimitStatus/resetTime"/>
+  <Mapping cloverField="resetTimeInSeconds14" trim="true" xpath="user/rateLimitStatus/resetTimeInSeconds"/>
+  <Mapping cloverField="secondsUntilReset14" trim="true" xpath="user/rateLimitStatus/secondsUntilReset"/>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<schema-object>
+  <typed-object-ref type-ref="twitter4j.internal.json.StatusJSONImpl"/>
+  <typed-object type="twitter4j.HashtagEntity">
+    <typed-object-ref name="end" type-ref="int"/>
+    <typed-object-ref name="start" type-ref="int"/>
+    <typed-object-ref name="text" type-ref="java.lang.String"/>
+  </typed-object>
+  <typed-object type="java.lang.Object"/>
+  <typed-object type="twitter4j.GeoLocation">
+    <typed-object-ref name="latitude" type-ref="double"/>
+    <typed-object-ref name="longitude" type-ref="double"/>
+  </typed-object>
+  <typed-object type="int"/>
+  <typed-object type="java.lang.String"/>
+  <typed-object type="java.util.Date"/>
+  <typed-object type="twitter4j.RateLimitStatus">
+    <typed-object-ref name="hourlyLimit" type-ref="int"/>
+    <typed-object-ref name="remainingHits" type-ref="int"/>
+    <typed-object-ref name="resetTime" type-ref="java.util.Date"/>
+    <typed-object-ref name="resetTimeInSeconds" type-ref="int"/>
+    <typed-object-ref name="secondsUntilReset" type-ref="int"/>
+  </typed-object>
+  <typed-object type="long"/>
+  <typed-object type="double"/>
+  <typed-object type="twitter4j.internal.json.StatusJSONImpl">
+    <schema-collection array="true" name="URLEntities">
+      <typed-object-ref type-ref="twitter4j.URLEntity"/>
+    </schema-collection>
+    <typed-object-ref name="accessLevel" type-ref="int"/>
+    <typed-object-ref name="annotations" type-ref="twitter4j.Annotations"/>
+    <schema-collection array="true" name="contributors">
+      <typed-object-ref type-ref="long"/>
+    </schema-collection>
+    <typed-object-ref name="createdAt" type-ref="java.util.Date"/>
+    <typed-object-ref name="favorited" type-ref="boolean"/>
+    <typed-object-ref name="geoLocation" type-ref="twitter4j.GeoLocation"/>
+    <schema-collection array="true" name="hashtagEntities">
+      <typed-object-ref type-ref="twitter4j.HashtagEntity"/>
+    </schema-collection>
+    <typed-object-ref name="id" type-ref="long"/>
+    <typed-object-ref name="inReplyToScreenName" type-ref="java.lang.String"/>
+    <typed-object-ref name="inReplyToStatusId" type-ref="long"/>
+    <typed-object-ref name="inReplyToUserId" type-ref="long"/>
+    <schema-collection array="true" name="mediaEntities">
+      <typed-object-ref type-ref="twitter4j.MediaEntity"/>
+    </schema-collection>
+    <typed-object-ref name="place" type-ref="twitter4j.Place"/>
+    <typed-object-ref name="rateLimitStatus" type-ref="twitter4j.RateLimitStatus"/>
+    <typed-object-ref name="retweet" type-ref="boolean"/>
+    <typed-object-ref name="retweetCount" type-ref="long"/>
+    <typed-object-ref name="retweetedByMe" type-ref="boolean"/>
+    <typed-object-ref name="retweetedStatus" type-ref="twitter4j.Status"/>
+    <typed-object-ref name="source" type-ref="java.lang.String"/>
+    <typed-object-ref name="text" type-ref="java.lang.String"/>
+    <typed-object-ref name="truncated" type-ref="boolean"/>
+    <typed-object-ref name="user" type-ref="twitter4j.User"/>
+    <schema-collection array="true" name="userMentionEntities">
+      <typed-object-ref type-ref="twitter4j.UserMentionEntity"/>
+    </schema-collection>
+  </typed-object>
+  <typed-object type="twitter4j.Status">
+    <typed-object-ref name="annotations" type-ref="twitter4j.Annotations"/>
+    <schema-collection array="true" name="contributors">
+      <typed-object-ref type-ref="long"/>
+    </schema-collection>
+    <typed-object-ref name="createdAt" type-ref="java.util.Date"/>
+    <typed-object-ref name="favorited" type-ref="boolean"/>
+    <typed-object-ref name="geoLocation" type-ref="twitter4j.GeoLocation"/>
+    <typed-object-ref name="id" type-ref="long"/>
+    <typed-object-ref name="inReplyToScreenName" type-ref="java.lang.String"/>
+    <typed-object-ref name="inReplyToStatusId" type-ref="long"/>
+    <typed-object-ref name="inReplyToUserId" type-ref="long"/>
+    <typed-object-ref name="place" type-ref="twitter4j.Place"/>
+    <typed-object-ref name="retweet" type-ref="boolean"/>
+    <typed-object-ref name="retweetCount" type-ref="long"/>
+    <typed-object-ref name="retweetedByMe" type-ref="boolean"/>
+    <typed-object-ref name="retweetedStatus" type-ref="twitter4j.Status"/>
+    <typed-object-ref name="source" type-ref="java.lang.String"/>
+    <typed-object-ref name="text" type-ref="java.lang.String"/>
+    <typed-object-ref name="truncated" type-ref="boolean"/>
+    <typed-object-ref name="user" type-ref="twitter4j.User"/>
+    <typed-object-ref name="accessLevel" type-ref="int"/>
+    <typed-object-ref name="rateLimitStatus" type-ref="twitter4j.RateLimitStatus"/>
+    <schema-collection array="true" name="URLEntities">
+      <typed-object-ref type-ref="twitter4j.URLEntity"/>
+    </schema-collection>
+    <schema-collection array="true" name="hashtagEntities">
+      <typed-object-ref type-ref="twitter4j.HashtagEntity"/>
+    </schema-collection>
+    <schema-collection array="true" name="mediaEntities">
+      <typed-object-ref type-ref="twitter4j.MediaEntity"/>
+    </schema-collection>
+    <schema-collection array="true" name="userMentionEntities">
+      <typed-object-ref type-ref="twitter4j.UserMentionEntity"/>
+    </schema-collection>
+  </typed-object>
+  <typed-object type="twitter4j.UserMentionEntity">
+    <typed-object-ref name="end" type-ref="int"/>
+    <typed-object-ref name="id" type-ref="long"/>
+    <typed-object-ref name="name" type-ref="java.lang.String"/>
+    <typed-object-ref name="screenName" type-ref="java.lang.String"/>
+    <typed-object-ref name="start" type-ref="int"/>
+  </typed-object>
+  <typed-object type="twitter4j.MediaEntity">
+    <typed-object-ref name="id" type-ref="long"/>
+    <typed-object-ref name="mediaURL" type-ref="java.net.URL"/>
+    <typed-object-ref name="mediaURLHttps" type-ref="java.net.URL"/>
+    <schema-map name="sizes" type="java.util.Map">
+      <typed-object-ref type-ref="java.lang.Object"/>
+      <typed-object-ref type-ref="java.lang.Object"/>
+    </schema-map>
+    <typed-object-ref name="URL" type-ref="java.net.URL"/>
+    <typed-object-ref name="displayURL" type-ref="java.lang.String"/>
+    <typed-object-ref name="end" type-ref="int"/>
+    <typed-object-ref name="expandedURL" type-ref="java.net.URL"/>
+    <typed-object-ref name="start" type-ref="int"/>
+  </typed-object>
+  <typed-object type="twitter4j.Annotations">
+    <schema-collection name="annotations" type="java.util.List">
+      <typed-object-ref type-ref="java.lang.Object"/>
+    </schema-collection>
+    <typed-object-ref name="empty" type-ref="boolean"/>
+    <typed-object-ref name="exceedingLengthLimit" type-ref="boolean"/>
+  </typed-object>
+  <typed-object type="java.net.URL"/>
+  <typed-object type="twitter4j.URLEntity">
+    <typed-object-ref name="URL" type-ref="java.net.URL"/>
+    <typed-object-ref name="displayURL" type-ref="java.lang.String"/>
+    <typed-object-ref name="end" type-ref="int"/>
+    <typed-object-ref name="expandedURL" type-ref="java.net.URL"/>
+    <typed-object-ref name="start" type-ref="int"/>
+  </typed-object>
+  <typed-object type="twitter4j.Place">
+    <typed-object-ref name="URL" type-ref="java.lang.String"/>
+    <schema-collection array="true" name="boundingBoxCoordinates">
+      <schema-collection array="true">
+        <typed-object-ref type-ref="twitter4j.GeoLocation"/>
+      </schema-collection>
+    </schema-collection>
+    <typed-object-ref name="boundingBoxType" type-ref="java.lang.String"/>
+    <schema-collection array="true" name="containedWithIn">
+      <typed-object-ref type-ref="twitter4j.Place"/>
+    </schema-collection>
+    <typed-object-ref name="country" type-ref="java.lang.String"/>
+    <typed-object-ref name="countryCode" type-ref="java.lang.String"/>
+    <typed-object-ref name="fullName" type-ref="java.lang.String"/>
+    <schema-collection array="true" name="geometryCoordinates">
+      <schema-collection array="true">
+        <typed-object-ref type-ref="twitter4j.GeoLocation"/>
+      </schema-collection>
+    </schema-collection>
+    <typed-object-ref name="geometryType" type-ref="java.lang.String"/>
+    <typed-object-ref name="id" type-ref="java.lang.String"/>
+    <typed-object-ref name="name" type-ref="java.lang.String"/>
+    <typed-object-ref name="placeType" type-ref="java.lang.String"/>
+    <typed-object-ref name="streetAddress" type-ref="java.lang.String"/>
+    <typed-object-ref name="accessLevel" type-ref="int"/>
+    <typed-object-ref name="rateLimitStatus" type-ref="twitter4j.RateLimitStatus"/>
+  </typed-object>
+  <typed-object type="boolean"/>
+  <typed-object type="twitter4j.User">
+    <typed-object-ref name="URL" type-ref="java.net.URL"/>
+    <typed-object-ref name="contributorsEnabled" type-ref="boolean"/>
+    <typed-object-ref name="createdAt" type-ref="java.util.Date"/>
+    <typed-object-ref name="description" type-ref="java.lang.String"/>
+    <typed-object-ref name="favouritesCount" type-ref="int"/>
+    <typed-object-ref name="followRequestSent" type-ref="boolean"/>
+    <typed-object-ref name="followersCount" type-ref="int"/>
+    <typed-object-ref name="friendsCount" type-ref="int"/>
+    <typed-object-ref name="geoEnabled" type-ref="boolean"/>
+    <typed-object-ref name="id" type-ref="long"/>
+    <typed-object-ref name="lang" type-ref="java.lang.String"/>
+    <typed-object-ref name="listedCount" type-ref="int"/>
+    <typed-object-ref name="location" type-ref="java.lang.String"/>
+    <typed-object-ref name="name" type-ref="java.lang.String"/>
+    <typed-object-ref name="profileBackgroundColor" type-ref="java.lang.String"/>
+    <typed-object-ref name="profileBackgroundImageUrl" type-ref="java.lang.String"/>
+    <typed-object-ref name="profileBackgroundImageUrlHttps" type-ref="java.lang.String"/>
+    <typed-object-ref name="profileBackgroundTiled" type-ref="boolean"/>
+    <typed-object-ref name="profileImageURL" type-ref="java.net.URL"/>
+    <typed-object-ref name="profileImageUrlHttps" type-ref="java.net.URL"/>
+    <typed-object-ref name="profileLinkColor" type-ref="java.lang.String"/>
+    <typed-object-ref name="profileSidebarBorderColor" type-ref="java.lang.String"/>
+    <typed-object-ref name="profileSidebarFillColor" type-ref="java.lang.String"/>
+    <typed-object-ref name="profileTextColor" type-ref="java.lang.String"/>
+    <typed-object-ref name="profileUseBackgroundImage" type-ref="boolean"/>
+    <typed-object-ref name="protected" type-ref="boolean"/>
+    <typed-object-ref name="screenName" type-ref="java.lang.String"/>
+    <typed-object-ref name="showAllInlineMedia" type-ref="boolean"/>
+    <typed-object-ref name="status" type-ref="twitter4j.Status"/>
+    <typed-object-ref name="statusesCount" type-ref="int"/>
+    <typed-object-ref name="timeZone" type-ref="java.lang.String"/>
+    <typed-object-ref name="translator" type-ref="boolean"/>
+    <typed-object-ref name="utcOffset" type-ref="int"/>
+    <typed-object-ref name="verified" type-ref="boolean"/>
+    <typed-object-ref name="accessLevel" type-ref="int"/>
+    <typed-object-ref name="rateLimitStatus" type-ref="twitter4j.RateLimitStatus"/>
+  </typed-object>
+</schema-object>
+]]></attr>
+</Node>
+<Node enabled="enabled" fileURL="dict:outputPayload" guiHeight="0" guiName="MAP Writer" guiWidth="0" guiX="460" guiY="20" id="MAP_WRITER0" type="MAP_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<outputMetadata xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
+  <body>$0.body</body>
+  <userID>$0.userID</userID>
+  <subject>$0.subject</subject>
+  <blogID>$0.blogID</blogID>
+</outputMetadata>]]></attr>
+<attr name="_data_format"><![CDATA[MAP]]></attr>
+</Node>
+<Node enabled="enabled" guiHeight="0" guiName="object_to_outputMetadata" guiWidth="0" guiX="240" guiY="20" id="REFORMAT0" type="REFORMAT">
+<attr name="transform"><![CDATA[//#CTL2
+
+// Transforms input record into output record.
+function integer transform() {
+	$out.0.blogID = dictionary.blogID;
+	$out.0.userID = dictionary.userID;
+		$out.0.body = $in.0.text3;
+	$out.0.subject = "Subject #" + (isnull($in.0.id7) ? "" : num2str($in.0.id7));
+	$out.0.__id=$in.0.__id;
+		return ALL;
+}
+
+// Called during component initialization.
+// function boolean init() {}
+
+// Called during each graph run before the transform is executed. May be used to allocate and initialize resources
+// required by the transform. All resources allocated within this method should be released
+// by the postExecute() method.
+// function void preExecute() {}
+
+// Called only if transform() throws an exception.
+// function integer transformOnError(string errorMessage, string stackTrace) {}
+
+// Called during each graph run after the entire transform was executed. Should be used to free any resources
+// allocated within the preExecute() method.
+// function void postExecute() {}
+
+// Called to return a user-defined error message when an error occurs.
+// function string getMessage() {}
+]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="BEAN_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="Metadata0" outPort="Port 0 (out)" toNode="REFORMAT0:0"/>
+<Edge debugMode="true" fromNode="REFORMAT0:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="b9537845-d507-43fb-a248-801e00be9de1" outPort="Port 0 (out)" toNode="MAP_WRITER0:0"/>
+</Phase>
+</Graph>
