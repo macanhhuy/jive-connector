@@ -207,15 +207,21 @@
     <li class="api apilevel-">
   <a href="../../../../../java/org/mule/modules/jive/adapters/package-summary.html">org.mule.modules.jive.adapters</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../java/org/mule/modules/jive/agents/package-summary.html">org.mule.modules.jive.agents</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../java/org/mule/modules/jive/api/package-summary.html">org.mule.modules.jive.api</a></li>
     <li class="api apilevel-">
   <a href="../../../../../java/org/mule/modules/jive/api/impl/package-summary.html">org.mule.modules.jive.api.impl</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../java/org/mule/modules/jive/api/transformers/package-summary.html">org.mule.modules.jive.api.transformers</a></li>
     <li class="api apilevel-">
   <a href="../../../../../java/org/mule/modules/jive/api/xml/package-summary.html">org.mule.modules.jive.api.xml</a></li>
     <li class="api apilevel-">
   <a href="../../../../../java/org/mule/modules/jive/config/package-summary.html">org.mule.modules.jive.config</a></li>
     <li class="api apilevel-">
   <a href="../../../../../java/org/mule/modules/jive/config/spring/package-summary.html">org.mule.modules.jive.config.spring</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../java/org/mule/modules/jive/process/package-summary.html">org.mule.modules.jive.process</a></li>
     <li class="api apilevel-">
   <a href="../../../../../java/org/mule/modules/jive/processors/package-summary.html">org.mule.modules.jive.processors</a></li>
     <li class="api apilevel-">
@@ -434,7 +440,11 @@ Summary:
               >
           
             
-              <a href="../../../../../java/org/mule/modules/jive/adapters/JiveModuleLifecycleAdapter.html">JiveModuleLifecycleAdapter</a>
+              <a href="../../../../../java/org/mule/modules/jive/adapters/JiveModuleLifecycleAdapter.html">JiveModuleLifecycleAdapter</a>,
+            
+              <a href="../../../../../java/org/mule/modules/jive/adapters/JiveModuleMetadataAdapater.html">JiveModuleMetadataAdapater</a>,
+            
+              <a href="../../../../../java/org/mule/modules/jive/adapters/JiveModuleProcessAdapter.html">JiveModuleProcessAdapter</a>
             
           
       </div>
@@ -445,6 +455,14 @@ Summary:
         <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../java/org/mule/modules/jive/adapters/JiveModuleLifecycleAdapter.html">JiveModuleLifecycleAdapter</a></td>
               <td class="jd-descrcol" width="100%">A <code>JiveModuleLifecycleAdapter</code> is a wrapper around <code><a href="../../../../../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code> that adds lifecycle methods to the pojo.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../java/org/mule/modules/jive/adapters/JiveModuleMetadataAdapater.html">JiveModuleMetadataAdapater</a></td>
+              <td class="jd-descrcol" width="100%">A <code>JiveModuleMetadataAdapater</code> is a wrapper around <code><a href="../../../../../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code> that adds support for querying metadata about the extension.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../java/org/mule/modules/jive/adapters/JiveModuleProcessAdapter.html">JiveModuleProcessAdapter</a></td>
+              <td class="jd-descrcol" width="100%">A <code>JiveModuleProcessAdapter</code> is a wrapper around <code><a href="../../../../../java/org/mule/modules/jive/JiveModule.html">JiveModule</a></code> that enables custom processing strategies.&nbsp;</td>
           </tr>
   </table>
       </div>
@@ -704,6 +722,54 @@ Summary:
             
             
             
+            <a href="../../../../../java/org/mule/modules/jive/JiveFacade.html">JiveFacade</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../org/mule/modules/jive/JiveModule.html#getFacade()">getFacade</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../org/mule/modules/jive/JiveModule.html#getGatewayUri()">getGatewayUri</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../org/mule/modules/jive/JiveModule.html#getPassword()">getPassword</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
             Long</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
@@ -713,6 +779,22 @@ Summary:
  
  </div>
   
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../org/mule/modules/jive/JiveModule.html#getUsername()">getUsername</a></span>()</nobr>
+        
   </td></tr>
 
 
@@ -1537,6 +1619,99 @@ From class
 </div>
 
 
+<A NAME="getFacade()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../java/org/mule/modules/jive/JiveFacade.html">JiveFacade</a>
+      </span>
+      <span class="sympad">getFacade</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<A NAME="getGatewayUri()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getGatewayUri</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<A NAME="getPassword()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getPassword</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <A NAME="getUserId()"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1570,6 +1745,37 @@ From class
       <ul class="nolist"><li>the user id
 </li></ul>
   </div>
+
+    </div>
+</div>
+
+
+<A NAME="getUsername()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getUsername</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
