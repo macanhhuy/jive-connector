@@ -216,6 +216,20 @@ public class JiveModule
         this.facade = facade;
     }
 
-    
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getGatewayUri() {
+        return gatewayUri;
+    }
+
+    public JiveFacade getFacade() {
+        return facade;
+    }    
 
 }

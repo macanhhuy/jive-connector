@@ -10,8 +10,12 @@
     <parent>
         <groupId>org.mule.tools.devkit</groupId>
         <artifactId>mule-devkit-parent</artifactId>
-        <version>3.3.0</version>
+        <version>3.3.1-SNAPSHOT</version>
     </parent>
+    
+    <properties>
+        <devkit.studio.package.skip>false</devkit.studio.package.skip>
+    </properties>
 
     <build>
         <plugins>

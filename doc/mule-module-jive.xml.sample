@@ -10,9 +10,9 @@
 <!-- BEGIN_INCLUDE(jive:update) -->
 <jive:update type="BLOG">
 	<jive:entity>
-		<author>#[variable:author]</author>
-	</jive:entity>
-</jive:update>}
+        <author>#[variable:author]</author>
+    </jive:entity>
+</jive:update>
 <!-- END_INCLUDE(jive:update) -->
  
 <!-- BEGIN_INCLUDE(jive:delete) -->
