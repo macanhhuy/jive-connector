@@ -34,7 +34,7 @@ import java.util.Map;
  * 
  * @author MuleSoft, Inc.
  */
-@Module(name = "jive", schemaVersion = "1.0")
+@Module(name = "jive", schemaVersion = "1.0", friendlyName = "Jive")
 public class JiveModule
 {
     /** The username to access the jive instance. */
